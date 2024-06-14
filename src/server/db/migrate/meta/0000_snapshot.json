@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "9573d7d5-c60f-4858-8609-5cfb8b3f3bca",
+  "id": "1efc1021-4c68-4a38-a2ba-00df2037a125",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "unshackled_billboard": {
@@ -656,6 +656,57 @@
       },
       "indexes": {},
       "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "unshackled_vendorInfo": {
+      "name": "unshackled_vendorInfo",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "stripeConnected": {
+          "name": "stripeConnected",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_vendorInfo_userId_unshackled_users_id_fk": {
+          "name": "unshackled_vendorInfo_userId_unshackled_users_id_fk",
+          "tableFrom": "unshackled_vendorInfo",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },

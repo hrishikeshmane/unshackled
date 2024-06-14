@@ -11,7 +11,9 @@
     "db:studio": "drizzle-kit studio",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "clerk:listen": "ngrok http 3000",
+    "clerk:listen-static": "ngrok http --domain=star-right-collie.ngrok-free.app 3000"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.1.4",

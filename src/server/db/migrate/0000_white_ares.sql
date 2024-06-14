@@ -93,6 +93,14 @@ CREATE TABLE `unshackled_users` (
 	`updatedAt` integer DEFAULT (unixepoch())
 );
 --> statement-breakpoint
+CREATE TABLE `unshackled_vendorInfo` (
+	`id` text(256) PRIMARY KEY NOT NULL,
+	`userId` text(256) NOT NULL,
+	`stripeConnected` integer NOT NULL,
+	`status` text NOT NULL,
+	FOREIGN KEY (`userId`) REFERENCES `unshackled_users`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
 CREATE TABLE `unshackled_waitlist` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`email` text(256)
