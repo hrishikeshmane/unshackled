@@ -23,15 +23,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en">
       <body
         className={cn(
-          "relative h-full min-h-screen bg-background font-sans antialiased",
+          "min-w-screen relative h-full min-h-screen bg-background font-sans antialiased ",
           GeistSans.variable,
         )}
       >
-        <Header />
-        <main className="relative flex min-h-screen flex-col">
+        <main className="relative flex flex-col">
           <ClerkProvider
             appearance={{
               layout: {
@@ -47,6 +46,7 @@ export default function RootLayout({
             <TRPCReactProvider>
               <ToastProvider />
               {/* <Navbar /> */}
+              <Header />
               <div className="flex-1 flex-grow">{children}</div>
             </TRPCReactProvider>
           </ClerkProvider>

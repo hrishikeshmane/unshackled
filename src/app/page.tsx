@@ -7,8 +7,8 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen w-full flex-col bg-[#F5F9FF]">
-      <main>
+    <div className="flex w-full flex-col bg-[#F5F9FF]">
+      <div>
         <HeroSection />
 
         <section className="mx-auto my-8 flex w-full justify-center">
@@ -88,7 +88,7 @@ export default function HomePage() {
             Reading time: 5 minutes.
           </p>
         </section>
-      </main>
+      </div>
       <Footer />
     </div>
   );

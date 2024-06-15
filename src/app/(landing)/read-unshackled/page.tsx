@@ -15,6 +15,7 @@ const Page = () => {
           simplifies legal immigration <br></br> with beautiful visuals &
           gripping stories.
         </h2>
+        {/* { TODO: add grids for features} */}
       </section>
 
       <div className="w-full">
@@ -33,12 +34,89 @@ const Page = () => {
           Our Team
         </h2>
         <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-4 grid-rows-2 gap-10">
-          <div className="col-start-2 h-52  bg-slate-300">1</div>
-          <div className="col-start-3 h-52  bg-slate-300">2</div>
-          <div className="col-start-1 h-52  bg-slate-300">a</div>
-          <div className="h-52  bg-slate-300">a</div>
-          <div className="h-52  bg-slate-300">a</div>
-          <div className="h-52  bg-slate-300">a</div>
+          <div className="col-start-2">
+            <Image
+              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f17c70b31e0313c78c7afd_Rectangle%202048.png"
+              alt="Soundarya Soundararajan"
+              width={270}
+              height={270}
+              className="rounded-lg"
+            />
+            <div className="flex flex-col py-4 text-center">
+              <h3 className="text-lg font-bold text-primary">
+                Soundarya Soundararajan
+              </h3>
+              <p className="text-muted-foreground">Author</p>
+            </div>
+          </div>
+          <div className="col-start-3">
+            <Image
+              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fc184d777e6eaf167f9439_Rectangle%202047.png"
+              alt="Sameer Khedekar"
+              width={270}
+              height={270}
+              className="rounded-lg"
+            />
+            <div className="flex flex-col py-4 text-center">
+              <h3 className="text-lg font-bold text-primary">
+                Sameer Khedekar
+              </h3>
+              <p className="text-muted-foreground">Author</p>
+            </div>
+          </div>
+
+          <div className="col-start-1">
+            <Image
+              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fc185d267de660e1243889_t2.png"
+              alt="Rishabh Singh"
+              width={270}
+              height={270}
+              className="rounded-lg"
+            />
+            <div className="flex flex-col py-4 text-center">
+              <h3 className="text-lg font-bold text-primary">Rishabh Singh</h3>
+              <p className="text-muted-foreground">Design & Contributor</p>
+            </div>
+          </div>
+          <div className="col-start-2">
+            <Image
+              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fc185d31cf9a31366f4ba6_t3.png"
+              alt="Komal Telagavi"
+              width={270}
+              height={270}
+              className="rounded-lg"
+            />
+            <div className="flex flex-col py-4 text-center">
+              <h3 className="text-lg font-bold text-primary">Komal Telagavi</h3>
+              <p className="text-muted-foreground">Design & Illustrator</p>
+            </div>
+          </div>
+          <div className="col-start-3">
+            <Image
+              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fc185d54b325f0b07effd7_t4.png"
+              alt="Ben Merill"
+              width={270}
+              height={270}
+              className="rounded-lg"
+            />
+            <div className="flex flex-col py-4 text-center">
+              <h3 className="text-lg font-bold text-primary">Ben Merill</h3>
+              <p className="text-muted-foreground">Researcher & Contributor</p>
+            </div>
+          </div>
+          <div className="col-start-4">
+            <Image
+              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fc185d6b2c0baaafbbdd6f_t5.png"
+              alt="Anaik Alcasas"
+              width={270}
+              height={270}
+              className="rounded-lg"
+            />
+            <div className="flex flex-col py-4 text-center">
+              <h3 className="text-lg font-bold text-primary">Anaik Alcasas</h3>
+              <p className="text-muted-foreground">Editor</p>
+            </div>
+          </div>
         </div>
       </section>
 
