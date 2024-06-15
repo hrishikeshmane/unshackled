@@ -10,6 +10,8 @@ import {
   import { Button } from "@/components/ui/button";
   import { api } from "~/trpc/server";
   import { redirect } from "next/navigation";
+  import Link from "next/link";
+import BillingForm from "./_components/billing_form";
   
   export default async function BillingRoute() {
     noStore();
@@ -21,35 +23,23 @@ import {
 
     const data = await api.vendor.getVendorById({ userId: userId });
 
-    const handleCreateLink = async () => {
-        const data = await api.payment.createVendorStripeAccountLink({ userId: userId });
-        redirect(data.url);
+    if(!data) {
+        return null;
     }
-    const handleGetLink = async () => {
-        const data = await api.payment.getVendorStripeAccountLink({ userId: userId });
-        redirect(data.url);
+
+    let link = "/"
+    if (data.stripeConnected === false) {
+       const createLink = await api.payment.createVendorStripeAccountLink({ userId: userId });
+        link = createLink.url;
+    } else {
+     const getLink = await api.payment.getVendorStripeAccountLink({ userId: userId });
+        link = getLink.url;
     }
-  
+
     return (
-      <section className="max-w-7xl mx-auto px-4 md:px-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Billing</CardTitle>
-            <CardDescription>
-              Find all your details regarding your payments
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {data?.stripeConnected === false && (
-                <Button onClick={handleCreateLink} title="Link your Accout to stripe" />
-            )}
-  
-            {data?.stripeConnected === true && (
-                <Button onClick={handleGetLink} title="View Dashboard" />
-            )}
-          </CardContent>
-        </Card>
-      </section>
+      <div className="flex items-center justify-center mt-10">
+        <BillingForm stripeConnected={data.stripeConnected} link={link} />
+      </div>
     );
   }
   

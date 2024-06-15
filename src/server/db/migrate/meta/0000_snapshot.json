@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "ef36fed7-474f-43d9-ba2d-caabace60b4a",
+  "id": "0df42ab4-4443-4d4f-9617-b1230010bb39",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "unshackled_billboard": {
