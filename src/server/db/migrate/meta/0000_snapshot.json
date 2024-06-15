@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "1efc1021-4c68-4a38-a2ba-00df2037a125",
+  "id": "ef36fed7-474f-43d9-ba2d-caabace60b4a",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "unshackled_billboard": {
@@ -312,6 +312,13 @@
         "commission": {
           "name": "commission",
           "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "commissionType": {
+          "name": "commissionType",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -676,6 +683,13 @@
           "notNull": true,
           "autoincrement": false
         },
+        "stripeConnectedId": {
+          "name": "stripeConnectedId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
         "stripeConnected": {
           "name": "stripeConnected",
           "type": "integer",
@@ -689,6 +703,14 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch())"
         }
       },
       "indexes": {},

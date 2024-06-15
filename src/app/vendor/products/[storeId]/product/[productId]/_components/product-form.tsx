@@ -107,6 +107,7 @@ interface ProductFormProps {
                 description: data.description,
                 price: data.price,
                 commission: "20",
+                commissionType: "percentage",
                 stripeId: "xxx",
                 imageUrl: data.imageUrl,
                 estTurnAroundTime: data.estTurnAroundTime,

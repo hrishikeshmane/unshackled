@@ -16,13 +16,14 @@ interface NavItem {
     active: boolean;
 }
 
-const MarketplaceNavItems: React.FC<NavItemsProps> = ({ data }) => {
+const NavItems: React.FC<NavItemsProps> = ({ data }) => {
     const pathname = usePathname();
 
     const isMarketplaceRoute = pathname.startsWith('/marketplace');
     const isVendorRoute = pathname.startsWith('/vendor');
+    const isAdminRoute = pathname.startsWith('/admin');
 
-    if (!isMarketplaceRoute && !isVendorRoute) {
+    if (!isMarketplaceRoute && !isVendorRoute && !isAdminRoute) {
         return null;
     }
 
@@ -53,6 +54,16 @@ const MarketplaceNavItems: React.FC<NavItemsProps> = ({ data }) => {
             label: 'Billing',
             active: pathname === `/vendor/billing`
         }]
+    } else if (isAdminRoute) {
+        routes = [{
+            href: `/admin/users`,
+            label: 'Users',
+            active: pathname === `/admin/users`
+        }, {
+            href: `/admin/vendors`,
+            label: 'Vendors',
+            active: pathname === `/admin/vendors`
+        }]
     }
 
     return (
@@ -81,4 +92,4 @@ const MarketplaceNavItems: React.FC<NavItemsProps> = ({ data }) => {
     )
 }
 
-export default MarketplaceNavItems;
+export default NavItems;

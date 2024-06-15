@@ -4,6 +4,7 @@ import {
   createJSONStorage,
   persist,
 } from 'zustand/middleware'
+import { toast } from 'react-hot-toast'
 
 export type CartItem = {
   product: ProductWithRelations
@@ -22,6 +23,17 @@ export const useCart = create<CartState>()(
       items: [],
       addItem: (product) =>
         set((state) => {
+          const existingItem = state.items.find(
+            (item) => item.product.id === product.id
+          )
+          if (existingItem) {
+            toast.error('Item already in cart')
+            return state
+          }
+          if (state.items.length > 0) {
+            toast.error('Only one item is allowed in the cart')
+            return { items: [{ product }] }
+          }
           return { items: [...state.items, { product }] }
         }),
       removeItem: (id) =>

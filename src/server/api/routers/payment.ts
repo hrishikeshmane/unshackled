@@ -1,107 +1,141 @@
-// import { z } from 'zod'
-// import { 
-//     protectedProcedure,
-//   publicProcedure,
-//   createTRPCRouter
-// } from '../trpc'
-// import { TRPCError } from '@trpc/server'
-// import { stripe } from '../lib/stripe'
-// import type Stripe from 'stripe'
+import { z } from 'zod'
+import { 
+    protectedProcedure,
+  publicProcedure,
+  createTRPCRouter,
+  adminOrVendorProcedure
+} from '../trpc'
+import { TRPCError } from '@trpc/server'
+import { stripe } from '~/lib/stripe'
+import { eq } from 'drizzle-orm'
+import { redirect } from 'next/navigation'
+import { order, orderItem, vendor } from '~/server/db/schema'
+import { env } from '~/env'
 
-// export const paymentRouter = createTRPCRouter({
-//   createSession: protectedProcedure
-//     .input(z.object({ productIds: z.array(z.string()) }))
-//     .mutation(async ({ ctx, input }) => {
-//       const { user } = ctx
-//       let { productIds } = input
+export const paymentRouter = createTRPCRouter({
+  buyProduct: protectedProcedure
+    .input(z.object({ productIds: z.array(z.string()) }))
+    .mutation(async ({ ctx, input }) => {
+        const { productIds } = input
+        if (productIds.length === 0) {
+            throw new TRPCError({
+                code: 'BAD_REQUEST',
+                message: 'No products selected'
+            })
+        }
+        const productId = productIds[0]
 
-//       if (productIds.length === 0) {
-//         throw new TRPCError({ code: 'BAD_REQUEST' })
-//       }
+        const product = await ctx.db.query.product.findFirst({
+            where: (table) => eq(table.id, String(productId)),
+          });
+        
+        const vendor = await ctx.db.query.vendor.findFirst({
+            where: (table) => eq(table.userId, String(product?.creatorId)),
+          });
 
-//       const payload = await getPayloadClient()
+            if (!product) {
+                throw new TRPCError({
+                code: "NOT_FOUND",
+                message: "Product not found",
+                });
+            }
 
-//       const { docs: products } = await payload.find({
-//         collection: 'products',
-//         where: {
-//           id: {
-//             in: productIds,
-//           },
-//         },
-//       })
+            if (!vendor) {
+                throw new TRPCError({
+                code: "NOT_FOUND",
+                message: "Vendor not found",
+                });
+            }
+            const order_create = await ctx.db.insert(order).values({
+                isPaid: false,
+                orderTotal: product.price,
+                customerId: ctx.session.userId,
+              }).returning();
 
-//       const filteredProducts = products.filter((prod) =>
-//         Boolean(prod.priceId)
-//       )
+            const orderItem_create = await ctx.db.insert(orderItem).values({
+                isFulfilled: false,
+                orderId: String(order_create[0]!.id),
+                storeId: String(product.storeId),
+                productId: String(productId),
+                vendorPayout: false,
+                }).returning();
+        
+        
+            const session = await stripe.checkout.sessions.create({
+                mode: "payment",
+                line_items: [
+                  {
+                    price_data: {
+                      currency: "usd",
+                      unit_amount: Math.round((Number(product.price)) * 100),
+                      product_data: {
+                        name: product.name,
+                        images: [product.imageUrl], 
+                      },
+                    },
+                    quantity: 1,
+                  },
+                ],
+                payment_intent_data: {
+                  application_fee_amount: Math.round((Number(product.price)) * 100) * 0.1,
+                  transfer_data: {
+                    destination: String(vendor.stripeConnectedId),
+                  },
+                },
+          
+                success_url:
+                    `${env.NEXT_PUBLIC_SERVER_URL}/marketplace/payment/success`,
+                cancel_url:
+                     `${env.NEXT_PUBLIC_SERVER_URL}/marketplace/payment/cancel`,
+                metadata: {
+                      orderId: order_create[0]!.id,
+                  },
+              });
+            
+          return { sessionUrl: String(session.url)};
+    }),
 
-//       const order = await payload.create({
-//         collection: 'orders',
-//         data: {
-//           _isPaid: false,
-//           products: filteredProducts.map((prod) => prod.id),
-//           user: user.id,
-//         },
-//       })
+    createVendorStripeAccountLink: adminOrVendorProcedure
+    .input(z.object({ userId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+        const { userId } = input;
+        const user = await ctx.db.query.vendor.findFirst({
+            where: (table) => eq(table.userId, userId),
+          });
 
-//       const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] =
-//         []
+        if (!user) {
+            throw new TRPCError({ code: "NOT_FOUND", message: "User not found" });
+        }
 
-//       filteredProducts.forEach((product) => {
-//         line_items.push({
-//           price: product.priceId!,
-//           quantity: 1,
-//         })
-//       })
+        const accountLink = await stripe.accountLinks.create({
+            account: String(user.stripeConnectedId),
+            refresh_url:
+              `${env.NEXT_PUBLIC_SERVER_URL}/vendor/billing`,
+          return_url:
+              `${env.NEXT_PUBLIC_SERVER_URL}/vendor/return/${user?.stripeConnectedId}`,
+          type: "account_onboarding",
+                });
 
-//       line_items.push({
-//         price: 'price_1OCeBwA19umTXGu8s4p2G3aX',
-//         quantity: 1,
-//         adjustable_quantity: {
-//           enabled: false,
-//         },
-//       })
+        return { url: accountLink.url };
+    }),
 
-//       try {
-//         const stripeSession =
-//           await stripe.checkout.sessions.create({
-//             success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${order.id}`,
-//             cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/cart`,
-//             payment_method_types: ['card', 'paypal'],
-//             mode: 'payment',
-//             metadata: {
-//               userId: user.id,
-//               orderId: order.id,
-//             },
-//             line_items,
-//           })
+    getVendorStripeAccountLink: adminOrVendorProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(async ({ ctx, input }) => {
+        const { userId } = input;
+        const user = await ctx.db.query.vendor.findFirst({
+            where: (table) => eq(table.userId, userId),
+          });
 
-//         return { url: stripeSession.url }
-//       } catch (err) {
-//         return { url: null }
-//       }
-//     }),
-//   pollOrderStatus: privateProcedure
-//     .input(z.object({ orderId: z.string() }))
-//     .query(async ({ input }) => {
-//       const { orderId } = input
+        if (!user) {
+            throw new TRPCError({ code: "NOT_FOUND", message: "User not found" });
+        }
 
-//       const payload = await getPayloadClient()
+        const loginLink = await stripe.accounts.createLoginLink(
+          String(user?.stripeConnectedId)
+        );
 
-//       const { docs: orders } = await payload.find({
-//         collection: 'orders',
-//         where: {
-//           id: {
-//             equals: orderId,
-//           },
-//         },
-//       })
+        return { url: loginLink.url };
+    }),
 
-//       if (!orders.length) {
-//         throw new TRPCError({ code: 'NOT_FOUND' })
-//       }
-
-//       const [order] = orders
-
-//       return { isPaid: order._isPaid }
-//     }),
-// })
+});

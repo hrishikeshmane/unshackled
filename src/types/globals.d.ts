@@ -30,6 +30,7 @@ export type VendorTable = {
   id: string;
   userId: string;
   stripeConnected: boolean;
+  stripeConnectedId: string;
   status: "approved" | "pending" | "denied";
 };
 
@@ -80,6 +81,7 @@ export type ProductTable = {
   description: string;
   price: string;
   commission: string;
+  commissionType: "percentage" | "flat";
   domainRank: string;
   isFeatured: boolean;
   isArchived: boolean;
@@ -103,6 +105,7 @@ export type ProductWithRelations = {
   description: string;
   price: string;
   commission: string;
+  commissionType: "percentage" | "flat";
   domainRank: string;
   isFeatured: boolean;
   isArchived: boolean;
