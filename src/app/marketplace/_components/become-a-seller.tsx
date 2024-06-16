@@ -5,6 +5,15 @@ import { Button } from '~/components/ui/button'
 import { useUser } from '@clerk/nextjs';
 import toast from 'react-hot-toast';
 import { api } from "~/trpc/react";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
 
 const BecomeASeller = () => {
 
@@ -50,9 +59,26 @@ const BecomeASeller = () => {
         <p className='mt-2 text-sm text-muted-foreground'>
         Get approved and start selling to blah blah blah ....{' '}
         </p>
+        <Dialog>
+      <DialogTrigger asChild>
+        <Button className='w-24'>
+            Apply &rarr;
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Become a seller.</DialogTitle>
+          <DialogDescription>
+            Clicking the button below will submit your application to become a seller.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
         <Button onClick={handleOnClick} className='w-24'>
             Apply &rarr;
         </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
     </div>
     </div>
             </div>

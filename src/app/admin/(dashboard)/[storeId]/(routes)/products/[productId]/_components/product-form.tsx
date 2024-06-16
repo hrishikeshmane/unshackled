@@ -27,6 +27,7 @@ const formSchema = z.object({
     tagline: z.string().min(1),
     price: z.string().min(1),
     commission: z.string().min(1),
+    commissionType: z.enum(["percentage", "flat"]),
     estTurnAroundTime: z.string().min(1),
     stripeId: z.string(),
     imageUrl: z.string().min(1),
@@ -91,6 +92,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, tags, typ
             tagline: "",
             price: "",
             commission: "",
+            commissionType: "percentage",
             estTurnAroundTime: "",
             stripeId: "",
             imageUrl: "",
@@ -116,6 +118,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, tags, typ
                 description: data.description,
                 price: data.price,
                 commission: data.commission,
+                commissionType: data.commissionType,
                 stripeId: "xxx",
                 imageUrl: data.imageUrl,
                 estTurnAroundTime: data.estTurnAroundTime,
@@ -299,6 +302,39 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, tags, typ
                                                     {type.name}
                                                 </SelectItem>
                                             ))}
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control} 
+                            name="commissionType"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Commission Type</FormLabel>
+                                    <Select
+                                        disabled={isPending}
+                                        onValueChange={field.onChange}
+                                        value={field.value}
+                                        defaultValue={field.value}
+                                    >
+                                        <FormControl>
+                                            <SelectTrigger>
+                                                <SelectValue
+                                                    defaultValue={field.value}
+                                                    placeholder='Select a Commission Type'
+                                                />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            <SelectItem value="percentage">
+                                                Percentage
+                                            </SelectItem>
+                                            <SelectItem value="flat">
+                                                Flat
+                                            </SelectItem>
                                         </SelectContent>
                                     </Select>
                                     <FormMessage />

@@ -62,10 +62,14 @@ export const vendor = createTable("vendorInfo", {
   userId: text("userId", { length: 256 })
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
+  stripeConnectedId: text("stripeConnectedId", { length: 256 }),
   stripeConnected: integer("stripeConnected", { mode: "boolean" }).notNull(),
   status: text("status", {
     enum: ["approved", "pending", "denied"],
   }).notNull(),
+  createdAt: int("createdAt", { mode: "timestamp" })
+    .default(sql`(unixepoch())`)
+    .notNull(),
 });
 
 // export const userInfo = createTable("userInfo", {
@@ -152,6 +156,9 @@ export const product = createTable("product", {
   price: text("price", { length: 256 }).notNull(),
   imageUrl: text("imageUrl", { length: 256 }).notNull(),
   commission: text("commission", { length: 256 }).notNull(),
+  commissionType: text("commissionType", {
+    enum: ["percentage", "flat"],
+  }).notNull(),
   estTurnAroundTime: text("estTurnAroundTime", { length: 256 }).notNull(),
   domainRank: text("domainRank", { length: 256 }).notNull(),
   isFeatured: integer("isFeatured", { mode: "boolean" }).notNull(),

@@ -8,7 +8,7 @@ import { Check, Loader2, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import MaxWidthWrapper from '~/components/MaxWidthWrapper'
 
 const Page = () => {
@@ -16,12 +16,22 @@ const Page = () => {
 
   const router = useRouter()
 
-//   const { mutate: createCheckoutSession, isLoading } =
-//     trpc.payment.createSession.useMutation({
-//       onSuccess: ({ url }) => {
-//         if (url) router.push(url)
-//       },
-//     })
+  const [isPending, startTransition] = useTransition()
+
+  const createCheckoutSession = api.payment.buyProduct.useMutation({
+    onSuccess: (data) => {
+      router.push(data?.sessionUrl)
+    },
+    onError: (err) => {
+      console.error(err)
+    },
+  })
+
+  const onCheckout = () => {
+    startTransition(async () => {
+       await createCheckoutSession.mutateAsync({ productIds })
+    })
+  }
 
   const productIds = items.map(({ product }) => product.id)
 
@@ -203,16 +213,14 @@ const Page = () => {
 
             <div className='mt-6'>
               <Button
-                // disabled={items.length === 0 || isLoading}
-                // onClick={() =>
-                // //   createCheckoutSession({ productIds })
-                // }
-                // className='w-full'
-                // size='lg'>
-                // {isLoading ? (
-                //   <Loader2 className='w-4 h-4 animate-spin mr-1.5' />
-                // ) : null}
-                >
+                disabled={items.length === 0 || isPending}
+                onClick={onCheckout}
+                className='w-full'
+                size='lg'>
+                {isPending ? (
+                  <Loader2 className='w-4 h-4 animate-spin mr-1.5' />
+                ) : null
+              }
                 Checkout
               </Button>
             </div>

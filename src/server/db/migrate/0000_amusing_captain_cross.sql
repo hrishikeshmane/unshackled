@@ -43,6 +43,7 @@ CREATE TABLE `unshackled_product` (
 	`price` text(256) NOT NULL,
 	`imageUrl` text(256) NOT NULL,
 	`commission` text(256) NOT NULL,
+	`commissionType` text NOT NULL,
 	`estTurnAroundTime` text(256) NOT NULL,
 	`domainRank` text(256) NOT NULL,
 	`isFeatured` integer NOT NULL,
@@ -96,8 +97,10 @@ CREATE TABLE `unshackled_users` (
 CREATE TABLE `unshackled_vendorInfo` (
 	`id` text(256) PRIMARY KEY NOT NULL,
 	`userId` text(256) NOT NULL,
+	`stripeConnectedId` text(256),
 	`stripeConnected` integer NOT NULL,
 	`status` text NOT NULL,
+	`createdAt` integer DEFAULT (unixepoch()) NOT NULL,
 	FOREIGN KEY (`userId`) REFERENCES `unshackled_users`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint

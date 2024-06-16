@@ -24,6 +24,9 @@ export const env = createEnv({
       ),
     CLERK_SECRET_KEY: z.string(),
     WEBHOOK_SECRET: z.string(),
+    STRIPE_SECRET_KEY: z.string(),
+    STRIPE_CONNECT_WEBHOOK_SECRET: z.string(),
+    STRIPE_CHECKOUT_WEBHOOK_SECRET: z.string(),
   },
 
   /**
@@ -33,6 +36,7 @@ export const env = createEnv({
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_SERVER_URL: z.string(),
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
     NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: z.string(),
     NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: z.string(),
@@ -57,6 +61,10 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL,
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME:
       process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    STRIPE_CONNECT_WEBHOOK_SECRET: process.env.STRIPE_CONNECT_WEBHOOK_SECRET,
+    STRIPE_CHECKOUT_WEBHOOK_SECRET: process.env.STRIPE_CHECKOUT_WEBHOOK_SECRET,
+    NEXT_PUBLIC_SERVER_URL: process.env.NEXT_PUBLIC_SERVER_URL,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

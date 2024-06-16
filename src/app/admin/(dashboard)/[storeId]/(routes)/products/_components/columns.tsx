@@ -7,6 +7,7 @@ export type ProductColumn = {
     name: string;
     price: string;
     commission: string;
+    commissionType: string;
     creator: string;
     estTurnAroundTime: string;
     domainRank: string;
@@ -42,6 +43,10 @@ export const columns: ColumnDef<ProductColumn>[] = [
     {
         accessorKey: 'commission',
         header: 'Commission',
+    },
+    {
+        accessorKey: 'commissionType',
+        header: 'Commission Type',
     },
     {
         accessorKey: 'estTurnAroundTime',

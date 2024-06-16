@@ -70,7 +70,7 @@
     "react-resizable-panels": "^2.0.19",
     "react-youtube": "^10.1.0",
     "server-only": "^0.0.1",
-    "stripe": "^15.10.0",
+    "stripe": "^15.11.0",
     "superjson": "^2.2.1",
     "svix": "^1.24.0",
     "tailwind-merge": "^2.3.0",

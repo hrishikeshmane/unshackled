@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
+import MaxWidthWrapper from "~/components/MaxWidthWrapper";
+import BecomeASeller from "./marketplace/_components/become-a-seller";
+
 export default function HomePage() {
   return (
     <div className="flex w-full flex-col bg-[#F5F9FF]">
@@ -90,6 +93,11 @@ export default function HomePage() {
         </section>
       </div>
       <Footer />
+      {/* <Link href="/marketplace/cart">
+        Go to Cart
+      </Link>
+      <BecomeASeller />
+    </MaxWidthWrapper> */}
     </div>
   );
 }

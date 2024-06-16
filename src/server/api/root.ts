@@ -7,6 +7,8 @@ import { tagRouter } from "./routers/tags";
 import { productsRouter } from "./routers/products";
 import { orderRouter } from "./routers/order";
 import { vendorRouter } from "./routers/vendor";
+import { userManagementRouter } from "./routers/users";
+import { paymentRouter } from "./routers/payment";
 
 /**
  * This is the primary router for your server.
@@ -14,6 +16,7 @@ import { vendorRouter } from "./routers/vendor";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
+  user: userManagementRouter,
   store: storeRouter,
   billboard: billboardRouter,
   types: typesRouter,
@@ -21,6 +24,7 @@ export const appRouter = createTRPCRouter({
   product: productsRouter,
   order: orderRouter,
   vendor: vendorRouter,
+  payment: paymentRouter
 });
 
 // export type definition of API
