@@ -9,16 +9,134 @@ const Page = () => {
   return (
     <div className="bg-[#F5F9FF]">
       <ReadHeroSection />
-      <section className="mx-auto my-16 flex w-full max-w-7xl justify-center">
+      <section className="mx-auto my-16 flex w-full max-w-7xl flex-col justify-center">
         <h2 className="text-center text-4xl font-bold">
           Read the <span className="text-primary">first book</span> that
           simplifies legal immigration <br></br> with beautiful visuals &
           gripping stories.
         </h2>
-        {/* { TODO: add grids for features} */}
+        <div className="flex w-full flex-col gap-2 py-8">
+          <div className="my-2 flex gap-2">
+            <div className="flex basis-1/2 flex-col rounded-lg bg-card p-10">
+              <h2 className="text-3xl font-bold">1. Who is it for?</h2>
+              <ol className="ml-6 flex list-disc flex-col items-start gap-4 py-8 text-left text-xl font-semibold text-muted-foreground">
+                <li>
+                  You&apos;re a talented employee aiming for an O-1A
+                  extraordinary visa
+                </li>
+                <li>
+                  You&apos;re a proactive student on F-1 wanting to know all
+                  your options
+                </li>
+                <li>
+                  You&apos;re an aspiring founder restless to start your own
+                  business
+                </li>
+                <li>
+                  You&apos;re an expert in your field ready to self-petition
+                  your green card
+                </li>
+                <li>Or, you want alternatives to the endless H-1B lottery</li>
+              </ol>
+            </div>
+            <div className="flex basis-1/2 items-center justify-center">
+              <Image
+                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fb34622d750e22cb0ba93e_img5.png"
+                alt="alt"
+                width={400}
+                height={400}
+              />
+            </div>
+          </div>
+
+          <div className="my-2 flex gap-2">
+            <div className="flex basis-1/2 flex-col rounded-lg bg-card p-10">
+              <h2 className="text-3xl font-bold">
+                2. What&apos;s inside the book?
+              </h2>
+              <ol className="ml-6 flex list-disc flex-col items-start gap-4 py-8 text-left text-xl font-semibold text-muted-foreground">
+                <li>
+                  Gripping stories of real immigrants that keeps you glued to
+                  the pages
+                </li>
+                <li>Expert guidance on navigating every visa path out there</li>
+                <li>Beautiful visuals to make the complex = simple</li>
+                <li>
+                  History of immigration policy, sprinkled with BTS from the
+                  White House
+                </li>
+                <li>
+                  And, a handy mind map that guides you on how to use the book
+                </li>
+              </ol>
+            </div>
+            <div className="flex basis-1/2 items-center justify-center ">
+              <Image
+                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fb34622368a97778590b2f_img10.png"
+                alt="alt"
+                width={400}
+                height={400}
+              />
+            </div>
+          </div>
+
+          <div className="my-2 flex gap-2">
+            <div className="flex basis-1/2 flex-col rounded-lg bg-card p-10">
+              <h2 className="text-3xl font-bold">
+                3. What&apos;s on top of the book?
+              </h2>
+              <ol className="ml-6 flex list-disc flex-col items-start gap-4 py-8 text-left text-xl font-semibold text-muted-foreground">
+                <li>O-1/EB-1 profile building tracker</li>
+                <li>List of 30+ grants & fellowships</li>
+                <li>6 sample recommendation letters</li>
+                <li>Top VC funds that support immigrants</li>
+              </ol>
+            </div>
+            <div className="flex basis-1/2 items-center justify-center ">
+              <Image
+                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/6606caa7a7f091e0d6dfcf6e_3rd4-p-800.png"
+                alt="alt"
+                width={400}
+                height={400}
+              />
+            </div>
+          </div>
+
+          <div className="my-2 flex gap-2">
+            <div className="flex basis-1/2 flex-col rounded-lg bg-card p-10">
+              <h2 className="text-3xl font-bold">4. Why write this?</h2>
+              <p className="py-4 text-xl font-semibold text-muted-foreground">
+                The immigration system in the United States is outdated by 33
+                years
+              </p>
+              <ol className="ml-6 flex list-disc flex-col items-start gap-4 py-4 text-left text-xl font-semibold text-muted-foreground">
+                <li>O-1/EB-1 profile building tracker</li>
+                <li>List of 30+ grants & fellowships</li>
+                <li>6 sample recommendation letters</li>
+                <li>Top VC funds that support immigrants</li>
+              </ol>
+              <p className="py-4 text-xl font-semibold text-muted-foreground">
+                Yet, despite these constraints, immigrats have done{" "}
+                <span className="text-primary">extraordinary </span>things.
+              </p>
+              <p className="py-4 text-xl font-semibold text-muted-foreground">
+                With <span className="text-primary">Unshackled</span>, we want
+                to lower the barrier so you can too.
+              </p>
+            </div>
+            <div className="flex basis-1/2 items-center justify-center ">
+              <Image
+                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/6606c9d5ac5dad20c6d27da9_4th1-p-800.png"
+                alt="alt"
+                width={400}
+                height={400}
+              />
+            </div>
+          </div>
+        </div>
       </section>
 
-      <div className="w-full">
+      <section className="w-full">
         <Image
           src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/660977e72c8e3c5d53276574_Unshackled_Book_Mockup-p-3200.png"
           alt="book chapter image 2"
@@ -27,7 +145,7 @@ const Page = () => {
           sizes="100vw"
           style={{ width: "100%", height: "auto" }}
         />
-      </div>
+      </section>
 
       <section className="relative flex flex-col justify-center py-12 sm:py-16 lg:pt-20 xl:pb-0">
         <h2 className="my-8 mt-5 text-center text-3xl font-bold leading-tight text-gray-900 sm:text-5xl sm:leading-tight lg:text-4xl lg:leading-tight">
