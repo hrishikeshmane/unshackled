@@ -7,6 +7,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { cn } from "~/lib/utils";
 import { ToastProvider } from "~/providers/toast-provider";
 import Navbar from "~/components/navbar";
+import Header from "~/components/elements/header";
 // import Footer from "~/components/footer";
 // import Navbar from "~/components/navbar";
 
@@ -22,38 +23,35 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className='h-full'>
-      <body className={cn(
-          'relative h-full font-sans antialiased',
-          GeistSans.variable
-        )}>
-          <main className='relative flex flex-col min-h-screen'>
-        <ClerkProvider
-              appearance={{
-                layout: {
-                  socialButtonsPlacement: "bottom",
-                  socialButtonsVariant: "blockButton",
-                },
-                variables: {
-                  colorPrimary: "#03449E",
-                  colorText: "#000000",
-                },
-              }}
-            >
-          <TRPCReactProvider>
-            <ToastProvider  />
-            {/* <MaxWidthWrapper> */}
-              <Navbar />
-              <div className='flex-grow flex-1'>
-                {children}
-              </div>
-              {/* <Footer /> */}
-            {/* </MaxWidthWrapper> */}
+    <html lang="en">
+      <body
+        className={cn(
+          "min-w-screen relative h-full min-h-screen bg-background font-sans antialiased ",
+          GeistSans.variable,
+        )}
+      >
+        <main className="relative flex flex-col">
+          <ClerkProvider
+            appearance={{
+              layout: {
+                socialButtonsPlacement: "bottom",
+                socialButtonsVariant: "blockButton",
+              },
+              variables: {
+                colorPrimary: "#03449E",
+                colorText: "#000000",
+              },
+            }}
+          >
+            <TRPCReactProvider>
+              <ToastProvider />
+              {/* <Navbar /> */}
+              <Header />
+              <div className="flex-1 flex-grow">{children}</div>
             </TRPCReactProvider>
           </ClerkProvider>
-          </main>
+        </main>
       </body>
-
     </html>
   );
 }

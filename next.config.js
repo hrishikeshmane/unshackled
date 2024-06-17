@@ -6,28 +6,32 @@ await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
 const config = {
-    images: {
-        remotePatterns: [
-          {
-            protocol: "https",
-            hostname: "cdn.pixabay.com",
-          },
-          {
-            protocol: "https",
-            hostname: "res.cloudinary.com",
-          },
-          {
-            protocol: "https",
-            hostname: "pagedone.io",
-          },
-        ],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.pixabay.com",
       },
-      typescript: {
-        ignoreBuildErrors: true,
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
       },
-      eslint: {
-        ignoreDuringBuilds: true,
+      {
+        protocol: "https",
+        hostname: "pagedone.io",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.prod.website-files.com",
+      },
+    ],
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default config;
