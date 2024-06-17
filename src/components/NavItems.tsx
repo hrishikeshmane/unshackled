@@ -55,7 +55,13 @@ const NavItems: React.FC<NavItemsProps> = ({ data }) => {
             active: pathname === `/vendor/billing`
         }]
     } else if (isAdminRoute) {
-        routes = [{
+        routes = [
+        {
+        href: `/admin`,
+        label: 'Overview',
+        active: pathname === `/admin`
+        },
+        {
             href: `/admin/users`,
             label: 'Users',
             active: pathname === `/admin/users`
