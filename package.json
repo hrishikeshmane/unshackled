@@ -69,6 +69,7 @@
     "react-hot-toast": "^2.4.1",
     "react-resizable-panels": "^2.0.19",
     "react-youtube": "^10.1.0",
+    "recharts": "^2.12.7",
     "server-only": "^0.0.1",
     "stripe": "^15.11.0",
     "superjson": "^2.2.1",
