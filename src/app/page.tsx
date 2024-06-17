@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import MaxWidthWrapper from "~/components/MaxWidthWrapper";
 import BecomeASeller from "./marketplace/_components/become-a-seller";
+import Image from "next/image";
 
 export default function HomePage() {
   return (
@@ -34,13 +35,27 @@ export default function HomePage() {
                 <Button className="w-full">Get started</Button>
               </div>
             </div>
-            <div className="basis-1/2 rounded-lg bg-card p-8">a</div>
+            <div className="flex basis-1/2 items-center justify-center rounded-lg p-8">
+              <Image
+                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66072884f1d9b815a0b8fa54_1-p-800.png"
+                alt="Newsletter sample image"
+                width={400}
+                height={400}
+              />
+            </div>
           </div>
         </section>
 
         <section className="my-4">
           <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
-            <div className="basis-1/2 rounded-lg bg-card p-8">a</div>
+            <div className="flex basis-1/2 items-center justify-center rounded-lg p-8">
+              <Image
+                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/660728c0e47b67010e851002_2-p-1080.png"
+                alt="Unshackled platform sample image"
+                width={550}
+                height={550}
+              />
+            </div>
             <div className="basis-1/2 bg-white p-8">
               <h2 className="rounded-lg py-4 text-3xl font-bold text-primary">
                 Get started
@@ -76,7 +91,14 @@ export default function HomePage() {
                 <Button className="w-full">Get started</Button>
               </div>
             </div>
-            <div className="basis-1/2 rounded-lg bg-card p-8">a</div>
+            <div className="flex basis-1/2 items-center justify-center rounded-lg p-8">
+              <Image
+                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66092281d4cb0876d08742fb_Rectangle%202075-p-500.png"
+                alt="Book Cover image"
+                width={300}
+                height={300}
+              />
+            </div>
           </div>
         </section>
 
