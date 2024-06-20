@@ -8,6 +8,7 @@ import { RangeFilter } from "./range-filter";
 import { Button } from "@/components/ui/button";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { api } from "~/trpc/react";
+import { useParams } from "next/navigation";
 
 type Props<TData> = {
   table: Table<TData>;
@@ -20,8 +21,10 @@ type Options = {
 
 export function MarketplaceFilters<TData>({ table }: Props<TData>) {
 
-  const getTypes = api.types.getTypes.useQuery();
-  const getTags = api.tag.getTags.useQuery();
+  const { storeId } = useParams();
+
+  const getTypes = api.types.getTypesByStoreId.useQuery({storeId: String(storeId)});
+  const getTags = api.tag.getTagsByStoreId.useQuery({storeId: String(storeId)});
 
   const typeOptions = getTypes.data?.map((type) => ({
     label: type.name,
