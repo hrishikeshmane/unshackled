@@ -37,6 +37,7 @@ const ProductsReel = ({ products, title, subtitle }: ProductsReelProps) => {
                   quality={100}
                 />
               </div>
+                    </Link>
                 <div className="w-72 px-4 py-3">
                   <span className="mr-3 text-xs uppercase text-gray-400">
                     {product.store?.name}
@@ -58,7 +59,6 @@ const ProductsReel = ({ products, title, subtitle }: ProductsReelProps) => {
                     </div>
                   </div>
                 </div>
-              </Link>
             </div>
           ))}
         </div>

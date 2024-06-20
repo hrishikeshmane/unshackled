@@ -6,7 +6,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { cn } from "~/lib/utils";
 import { ToastProvider } from "~/providers/toast-provider";
-import Navbar from "~/components/navbar";
+// import Navbar from "~/components/navbar";
 import Header from "~/components/elements/header";
 // import Footer from "~/components/footer";
 // import Navbar from "~/components/navbar";

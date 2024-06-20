@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -19,6 +20,15 @@ import { usePathname } from "next/navigation";
 
 export function NavigationMenuDemo({ components }: { components: Routes }) {
   const pathname = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+}, []);
+
+    if (!isMounted) {
+        return null;
+    }
 
   const isMarketplaceRoute = pathname.startsWith("/marketplace");
   const isVendorRoute = pathname.startsWith("/vendor");

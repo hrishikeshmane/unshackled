@@ -10,12 +10,16 @@ import {
 } from "@/components/ui/hover-card";
 import { LockClosedIcon } from "@radix-ui/react-icons";
 import { type ModifiedProduct } from "./columns";
+import { redirect } from "next/navigation";
+import { useParams } from "next/navigation";
 
-const AccessButton = () => (
-  <Button variant="default" className="flex gap-2">
+const AccessButton = ({storeId, productId}: {storeId: string, productId: string}) => (
+  <Button variant="default" className="flex gap-2"
+  // onClick={redirect(`/marketplace/${storeId}/products/${productId}`)}
+  >
     <LockClosedIcon className="shrink-0" />
     <p>Access</p>
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 200 200" role="presentation" className="fill-white dark:fill-white">
+    {/* <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 200 200" role="presentation" className="fill-white dark:fill-white">
       <path d="M 115.231 75.457 C 91.876 71.115 73.612 52.702 69.271 29.498 C 69.12 28.299 67.46 28.299 67.324 29.498 C 62.982 52.851 44.569 71.115 21.366 75.352 C 20.167 75.608 20.167 77.253 21.366 77.404 C 44.718 81.745 62.982 100.159 67.324 123.363 C 67.475 124.56 69.12 124.56 69.271 123.363 C 73.612 100.009 92.026 81.745 115.231 77.404 C 116.428 77.253 116.428 75.756 115.231 75.457 Z">
         <animate attributeName="opacity" values="1;0.2;1" keyTimes="0;0.5;1" dur="2s" begin="0.8s" repeatCount="indefinite" repeatDur="indefinite"></animate>
       </path>
@@ -25,7 +29,7 @@ const AccessButton = () => (
       <path d="M 179.61 91.87 C 164.01 88.97 151.81 76.67 148.91 61.17 C 148.81 60.37 147.7 60.37 147.61 61.17 C 144.71 76.77 132.41 88.97 116.91 91.8 C 116.11 91.97 116.11 93.07 116.91 93.17 C 132.51 96.07 144.71 108.37 147.61 123.87 C 147.71 124.67 148.81 124.67 148.91 123.87 C 151.81 108.27 164.11 96.07 179.61 93.17 C 180.41 93.07 180.41 92.07 179.61 91.87 Z">
         <animate attributeName="opacity" values="1;0.2;1" keyTimes="0;0.5;1" dur="1.4s" begin="0.5s" repeatCount="indefinite" repeatDur="indefinite"></animate>
       </path>
-    </svg>
+    </svg> */}
   </Button>
 );
 
@@ -90,6 +94,7 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
   } = serviceRecord;
 
   const placeholderUrl = "/placeholder.png";
+  const params = useParams();
 
   return (
     <article className="flex gap-3 rounded-xl border bg-card p-5 text-card-foreground shadow hover:bg-muted">
@@ -117,12 +122,12 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
           />
           <div className="flex items-end justify-between gap-1.5 sm:hidden">
             <TagBadge Tag={tag} />
-            <AccessButton />
+            <AccessButton storeId={String(params.storeId)} productId={id} />
           </div>
         </div>
       </div>
       <div className="ml-auto hidden shrink-0 flex-col items-end justify-between sm:flex">
-        <AccessButton />
+        <AccessButton storeId={String(params.storeId)} productId={id}/>
         <div className="flex flex-col items-end">
           <TagBadge Tag={tag} />
           <span className="flex items-center gap-1 text-muted-foreground">

@@ -9,6 +9,7 @@ import Link from "next/link";
 import MaxWidthWrapper from "~/components/MaxWidthWrapper";
 import { api } from "~/trpc/server";
 import ProductsReel from "./_components/products-reel";
+import BecomeASeller from "./_components/become-a-seller";
 
 export default async function MarketplacePage() {
   const perks = [
@@ -67,6 +68,12 @@ export default async function MarketplacePage() {
     {/* border-t border-gray-200 bg-gray-50 */}
     <section className=''>
       <MaxWidthWrapper>
+      <div className="py-10 sm:py-20">
+            { featuredProducts && featuredProducts?.length > 0 ?
+              <ProductsReel products={featuredProducts} title='Featured Products' subtitle="Unshackled trusted & recommended exclusive products for you." />  :
+              null
+            }
+          </div>
       <div className='grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0'>
             {perks.map((perk) => (
               <div
@@ -89,11 +96,8 @@ export default async function MarketplacePage() {
               </div>
             ))}
           </div>
-          <div className="py-10 sm:py-20">
-            { featuredProducts && featuredProducts?.length > 0 ?
-              <ProductsReel products={featuredProducts} title='Featured Products' subtitle="Unshackled trusted & recommended exclusive products for you." />  :
-              null
-            }
+          <div className="mt-10">
+            <BecomeASeller />
           </div>
       </MaxWidthWrapper>
       </section>
