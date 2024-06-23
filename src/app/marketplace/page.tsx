@@ -5,7 +5,6 @@ import Link from "next/link";
 import MaxWidthWrapper from "~/components/MaxWidthWrapper";
 import { api } from "~/trpc/server";
 import ProductsReel from "./_components/products-reel";
-import BecomeASeller from "./_components/become-a-seller";
 import Footer from "~/components/landing-page/footer";
 
 export default async function MarketplacePage() {

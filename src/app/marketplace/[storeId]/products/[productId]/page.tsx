@@ -4,14 +4,12 @@ import { redirect } from "next/navigation";
 import React from "react";
 import { api } from "~/trpc/react";
 import { useParams } from "next/navigation";
-import { Button } from "~/components/ui/button";
 import Link from "next/link";
 import { Check, Shield } from "lucide-react";
 import MaxWidthWrapper from "~/components/MaxWidthWrapper";
 import { Badge } from "~/components/ui/badge";
 import AddToCartButton from "~/components/add-to-cart-button";
 import ProductsReel from "~/app/marketplace/_components/products-reel";
-import BecomeASeller from "~/app/marketplace/_components/become-a-seller";
 
 const ProductPage = () => {
   const params = useParams();

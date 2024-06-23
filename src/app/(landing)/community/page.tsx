@@ -1,10 +1,6 @@
-import Header from "@/components/elements/header";
 import Footer from "@/components/landing-page/footer";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Check, X } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { CommunityBenotGrid } from "~/components/landing-page/community-bento-grid";
 import { CommunityFaq } from "~/components/landing-page/community-faq";
 import CommunityHeroSection from "~/components/landing-page/community-hero";

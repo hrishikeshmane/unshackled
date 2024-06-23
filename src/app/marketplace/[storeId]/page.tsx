@@ -5,7 +5,6 @@ import Billboard from "~/components/billboard";
 import { api } from "~/trpc/server";
 import { type BillboardTable } from "~/types/globals";
 import Marketplace from "./_components/marketplace";
-import BecomeASeller from "../_components/become-a-seller";
 
 interface StoreParams {
   params: { storeId: string };

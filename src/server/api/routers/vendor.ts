@@ -1,5 +1,10 @@
-import { adminOrVendorProcedure, adminProcedure, createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
-import { vendor, users } from "~/server/db/schema";
+import {
+  adminOrVendorProcedure,
+  adminProcedure,
+  createTRPCRouter,
+  protectedProcedure,
+} from "~/server/api/trpc";
+import { vendor } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { clerkClient } from "@clerk/nextjs/server";
@@ -19,11 +24,15 @@ export const vendorRouter = createTRPCRouter({
       if (existingVendor) {
         switch (existingVendor.status) {
           case "approved":
-            return {res: "You are already an approved vendor."};
+            return { res: "You are already an approved vendor." };
           case "pending":
-            return {res: "Your previous vendor application is still pending approval. Please wait for the approval process."};
+            return {
+              res: "Your previous vendor application is still pending approval. Please wait for the approval process.",
+            };
           case "denied":
-            return {res: "Your previous vendor application was denied. Please contact support for more information."};
+            return {
+              res: "Your previous vendor application was denied. Please contact support for more information.",
+            };
         }
       } else {
         await ctx.db.insert(vendor).values({
@@ -33,14 +42,15 @@ export const vendorRouter = createTRPCRouter({
           status: "pending",
         });
 
-        return {res: "Your vendor application has been submitted successfully. Please wait for the approval process."};
+        return {
+          res: "Your vendor application has been submitted successfully. Please wait for the approval process.",
+        };
       }
     }),
 
-  getVendors: adminProcedure
-    .query(async ({ ctx }) => {
-      return await ctx.db.query.vendor.findMany();
-    }),
+  getVendors: adminProcedure.query(async ({ ctx }) => {
+    return await ctx.db.query.vendor.findMany();
+  }),
 
   getVendorById: adminOrVendorProcedure
     .input(z.object({ userId: z.string() }))
@@ -52,7 +62,12 @@ export const vendorRouter = createTRPCRouter({
     }),
 
   updateVendorStatus: adminProcedure
-    .input(z.object({ userId: z.string(), status: z.enum(["approved", "pending", "denied"]) }))
+    .input(
+      z.object({
+        userId: z.string(),
+        status: z.enum(["approved", "pending", "denied"]),
+      }),
+    )
     .mutation(async ({ ctx, input }) => {
       const { userId, status } = input;
       const user = await clerkClient.users.getUser(userId);
@@ -68,27 +83,31 @@ export const vendorRouter = createTRPCRouter({
         },
       });
 
-      await ctx.db.update(vendor).set({ status: status}).where(eq(vendor.userId, userId));
+      await ctx.db
+        .update(vendor)
+        .set({ status: status })
+        .where(eq(vendor.userId, userId));
 
       if (status === "approved") {
         const account = await stripe.accounts.create({
           email: user.emailAddresses[0]?.emailAddress,
           controller: {
             losses: {
-              payments: "application"
+              payments: "application",
             },
             fees: {
-              payer: "application"
+              payer: "application",
             },
             stripe_dashboard: {
-              type: "express"
+              type: "express",
             },
-          }
-        })
+          },
+        });
 
-        await ctx.db.update(vendor).set({ stripeConnectedId: account.id }).where(eq(vendor.userId, userId));
+        await ctx.db
+          .update(vendor)
+          .set({ stripeConnectedId: account.id })
+          .where(eq(vendor.userId, userId));
       }
-
     }),
-
 });

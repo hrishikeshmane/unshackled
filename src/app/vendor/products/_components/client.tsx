@@ -14,7 +14,6 @@ interface ProductClientProps {
 }
 
 export const ProductClient: React.FC<ProductClientProps> = ({ data }) => {
-  
   return (
     <>
       <div className="flex items-center justify-between">
@@ -22,13 +21,12 @@ export const ProductClient: React.FC<ProductClientProps> = ({ data }) => {
           title={`Products (${data.length})`}
           description="Manage products for your store"
         />
-            <AddStoreModal>
-                <Button>
-                <Plus className="mr-2 h-4 w-4" />
-                Add New
-                </Button>
-            </AddStoreModal>
-
+        <AddStoreModal>
+          <Button>
+            <Plus className="mr-2 h-4 w-4" />
+            Add New
+          </Button>
+        </AddStoreModal>
       </div>
       <Separator />
       <DataTable columns={columns} data={data} searchKey="name" />

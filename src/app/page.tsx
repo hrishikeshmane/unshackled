@@ -1,12 +1,7 @@
-import Header from "@/components/elements/header";
 import Footer from "@/components/landing-page/footer";
 import HeroSection from "@/components/landing-page/hero";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
-
-import MaxWidthWrapper from "~/components/MaxWidthWrapper";
-import BecomeASeller from "./marketplace/_components/become-a-seller";
 import Image from "next/image";
 
 export default function HomePage() {

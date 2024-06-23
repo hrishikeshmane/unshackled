@@ -2,23 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import {
-  Activity,
-  ArrowUpRight,
-  CircleUser,
-  CreditCard,
-  DollarSign,
-  Menu,
-  Package2,
-  Search,
-  ShoppingBag,
-  Users,
-} from "lucide-react";
-
-import { api } from "~/trpc/server";
+import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { type StoreTable } from "~/types/globals";
-
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Logo from "./logo";

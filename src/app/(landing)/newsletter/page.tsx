@@ -1,4 +1,3 @@
-import { StackIcon } from "@radix-ui/react-icons";
 import { SparkleIcon, ThumbsDownIcon, ThumbsUpIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";

@@ -1,12 +1,6 @@
 import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { Logo } from "./icons";
-import { Button } from "./ui/button";
-// import Cart from './Cart'
-// import MobileNav from './MobileNav'
-import { UserButton } from "@clerk/nextjs";
-import { ChevronDown } from "lucide-react";
-import { cn } from "~/lib/utils";
 import { api } from "~/trpc/server";
 import Cart from "./cart";
 import NavItems from "./NavItems";

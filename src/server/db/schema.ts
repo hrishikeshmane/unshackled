@@ -7,8 +7,6 @@ import {
   sqliteTableCreator,
   text,
   integer,
-  index,
-  blob,
 } from "drizzle-orm/sqlite-core";
 import { createId } from "@paralleldrive/cuid2";
 
