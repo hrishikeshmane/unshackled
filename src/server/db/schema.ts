@@ -12,7 +12,6 @@ import {
 } from "drizzle-orm/sqlite-core";
 import { createId } from "@paralleldrive/cuid2";
 
-
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
  * database instance for multiple projects.
@@ -191,7 +190,6 @@ export const product = createTable("product", {
 //   ),
 // });
 
-
 export const order = createTable("order", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
   isPaid: integer("isPaid", { mode: "boolean" }).notNull(),
@@ -221,3 +219,5 @@ export const orderItem = createTable("orderItem", {
     .notNull()
     .references(() => store.id),
 });
+
+export type IStore = typeof store.$inferSelect;
