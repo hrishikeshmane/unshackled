@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 
 const BentoGrid = ({
   children,

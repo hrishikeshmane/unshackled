@@ -1,8 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Companies } from "./social-proof";
-import HeroVideo from "./hero-video";
-import { ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 

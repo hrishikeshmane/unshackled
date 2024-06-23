@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { type Column, getFacetedUniqueValues } from "@tanstack/react-table";
+import { type Column } from "@tanstack/react-table";
 import { Input } from "@/components/ui/input";
-import { Slider } from "@/components/ui/slider";
 import { RangeSlider } from "@/components/ui/range-slider";
-import { Info } from "lucide-react";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 type FacetedUniqueValue<TValue> = Map<TValue, number>;
 
@@ -60,7 +57,7 @@ export function RangeFilter<TData, TValue extends number>({
 
   return (
     <div className="w-full">
-      <h3 className="flex gap-2 mb-2 text-lg font-semibold">
+      <h3 className="mb-2 flex gap-2 text-lg font-semibold">
         {title}
         {/* <HoverCard>
         <HoverCardTrigger><Info size={12} className='text-primary' /></HoverCardTrigger>
@@ -68,7 +65,7 @@ export function RangeFilter<TData, TValue extends number>({
             Blah blah .....
         </HoverCardContent>
         </HoverCard> */}
-        </h3>
+      </h3>
       <div className="flex items-center gap-2">
         <Input
           type="number"
@@ -106,13 +103,13 @@ export function RangeFilter<TData, TValue extends number>({
       /> */}
       <div className="mt-4">
         <RangeSlider
-            min={minColumnValue - 10}
-            max={maxColumnValue + 10}
-            value={[minValue ?? minColumnValue, maxValue ?? maxColumnValue]}
-            onValueChange={([min, max]) => {
+          min={minColumnValue - 10}
+          max={maxColumnValue + 10}
+          value={[minValue ?? minColumnValue, maxValue ?? maxColumnValue]}
+          onValueChange={([min, max]) => {
             handleMinChange(min);
             handleMaxChange(max);
-            }}
+          }}
         />
       </div>
     </div>

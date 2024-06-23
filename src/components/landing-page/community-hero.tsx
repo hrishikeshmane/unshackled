@@ -1,10 +1,6 @@
 import React from "react";
-import AvatarCircles from "@/components/magicui/avatar-circles";
 import { Button } from "@/components/ui/button";
-import { Companies } from "./social-proof";
 import HeroVideo from "./hero-video";
-import { ShoppingBag } from "lucide-react";
-import Link from "next/link";
 
 const CommunityHeroSection = () => {
   return (

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ServiceCardTitle } from "./service-card-title";
-import { Briefcase, Check, Clock, Globe2, Info, LockOpen } from "lucide-react";
+import { Briefcase, Clock, Globe2, Info } from "lucide-react";
 import {
   HoverCard,
   HoverCardContent,
@@ -13,9 +13,17 @@ import { type ModifiedProduct } from "./columns";
 import { redirect } from "next/navigation";
 import { useParams } from "next/navigation";
 
-const AccessButton = ({storeId, productId}: {storeId: string, productId: string}) => (
-  <Button variant="default" className="flex gap-2"
-  // onClick={redirect(`/marketplace/${storeId}/products/${productId}`)}
+const AccessButton = ({
+  storeId,
+  productId,
+}: {
+  storeId: string;
+  productId: string;
+}) => (
+  <Button
+    variant="default"
+    className="flex gap-2"
+    // onClick={redirect(`/marketplace/${storeId}/products/${productId}`)}
   >
     <LockClosedIcon className="shrink-0" />
     <p>Access</p>
@@ -35,7 +43,7 @@ const AccessButton = ({storeId, productId}: {storeId: string, productId: string}
 
 const TagBadge = ({ Tag }: { Tag: string }) => (
   <p
-    className={`flex gap-2 rounded-full px-2.5 py-0.5 text-sm font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300`}
+    className={`flex gap-2 rounded-full bg-yellow-100 px-2.5 py-0.5 text-sm font-medium text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300`}
   >
     {Tag}
   </p>
@@ -107,11 +115,7 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
       />
       <div className="max-w-xs flex-grow space-y-3 break-all text-left">
         <div>
-          <ServiceCardTitle
-            name={name}
-            productId={id}
-            featured={isFeatured}
-          />
+          <ServiceCardTitle name={name} productId={id} featured={isFeatured} />
           <p className="text-muted-foreground">{tagline}</p>
         </div>
         <div className="text-muted-foreground">
@@ -127,7 +131,7 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
         </div>
       </div>
       <div className="ml-auto hidden shrink-0 flex-col items-end justify-between sm:flex">
-        <AccessButton storeId={String(params.storeId)} productId={id}/>
+        <AccessButton storeId={String(params.storeId)} productId={id} />
         <div className="flex flex-col items-end">
           <TagBadge Tag={tag} />
           <span className="flex items-center gap-1 text-muted-foreground">

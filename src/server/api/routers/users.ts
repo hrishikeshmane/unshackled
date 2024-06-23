@@ -1,9 +1,8 @@
 import { z } from "zod";
 
 import { adminProcedure, createTRPCRouter } from "@/server/api/trpc";
-import { auth, clerkClient } from "@clerk/nextjs/server";
+import { clerkClient } from "@clerk/nextjs/server";
 import { TRPCError } from "@trpc/server";
-import { eq } from "drizzle-orm";
 
 export const userManagementRouter = createTRPCRouter({
   getAllUsers: adminProcedure.query(async ({ ctx }) => {
