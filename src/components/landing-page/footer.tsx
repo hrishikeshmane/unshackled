@@ -4,8 +4,13 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Logo from "../elements/logo";
 import { Instagram, Linkedin, LucideYoutube } from "lucide-react";
+import BecomeASeller from "~/app/marketplace/_components/become-a-seller";
+import { api } from "~/trpc/server";
+import { type IStore } from "@/server/db/schema";
 
-export default function Footer() {
+export default async function Footer() {
+  const stores = await api.store.getStores();
+
   return (
     <footer className="mt-20 bg-secondary py-12">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,11 +40,11 @@ export default function Footer() {
               &copy; 2024 unshackled.club
             </p>
           </div>
-          <div className="mt-8 flex w-full flex-auto flex-col gap-6 lg:mt-0 lg:max-w-md">
+          <div className="mt-8 flex w-full flex-auto flex-col gap-6 lg:mt-0 lg:max-w-[30rem]">
             <Button size={"lg"} className="hidden lg:block">
               Become a member
             </Button>
-            <div className="mx-auto grid grid-cols-2 justify-end gap-4 lg:mx-0">
+            <div className="mx-auto grid grid-cols-2 justify-end gap-10 md:grid-cols-3 md:gap-10 lg:mx-0">
               <div className="col-span-1">
                 <h3 className="text-lg font-semibold">Site</h3>
                 <nav className="mt-4 space-y-4 text-base">
@@ -79,6 +84,13 @@ export default function Footer() {
                     Privacy Policy
                   </Link>
                 </nav>
+
+                <div className="my-12 block md:hidden">
+                  <MarketplaceLinks stores={stores} />
+                </div>
+              </div>
+              <div className="col-span-1 hidden md:block">
+                <MarketplaceLinks stores={stores} />
               </div>
             </div>
           </div>
@@ -92,6 +104,26 @@ export default function Footer() {
     </footer>
   );
 }
+
+const MarketplaceLinks = ({ stores }: { stores: IStore[] }) => {
+  return (
+    <>
+      <h3 className="text-lg font-semibold">Marketplace</h3>
+      <nav className="mt-4 space-y-4">
+        {stores.map((store) => (
+          <Link
+            key={store.id}
+            href={`/marketplace/${store.id}`}
+            className="block"
+          >
+            {store.name}
+          </Link>
+        ))}
+        <BecomeASeller />
+      </nav>
+    </>
+  );
+};
 
 function ArrowUpIcon(props: any) {
   return (
