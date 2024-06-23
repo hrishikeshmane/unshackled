@@ -170,7 +170,10 @@ const features = [
                 </figcaption>
               </div>
             </div>
-            <blockquote className="mt-2 text-xs">{f.body}</blockquote>
+            {/* <blockquote className="mt-2 text-xs">{f.body}</blockquote> */}
+            <div className="flex items-center justify-center py-10">
+              <FileTextIcon className="h-16 w-16 text-gray-500" />
+            </div>
           </figure>
         ))}
       </Marquee>

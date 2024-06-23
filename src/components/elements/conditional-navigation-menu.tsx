@@ -18,17 +18,21 @@ import Logo from "./logo";
 import { type NavComponent, type Routes } from "./header";
 import { usePathname } from "next/navigation";
 
-export function NavigationMenuDemo({ components }: { components: Routes }) {
+export function ConditionalNavigationMenu({
+  components,
+}: {
+  components: Routes;
+}) {
   const pathname = usePathname();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-}, []);
+  }, []);
 
-    if (!isMounted) {
-        return null;
-    }
+  if (!isMounted) {
+    return null;
+  }
 
   const isMarketplaceRoute = pathname.startsWith("/marketplace");
   const isVendorRoute = pathname.startsWith("/vendor");
@@ -90,13 +94,13 @@ export function NavigationMenuDemo({ components }: { components: Routes }) {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-            <NavigationMenuItem>
+            {/* <NavigationMenuItem>
               <Link href="/our-story" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Our Story
                 </NavigationMenuLink>
               </Link>
-            </NavigationMenuItem>
+            </NavigationMenuItem> */}
           </>
         )}
         {isMarketplaceRoute && (
@@ -151,7 +155,7 @@ const ListItem = React.forwardRef<
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
-      <NavigationMenuLink asChild >
+      <NavigationMenuLink asChild>
         <a
           ref={ref}
           className={cn(

@@ -84,9 +84,9 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 flex justify-center">
-          <Button variant="ghost" className="rounded-full p-3">
+          {/* <Button variant="ghost" className="rounded-full p-3">
             <ArrowUpIcon className="h-6 w-6 text-primary" />
-          </Button>
+          </Button> */}
         </div>
       </div>
     </footer>

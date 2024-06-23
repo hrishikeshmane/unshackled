@@ -2,6 +2,7 @@ import Header from "@/components/elements/header";
 import Footer from "@/components/landing-page/footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Check, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { CommunityBenotGrid } from "~/components/landing-page/community-bento-grid";
@@ -42,22 +43,62 @@ export default function HomePage() {
         </section>
         <section className="my-4">
           <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
-            <div className="basis-1/2 bg-white p-8">
-              <h2 className="rounded-lg py-4 text-3xl font-bold text-primary">
-                Get started
-              </h2>
-              <p className="text-lg font-bold text-muted-foreground">
-                If you&apos;re hearing the term &quot;talent visas&quot; for the
-                first time, head over here and go through our free, 5-day
-                course. No legal jargon.
-              </p>
-              <div className="flex flex-col gap-4 py-4">
-                <Input />
-                <Input />
-                <Button className="w-full">Get started</Button>
+            <div className="basis-1/2 rounded-lg bg-card p-8">
+              <h3 className="text-2xl font-bold">You should only join if:</h3>
+              <div className="mx-auto flex flex-col gap-2 py-4">
+                <div className="flex gap-4 text-lg font-semibold">
+                  {/* <Check className="w-6 text-green-600" /> */}
+                  <p className="text-muted-foreground">
+                    You have a basic understanding of talent visas, especially
+                    the O-1A, EB-1A, or EB-2 NIW. If you don&apos;t, no worries.
+                    Enroll for our free course.
+                  </p>
+                </div>
+                <div className="flex gap-4 text-lg font-semibold">
+                  {/* <Check className="w-6 text-green-600" /> */}
+                  <p className="text-muted-foreground">
+                    You are clear about your motivation for getting a talent
+                    visa. E.g. starting your company, quitting your job, getting
+                    freedom via green card, etc.
+                  </p>
+                </div>
+                <div className="flex gap-4 text-lg font-semibold">
+                  {/* <Check className="w-6 text-green-600" /> */}
+                  <p className="text-muted-foreground">
+                    You are willing to invest time and effort into the community
+                    and your future.
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="basis-1/2 rounded-lg bg-card p-8">a</div>
+            <div className="basis-1/2 rounded-lg bg-card p-8">
+              <h3 className="text-2xl font-bold">You should NOT join if:</h3>
+              <div className="mx-auto flex flex-col py-4">
+                <div className="flex gap-2 py-2 text-lg font-semibold">
+                  {/* <X className="text-destructive " /> */}
+                  <p className="text-muted-foreground">
+                    You&apos;re looking for a &quot;hack&quot; to get your green
+                    card. There is
+                  </p>
+                </div>
+                <div className="flex gap-2 py-2 text-lg font-semibold">
+                  {/* <X className="text-destructive " /> */}
+                  <p className="text-muted-foreground">
+                    You want hand-holding through every step of the process
+                    until you file. We look for members who are proactive and
+                    make use of our resources well.
+                  </p>
+                </div>
+                <div className="flex gap-2 py-2 text-lg font-semibold">
+                  {/* <X className="text-destructive " /> */}
+                  <p className="text-muted-foreground">
+                    You come from a field that we don&apos;t have resources for.
+                    E.g. artists, actresses, chefs, etc. Our community is geared
+                    toward tech, STEM and business fields.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -66,7 +107,7 @@ export default function HomePage() {
             Sounds like you? Awesome.
           </h2>
           <h2 className="text-4xl font-bold">This is the place for you.</h2>
-          <div className="group relative mt-10 inline-flex space-x-4">
+          <div className="group relative mt-10 inline-flex scale-150 space-x-4">
             <Button size={"lg"}>Become a member</Button>
           </div>
         </section>
