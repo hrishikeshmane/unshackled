@@ -1,19 +1,17 @@
-import React from 'react'
+import React from "react";
 import { CreditCard, DollarSign, Package } from "lucide-react";
 import { Overview } from "@/components/overview";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Heading } from '~/app/admin/_components/heading';
 import { Separator } from "@/components/ui/separator";
-import { api } from '~/trpc/server';
-import { formatPrice } from '~/lib/utils';
-import { auth, currentUser } from '@clerk/nextjs/server';
+import { api } from "~/trpc/server";
+import { formatPrice } from "~/lib/utils";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
 interface VendorDashboardPageProps {
-  params: { storeId: string }
+  params: { storeId: string };
 }
 
-
-const VendorDashboardPage: React.FC<VendorDashboardPageProps> = async ()  => {
+const VendorDashboardPage: React.FC<VendorDashboardPageProps> = async () => {
   const { userId } = auth();
   const user = await currentUser();
 
@@ -21,34 +19,43 @@ const VendorDashboardPage: React.FC<VendorDashboardPageProps> = async ()  => {
     return null;
   }
 
-  const totalRevenue = await api.vendorAnalytics.getRevenueByCreatorId({ creatorId: userId });
-  const salesCount = await api.vendorAnalytics.getSalesCountByCreatorId({ creatorId: userId });
-  const stockCount = await api.vendorAnalytics.getStockCountByCreatorId({ creatorId: userId });
-  const graphRevenue = await api.vendorAnalytics.getRevenueGraphByCreatorId({ creatorId: userId });
+  const totalRevenue = await api.vendorAnalytics.getRevenueByCreatorId({
+    creatorId: userId,
+  });
+  const salesCount = await api.vendorAnalytics.getSalesCountByCreatorId({
+    creatorId: userId,
+  });
+  const stockCount = await api.vendorAnalytics.getStockCountByCreatorId({
+    creatorId: userId,
+  });
+  const graphRevenue = await api.vendorAnalytics.getRevenueGraphByCreatorId({
+    creatorId: userId,
+  });
 
   return (
     <div className="flex-col">
-      <div className="flex-1 p-8 pt-6 space-y-4">
-      <div>
-            <div className="py-10 mx-auto text-center flex flex-col items-center max-w-3xl">
-         <h1 className='text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl'>
-            Hello <span className="text-primary">{user.firstName}</span>, welcome to your vendor dashboard.
-            
-          </h1>
-          <p className='mt-6 text-lg max-w-prose text-muted-foreground'>
-            Control & manage your products, customers, view your orders and more.
-          </p>
-        </div>
+      <div className="flex-1 space-y-4 p-8 pt-6">
+        <div>
+          <div className="mx-auto flex max-w-3xl flex-col items-center py-10 text-center">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+              Hello <span className="text-primary">{user.firstName}</span>,
+              welcome to your vendor dashboard.
+            </h1>
+            <p className="mt-6 max-w-prose text-lg text-muted-foreground">
+              Control & manage your products, customers, view your orders and
+              more.
+            </p>
+          </div>
         </div>
         {/* <Heading title="Dashboard" description="Overview of your store" /> */}
         <Separator />
         <div className="grid grid-cols-3 gap-4">
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Total Revenue
               </CardTitle>
-              <DollarSign className="w-4 h-4 text-muted-foreground" />
+              <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
@@ -57,29 +64,23 @@ const VendorDashboardPage: React.FC<VendorDashboardPageProps> = async ()  => {
             </CardContent>
           </Card>
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-sm font-medium">
-                Sales
-              </CardTitle>
-              <CreditCard className="w-4 h-4 text-muted-foreground" />
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Sales</CardTitle>
+              <CreditCard className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">
-                +{salesCount}
-              </div>
+              <div className="text-2xl font-bold">+{salesCount}</div>
             </CardContent>
           </Card>
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Services Listed
               </CardTitle>
-              <Package className="w-4 h-4 text-muted-foreground" />
+              <Package className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">
-                {stockCount}
-              </div>
+              <div className="text-2xl font-bold">{stockCount}</div>
             </CardContent>
           </Card>
         </div>
@@ -93,7 +94,7 @@ const VendorDashboardPage: React.FC<VendorDashboardPageProps> = async ()  => {
         </Card>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default VendorDashboardPage
+export default VendorDashboardPage;

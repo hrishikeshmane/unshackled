@@ -1,17 +1,7 @@
 import { z } from "zod";
 
-import {
-  createTRPCRouter,
-  adminProcedure,
-  adminOrVendorProcedure,
-  publicProcedure,
-} from "~/server/api/trpc";
-import { and, eq, or } from "drizzle-orm";
-import {
-  type StoreTable,
-  type OrderTable,
-  type ProductTable,
-} from "~/types/globals";
+import { createTRPCRouter, adminOrVendorProcedure } from "~/server/api/trpc";
+import { and, eq } from "drizzle-orm";
 
 interface GraphData {
   name: string;

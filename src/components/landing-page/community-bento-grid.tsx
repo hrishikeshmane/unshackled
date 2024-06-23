@@ -1,18 +1,7 @@
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
 import { cn } from "@/lib/utils";
-// import AnimatedBeamMultipleOutputDemo from "@/components/magicui/animated-beam-multiple-outputs";
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import Marquee from "@/components/magicui/marquee";
-import { CalendarIcon, FileTextIcon, InputIcon } from "@radix-ui/react-icons";
-import { PhoneCall, Share2Icon } from "lucide-react";
+import { FileTextIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 
 const files = [
@@ -170,7 +159,10 @@ const features = [
                 </figcaption>
               </div>
             </div>
-            <blockquote className="mt-2 text-xs">{f.body}</blockquote>
+            {/* <blockquote className="mt-2 text-xs">{f.body}</blockquote> */}
+            <div className="flex items-center justify-center py-10">
+              <FileTextIcon className="h-16 w-16 text-gray-500" />
+            </div>
           </figure>
         ))}
       </Marquee>

@@ -1,10 +1,8 @@
 import { z } from "zod";
 import {
   createTRPCRouter,
-  adminProcedure,
   publicProcedure,
   adminOrVendorProcedure,
-  vendorProcedure,
 } from "~/server/api/trpc";
 import { product } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
@@ -277,41 +275,41 @@ export const productsRouter = createTRPCRouter({
   //   }),
 
   getApprovedProductsByStoreId: publicProcedure
-  .input(z.object({ storeId: z.string() }))
-  .query(async ({ ctx, input }) => {
-    const { storeId } = input;
-    const products = await ctx.db.query.product.findMany({
-      where: (table) => eq(table.storeId, storeId),
-    });
+    .input(z.object({ storeId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const { storeId } = input;
+      const products = await ctx.db.query.product.findMany({
+        where: (table) => eq(table.storeId, storeId),
+      });
 
-    const storeForProduct = await ctx.db.query.store.findFirst({
-      where: (table) => eq(table.id, storeId),
-    });
+      const storeForProduct = await ctx.db.query.store.findFirst({
+        where: (table) => eq(table.id, storeId),
+      });
 
-    const productsWithTypeandTag = await Promise.all(
-      products.map(async (product) => {
-        const TypeForProduct = await ctx.db.query.type.findFirst({
-          where: (table) => eq(table.id, product.typeId),
-        });
-        const TagForProduct = await ctx.db.query.tag.findFirst({
-          where: (table) => eq(table.id, product.tagId),
-        });
-        return {
-          ...product,
-          type: TypeForProduct as TypeTable,
-          tag: TagForProduct as TagTable,
-          store: storeForProduct as StoreTable,
-        };
-      }),
-    );
+      const productsWithTypeandTag = await Promise.all(
+        products.map(async (product) => {
+          const TypeForProduct = await ctx.db.query.type.findFirst({
+            where: (table) => eq(table.id, product.typeId),
+          });
+          const TagForProduct = await ctx.db.query.tag.findFirst({
+            where: (table) => eq(table.id, product.tagId),
+          });
+          return {
+            ...product,
+            type: TypeForProduct as TypeTable,
+            tag: TagForProduct as TagTable,
+            store: storeForProduct as StoreTable,
+          };
+        }),
+      );
 
-    // Filter approved products in application logic
-    const approvedProducts = productsWithTypeandTag.filter(
-      (product) => product.isApproved === "approved"
-    );
+      // Filter approved products in application logic
+      const approvedProducts = productsWithTypeandTag.filter(
+        (product) => product.isApproved === "approved",
+      );
 
-    return approvedProducts;
-  }),
+      return approvedProducts;
+    }),
 
   getApprovedProducts: publicProcedure.query(async ({ ctx }) => {
     const products = await ctx.db.query.product.findMany({

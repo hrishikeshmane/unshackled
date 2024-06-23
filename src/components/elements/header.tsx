@@ -1,30 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import {
-  Activity,
-  ArrowUpRight,
-  CircleUser,
-  CreditCard,
-  DollarSign,
-  Menu,
-  Package2,
-  Search,
-  ShoppingBag,
-  Users,
-} from "lucide-react";
-
-import UserAuthButton from "../user-auth-button";
-import Cart from "../cart";
 import { api } from "~/trpc/server";
-import { type StoreTable } from "~/types/globals";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { NavigationMenuDemo } from "./navigation-menu";
+import { ConditionalNavigationMenu } from "./conditional-navigation-menu";
 import Logo from "./logo";
+import NavButtons from "./nav-buttons";
 
 export type NavComponent = { title: string; href: string; description: string };
 export type Route = {
@@ -138,26 +117,10 @@ const Header = async () => {
           <Logo className="h-6 w-6" />
         </Link>
 
-        {/* { !isAdminRoute && !isVendorRoute && !isMarketplaceRoute && */}
-        <NavigationMenuDemo components={routes} />
-        {/* } */}
+        <ConditionalNavigationMenu components={routes} />
       </nav>
-      {/* mobile nav */}
 
-      <div className="flex w-full items-center justify-end gap-4 md:ml-auto md:gap-2 lg:gap-4">
-        <Cart />
-        <Link href="/marketplace">
-          <Button
-            variant={"outline"}
-            className="flex gap-2 border-2 border-primary text-primary hover:text-primary"
-          >
-            <ShoppingBag className="h-5" />
-            Shop on Marketplace
-          </Button>
-        </Link>
-        <Button>Become a member</Button>
-        <UserAuthButton />
-      </div>
+      <NavButtons />
     </header>
   );
 };
