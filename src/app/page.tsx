@@ -115,11 +115,6 @@ export default function HomePage() {
         </section>
       </div>
       <Footer />
-      {/* <Link href="/marketplace/cart">
-        Go to Cart
-      </Link>
-      <BecomeASeller />
-    </MaxWidthWrapper> */}
     </div>
   );
 }
