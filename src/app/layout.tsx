@@ -5,11 +5,10 @@ import { GeistSans } from "geist/font/sans";
 import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { cn } from "~/lib/utils";
-import { ToastProvider } from "~/providers/toast-provider";
+// import { ToastProvider } from "~/providers/toast-provider";
 // import Navbar from "~/components/navbar";
 import Header from "~/components/elements/header";
-// import Footer from "~/components/footer";
-// import Navbar from "~/components/navbar";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata = {
   title: "Create T3 App",
@@ -44,10 +43,11 @@ export default function RootLayout({
             }}
           >
             <TRPCReactProvider>
-              <ToastProvider />
+              {/* <ToastProvider /> */}
               {/* <Navbar /> */}
               <Header />
               <div className="flex-1 flex-grow">{children}</div>
+              <Toaster position="top-center" richColors />
             </TRPCReactProvider>
           </ClerkProvider>
         </main>

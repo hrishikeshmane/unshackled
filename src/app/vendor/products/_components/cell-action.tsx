@@ -10,7 +10,7 @@ import {
 import { type ProductColumn } from "./columns";
 import { Button } from "@/components/ui/button";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 import { useRouter, useParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { AlertModal } from "~/app/admin/_components/modals/alert-modal";

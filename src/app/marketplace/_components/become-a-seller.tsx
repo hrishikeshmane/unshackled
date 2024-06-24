@@ -3,7 +3,7 @@
 import React from "react";
 import { Button } from "~/components/ui/button";
 import { useUser } from "@clerk/nextjs";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { api } from "~/trpc/react";
 import {
   Dialog,
