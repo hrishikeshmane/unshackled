@@ -22,6 +22,7 @@ export const ProductClient: React.FC<ProductClientProps> = ({ data }) => {
           description="Manage products for your store"
         />
         <AddStoreModal>
+          {/* TODO: Disable button if stripe not connected */}
           <Button>
             <Plus className="mr-2 h-4 w-4" />
             Add New
