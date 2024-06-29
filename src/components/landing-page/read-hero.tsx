@@ -49,7 +49,15 @@ const ReadHeroSection = () => {
 export const ReadHeroSectionCTAButtons = () => {
   return (
     <div className="group relative mt-10 inline-flex space-x-4">
-      <Button size={"lg"}>Buy on Amazon</Button>
+      <Link
+        href={
+          "https://www.amazon.com/dp/B0C55LNV7B/ref=sr_1_1?keywords=unshackled+soundarya&qid=1683996713&sprefix=unshackled+so%2Caps%2C364&sr=8-1"
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Button size={"lg"}>Buy on Amazon</Button>
+      </Link>
       <Link href="/marketplace">
         <Button
           variant={"outline"}
