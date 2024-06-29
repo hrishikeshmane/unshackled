@@ -12,6 +12,7 @@ import { LockClosedIcon } from "@radix-ui/react-icons";
 import { type ModifiedProduct } from "./columns";
 import { redirect } from "next/navigation";
 import { useParams } from "next/navigation";
+import Link from "next/link";
 
 const AccessButton = ({
   storeId,
@@ -105,45 +106,54 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
   const params = useParams();
 
   return (
-    <article className="flex gap-3 rounded-xl border bg-card p-5 text-card-foreground shadow hover:bg-muted">
-      <Image
-        src={logo ? logo : placeholderUrl}
-        alt={`${name} logo`}
-        width={100}
-        height={100}
-        className="self-center rounded-lg object-contain"
-      />
-      <div className="max-w-xs flex-grow space-y-3 break-all text-left">
-        <div>
-          <ServiceCardTitle name={name} productId={id} featured={isFeatured} />
-          <p className="text-muted-foreground">{tagline}</p>
-        </div>
-        <div className="text-muted-foreground">
-          <ServiceInfo
-            service={store}
-            domainRanking={domainRank}
-            estTurnaroundTime={estTurnAroundTime}
-          />
-          <div className="flex items-end justify-between gap-1.5 sm:hidden">
-            <TagBadge Tag={tag} />
-            <AccessButton storeId={String(params.storeId)} productId={id} />
+    <Link
+      href={`/marketplace/${String(params.storeId)}/products/${id}`}
+      className="text-left font-medium"
+    >
+      <article className="flex gap-3 rounded-xl border bg-card p-5 text-card-foreground shadow hover:bg-muted">
+        <Image
+          src={logo ? logo : placeholderUrl}
+          alt={`${name} logo`}
+          width={100}
+          height={100}
+          className="self-center rounded-lg object-contain"
+        />
+        <div className="max-w-xs flex-grow space-y-3 break-all text-left">
+          <div>
+            <ServiceCardTitle
+              name={name}
+              productId={id}
+              featured={isFeatured}
+            />
+            <p className="text-muted-foreground">{tagline}</p>
+          </div>
+          <div className="text-muted-foreground">
+            <ServiceInfo
+              service={store}
+              domainRanking={domainRank}
+              estTurnaroundTime={estTurnAroundTime}
+            />
+            <div className="flex items-end justify-between gap-1.5 sm:hidden">
+              <TagBadge Tag={tag} />
+              <AccessButton storeId={String(params.storeId)} productId={id} />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="ml-auto hidden shrink-0 flex-col items-end justify-between sm:flex">
-        <AccessButton storeId={String(params.storeId)} productId={id} />
-        <div className="flex flex-col items-end">
-          <TagBadge Tag={tag} />
-          <span className="flex items-center gap-1 text-muted-foreground">
-            <Clock size={16} className="shrink-0" />
-            <span>Est. Turnaround Time:</span>
-            <span className="font-semibold">
-              {estTurnAroundTime || "Contact for Turnaround Time"}
+        <div className="ml-auto hidden shrink-0 flex-col items-end justify-between sm:flex">
+          <AccessButton storeId={String(params.storeId)} productId={id} />
+          <div className="flex flex-col items-end">
+            <TagBadge Tag={tag} />
+            <span className="flex items-center gap-1 text-muted-foreground">
+              <Clock size={16} className="shrink-0" />
+              <span>Est. Turnaround Time:</span>
+              <span className="font-semibold">
+                {estTurnAroundTime || "Contact for Turnaround Time"}
+              </span>
             </span>
-          </span>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </Link>
   );
 };
 
