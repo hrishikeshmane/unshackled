@@ -1,106 +1,112 @@
-"use client"
+"use client";
 
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import * as z from 'zod'
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form';
-import { Input } from '~/components/ui/input';
-import { Button } from '~/components/ui/button';
-import {useTransition } from 'react';
-import { toast } from 'react-hot-toast'
-import { api } from "~/trpc/react"
-
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
+import { Button } from "~/components/ui/button";
+import { useTransition } from "react";
+import { toast } from "sonner";
+import { api } from "~/trpc/react";
 
 interface ModalProps {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const formSchema = z.object({
-    name: z.string().min(1)
-})
+  name: z.string().min(1),
+});
 
+export const CreateStoreModal: React.FC<ModalProps> = ({ children }) => {
+  const [isPending, startTransition] = useTransition();
+  // const [isOpen, setIsOpen] = useState(true);
 
-export const CreateStoreModal: React.FC<ModalProps> = ({
-    children,
-}) => {
+  const addStoreMutation = api.store.create.useMutation({
+    onSuccess: (data) => {
+      toast.success("Store created successfully");
+      // storeModal.onClose();
+      window.location.assign(`/admin/${data?.storeId}`);
+    },
+    onError: (err) => {
+      toast.error(`Something went Wrong ${err.message}`);
+    },
+  });
 
-    const [isPending, startTransition] = useTransition();
-    // const [isOpen, setIsOpen] = useState(true);
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+    },
+  });
 
-    const addStoreMutation = api.store.create.useMutation({
-        onSuccess: (data) => {
-            toast.success("Store created successfully")
-            // storeModal.onClose();
-            window.location.assign(`/admin/${data?.storeId}`)
-        },
-        onError: (err) => {
-            toast.error(`Something went Wrong ${err.message}`)
-        },
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    startTransition(() => {
+      addStoreMutation.mutate(values);
     });
+  };
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            name: ""
-        }
-    })
-    
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        startTransition(() => {
-             addStoreMutation.mutate(values)
-        })
-    }
-   
-    return (
-        <Dialog>
-            <DialogTrigger asChild>
-                {children}
-            </DialogTrigger>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>
-                         Create Store
-                    </DialogTitle>
-                    <DialogDescription>
-                            Add a new store to manage products and categories
-                    </DialogDescription>
-                    <div>
-                    <div>
-                <div className='py-2 pb-4 space-y-4'>
-                    <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)}>
-                            <FormField
-                                control={form.control}
-                                name="name"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Name</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                disabled={isPending}
-                                                placeholder='E-commerce'
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
+  return (
+    <Dialog>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Create Store</DialogTitle>
+          <DialogDescription>
+            Add a new store to manage products and categories
+          </DialogDescription>
+          <div>
+            <div>
+              <div className="space-y-4 py-2 pb-4">
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)}>
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Name</FormLabel>
+                          <FormControl>
+                            <Input
+                              disabled={isPending}
+                              placeholder="E-commerce"
+                              {...field}
                             />
-                            <div className='flex items-center justify-end w-full pt-6 space-x-2'>
-                                <Button
-                                    disabled={isPending}
-                                    variant="outline"
-                                    >Cancel</Button>
-                                <Button disabled={isPending} type='submit' >Continue</Button>
-                            </div>
-                        </form>
-                    </Form>
-                </div>
-            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <div className="flex w-full items-center justify-end space-x-2 pt-6">
+                      <Button disabled={isPending} variant="outline">
+                        Cancel
+                      </Button>
+                      <Button disabled={isPending} type="submit">
+                        Continue
+                      </Button>
                     </div>
-                </DialogHeader>
-            </DialogContent>
-        </Dialog>
-    )
-}
+                  </form>
+                </Form>
+              </div>
+            </div>
+          </div>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  );
+};

@@ -4,6 +4,7 @@ import { api } from "~/trpc/server";
 import { ConditionalNavigationMenu } from "./conditional-navigation-menu";
 import Logo from "./logo";
 import NavButtons from "./nav-buttons";
+import { auth } from "@clerk/nextjs/server";
 
 export type NavComponent = { title: string; href: string; description: string };
 export type Route = {
@@ -21,6 +22,10 @@ export type Routes = {
 
 const Header = async () => {
   const data = await api.store.getStores();
+  const { sessionClaims } = auth();
+  const role = sessionClaims?.metadata.role;
+
+  console.log("role", role);
 
   const routes: Routes = {
     marketplaceRoutes: data.map((route) => ({
@@ -120,7 +125,7 @@ const Header = async () => {
         <ConditionalNavigationMenu components={routes} />
       </nav>
 
-      <NavButtons />
+      <NavButtons role={role} />
     </header>
   );
 };
