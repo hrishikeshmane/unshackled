@@ -67,3 +67,12 @@ body,
 .formkit-powered-by-convertkit {
   display: none !important;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-outfit leading-[4rem];
+}

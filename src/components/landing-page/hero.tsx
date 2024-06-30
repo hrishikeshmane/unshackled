@@ -23,7 +23,7 @@ const HeroSection = () => {
             <span className="text-primary">Empower</span> your career with a
             talent visa
           </h1>
-          <p className="mx-auto mt-12 max-w-5xl text-xl font-semibold leading-7 text-muted-foreground">
+          <p className="mx-auto mt-12 max-w-5xl text-2xl font-bold leading-8 text-muted-foreground ">
             At <span className="text-primary">unshackled.club</span>, we do one
             thing really well: help{" "}
             <span className="text-primary">ambitious immigrants </span>

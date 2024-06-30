@@ -11,11 +11,11 @@ const NewsLetterPage = () => {
       <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg py-28">
         <div className="flex">
           <div className="flex basis-2/3 flex-col items-start justify-start gap-10 px-8 py-20 text-left">
-            <h2 className="max-w-4xl text-5xl font-bold">
+            <h2 className="max-w-4xl text-5xl font-bold leading-[4rem]">
               Don’t waste your time and money trying to keep up with U.S.
               immigration
             </h2>
-            <p className="text-xl font-bold text-muted-foreground">
+            <p className="text-2xl font-bold leading-8 text-muted-foreground">
               Join <span className="text-primary">15,000+ immigrants</span> who
               get a careful curation of breaking news, free webinar invites &
               latest trends on immigration every week.

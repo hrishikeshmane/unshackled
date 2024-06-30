@@ -21,10 +21,10 @@ export default function HomePage() {
         <section className="my-4">
           <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
             <div className="basis-1/2 bg-white p-8">
-              <h2 className="rounded-lg py-4 text-3xl font-bold text-primary">
+              <h2 className="rounded-lg py-4 text-3xl font-bold leading-[4rem] text-primary">
                 Get started
               </h2>
-              <p className="text-lg font-bold text-muted-foreground">
+              <p className="text-xl font-bold leading-8 text-muted-foreground">
                 If you&apos;re hearing the term &quot;talent visas&quot; for the
                 first time, head over here and go through our free, 5-day
                 course. No legal jargon.
@@ -55,10 +55,10 @@ export default function HomePage() {
               />
             </div>
             <div className="basis-1/2 bg-white p-8">
-              <h2 className="rounded-lg py-4 text-3xl font-bold text-primary">
+              <h2 className="rounded-lg py-4 text-3xl font-bold leading-[4rem] text-primary">
                 Join the club
               </h2>
-              <p className="text-lg font-bold text-muted-foreground">
+              <p className="text-xl font-bold leading-8 text-muted-foreground ">
                 If you&apos;ve decided to apply for the O-1A, EB-1A, or EB-2 NIW
                 visa, and need a roadmap to get there, sign up below & get a
                 personal invite to join our paid community.
@@ -73,10 +73,10 @@ export default function HomePage() {
         <section className="my-4">
           <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
             <div className="basis-1/2 bg-white p-8">
-              <h2 className="rounded-lg py-4 text-3xl font-bold text-primary">
+              <h2 className="rounded-lg py-4 text-3xl font-bold leading-[4rem] text-primary">
                 Love reading books?
               </h2>
-              <p className="text-lg font-bold text-muted-foreground">
+              <p className="text-xl font-bold leading-8 text-muted-foreground">
                 If you&apos;re still a student on F-1 or just want to understand
                 all your work visa options, head over below and get
                 &quot;Unshackled.&quot; Some say it &quot;reads like a thriller
@@ -113,11 +113,11 @@ export default function HomePage() {
         </section>
 
         <section className="mx-auto my-4 flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg bg-card p-10">
-          <h2 className="mx-auto max-w-4xl text-center text-4xl font-bold text-primary">
+          <h2 className="mx-auto max-w-4xl text-center text-4xl font-bold leading-[4rem] text-primary">
             Don’t waste your time and money trying to keep up with U.S.
             immigration.
           </h2>
-          <p className="mx-auto max-w-4xl text-center text-lg font-bold text-muted-foreground">
+          <p className="mx-auto max-w-4xl text-center text-2xl font-bold leading-8 text-muted-foreground ">
             Join 15,000+ immigrants who get a careful curation of breaking news,
             free webinar invites & latest trends on immigration every week.
             Reading time: 5 minutes.

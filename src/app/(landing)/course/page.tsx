@@ -87,7 +87,7 @@ const page = () => {
           Know the what, who, and why of talent visas in 5 short videos.{" "}
           <span className="text-primary">No legal jargon</span>.
         </h2>
-        <p className="mx-auto max-w-4xl pt-4 text-center text-lg font-bold text-muted-foreground">
+        <p className="mx-auto max-w-4xl pt-4 text-center text-2xl font-bold leading-8 text-muted-foreground">
           We built this for engineers, entrepreneurs, product leaders,
           researchers, and anyone from a STEM field. Sounds like you? Join below
           👇
