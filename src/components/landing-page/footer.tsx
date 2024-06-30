@@ -46,7 +46,7 @@ export default async function Footer() {
             </Button>
             <div className="mx-auto grid grid-cols-2 justify-end gap-10 md:grid-cols-3 md:gap-10 lg:mx-0">
               <div className="col-span-1">
-                <h3 className="text-lg font-semibold">Site</h3>
+                <h3 className="text-lg font-medium">Site</h3>
                 <nav className="mt-4 space-y-4 text-base">
                   <Link href="#" className="block  " prefetch={false}>
                     Home
@@ -75,7 +75,7 @@ export default async function Footer() {
                 </nav>
               </div>
               <div className="col-span-1">
-                <h3 className="text-lg font-semibold">Legal</h3>
+                <h3 className="text-lg font-medium">Legal</h3>
                 <nav className="mt-4 space-y-4">
                   <Link href="#" className="block  " prefetch={false}>
                     Terms of Service
@@ -108,7 +108,7 @@ export default async function Footer() {
 const MarketplaceLinks = ({ stores }: { stores: IStore[] }) => {
   return (
     <>
-      <h3 className="text-lg font-semibold">Marketplace</h3>
+      <h3 className="text-lg font-medium">Marketplace</h3>
       <nav className="mt-4 space-y-4">
         {stores.map((store) => (
           <Link
