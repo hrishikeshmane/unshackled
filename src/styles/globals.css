@@ -63,3 +63,7 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+.formkit-powered-by-convertkit {
+  display: none !important;
+}

@@ -3,6 +3,11 @@ import HeroSection from "@/components/landing-page/hero";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import Link from "next/link";
+import {
+  JoinTheClubForm,
+  StartHereForm,
+} from "~/components/landing-page/convertkit-forms";
 
 export default function HomePage() {
   return (
@@ -25,9 +30,7 @@ export default function HomePage() {
                 course. No legal jargon.
               </p>
               <div className="flex flex-col gap-4 py-4">
-                <Input />
-                <Input />
-                <Button className="w-full">Get started</Button>
+                <StartHereForm />
               </div>
             </div>
             <div className="flex basis-1/2 items-center justify-center rounded-lg p-8">
@@ -53,17 +56,15 @@ export default function HomePage() {
             </div>
             <div className="basis-1/2 bg-white p-8">
               <h2 className="rounded-lg py-4 text-3xl font-bold text-primary">
-                Get started
+                Join the club
               </h2>
               <p className="text-lg font-bold text-muted-foreground">
-                If you&apos;re hearing the term &quot;talent visas&quot; for the
-                first time, head over here and go through our free, 5-day
-                course. No legal jargon.
+                If you&apos;ve decided to apply for the O-1A, EB-1A, or EB-2 NIW
+                visa, and need a roadmap to get there, sign up below & get a
+                personal invite to join our paid community.
               </p>
               <div className="flex flex-col gap-4 py-4">
-                <Input />
-                <Input />
-                <Button className="w-full">Get started</Button>
+                <JoinTheClubForm />
               </div>
             </div>
           </div>
@@ -73,17 +74,31 @@ export default function HomePage() {
           <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
             <div className="basis-1/2 bg-white p-8">
               <h2 className="rounded-lg py-4 text-3xl font-bold text-primary">
-                Get started
+                Love reading books?
               </h2>
               <p className="text-lg font-bold text-muted-foreground">
-                If you&apos;re hearing the term &quot;talent visas&quot; for the
-                first time, head over here and go through our free, 5-day
-                course. No legal jargon.
+                If you&apos;re still a student on F-1 or just want to understand
+                all your work visa options, head over below and get
+                &quot;Unshackled.&quot; Some say it &quot;reads like a thriller
+                novel.&quot;😉
               </p>
-              <div className="flex flex-col gap-4 py-4">
-                <Input />
-                <Input />
-                <Button className="w-full">Get started</Button>
+              <div className="my-auto flex h-full w-full flex-col items-center justify-center gap-4 py-4">
+                <Link
+                  href={
+                    "https://www.amazon.com/dp/B0C55LNV7B/ref=sr_1_1?keywords=unshackled+soundarya&qid=1683996713&sprefix=unshackled+so%2Caps%2C364&sr=8-1"
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full"
+                >
+                  <Button className="w-full">Buy on Amazon</Button>
+                </Link>
+                <Button
+                  variant={"outline"}
+                  className="b-2 w-full border-primary"
+                >
+                  Bulk orders on Website
+                </Button>
               </div>
             </div>
             <div className="flex basis-1/2 items-center justify-center rounded-lg p-8">
@@ -107,6 +122,9 @@ export default function HomePage() {
             free webinar invites & latest trends on immigration every week.
             Reading time: 5 minutes.
           </p>
+          <div className="flex w-full flex-col items-center justify-center gap-4 py-4">
+            <JoinTheClubForm />
+          </div>
         </section>
       </div>
       <Footer />
