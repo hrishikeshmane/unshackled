@@ -9,6 +9,13 @@ import { cn } from "~/lib/utils";
 // import Navbar from "~/components/navbar";
 import Header from "~/components/elements/header";
 import { Toaster } from "@/components/ui/sonner";
+import { Outfit } from "next/font/google";
+
+const outflit = Outfit({
+  weight: "500",
+  subsets: ["latin"],
+  variable: "--font-outfit",
+});
 
 export const metadata = {
   title: "Create T3 App",
@@ -27,6 +34,7 @@ export default function RootLayout({
         className={cn(
           "min-w-screen relative h-full min-h-screen bg-background font-sans antialiased ",
           GeistSans.variable,
+          outflit.variable,
         )}
       >
         <main className="relative flex flex-col">

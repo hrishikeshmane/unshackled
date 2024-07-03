@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { StartHereForm } from "~/components/landing-page/convertkit-forms";
 import Footer from "~/components/landing-page/footer";
 import { Button } from "~/components/ui/button";
 
@@ -15,9 +16,7 @@ const page = () => {
             visas in America
           </h1>
           <div className="my-8 flex flex-col gap-6 bg-card p-4">
-            <Input></Input>
-            <Input></Input>
-            <Button>Get started</Button>
+            <StartHereForm />
           </div>
         </div>
         <div className="flex basis-1/2 items-center justify-center ">
@@ -88,7 +87,14 @@ const page = () => {
           Know the what, who, and why of talent visas in 5 short videos.{" "}
           <span className="text-primary">No legal jargon</span>.
         </h2>
-        {/* TODO: FORM HERE */}
+        <p className="mx-auto max-w-4xl pt-4 text-center text-2xl font-bold leading-8 text-muted-foreground">
+          We built this for engineers, entrepreneurs, product leaders,
+          researchers, and anyone from a STEM field. Sounds like you? Join below
+          👇
+        </p>
+        <div className="flex w-full flex-col items-center justify-center gap-4 pt-8">
+          <StartHereForm />
+        </div>
       </section>
 
       <Footer />
