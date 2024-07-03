@@ -3,7 +3,7 @@
 import React from "react";
 import ConvertKitForm from "convertkit-react";
 
-const GETTING_STARTED_FORM_ID = 1234567;
+const GETTING_STARTED_FORM_ID = 6173806;
 export const StartHereForm = () => {
   return (
     <ConvertKitForm
@@ -15,7 +15,7 @@ export const StartHereForm = () => {
   );
 };
 
-const JOIN_THE_CLUB_FORM_ID = 1234567;
+const JOIN_THE_CLUB_FORM_ID = 6394156;
 export const JoinTheClubForm = () => {
   return (
     <ConvertKitForm
@@ -27,7 +27,7 @@ export const JoinTheClubForm = () => {
   );
 };
 
-const JOIN_NEWSLETTER_FORM_ID = 1234567;
+const JOIN_NEWSLETTER_FORM_ID = 5527329;
 export const JoinNewsletterForm = () => {
   return (
     <ConvertKitForm
