@@ -30,7 +30,7 @@ export default function HomePage() {
             <span className="text-primary">unshackled.club</span> is an
             exclusive community.
           </h2>
-          <p className="mx-auto mt-8 max-w-4xl text-center text-xl font-semibold leading-7 text-muted-foreground">
+          <p className="mx-auto mt-8 max-w-4xl text-center text-2xl font-semibold leading-8 text-muted-foreground ">
             We built it for{" "}
             <span className="text-primary">ambitious immigrants</span> who
             contribute significantly to their fields - and have big dreams for
@@ -121,11 +121,11 @@ export default function HomePage() {
         </section>
 
         <section className="mx-auto my-8 mt-24 flex w-full flex-col items-center justify-center">
-          <h2 className="text-center text-4xl font-bold">
+          <h2 className="text-center text-4xl font-bold ">
             We’ve got engineers, founders, product <br /> managers, scientists,
             and researchers.
           </h2>
-          <p className="mt-8 text-lg font-bold text-muted-foreground">
+          <p className="mt-8 text-xl font-bold leading-8 text-muted-foreground">
             Our community of{" "}
             <span className="text-primary">450+ aspirants</span> span all
             corners of tech, STEM and business fields.
@@ -302,7 +302,7 @@ export default function HomePage() {
             Goal of <span className="text-primary">unshackled.club</span> = Help
             you get your <span className="text-primary">talent visa</span>
           </h3>
-          <p className="mt-2 pb-8 text-center text-lg font-bold text-muted-foreground">
+          <p className="mt-2 pb-8 text-center text-xl font-bold leading-8 text-muted-foreground">
             So every benefit we offer is geared toward helping you reach your
             goal.
           </p>
@@ -411,22 +411,22 @@ export default function HomePage() {
               <h2 className="max-w-4xl text-3xl font-bold">
                 About the founder
               </h2>
-              <p className="text-xl font-bold text-muted-foreground">
+              <p className="text-xl font-bold leading-8 text-muted-foreground">
                 Hi there, <br />
                 {"I'm Soundarya, founder of unshackled.club. :)"}
               </p>
-              <p className="text-xl font-bold text-muted-foreground">
+              <p className="text-xl font-bold leading-8 text-muted-foreground">
                 I&apos;m a founder, 2x author, and ex-product manager from
                 Salesforce. I graduated from Columbia University with a
                 master&apos;s in Management Sciences.
               </p>
-              <p className="text-xl font-bold text-muted-foreground">
+              <p className="text-xl font-bold leading-8 text-muted-foreground">
                 Honestly, I never dreamt of starting a community to help
                 immigrants get talent visas. It happened because of an insane
                 2.5-year journey that I went through to get my O-1A visa as a
                 solo founder.
               </p>
-              <p className="text-xl font-bold text-muted-foreground">
+              <p className="text-xl font-bold leading-8 text-muted-foreground">
                 By the end, I knew that if I had a community like this, it would
                 have cut my time in half and made the journey less lonely - and
                 a lot more enjoyable. That&apos;s why I built this.
