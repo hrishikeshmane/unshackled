@@ -54,24 +54,28 @@ export default async function Footer() {
                   <Link href="#" className="block  " prefetch={false}>
                     Start Here
                   </Link>
-                  <Link href="#" className="block  " prefetch={false}>
+                  {/* <Link href="#" className="block  " prefetch={false}>
                     Find top lawyers
-                  </Link>
-                  <Link href="#" className="block  " prefetch={false}>
+                  </Link> */}
+                  <Link
+                    href="/read-unshackled"
+                    className="block  "
+                    prefetch={false}
+                  >
                     Read Unshackled
                   </Link>
-                  <Link href="#" className="block  " prefetch={false}>
+                  <Link href="/newsletter" className="block  " prefetch={false}>
                     Newsletter
                   </Link>
-                  <Link href="#" className="block  " prefetch={false}>
+                  {/* <Link href="#" className="block  " prefetch={false}>
                     Our story
-                  </Link>
-                  <Link href="#" className="block  " prefetch={false}>
+                  </Link> */}
+                  {/* <Link href="#" className="block  " prefetch={false}>
                     Become an affiliate
-                  </Link>
-                  <Link href="#" className="block  " prefetch={false}>
+                  </Link> */}
+                  {/* <Link href="#" className="block  " prefetch={false}>
                     Get in touch
-                  </Link>
+                  </Link> */}
                 </nav>
               </div>
               <div className="col-span-1">

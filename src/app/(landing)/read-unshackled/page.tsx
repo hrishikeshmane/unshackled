@@ -39,7 +39,7 @@ const Page = () => {
                 <li>Or, you want alternatives to the endless H-1B lottery</li>
               </ol>
             </div>
-            <div className="flex basis-1/2 items-center justify-center">
+            <div className="justify-cente flex basis-1/2 items-center">
               <Image
                 src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fb34622d750e22cb0ba93e_img5.png"
                 alt="alt"

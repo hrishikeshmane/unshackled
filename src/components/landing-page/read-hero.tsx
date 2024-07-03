@@ -18,7 +18,7 @@ const ReadHeroSection = () => {
         </div>
       </div>
 
-      <div className="mx-auto w-full">
+      <div className="realtive mx-auto w-full">
         <Image
           src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66263c0f9352e25bddf1ee14_Rectangle%202029%20(2)-p-800.png"
           alt="book chapter image with cover"
@@ -28,6 +28,26 @@ const ReadHeroSection = () => {
           //   sizes="100vw"
           //   style={{ width: "50%", height: "auto", margin: "4rem auto" }}
         />
+        <div className="absolute right-[28%] top-[25%] hidden max-w-64 rounded-md bg-card p-6 lg:block">
+          <blockquote className="text-lg font-semibold text-primary">
+            "Finally, a book that demystifies the complex immigration system."
+          </blockquote>
+          <div className="w-full items-center justify-center pt-1">
+            <p className="font-bold">Xiao Wang</p>
+            <p className="font-bold text-muted-foreground">CEO of Boundless</p>
+          </div>
+        </div>
+        <div className="absolute left-[28%] top-[35%] hidden max-w-64 rounded-md bg-card p-6 lg:block">
+          <blockquote className="text-lg font-semibold text-primary">
+            "Dynamite stuff."
+          </blockquote>
+          <div className="w-full items-center justify-center pt-1">
+            <p className="font-bold">Brad Feld</p>
+            <p className="font-bold text-muted-foreground">
+              Cofounder of TechStars Author of Venture Deals
+            </p>
+          </div>
+        </div>
       </div>
       <div className="mx-auto w-full items-center justify-center">
         <Companies />
