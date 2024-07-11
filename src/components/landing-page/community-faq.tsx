@@ -6,35 +6,35 @@ import {
 } from "@/components/ui/accordion";
 
 const faqs = [
-  {
-    question: "What's the cost of membership?",
-    answer: (
-      <>
-        <p>We have simple three-tier pricing.</p>
-        <p>
-          - Pay $499 for an annual membership that renews after 12 months, if
-          you&apos;re a current student. This is ideal for students who are just
-          starting out and want to educate themselves to see if a talent visa is
-          the right fit. Email us at hi@unshackled.club with proof of your
-          current enrollment (through your LinkedIn profile) and we will share
-          an exclusive coupon code with you!
-        </p>
-        ‍
-        <p>
-          - Pay $999 for an annual membership that renews after 12 months. This
-          is ideal for immigrants who are in the early stages of their journey
-          and need more time to build their profile and file an application.
-        </p>
-        ‍
-        <p>
-          - Pay $3999 for a white-glove tier that is invite-only and renews
-          after 12 months. We plan to kick this off in June 2024 with 10
-          aspirants who are further along in their EB-1A journey and want
-          personalized guidance to reach the end goal.
-        </p>
-      </>
-    ),
-  },
+  // {
+  //   question: "What's the cost of membership?",
+  //   answer: (
+  //     <>
+  //       <p>We have simple three-tier pricing.</p>
+  //       <p>
+  //         - Pay $499 for an annual membership that renews after 12 months, if
+  //         you&apos;re a current student. This is ideal for students who are just
+  //         starting out and want to educate themselves to see if a talent visa is
+  //         the right fit. Email us at hi@unshackled.club with proof of your
+  //         current enrollment (through your LinkedIn profile) and we will share
+  //         an exclusive coupon code with you!
+  //       </p>
+  //       ‍
+  //       <p>
+  //         - Pay $999 for an annual membership that renews after 12 months. This
+  //         is ideal for immigrants who are in the early stages of their journey
+  //         and need more time to build their profile and file an application.
+  //       </p>
+  //       ‍
+  //       <p>
+  //         - Pay $3999 for a white-glove tier that is invite-only and renews
+  //         after 12 months. We plan to kick this off in June 2024 with 10
+  //         aspirants who are further along in their EB-1A journey and want
+  //         personalized guidance to reach the end goal.
+  //       </p>
+  //     </>
+  //   ),
+  // },
   {
     question: "What are the benefits of membership?",
     answer: (

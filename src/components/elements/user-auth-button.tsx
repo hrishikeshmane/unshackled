@@ -17,7 +17,7 @@ const DotIcon = () => {
 
 const UserAuthButton = () => {
   return (
-    <div>
+    <div className="hidden md:block">
       <SignedIn>
         <UserButton afterSignOutUrl="/">
           <UserButton.UserProfileLink

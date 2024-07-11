@@ -443,95 +443,137 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto my-4 flex w-full max-w-4xl flex-col justify-center gap-4 rounded-lg p-10">
+        <section className="mx-auto my-4 flex w-full max-w-6xl flex-col justify-center gap-4 rounded-lg p-10">
           <h2 className="mx-auto mb-10 max-w-5xl text-center text-4xl font-bold">
             The <span className="text-primary">Team</span> behind Unshackled
           </h2>
-          <div className="flex gap-4 py-2">
-            <div>
-              <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f17c70b31e0313c78c7afd_Rectangle%202048.png"
-                alt="Soundarya Soundararajan"
-                width={270}
-                height={270}
-                className="rounded-lg"
-              />
-              <div className="flex flex-col py-4 text-center">
-                <h3 className="text-lg font-bold text-primary">
-                  Soundarya Soundararajan
-                </h3>
-                <p className="text-muted-foreground">
-                  Founder & Author of <br />
-                  Unshackled
-                </p>
+          <div className="mx-auto my-10 w-full items-center justify-center">
+            <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-4 grid-rows-2 gap-6">
+              <div>
+                <Image
+                  src="https://media.licdn.com/dms/image/D5603AQELuWAMSvSyyA/profile-displayphoto-shrink_400_400/0/1713936959454?e=1726099200&v=beta&t=_RCEE6pMW484M0rxZyL9OXIaF1Fw0xwg_e27M1ZNldU"
+                  alt="Aswarth Abhilash Dara"
+                  width={270}
+                  height={270}
+                  className="rounded-lg"
+                />
+                <div className="flex flex-col py-4 text-center">
+                  <h3 className="text-lg font-bold text-primary">
+                    Soundarya Balasubramani
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Founder and CEO, Unshackled (by Greencard Inc)
+                  </p>
+                </div>
               </div>
-            </div>
-            <div>
-              <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f17c702656dc2edb7ab076_Rectangle%202049.png"
-                alt="Disha Brara"
-                width={270}
-                height={270}
-                className="rounded-lg"
-              />
-              <div className="flex flex-col py-4 text-center">
-                <h3 className="text-lg font-bold text-primary">Disha Brara</h3>
-                <p className="text-muted-foreground">
-                  Head of Sales,
-                  <br /> unshackled.club
-                </p>
+              <div>
+                <Image
+                  src="https://media.licdn.com/dms/image/C4E03AQG9NKjrMutBUQ/profile-displayphoto-shrink_400_400/0/1568339357589?e=1726099200&v=beta&t=97HtoDIqYXjXlD8t2zaxvmF9w4IBB18vtwgLpudLoNk"
+                  alt="Rathnakumar Udhayakumar"
+                  width={270}
+                  height={270}
+                  className="rounded-lg"
+                />
+                <div className="flex flex-col py-4 text-center">
+                  <h3 className="text-lg font-bold text-primary">
+                    Rathnakumar Udhayakumar
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Co-founder and CEO, Greencard Inc
+                  </p>
+                </div>
               </div>
-            </div>
-            <div>
-              <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f17c706b521a73c8e044ca_Rectangle%202050.png"
-                alt="Bhuvan Shakthi"
-                width={270}
-                height={270}
-                className="rounded-lg"
-              />
-              <div className="flex flex-col py-4 text-center">
-                <h3 className="text-lg font-bold text-primary">
-                  Bhuvan Shakthi
-                </h3>
-                <p className="text-muted-foreground">
-                  Sales & Operations Associate,
-                  <br /> unshackled.club
-                </p>
+              <div>
+                <Image
+                  src="https://media.licdn.com/dms/image/C5603AQF_OKOLQaTSWg/profile-displayphoto-shrink_400_400/0/1586088240292?e=1726099200&v=beta&t=oqHPxUYgmFiTFbHvYzQkUxh-qqPeRsdTjlaytj7YlXI"
+                  alt="Nikin Tharan"
+                  width={270}
+                  height={270}
+                  className="rounded-lg"
+                />
+                <div className="flex flex-col py-4 text-center">
+                  <h3 className="text-lg font-bold text-primary">
+                    Nikin Tharan
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Co-founder and COO, Greencard Inc
+                  </p>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="mx-auto flex gap-4 py-2">
-            <div>
-              <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f17c70a11527cf20c20384_Rectangle%202051.png"
-                alt="Mahantesh NG"
-                width={270}
-                height={270}
-                className="rounded-lg"
-              />
-              <div className="flex flex-col py-4 text-center">
-                <h3 className="text-lg font-bold text-primary">Mahantesh NG</h3>
-                <p className="text-muted-foreground">
-                  Designer,
-                  <br /> unshackled.club
-                </p>
+              <div>
+                <Image
+                  src="https://media.licdn.com/dms/image/C4D03AQFAK2rWdPXGdQ/profile-displayphoto-shrink_800_800/0/1658730194543?e=1726099200&v=beta&t=XqnX5nWqS4ISLe4KNvQQS68vS20ar6_VKl273JUSt9U"
+                  alt="Hrishikesh Mane"
+                  width={270}
+                  height={270}
+                  className="rounded-lg"
+                />
+                <div className="flex flex-col py-4 text-center">
+                  <h3 className="text-lg font-bold text-primary">
+                    Hrishikesh Mane
+                  </h3>
+                  <p className="text-muted-foreground">CTO, Greencard Inc</p>
+                </div>
               </div>
-            </div>
-            <div>
-              <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/660fea73a27fc462e8254a93_Unshackled%20Team%20Story-Arjun%20Kamath%201-p-500.png"
-                alt="Arjun Kamath"
-                width={270}
-                height={270}
-                className="rounded-lg"
-              />
-              <div className="flex flex-col py-4 text-center">
-                <h3 className="text-lg font-bold text-primary">Arjun Kamath</h3>
-                <p className="text-muted-foreground">
-                  Community Head,
-                  <br /> unshackled.club
-                </p>
+              <div>
+                <Image
+                  src="https://media.licdn.com/dms/image/C5103AQGDCPwmMWqDEg/profile-displayphoto-shrink_400_400/0/1585381762613?e=1726099200&v=beta&t=EAfaJE8rFAElNWmayowbFd7RSC7bKlhJUsqAwaIWwo4"
+                  alt="Akash Mali"
+                  width={270}
+                  height={270}
+                  className="rounded-lg"
+                />
+                <div className="flex flex-col py-4 text-center">
+                  <h3 className="text-lg font-bold text-primary">Akash Mali</h3>
+                  <p className="text-muted-foreground">Software Engineer</p>
+                </div>
+              </div>
+              <div>
+                <Image
+                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f17c706b521a73c8e044ca_Rectangle%202050.png"
+                  alt="Bhuvan Shakthi"
+                  width={270}
+                  height={270}
+                  className="h-[250px] w-[270px] rounded-lg object-cover"
+                />
+                <div className="flex flex-col py-4 text-center">
+                  <h3 className="text-lg font-bold text-primary">
+                    Bhuvan Shakthi
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Sales & Operations Associate
+                  </p>
+                </div>
+              </div>
+              <div>
+                <Image
+                  src="https://media.licdn.com/dms/image/D5603AQFOVI4j3MLHGg/profile-displayphoto-shrink_800_800/0/1720263627775?e=1726099200&v=beta&t=qADhDNQIqTHKv77539Y-x2JPf2oE_CjNuenj-L9ujHA"
+                  alt="Swatilina Barik"
+                  width={270}
+                  height={270}
+                  className="h-[250px] w-[270px] rounded-lg object-cover"
+                />
+                <div className="flex flex-col py-4 text-center">
+                  <h3 className="text-lg font-bold text-primary">
+                    Swatilina Barik
+                  </h3>
+                  <p className="text-muted-foreground">Program Manager</p>
+                </div>
+              </div>
+              <div>
+                <Image
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Nishchita.jpeg?raw=true"
+                  alt="K.K. Nishchita"
+                  width={270}
+                  height={270}
+                  className="h-[250px] w-[270px] rounded-lg object-cover"
+                />
+                <div className="flex flex-col py-4 text-center">
+                  <h3 className="text-lg font-bold text-primary">
+                    K.K. Nishchita
+                  </h3>
+                  <p className="text-muted-foreground">Program Manager</p>
+                </div>
               </div>
             </div>
           </div>
