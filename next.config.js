@@ -10,6 +10,14 @@ const config = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "github.com",
+      },
+      {
+        protocol: "https",
+        hostname: "media.licdn.com",
+      },
+      {
+        protocol: "https",
         hostname: "cdn.pixabay.com",
       },
       {
@@ -23,6 +31,10 @@ const config = {
       {
         protocol: "https",
         hostname: "cdn.prod.website-files.com",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
       },
     ],
   },

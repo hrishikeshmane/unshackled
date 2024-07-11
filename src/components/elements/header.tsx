@@ -4,6 +4,8 @@ import { api } from "~/trpc/server";
 import { ConditionalNavigationMenu } from "./conditional-navigation-menu";
 import Logo from "./logo";
 import NavButtons from "./nav-buttons";
+import { auth } from "@clerk/nextjs/server";
+import MobileNav from "./mobilNav";
 
 export type NavComponent = { title: string; href: string; description: string };
 export type Route = {
@@ -21,6 +23,10 @@ export type Routes = {
 
 const Header = async () => {
   const data = await api.store.getStores();
+  const { sessionClaims } = auth();
+  const role = sessionClaims?.metadata.role;
+
+  console.log("role", role);
 
   const routes: Routes = {
     marketplaceRoutes: data.map((route) => ({
@@ -108,20 +114,28 @@ const Header = async () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-      <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-lg font-semibold md:text-base"
-        >
+    <>
+      <header className="sticky top-0 z-50 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+        <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-lg font-semibold md:text-base"
+          >
+            <Logo className="h-6 w-6" />
+          </Link>
+
+          <ConditionalNavigationMenu components={routes} />
+        </nav>
+
+        <div className="ml-auto hidden md:flex">
+          <NavButtons role={role} />
+        </div>
+        <div className="flex w-full justify-between md:hidden">
           <Logo className="h-6 w-6" />
-        </Link>
-
-        <ConditionalNavigationMenu components={routes} />
-      </nav>
-
-      <NavButtons />
-    </header>
+          <MobileNav role={role} components={routes} />
+        </div>
+      </header>
+    </>
   );
 };
 

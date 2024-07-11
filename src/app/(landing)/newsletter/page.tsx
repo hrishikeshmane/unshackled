@@ -1,6 +1,7 @@
 import { SparkleIcon, ThumbsDownIcon, ThumbsUpIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import { JoinNewsletterForm } from "~/components/landing-page/convertkit-forms";
 import Footer from "~/components/landing-page/footer";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
@@ -10,24 +11,17 @@ const NewsLetterPage = () => {
       <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg py-28">
         <div className="flex">
           <div className="flex basis-2/3 flex-col items-start justify-start gap-10 px-8 py-20 text-left">
-            <h2 className="max-w-4xl text-5xl font-bold">
+            <h2 className="max-w-4xl text-5xl font-bold leading-[4rem]">
               Don’t waste your time and money trying to keep up with U.S.
               immigration
             </h2>
-            <p className="text-xl font-bold text-muted-foreground">
+            <p className="text-2xl font-bold leading-8 text-muted-foreground">
               Join <span className="text-primary">15,000+ immigrants</span> who
               get a careful curation of breaking news, free webinar invites &
               latest trends on immigration every week.
             </p>
-            <div>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="my-4 w-96 rounded-lg bg-white p-4"
-              />
-              <button className="rounded-lg bg-primary p-4 text-white">
-                Subscribe
-              </button>
+            <div className="rounded-md bg-white p-4">
+              <JoinNewsletterForm />
             </div>
           </div>
           <div className="flex basis-1/3 items-center justify-center">
@@ -179,7 +173,9 @@ const NewsLetterPage = () => {
           <br /> newsletter is for.
         </h2>
 
-        <div>{/* TODO: news letter from */}</div>
+        <div className="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-4 bg-card py-8">
+          <JoinNewsletterForm />
+        </div>
       </section>
 
       <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg py-16">
@@ -261,7 +257,9 @@ const NewsLetterPage = () => {
           <span className="text-primary">{` < 5 minutes a week`}</span>{" "}
           de-risking your future.
         </h2>
-        {/* TODO: add form */}
+        <div className="flex w-full flex-col items-center justify-center gap-4 pt-8">
+          <JoinNewsletterForm />
+        </div>
       </section>
       <Footer />
     </div>

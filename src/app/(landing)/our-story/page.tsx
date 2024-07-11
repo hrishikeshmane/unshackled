@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import Footer from "~/components/landing-page/footer";
 import StoryStartedTimeline from "~/components/landing-page/story-started-timeline";
@@ -12,21 +13,36 @@ const StoryPage = () => {
             <h2 className="max-w-4xl text-5xl font-bold">Our Story</h2>
             <p className="text-xl font-bold text-muted-foreground">
               Hi there, <br />
-              {"I'm Soundarya, founder of unshackled.club. :)"}
+              Soundarya, Rathnakumar (RK), and Nikin here. We’re the founders of
+              Unshackled and{" "}
+              <Link
+                className="text-primary underline"
+                href={"https://greencard.inc/"}
+              >
+                Greencard Inc.
+              </Link>{" "}
+              {":)"}
+              {/* {
+                "Soundarya, Rathnakumar (RK), and Nikin here. We’re the founders of Unshackled and Greencard Inc. :)"
+              } */}
             </p>
             <p className="text-xl font-bold text-muted-foreground">
-              Honestly, I never dreamt of starting a community to help
-              immigrants get talent visas. It happened because of an insane
-              2.5-year journey that I went through to get my O-1A visa as a solo
-              founder.
+              None of us imagined building a startup to help immigrants and
+              talent visa aspirants in America. It happened through a series of
+              events that left us feeling frustrated and disillusioned with the
+              immigration system — wanting to make it better for others like
+              you.
+            </p>
+            <p className="text-xl font-bold text-muted-foreground">
+              Check out the story below 👇
             </p>
           </div>
           <div className="flex basis-1/2 items-center justify-center">
             <Image
-              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f17882131b6fade744d32c_Group%208320.png"
+              src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/our-story/our-story.png?raw=true"
               alt="Soundarya"
-              width={300}
-              height={300}
+              width={500}
+              height={500}
             />
           </div>
         </div>

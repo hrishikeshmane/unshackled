@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        outfit: "var(--font-outfit)", // note: you can call the left side of this whatever you want - barlow-bold or title-font or foo-bar, this is what you'll use in your Tailwind css classes to use this font
+        "inter-medium": "var(--font-inter)", // note: the bit that goes inside the var() function is the same variable name we defined in app.tsx
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

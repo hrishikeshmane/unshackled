@@ -40,112 +40,133 @@ export function ConditionalNavigationMenu({
   const isHomeRoute = pathname.startsWith("/");
 
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        {!isMarketplaceRoute && !isVendorRoute && !isAdminRoute && (
-          <>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-3">
-                    <NavigationMenuLink asChild>
-                      <a
-                        className="flex h-full w-full select-none flex-col justify-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                        href="/"
-                      >
-                        <Logo className="border-3 m-auto" />
-                      </a>
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="/read-unshackled" title="Read Unshackled">
-                    Read the first book that simplifies legal immigration with
-                    beautiful visuals & gripping stories.
-                  </ListItem>
-                  <ListItem href="/community" title="Community">
-                    Join the vibrant community of ambitious immigrants
-                  </ListItem>
-                  <ListItem href="/course" title="Free Course">
-                    5-day free course on talent visas. No legal jargon.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Marketplace</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {components.marketplaceRoutes.map((component) => (
-                    <ListItem
-                      key={component.title}
-                      title={component.title}
-                      href={component.href}
+    <>
+      <div className="hidden md:block">
+        <NavigationMenu>
+          <NavigationMenuList>
+            {!isMarketplaceRoute && !isVendorRoute && !isAdminRoute && (
+              <>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                      <li className="row-span-3">
+                        <NavigationMenuLink asChild>
+                          <Link
+                            className="flex h-full w-full select-none flex-col justify-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                            href="/"
+                          >
+                            <Logo className="border-3 m-auto" />
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <ListItem href="/read-unshackled" title="Read Unshackled">
+                        Read the first book that simplifies legal immigration
+                        with beautiful visuals & gripping stories.
+                      </ListItem>
+                      <ListItem href="/community" title="Community">
+                        Join the vibrant community of ambitious immigrants
+                      </ListItem>
+                      <ListItem href="/course" title="Free Course">
+                        5-day free course on talent visas. No legal jargon.
+                      </ListItem>
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Marketplace</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                      {components.marketplaceRoutes.map((component) => (
+                        <ListItem
+                          key={component.title}
+                          title={component.title}
+                          href={component.href}
+                        >
+                          {component.description}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/newsletter" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
                     >
-                      {component.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/newsletter" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Newsletter
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            {/* <NavigationMenuItem>
+                      Newsletter
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/our-story" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Our Story
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                {/* <NavigationMenuItem>
               <Link href="/our-story" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Our Story
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem> */}
-          </>
-        )}
-        {isMarketplaceRoute && (
-          <>
-            {components.marketplaceRoutes.map((component) => (
-              <NavigationMenuItem key={component.title}>
-                <Link href={component.href} passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    {component.title}
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            ))}
-          </>
-        )}
+              </>
+            )}
+            {isMarketplaceRoute && (
+              <>
+                {components.marketplaceRoutes.map((component) => (
+                  <NavigationMenuItem key={component.title}>
+                    <Link href={component.href} passHref>
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        {component.title}
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                ))}
+              </>
+            )}
 
-        {isVendorRoute && (
-          <>
-            {components.vendorRoutes.map((component) => (
-              <NavigationMenuItem key={component.title}>
-                <Link href={component.href} passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    {component.title}
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            ))}
-          </>
-        )}
+            {isVendorRoute && (
+              <>
+                {components.vendorRoutes.map((component) => (
+                  <NavigationMenuItem key={component.title}>
+                    <Link href={component.href} passHref>
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        {component.title}
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                ))}
+              </>
+            )}
 
-        {isAdminRoute && (
-          <>
-            {components.adminRoutes.map((component) => (
-              <NavigationMenuItem key={component.title}>
-                <Link href={component.href} passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    {component.title}
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            ))}
-          </>
-        )}
-      </NavigationMenuList>
-    </NavigationMenu>
+            {isAdminRoute && (
+              <>
+                {components.adminRoutes.map((component) => (
+                  <NavigationMenuItem key={component.title}>
+                    <Link href={component.href} passHref>
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        {component.title}
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                ))}
+              </>
+            )}
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+    </>
   );
 }
 

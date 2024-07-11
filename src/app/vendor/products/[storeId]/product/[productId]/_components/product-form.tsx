@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "~/app/admin/_components/modals/alert-modal";
 import {

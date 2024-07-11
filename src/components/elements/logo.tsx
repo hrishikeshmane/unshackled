@@ -1,9 +1,10 @@
 import { cn } from "@/lib/utils";
 import React from "react";
+import GCILogo from "./GCILogo";
 
 const Logo = (className: { className?: string }) => {
   return (
-    <div className={cn("", className)}>
+    <div className={cn("relative w-[160px]", className)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="152"
@@ -181,6 +182,7 @@ const Logo = (className: { className?: string }) => {
           mask="url(#path-9-outside-1_2002_13)"
         />
       </svg>
+      <GCILogo className="absolute left-[25%] top-[66%] scale-75" />
     </div>
   );
 };

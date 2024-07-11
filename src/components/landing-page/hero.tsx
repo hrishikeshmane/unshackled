@@ -23,7 +23,7 @@ const HeroSection = () => {
             <span className="text-primary">Empower</span> your career with a
             talent visa
           </h1>
-          <p className="mx-auto mt-12 max-w-5xl text-xl font-semibold leading-7 text-muted-foreground">
+          <p className="mx-auto mt-12 max-w-5xl text-2xl font-bold leading-8 text-muted-foreground ">
             At <span className="text-primary">unshackled.club</span>, we do one
             thing really well: help{" "}
             <span className="text-primary">ambitious immigrants </span>
@@ -31,8 +31,10 @@ const HeroSection = () => {
             lottery.
           </p>
 
-          <div className="group relative mt-10 inline-flex space-x-4">
-            <Button size={"lg"}>Become a member</Button>
+          <div className="group relative mx-auto mt-10 inline-flex flex-col items-center justify-center gap-4 md:flex-row">
+            <Button size={"lg"} className="w-full md:w-fit">
+              Become a member
+            </Button>
             <Link href="/marketplace">
               <Button
                 variant={"outline"}
@@ -46,7 +48,7 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-8 flex w-full items-center justify-center space-x-4 md:mt-12">
+      <div className="mx-auto mt-8 flex w-full flex-col items-center justify-center space-x-4 md:mt-12 md:flex-row ">
         <AvatarCircles numPeople={400} avatarUrls={avatarUrls} />
         <span className="font-semibold">
           Trusted by 400+ ambitious immigrants

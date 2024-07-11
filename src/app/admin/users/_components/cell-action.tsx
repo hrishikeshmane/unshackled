@@ -8,7 +8,7 @@ import {
 import { type UserColumn } from "./columns";
 import { Button } from "@/components/ui/button";
 import { Copy, MoreHorizontal } from "lucide-react";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 import { api } from "~/trpc/react";
 
 interface CellActionProps {
