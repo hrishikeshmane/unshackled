@@ -30,7 +30,8 @@ const ReadHeroSection = () => {
         />
         <div className="absolute right-[28%] top-[25%] hidden max-w-64 rounded-md bg-card p-6 lg:block">
           <blockquote className="text-lg font-semibold text-primary">
-            "Finally, a book that demystifies the complex immigration system."
+            &ldquo;Finally, a book that demystifies the complex immigration
+            system.&rdquo;
           </blockquote>
           <div className="w-full items-center justify-center pt-1">
             <p className="font-bold">Xiao Wang</p>
@@ -39,7 +40,7 @@ const ReadHeroSection = () => {
         </div>
         <div className="absolute left-[28%] top-[35%] hidden max-w-64 rounded-md bg-card p-6 lg:block">
           <blockquote className="text-lg font-semibold text-primary">
-            "Dynamite stuff."
+            &ldquo;Dynamite stuff.&rdquo;
           </blockquote>
           <div className="w-full items-center justify-center pt-1">
             <p className="font-bold">Brad Feld</p>
