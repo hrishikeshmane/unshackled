@@ -8,27 +8,35 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Logo from "./logo";
 import { type Routes } from "./header";
+import NavButtons from "./nav-buttons";
 
 export type NavComponent = { title: string; href: string; description: string };
 
-const MobileNav = ({ components }: { components: Routes }) => {
+const MobileNav = ({
+  components,
+  role,
+}: {
+  components: Routes;
+  role?: CustomJwtSessionClaims["metadata"]["role"];
+}) => {
   const pathname = usePathname();
+  const [sheetOpen, setSheetOpen] = React.useState(false);
+  const toggleSheet = () => setSheetOpen((prev) => !prev);
 
   const isMarketplaceRoute = pathname.startsWith("/marketplace");
   const isVendorRoute = pathname.startsWith("/vendor");
   const isAdminRoute = pathname.startsWith("/admin");
-  const isHomeRoute = pathname.startsWith("/");
 
   return (
     <div>
-      <Sheet>
+      <Sheet open={sheetOpen} onOpenChange={toggleSheet}>
         <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="shrink-0 md:hidden">
+          <Button variant="ghost" size="icon" className="shrink-0 md:hidden">
             <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left">
+        <SheetContent side="right">
           <nav className="grid gap-6 text-lg font-medium">
             <Link
               href="/"
@@ -36,12 +44,49 @@ const MobileNav = ({ components }: { components: Routes }) => {
             >
               <Logo className="h-6 w-6" />
             </Link>
+
+            {/* Landing page routes */}
+            {
+              <>
+                <Link
+                  href={"/read-unshackled"}
+                  onClick={toggleSheet}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Read Unshackled
+                </Link>
+                <Link
+                  href={"/community"}
+                  onClick={toggleSheet}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Community
+                </Link>
+                <Link
+                  href={"/course"}
+                  onClick={toggleSheet}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Free Course
+                </Link>
+                <Link
+                  href={"/newsletter"}
+                  onClick={toggleSheet}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Newsletter
+                </Link>
+                <NavButtons role={role} />
+              </>
+            }
+
             {isMarketplaceRoute && (
               <>
                 {components.marketplaceRoutes.map((route) => (
                   <Link
                     key={route.href}
                     href={route.href}
+                    onClick={toggleSheet}
                     className="text-muted-foreground hover:text-foreground"
                   >
                     {route.title}
@@ -55,6 +100,7 @@ const MobileNav = ({ components }: { components: Routes }) => {
                   <Link
                     key={route.href}
                     href={route.href}
+                    onClick={toggleSheet}
                     className="text-muted-foreground hover:text-foreground"
                   >
                     {route.title}
@@ -68,6 +114,7 @@ const MobileNav = ({ components }: { components: Routes }) => {
                   <Link
                     key={route.href}
                     href={route.href}
+                    onClick={toggleSheet}
                     className="text-muted-foreground hover:text-foreground"
                   >
                     {route.title}

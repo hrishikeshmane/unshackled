@@ -5,25 +5,24 @@ import Marquee from "../magicui/marquee";
 
 const reviews = [
   {
-    title: "The community helped me more than I paid for.",
-    body: "I got everything I needed to create a solid O-1A case. The knowledge base introduced me to the websites I needed to build my evidence. I had access to people who were doing exactly what I was doing - as well as people who've reached the finish line of the process! I could speak to vetted lawyers who evaluated my case. There is always new information being shared and discussed. Overall, I got more out of the community than I paid for!",
+    // title: "The community helped me more than I paid for.",
+    body: "The most underrated benefit I got from the Unshackled community was the emotional support. I got an RFE during my O-1A journey and it was extremely painful, emotionally. I can't recommend joining the community enough.",
     name: "Hitesh Kenjale",
     img: "https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f02fb86a5efff99f75fe7f_Frame%20633068.png",
-    position: "CTO of Vie, Inc. O-1A Recipient.",
+    position:
+      "Co-Founder of DesiHangover. UC Berkeley MBA Graduate. O-1A Recipient.",
   },
   {
     body: "I got everything I needed to create a solid O-1A case. The knowledge base introduced me to the websites I needed to build my evidence. I had access to people who were doing exactly what I was doing - as well as people who've reached the finish line of the process! I could speak to vetted lawyers who evaluated my case. There is always new information being shared and discussed. Overall, I got more out of the community than I paid for!",
     name: "Dominic Damoah",
     img: "https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66087b93681eeb75387eb5b2_1667406713295-p-500.jpg",
-    position:
-      "Co-Founder of DesiHangover. UC Berkeley MBA Graduate. O-1A Recipient.",
+    position: "CTO of Vie, Inc. O-1A Recipient.",
   },
   {
     body: "The biggest thing I got from the community was the belief that I could actually qualify for the O-1A. It wasn’t this giant, monolithic thing meant only for a select few. As long as I was doing good and strategically building my case, it was possible for me to get the visa. Since getting it, I’ve had the peace of mind I needed to get back to what actually mattered: building my company.",
     name: "Digvijay Singh",
     img: "https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/6608797297f74167f82dddc0_1540416428295.jpg",
-    position:
-      "Co-Founder of DesiHangover. UC Berkeley MBA Graduate. O-1A Recipient.",
+    position: "Head of Product at DrizzleHealth. O-1A Recipient.",
   },
   {
     body: "I wish I had found the community earlier in my EB-1A journey. It could have saved me a lot of time and research. And, it would've given me a chance to meet others like me from my field, get their feedback, and made my petition better.",

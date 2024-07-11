@@ -29,7 +29,7 @@ const files = [
 
 const features = [
   {
-    name: "Free consults with past recipients",
+    name: "Get questions answered by past recipients",
     description:
       "Take actionable advice from O-1A, EB-1A, and NIW recipients who've been there, done that - for free.",
     className: "col-span-3 border-primary border-4",
@@ -53,7 +53,7 @@ const features = [
     background: (
       <div className="absolute flex h-full w-full items-center justify-center">
         <Image
-          src="https://cdn.prod.website-files.com/65e8340abdea0b15f94838f3/65e84141162f77dad865e6a1_2.png"
+          src="https://media.licdn.com/dms/image/C4E03AQGadaj9NpqF4Q/profile-displayphoto-shrink_800_800/0/1517715524165?e=1726099200&v=beta&t=IiiTWh3jce8dDlAON8YJ5O91bDpH2wkvIH4JtNNGvh4"
           width={365}
           height={365}
           alt="Free Profile Evaluation"
