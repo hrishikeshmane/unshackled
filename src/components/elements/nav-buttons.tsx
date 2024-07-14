@@ -17,7 +17,7 @@ const NavButtons = ({ role }: NavButtonsProps) => {
 
   return (
     <div className="ml-auto flex w-full flex-col items-center justify-end gap-4 md:flex-row lg:gap-4">
-      {pathname.includes("marketplace") && <Cart />}
+      {pathname.includes("marketplace")}
       {!pathname.includes("marketplace") && (
         <div className="flex gap-4">
           {role === "vendor" ? (

@@ -79,6 +79,7 @@ export const vendor = createTable("vendorInfo", {
 export const store = createTable("store", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
   name: text("name", { length: 256 }).notNull(),
+  description: text("description").default(""),
   createdAt: int("createdAt", { mode: "timestamp" })
     .default(sql`(unixepoch())`)
     .notNull(),
@@ -146,6 +147,7 @@ export const product = createTable("product", {
   creatorId: text("creatorId", { length: 256 })
     .notNull()
     .references(() => users.id),
+  // discounts: text("discounts", {mode: "json"}).default(sql`json('{}')`),
   stripeId: text("stripeId", { length: 256 }).notNull(),
   name: text("name", { length: 256 }).notNull(),
   tagline: text("tagline", { length: 256 }).notNull(),
@@ -213,6 +215,7 @@ export const orderItem = createTable("orderItem", {
   productId: text("productId", { length: 256 })
     .notNull()
     .references(() => product.id),
+  quantity: integer("quantity").notNull().default(1),
   storeId: text("storeId", { length: 256 })
     .notNull()
     .references(() => store.id),

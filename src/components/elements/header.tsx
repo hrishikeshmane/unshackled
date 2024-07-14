@@ -29,6 +29,7 @@ const Header = async () => {
   console.log("role", role);
 
   const routes: Routes = {
+    // TODO: route.description
     marketplaceRoutes: data.map((route) => ({
       href: `/marketplace/${route.id}`,
       title: route.name,

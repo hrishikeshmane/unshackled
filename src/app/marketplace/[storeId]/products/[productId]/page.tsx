@@ -1,15 +1,17 @@
 "use client";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { api } from "~/trpc/react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Check, Shield } from "lucide-react";
 import MaxWidthWrapper from "~/components/MaxWidthWrapper";
 import { Badge } from "~/components/ui/badge";
-import AddToCartButton from "~/components/add-to-cart-button";
+// import AddToCartButton from "~/components/add-to-cart-button";
+import BuyNowButton from "~/components/buy-now-button";
 import ProductsReel from "~/app/marketplace/_components/products-reel";
+import QuantitySelector from "~/components/quantity-selector";
 
 const ProductPage = () => {
   const params = useParams();
@@ -24,6 +26,8 @@ const ProductPage = () => {
   const similarProductsFiltered = similarProducts.data?.filter(
     (p) => p.id !== productId,
   );
+  
+  const [quantity, setQuantity] = useState(1);
 
   if (product.isPending || similarProducts.isPending) {
     return <div>Loading...</div>;
@@ -37,6 +41,11 @@ const ProductPage = () => {
     { id: 1, name: "Home", href: "/" },
     { id: 2, name: "Products", href: `/marketplace/${String(storeId)}` },
   ];
+
+
+  const handleIncrease = () => setQuantity(prev => prev + 1);
+  const handleDecrease = () => setQuantity(prev => Math.max(1, prev - 1));
+  const handleManualChange = (value: number) => setQuantity(Math.max(1, value));
 
   return (
     <>
@@ -140,23 +149,30 @@ const ProductPage = () => {
 
             {/* add to cart part */}
             <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
-              <div>
-                <div className="mt-10">
-                  <AddToCartButton product={product.data} />
-                </div>
-                <div className="mt-6 text-center">
-                  <div className="text-medium group inline-flex text-sm">
-                    <Shield
-                      aria-hidden="true"
-                      className="mr-2 h-5 w-5 flex-shrink-0 text-gray-400"
-                    />
-                    <span className="text-muted-foreground hover:text-gray-700">
-                      Unshackled Trusted
-                    </span>
-                  </div>
+            <div>
+              <div className="mt-10 flex items-center space-x-4">
+                {/* <BuyNowButton product={product.data} /> */}
+                <QuantitySelector
+                  quantity={quantity}
+                  onIncrease={handleIncrease}
+                  onDecrease={handleDecrease}
+                  onManualChange={handleManualChange}
+                />
+                <BuyNowButton product={product.data} quantity={quantity} />
+              </div>
+              <div className="mt-6 text-center">
+                <div className="text-medium group inline-flex text-sm">
+                  <Shield
+                    aria-hidden="true"
+                    className="mr-2 h-5 w-5 flex-shrink-0 text-gray-400"
+                  />
+                  <span className="text-muted-foreground hover:text-gray-700">
+                    Unshackled Trusted
+                  </span>
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
 

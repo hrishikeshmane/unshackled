@@ -37,6 +37,7 @@ export type VendorTable = {
 export type StoreTable = {
   id: string;
   name: string;
+  description: string | null;
   createdAt: Date;
   updatedAt: Date | null;
 };
@@ -80,6 +81,7 @@ export type ProductTable = {
   imageUrl: string;
   description: string;
   price: string;
+  // discounts: Record<string, unknown>;
   commission: string;
   commissionType: "percentage" | "flat";
   domainRank: string;
@@ -104,6 +106,7 @@ export type ProductWithRelations = {
   tagline: string;
   description: string;
   price: string;
+  // discounts: Record<string, unknown>;
   commission: string;
   commissionType: "percentage" | "flat";
   domainRank: string;
@@ -141,6 +144,7 @@ export type OrderItemTable = {
   vendorPayout: boolean;
   orderId: string;
   productId: string;
+  quantity: string;
   storeId: string;
   createdAt: Date;
   updatedAt: Date | null;

@@ -31,6 +31,7 @@ interface ModalProps {
 
 const formSchema = z.object({
   name: z.string().min(1),
+  description: z.string(),
 });
 
 export const CreateStoreModal: React.FC<ModalProps> = ({ children }) => {
@@ -52,6 +53,7 @@ export const CreateStoreModal: React.FC<ModalProps> = ({ children }) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      description: "",
     },
   });
 

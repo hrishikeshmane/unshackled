@@ -30,9 +30,9 @@ const Navbar = async () => {
               <div className="ml-auto flex items-center">
                 {/* <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'> */}
                 <div className="flex flex-1 items-center justify-end space-x-6">
-                  <div className="ml-4 flow-root lg:ml-6">
+                  {/* <div className="ml-4 flow-root lg:ml-6">
                     <Cart />
-                  </div>
+                  </div> */}
                   <UserAuthButton />
                 </div>
               </div>

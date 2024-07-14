@@ -14,31 +14,37 @@ import { env } from "~/env";
 
 export const paymentRouter = createTRPCRouter({
   buyProduct: protectedProcedure
-    .input(z.object({ productIds: z.array(z.string()) }))
+    .input(z.object({
+      items: z.array(z.object({
+        productId: z.string(),
+        quantity: z.number().int().positive()
+      }))
+    }))
     .mutation(async ({ ctx, input }) => {
-      const { productIds } = input;
-      if (productIds.length === 0) {
+      const { items } = input;
+      if (items.length === 0) {
         throw new TRPCError({
           code: "BAD_REQUEST",
           message: "No products selected",
         });
       }
-      const productId = productIds[0];
 
-      const product = await ctx.db.query.product.findFirst({
-        where: (table) => eq(table.id, String(productId)),
-      });
+      const products = await Promise.all(items.map(async (item) => {
+        const product = await ctx.db.query.product.findFirst({
+          where: (table) => eq(table.id, String(item.productId)),
+        });
+        if (!product) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: `Product with ID ${item.productId} not found`,
+          });
+        }
+        return { ...product, quantity: item.quantity };
+      }));
 
       const vendor = await ctx.db.query.vendor.findFirst({
-        where: (table) => eq(table.userId, String(product?.creatorId)),
+        where: (table) => eq(table.userId, String(products[0]?.creatorId)),
       });
-
-      if (!product) {
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          message: "Product not found",
-        });
-      }
 
       if (!vendor) {
         throw new TRPCError({
@@ -46,48 +52,50 @@ export const paymentRouter = createTRPCRouter({
           message: "Vendor not found",
         });
       }
+
+      const orderTotal = products.reduce((total, product) => 
+        total + Number(product.price) * product.quantity, 0
+      );
+
       const order_create = await ctx.db
         .insert(order)
         .values({
           isPaid: false,
-          orderTotal: product.price,
+          orderTotal: String(orderTotal),
           customerId: ctx.session.userId,
         })
         .returning();
 
-      const orderItem_create = await ctx.db
-        .insert(orderItem)
-        .values({
+      await Promise.all(products.map(product => 
+        ctx.db.insert(orderItem).values({
           isFulfilled: false,
           orderId: String(order_create[0]!.id),
           storeId: String(product.storeId),
-          productId: String(productId),
+          productId: String(product.id),
+          quantity: product.quantity,
           vendorPayout: false,
         })
-        .returning();
+      ));
 
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
-        line_items: [
-          {
-            price_data: {
-              currency: "usd",
-              unit_amount: Math.round(Number(product.price) * 100),
-              product_data: {
-                name: product.name,
-                images: [product.imageUrl],
-              },
+        line_items: products.map(product => ({
+          price_data: {
+            currency: "usd",
+            unit_amount: Math.round(Number(product.price) * 100),
+            product_data: {
+              name: product.name,
+              images: [product.imageUrl],
             },
-            quantity: 1,
           },
-        ],
+          quantity: product.quantity,
+        })),
         payment_intent_data: {
-          application_fee_amount: Math.round(Number(product.price) * 100) * 0.1,
+          application_fee_amount: Math.round(orderTotal * 100 * 0.1),
           transfer_data: {
             destination: String(vendor.stripeConnectedId),
           },
         },
-
         success_url: `${env.NEXT_PUBLIC_SERVER_URL}/marketplace/payment/success`,
         cancel_url: `${env.NEXT_PUBLIC_SERVER_URL}/marketplace/payment/cancel`,
         metadata: {

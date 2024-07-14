@@ -4,6 +4,7 @@ import { type ProductWithRelations } from "~/types/globals";
 import Link from "next/link";
 import AddToCartButton from "~/components/add-to-cart-button";
 import { formatPrice } from "~/lib/utils";
+import { Button } from "~/components/ui/button";
 
 interface ProductsReelProps {
   products: ProductWithRelations[];
@@ -55,7 +56,10 @@ const ProductsReel = ({ products, title, subtitle }: ProductsReelProps) => {
                       </p>
                     </del> */}
                     <div className="ml-auto max-w-40 mx-2">
-                      <AddToCartButton product={product} />
+                      {/* <AddToCartButton product={product} /> */}
+                      <Link href={`/marketplace/${product.storeId}/products/${product.id}`}>
+                          <Button>View</Button>
+                      </Link>
                     </div>
                   </div>
                 </div>

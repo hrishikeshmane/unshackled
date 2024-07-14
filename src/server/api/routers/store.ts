@@ -6,12 +6,13 @@ import { eq } from "drizzle-orm";
 
 export const storeRouter = createTRPCRouter({
     create: adminProcedure
-        .input(z.object({ name: z.string().min(1) }))
+        .input(z.object({ name: z.string().min(1), description: z.string() }))
         .mutation(async ({ ctx, input }) => {
             ctx.session.userId;
         
         const data =  await ctx.db.insert(store).values({
             name: input.name,
+            description: input.description,
         }).returning({storeId: store.id});
 
         return data[0];
