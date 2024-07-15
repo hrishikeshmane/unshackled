@@ -6,6 +6,9 @@ import MaxWidthWrapper from "~/components/MaxWidthWrapper";
 import { api } from "~/trpc/server";
 import ProductsReel from "./_components/products-reel";
 import Footer from "~/components/landing-page/footer";
+import StoresReel from "./_components/stores-reel";
+import { billboard } from "~/server/db/schema";
+import BecomeASeller from "./_components/become-a-seller";
 
 export default async function MarketplacePage() {
   const perks = [
@@ -28,6 +31,39 @@ export default async function MarketplacePage() {
         "We've pledged 1% of sales to the preservation and restoration of the natural environment.",
     },
   ];
+  // const stores = [
+  //   {
+  //     id: '1',
+  //     title: 'Store 1',
+  //     description: 'This is the first store description.',
+  //     imageUrl: '/path/to/image1.jpg',
+  //     link: '/stores/1',
+  //   },
+  //   {
+  //     id: '2',
+  //     title: 'Store 2',
+  //     description: 'This is the second store description.',
+  //     imageUrl: '/path/to/image2.jpg',
+  //     link: '/stores/2',
+  //   },
+  //   // ... more stores
+  // ];
+
+  const storesRaw = await api.store.getStores();
+  const billboards = await api.billboard.getBillboards();
+
+  const stores = await Promise.all(storesRaw.map(async (store) => {
+    const storeBillboards = billboards.filter(billboard => billboard.storeId === store.id);
+    const imageUrl = storeBillboards.length > 0 ? storeBillboards[0]?.imageUrl : '';
+
+    return {
+      id: store.id,
+      title: store.name,
+      description: store.description ?? "",
+      imageUrl: imageUrl ?? "",
+      link: `/marketplace/${store.id}`,
+    };
+  }));
 
   const products = await api.product.getApprovedProducts();
   const featuredProducts = products.filter((product) => product.isFeatured);
@@ -56,7 +92,7 @@ export default async function MarketplacePage() {
       {/* border-t border-gray-200 bg-gray-50 */}
       <section className="">
         <MaxWidthWrapper>
-          <div className="py-10 sm:py-20">
+          <div className="py-10 sm:py-10 pb-0">
             {featuredProducts && featuredProducts?.length > 0 ? (
               <ProductsReel
                 products={featuredProducts}
@@ -65,7 +101,15 @@ export default async function MarketplacePage() {
               />
             ) : null}
           </div>
-          <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0">
+
+          <div className="">
+          <StoresReel
+              stores={stores}
+              reelTitle="Shop Collections"
+              reelSubtitle="Discover amazing services from our trusted partners"
+            />
+          </div>
+          <div className="mt-10 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0">
             {perks.map((perk) => (
               <div
                 key={perk.name}

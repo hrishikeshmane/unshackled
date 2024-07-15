@@ -22,24 +22,25 @@ const ProductsReel = ({ products, title, subtitle }: ProductsReelProps) => {
         <p className="text-lg text-muted-foreground max-xl:text-center">
           {subtitle}
         </p>
-        <div className="mt-8 flex items-center flex-col md:flex-row gap-4 md:gap-8">
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
           {products.map((product) => (
             <div
               key={product.id}
-              className="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl"
+              className="rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl"
             >
               <Link href={`/marketplace/${product.storeId}/products/${product.id}`}>
-                <div className="relative h-48 w-72 rounded-t-xl overflow-hidden">
-                <Image
-                  src={product.imageUrl}
-                  alt="Product"
-                  className="object-cover object-center"
-                  fill
-                  quality={100}
-                />
-              </div>
-                    </Link>
-                <div className="w-72 px-4 py-3">
+                <div className="relative h-48 w-full rounded-t-xl overflow-hidden">
+                  <Image
+                    src={product.imageUrl}
+                    alt="Product"
+                    className="object-cover object-center"
+                    fill
+                    quality={100}
+                  />
+                </div>
+              </Link>
+              <div className="px-4 py-3">
+                {/* Rest of the product details */}
                   <span className="mr-3 text-xs uppercase text-gray-400">
                     {product.store?.name}
                   </span>
@@ -62,7 +63,7 @@ const ProductsReel = ({ products, title, subtitle }: ProductsReelProps) => {
                       </Link>
                     </div>
                   </div>
-                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -70,5 +71,6 @@ const ProductsReel = ({ products, title, subtitle }: ProductsReelProps) => {
     </section>
   );
 };
+
 
 export default ProductsReel;
