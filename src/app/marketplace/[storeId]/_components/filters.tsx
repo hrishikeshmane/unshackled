@@ -42,7 +42,7 @@ export function MarketplaceFilters<TData>({ table }: Props<TData>) {
 
   const isFiltered = table.getState().columnFilters.length > 0;
   return (
-    <div className="z-0 grid w-full gap-6 p-2">
+    <div className="z-0 grid w-full max-w-full gap-6 p-2">
       <div className="flex justify-between pr-4">
         <div className="flex gap-2">
           <h1 className="text-2xl font-bold text-primary">Filters</h1>
