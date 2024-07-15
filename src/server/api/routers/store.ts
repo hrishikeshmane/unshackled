@@ -49,14 +49,15 @@ export const storeRouter = createTRPCRouter({
             z.object({
                 id: z.string(),
                 name: z.string().min(1),
+                description: z.string(),
             })
         )
         .mutation(async ({ ctx, input }) => {
-            const { id, name } = input;
+            const { id, name, description } = input;
 
             const updatedStore = await ctx.db
                 .update(store)
-                .set({ name: name })
+                .set({ name: name, description: description })
                 .where(eq(store.id, id))
                 .returning();
 

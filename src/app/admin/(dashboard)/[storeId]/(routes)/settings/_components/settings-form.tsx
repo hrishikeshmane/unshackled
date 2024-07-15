@@ -22,6 +22,8 @@ import { useRouter } from "next/navigation";
 import { AlertModal } from "~/app/admin/_components/modals/alert-modal";
 import { type StoreTable } from "~/types/globals";
 import { api } from "~/trpc/react";
+import { desc } from "drizzle-orm";
+import { Textarea } from "~/components/ui/textarea";
 
 interface SettingsFromProps {
   initialData: StoreTable;
@@ -29,6 +31,7 @@ interface SettingsFromProps {
 
 const formSchema = z.object({
   name: z.string().min(1),
+  description: z.string(),
 });
 
 type SettingsFormValues = z.infer<typeof formSchema>;
@@ -62,7 +65,10 @@ export const SettingsForm: React.FC<SettingsFromProps> = ({ initialData }) => {
 
   const form = useForm<SettingsFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData,
+    defaultValues: {
+      name: initialData.name,
+      description: initialData.description!,
+    },
   });
 
   const onSubmit = (data: SettingsFormValues) => {
@@ -70,6 +76,7 @@ export const SettingsForm: React.FC<SettingsFromProps> = ({ initialData }) => {
       updateStoreMutation.mutate({
         id: initialData.id,
         name: data.name,
+        description: data.description,
       });
     });
   };
@@ -116,6 +123,23 @@ export const SettingsForm: React.FC<SettingsFromProps> = ({ initialData }) => {
                     <Input
                       disabled={isPending}
                       placeholder="Store name"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      disabled={isPending}
+                      placeholder="Store description"
                       {...field}
                     />
                   </FormControl>

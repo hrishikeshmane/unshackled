@@ -11,6 +11,7 @@ import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { order, orderItem } from "~/server/db/schema";
 import { env } from "~/env";
+import { calculateCommissionAndVendorAmount } from "~/lib/utils";
 
 export const paymentRouter = createTRPCRouter({
   buyProduct: protectedProcedure
@@ -53,15 +54,38 @@ export const paymentRouter = createTRPCRouter({
         });
       }
 
-      const orderTotal = products.reduce((total, product) => 
-        total + Number(product.price) * product.quantity, 0
-      );
+      let totalOrderAmount = 0;
+      let totalCommissionAmount = 0;
+
+      const lineItems = products.map(product => {
+        const [commissionAmount, vendorAmount] = calculateCommissionAndVendorAmount(
+          Number(product.price),
+          product.quantity,
+          Number(product.commission),
+          product.commissionType
+        );
+
+        totalOrderAmount += Number(product.price) * product.quantity;
+        totalCommissionAmount += commissionAmount;
+
+        return {
+          price_data: {
+            currency: "usd",
+            unit_amount: Math.round(Number(product.price) * 100),
+            product_data: {
+              name: product.name,
+              images: [product.imageUrl],
+            },
+          },
+          quantity: product.quantity,
+        };
+      });
 
       const order_create = await ctx.db
         .insert(order)
         .values({
           isPaid: false,
-          orderTotal: String(orderTotal),
+          orderTotal: String(totalOrderAmount),
           customerId: ctx.session.userId,
         })
         .returning();
@@ -79,19 +103,9 @@ export const paymentRouter = createTRPCRouter({
 
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
-        line_items: products.map(product => ({
-          price_data: {
-            currency: "usd",
-            unit_amount: Math.round(Number(product.price) * 100),
-            product_data: {
-              name: product.name,
-              images: [product.imageUrl],
-            },
-          },
-          quantity: product.quantity,
-        })),
+        line_items: lineItems,
         payment_intent_data: {
-          application_fee_amount: Math.round(orderTotal * 100 * 0.1),
+          application_fee_amount: Math.round(totalCommissionAmount * 100),
           transfer_data: {
             destination: String(vendor.stripeConnectedId),
           },

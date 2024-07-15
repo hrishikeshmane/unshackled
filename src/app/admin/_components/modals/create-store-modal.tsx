@@ -24,6 +24,7 @@ import { Button } from "~/components/ui/button";
 import { useTransition } from "react";
 import { toast } from "sonner";
 import { api } from "~/trpc/react";
+import { Textarea } from "~/components/ui/textarea";
 
 interface ModalProps {
   children?: React.ReactNode;
@@ -87,6 +88,23 @@ export const CreateStoreModal: React.FC<ModalProps> = ({ children }) => {
                             <Input
                               disabled={isPending}
                               placeholder="E-commerce"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="description"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Description</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              disabled={isPending}
+                              placeholder="E-commerce store"
                               {...field}
                             />
                           </FormControl>

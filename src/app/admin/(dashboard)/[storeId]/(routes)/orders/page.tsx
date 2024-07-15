@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import { OrderClient } from './_components/client';
 import { api } from '~/trpc/server';
 import { type OrdersColumn } from './_components/columns';
+import { clerkClient } from "@clerk/nextjs/server";
 
 const OrdersPage = async ({ 
     params
@@ -11,15 +12,28 @@ const OrdersPage = async ({
 
     const orders = await api.order.getOrderItemsByStoreIdWithProductandOrder({ storeId: params.storeId });
 
-    const formattedOrders: OrdersColumn[] = orders.map(item => ({
-        id: item.id,
-        orderId: item.order.id,
-        customer: item.order.customerId,
-        product: item.product.name,
-        isFullfilled: item.isFulfilled,
-        isPaid: item.order.isPaid,
-        vendorPayout: item.vendorPayout,
-        createdAt: format(item.order.createdAt, "MMMM do, yyyy"),
+    const formattedOrders: OrdersColumn[] = await Promise.all(orders.map(async item => {
+        let customerName = item.order.customerId;
+        try {
+            const user = await clerkClient.users.getUser(item.order.customerId);
+            if (user) {
+                customerName = `${user.firstName} ${user.lastName ?? ""}`.trim() ?? user.emailAddresses[0]?.emailAddress ?? item.order.customerId;
+            }
+        } catch (error) {
+            console.error(`Error fetching user for customerId ${item.order.customerId}:`, error);
+        }
+
+        return {
+            id: item.id,
+            orderId: item.order.id,
+            customer: customerName,
+            product: item.product.name,
+            quantity: item.quantity,
+            isFullfilled: item.isFulfilled,
+            isPaid: item.order.isPaid,
+            vendorPayout: item.vendorPayout,
+            createdAt: format(item.order.createdAt, "MMMM do, yyyy"),
+        };
     }));
 
     return (
@@ -31,4 +45,4 @@ const OrdersPage = async ({
     )
 }
 
-export default OrdersPage;
+export default OrdersPage

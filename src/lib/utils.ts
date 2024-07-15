@@ -24,3 +24,29 @@ export function formatPrice(
     maximumFractionDigits: 2,
   }).format(numericPrice)
 }
+
+type CommissionType = 'flat' | 'percentage';
+
+export function calculateCommissionAndVendorAmount(
+  unitPrice: number,
+  quantity: number,
+  commission: number,
+  commissionType: CommissionType
+): [number, number] {
+  const totalPrice = unitPrice * quantity;
+  let commissionAmount: number;
+  let vendorAmount: number;
+
+  if (commissionType === 'flat') {
+    commissionAmount = commission * quantity;
+    vendorAmount = totalPrice - commissionAmount;
+  } else { // percent
+    commissionAmount = totalPrice * (commission / 100);
+    vendorAmount = totalPrice - commissionAmount;
+  }
+
+  commissionAmount = Math.round(commissionAmount * 100) / 100;
+  vendorAmount = Math.round(vendorAmount * 100) / 100;
+
+  return [commissionAmount, vendorAmount];
+}

@@ -33,8 +33,7 @@ const Header = async () => {
     marketplaceRoutes: data.map((route) => ({
       href: `/marketplace/${route.id}`,
       title: route.name,
-      description:
-        "A modal dialog that interrupts the user with important content and expects a response.",
+      description: route.description!,
     })),
     vendorRoutes: [
       {
