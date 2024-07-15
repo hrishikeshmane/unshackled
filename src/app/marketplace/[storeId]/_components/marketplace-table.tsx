@@ -70,7 +70,7 @@ export function MarketplaceTable<TData extends ModifiedProduct, TValue>({
 
   return (
     <>
-      <div className="mx-auto grid w-full max-w-6xl items-start gap-6 g:grid-cols-[300px_1fr]">
+      <div className="mx-auto grid w-full max-w-6xl items-start gap-6 lg:grid-cols-[300px_1fr]">
         <div className="lg:sticky lg:top-[6.5rem]">
           <MarketplaceFilters table={table} />
         </div>

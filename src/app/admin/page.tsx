@@ -55,12 +55,13 @@ const AdminSetupPage = async () => {
                     store.length !== 0 ?
                     store.map((store) => {
                         return (
-                            <li key={store.id} className="flex gap-2 underline">
-                                    {/* <DotIcon /> */}
-                                    <h2>{store.name} &rarr;</h2>
-                                    <Link href={`/admin/${store.id}`}>
-                                        <p>/admin/{store.name}</p>
-                                    </Link>
+                            <li key={store.id} className="flex items-center gap-2 underline">
+                              <div className="inline-flex items-center gap-2">
+                                <h2 className="text-lg m-0 p-0">{store.name} &rarr;</h2>
+                                <Link href={`/admin/${store.id}`} className="text-lg">
+                                  <p className="m-0 p-0">/admin/{store.name}</p>
+                                </Link>
+                              </div>
                             </li>
                         )
                     }) : (
