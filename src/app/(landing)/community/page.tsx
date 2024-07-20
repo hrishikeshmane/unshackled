@@ -1,6 +1,8 @@
 import Footer from "@/components/landing-page/footer";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
+import { useRef } from "react";
 import { CommunityBenotGrid } from "~/components/landing-page/community-bento-grid";
 import { CommunityFaq } from "~/components/landing-page/community-faq";
 import CommunityHeroSection from "~/components/landing-page/community-hero";
@@ -104,7 +106,9 @@ export default function HomePage() {
           </h2>
           <h2 className="text-4xl font-bold">This is the place for you.</h2>
           <div className="group relative mt-10 inline-flex scale-150 space-x-4">
-            <Button size={"lg"}>Become a member</Button>
+            <Link href="#pricing-grid">
+              <Button size={"lg"}>Become a member</Button>
+            </Link>
           </div>
         </section>
 

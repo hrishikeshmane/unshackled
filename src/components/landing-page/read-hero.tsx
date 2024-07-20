@@ -79,7 +79,11 @@ export const ReadHeroSectionCTAButtons = () => {
       >
         <Button size={"lg"}>Buy on Amazon</Button>
       </Link>
-      <Link href="/marketplace">
+      <Link
+        href="https://buy.stripe.com/cN27w48Pz7Ay7csbIJ"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Button
           variant={"outline"}
           size={"lg"}

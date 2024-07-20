@@ -32,9 +32,11 @@ const HeroSection = () => {
           </p>
 
           <div className="group relative mx-auto mt-10 inline-flex flex-col items-center justify-center gap-4 md:flex-row">
-            <Button size={"lg"} className="w-full md:w-fit">
-              Become a member
-            </Button>
+            <Link href="/community">
+              <Button size={"lg"} className="w-full md:w-fit">
+                Become a member
+              </Button>
+            </Link>
             <Link href="/marketplace">
               <Button
                 variant={"outline"}

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const PricingGrid = () => {
   return (
-    <div className="container mx-auto max-w-7xl px-6 py-2">
+    <div className="container mx-auto max-w-7xl px-6 py-2" id="pricing-grid">
       <div className="mt-16 grid gap-6 sm:grid-cols-1 md:grid-cols-3">
         <div className="flex transform flex-col rounded-lg border px-6 py-4 transition-colors duration-300">
           <p className="pb-2 text-lg font-medium text-gray-800 dark:text-gray-100">
@@ -294,9 +294,15 @@ const PricingGrid = () => {
               <span className="mx-4 ">Access to 500+ aspirants</span>
             </div>
           </div>
-          <Button className="mt-10 w-full transform self-end rounded-md px-4 py-2 font-medium tracking-wide  transition-colors duration-300">
-            Become a lifetime member
-          </Button>
+          <Link
+            href="https://unshackled.thrivecart.com/unshackled-membership-main-lifetime/"
+            target={"_blank"}
+            rel={"noreferrer"}
+          >
+            <Button className="mt-10 w-full transform self-end rounded-md px-4 py-2 font-medium tracking-wide  transition-colors duration-300">
+              Become a lifetime member
+            </Button>
+          </Link>
         </div>
 
         <div className="flex transform flex-col rounded-lg border px-6 py-4 transition-colors duration-300">
