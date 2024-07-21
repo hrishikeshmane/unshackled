@@ -47,8 +47,8 @@ const MobileNav = ({
             </Link>
 
             <div>
-              <NavButtons role={role} toggleSheet={toggleSheet} />
               {/* This is wehre dashboard buttons will go */}
+              <NavButtons role={role} toggleSheet={toggleSheet} />
             </div>
 
             {/* Landing page routes */}
