@@ -39,7 +39,15 @@ const NavButtons = ({ role }: NavButtonsProps) => {
                   Shop on Marketplace
                 </Button>
               </Link>
-              <Button>Become a member</Button>
+              <Link
+                href={
+                  pathname.includes("/community")
+                    ? "#pricing-grid"
+                    : "/community"
+                }
+              >
+                <Button>Become a member</Button>
+              </Link>
             </div>
           )}
         </div>

@@ -24,9 +24,27 @@ export default async function Footer() {
               hi@unshackled.club
             </a>
             <div className="mt-4 flex items-baseline space-x-4 text-primary">
-              <Linkedin />
-              <Instagram />
-              <LucideYoutube />
+              <Link
+                href="https://www.linkedin.com/company/readunshackled/"
+                target={"_blank"}
+                rel={"noreferrer"}
+              >
+                <Linkedin />
+              </Link>
+              <Link
+                href="https://www.instagram.com/thecuriousmaverick/"
+                target={"_blank"}
+                rel={"noreferrer"}
+              >
+                <Instagram />
+              </Link>
+              <Link
+                href="https://www.youtube.com/@unshackledclub"
+                target={"_blank"}
+                rel={"noreferrer"}
+              >
+                <LucideYoutube />
+              </Link>
             </div>
             <p className="mt-6 text-sm text-gray-600">
               Disclaimer: The information provided on this website is for
@@ -41,9 +59,11 @@ export default async function Footer() {
             </p>
           </div>
           <div className="mt-8 flex w-full flex-auto flex-col gap-6 lg:mt-0 lg:max-w-[30rem]">
-            <Button size={"lg"} className="hidden lg:block">
-              Become a member
-            </Button>
+            <Link href="/community" className="hidden w-full lg:block">
+              <Button size={"lg"} className=" hidden w-full lg:block">
+                Become a member
+              </Button>
+            </Link>
             <div className="mx-auto grid grid-cols-2 justify-end gap-10 md:grid-cols-3 md:gap-10 lg:mx-0">
               <div className="col-span-1">
                 <h3 className="text-lg font-medium">Site</h3>

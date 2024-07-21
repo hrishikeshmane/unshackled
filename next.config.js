@@ -14,6 +14,10 @@ const config = {
       },
       {
         protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        protocol: "https",
         hostname: "media.licdn.com",
       },
       {
@@ -26,15 +30,11 @@ const config = {
       },
       {
         protocol: "https",
-        hostname: "pagedone.io",
+        hostname: "raw.githubusercontent.com",
       },
       {
         protocol: "https",
         hostname: "cdn.prod.website-files.com",
-      },
-      {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
       },
     ],
   },

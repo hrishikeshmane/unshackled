@@ -1,7 +1,6 @@
 import Footer from "@/components/landing-page/footer";
 import HeroSection from "@/components/landing-page/hero";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -19,7 +18,7 @@ export default function HomePage() {
           <h2 className="text-4xl font-bold">Here’s how we help you</h2>
         </section>
         <section className="my-8">
-          <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
+          <div className="mx-auto flex w-full max-w-7xl flex-col-reverse gap-4 p-4 md:flex-row">
             <div className="basis-1/2 bg-white p-8">
               <h2 className="rounded-lg py-4 text-3xl font-bold leading-[4rem] text-primary">
                 Get started
@@ -35,7 +34,7 @@ export default function HomePage() {
             </div>
             <div className="relative flex basis-1/2 items-center justify-center rounded-lg p-8">
               <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66072884f1d9b815a0b8fa54_1-p-800.png"
+                src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/landing/phone-slant.png?raw=true"
                 alt="Newsletter sample image"
                 width={400}
                 height={400}
@@ -65,10 +64,10 @@ export default function HomePage() {
         </section>
 
         <section className="my-8">
-          <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
+          <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 p-4 md:flex-row">
             <div className="relative flex basis-1/2 items-center justify-center rounded-lg p-8">
               <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/660728c0e47b67010e851002_2-p-1080.png"
+                src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/landing/circle-platform.png?raw=true"
                 alt="Unshackled platform sample image"
                 width={550}
                 height={550}
@@ -78,7 +77,7 @@ export default function HomePage() {
                   Imran Khan, RAN Engineer @ Samsung
                 </p>
                 <blockquote>
-                  &quot; I joined the community only a few weeks ago. I've
+                  &quot; I joined the community only a few weeks ago. I&apos;ve
                   already been able to book a free call with an EB-2 NIW
                   recipient, who has now become a mentor of mine that I talk to
                   regularly! &quot;
@@ -102,7 +101,7 @@ export default function HomePage() {
         </section>
 
         <section className="my-8">
-          <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
+          <div className="mx-auto flex w-full max-w-7xl flex-col-reverse gap-4 p-4 md:flex-row">
             <div className="basis-1/2 bg-white p-8">
               <h2 className="rounded-lg py-4 text-3xl font-bold leading-[4rem] text-primary">
                 Love reading books?
@@ -134,7 +133,7 @@ export default function HomePage() {
             </div>
             <div className="relative flex basis-1/2 items-center justify-center rounded-lg p-8">
               <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66092281d4cb0876d08742fb_Rectangle%202075-p-500.png"
+                src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/landing/unshackled-hard-cover-book.png?raw=true"
                 alt="Book Cover image"
                 width={300}
                 height={300}
@@ -157,9 +156,9 @@ export default function HomePage() {
                 <blockquote>
                   &quot; Reading this book was a pivotal moment for me. Not only
                   did it give me the clarity to navigate my entrepreneurial
-                  journey, it also came with stories of others who'd done this
-                  before. Honestly, I wish this book was given to me along with
-                  my visa stamp at the US consulate. &quot;
+                  journey, it also came with stories of others who&apos;d done
+                  this before. Honestly, I wish this book was given to me along
+                  with my visa stamp at the US consulate. &quot;
                 </blockquote>
               </div>
             </div>

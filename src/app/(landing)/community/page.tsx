@@ -1,6 +1,8 @@
 import Footer from "@/components/landing-page/footer";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
+import { useRef } from "react";
 import { CommunityBenotGrid } from "~/components/landing-page/community-bento-grid";
 import { CommunityFaq } from "~/components/landing-page/community-faq";
 import CommunityHeroSection from "~/components/landing-page/community-hero";
@@ -26,7 +28,7 @@ export default function HomePage() {
         <CommunityHeroSection />
 
         <section className="mx-auto my-8 flex w-full flex-col items-center justify-center">
-          <h2 className="text-5xl font-bold">
+          <h2 className="text-center text-5xl font-bold">
             <span className="text-primary">unshackled.club</span> is an
             exclusive community.
           </h2>
@@ -38,7 +40,7 @@ export default function HomePage() {
           </p>
         </section>
         <section className="my-4">
-          <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
+          <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 p-4 md:flex-row">
             <div className="basis-1/2 rounded-lg bg-card p-8">
               <h3 className="text-2xl font-bold">You should only join if:</h3>
               <div className="mx-auto flex flex-col gap-2 py-4">
@@ -104,7 +106,9 @@ export default function HomePage() {
           </h2>
           <h2 className="text-4xl font-bold">This is the place for you.</h2>
           <div className="group relative mt-10 inline-flex scale-150 space-x-4">
-            <Button size={"lg"}>Become a member</Button>
+            <Link href="#pricing-grid">
+              <Button size={"lg"}>Become a member</Button>
+            </Link>
           </div>
         </section>
 
@@ -125,17 +129,17 @@ export default function HomePage() {
             We’ve got engineers, founders, product <br /> managers, scientists,
             and researchers.
           </h2>
-          <p className="mt-8 text-xl font-bold leading-8 text-muted-foreground">
+          <p className="mt-8 text-center text-xl font-bold leading-8 text-muted-foreground">
             Our community of{" "}
             <span className="text-primary">450+ aspirants</span> span all
             corners of tech, STEM and business fields.
           </p>
 
           <div className="mx-auto my-10 w-full items-center justify-center">
-            <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-4 grid-rows-2 gap-6">
+            <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-2 grid-rows-2 gap-6 px-6 md:grid-cols-4">
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/661146688101b845ca4d45b5_Rectangle%202091-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Aswarth.png?raw=true"
                   alt="Aswarth Abhilash Dara"
                   width={270}
                   height={270}
@@ -153,7 +157,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/661146685e3125edbced43b6_Rectangle%202091-1-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Nikin.png?raw=true"
                   alt="Nikin Tharan"
                   width={270}
                   height={270}
@@ -171,7 +175,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66114668a3de6dd984db53fa_Rectangle%202091-2-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Hitesh.png?raw=true"
                   alt="Hitesh Kenjale"
                   width={270}
                   height={270}
@@ -189,7 +193,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66114667cfd687f3274e556f_Rectangle%202091-3-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Chinmay.png?raw=true"
                   alt="Chinmay Jog"
                   width={270}
                   height={270}
@@ -206,7 +210,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/661146684894562998fbccad_Rectangle%202091-4-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Sunku.png?raw=true"
                   alt="Sunku Ranganath"
                   width={270}
                   height={270}
@@ -223,7 +227,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66114668882f79fe097a7aa0_Rectangle%202091-5-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Nirupama.png?raw=true"
                   alt="Nirupama Narayanaswamy"
                   width={270}
                   height={270}
@@ -240,7 +244,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/6611466852601225c77830ba_Rectangle%202091-6-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Jenil.png?raw=true"
                   alt="Jenil Shah"
                   width={270}
                   height={270}
@@ -255,7 +259,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/661146688101b845ca4d45bc_Rectangle%202091-7-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Sharath.png?raw=true"
                   alt="Sharath Kumar"
                   width={270}
                   height={270}
@@ -297,7 +301,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="w-full bg-white px-44 py-32">
+        <section className="w-full bg-white px-4 py-16 md:px-44 md:py-32">
           <h3 className="pb-4 text-center text-3xl font-semibold">
             Goal of <span className="text-primary">unshackled.club</span> = Help
             you get your <span className="text-primary">talent visa</span>
@@ -333,7 +337,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto my-8 mt-24 flex w-full flex-col items-center justify-center">
+        <section className="mx-auto my-8 mt-24 flex w-full flex-col items-center justify-center px-6">
           <h2 className="text-center text-4xl font-bold">
             Never work solo. <br />
             <span className="text-primary">Make progress</span> with people like
@@ -370,7 +374,7 @@ export default function HomePage() {
             for you
           </h2>
 
-          <div className="m-8 grid max-w-7xl grid-cols-3 gap-4  p-4">
+          <div className="m-8 grid max-w-7xl grid-cols-1 gap-4 p-4  md:grid-cols-3">
             <div className="flex flex-col rounded-lg border bg-card p-8 text-center text-2xl font-bold">
               <h3 className="">1-hour lawyer consultation costs</h3>
               <h3 className="py-6 text-3xl text-primary">$500</h3>
@@ -398,15 +402,20 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto my-4 flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg bg-card p-10">
+        <section className="mx-auto my-4 flex w-full max-w-7xl flex-col items-center justify-center gap-4 rounded-lg bg-card p-10">
           <h2 className="mx-auto max-w-4xl text-center text-4xl font-bold">
             Not ready to commit yet?
           </h2>
-          {/* TODO: Add form here to get free courses */}
+          <p className="text-center text-xl font-bold leading-8 text-muted-foreground">
+            No problem! Start with our free, 5-day course on talent visas first.
+          </p>
+          <Link href="/course">
+            <Button size="lg">Get free course</Button>
+          </Link>
         </section>
 
         <section className="mx-auto my-8 flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg py-10">
-          <div className="flex">
+          <div className="flex flex-col-reverse md:flex-row">
             <div className="flex basis-1/2 flex-col items-start justify-start gap-10 p-8 text-left">
               <h2 className="max-w-4xl text-3xl font-bold">
                 About the founder
@@ -434,7 +443,7 @@ export default function HomePage() {
             </div>
             <div className="flex basis-1/2 items-center justify-center">
               <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f17882131b6fade744d32c_Group%208320.png"
+                src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/founder.png?raw=true"
                 alt="Soundarya"
                 width={300}
                 height={300}
@@ -448,7 +457,7 @@ export default function HomePage() {
             The <span className="text-primary">Team</span> behind Unshackled
           </h2>
           <div className="mx-auto my-10 w-full items-center justify-center">
-            <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-4 grid-rows-2 gap-6">
+            <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-2 grid-rows-2 gap-6 md:grid-cols-4">
               <div>
                 <Image
                   src="https://media.licdn.com/dms/image/D5603AQELuWAMSvSyyA/profile-displayphoto-shrink_400_400/0/1713936959454?e=1726099200&v=beta&t=_RCEE6pMW484M0rxZyL9OXIaF1Fw0xwg_e27M1ZNldU"
@@ -530,11 +539,11 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f17c706b521a73c8e044ca_Rectangle%202050.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/Bhuvan%20Shakthi.png?raw=true"
                   alt="Bhuvan Shakthi"
                   width={270}
                   height={270}
-                  className="h-[250px] w-[270px] rounded-lg object-cover"
+                  className="h-[163px] w-[163px] rounded-lg object-cover md:h-[250px] md:w-[250px]"
                 />
                 <div className="flex flex-col py-4 text-center">
                   <h3 className="text-lg font-bold text-primary">
@@ -551,7 +560,7 @@ export default function HomePage() {
                   alt="Swatilina Barik"
                   width={270}
                   height={270}
-                  className="h-[250px] w-[270px] rounded-lg object-cover"
+                  className="h-[163px] w-[163px] rounded-lg object-cover md:h-[250px] md:w-[250px]"
                 />
                 <div className="flex flex-col py-4 text-center">
                   <h3 className="text-lg font-bold text-primary">
@@ -566,7 +575,7 @@ export default function HomePage() {
                   alt="K.K. Nishchita"
                   width={270}
                   height={270}
-                  className="h-[250px] w-[270px] rounded-lg object-cover"
+                  className="h-[163px] w-[163px] rounded-lg object-cover md:h-[250px] md:w-[250px]"
                 />
                 <div className="flex flex-col py-4 text-center">
                   <h3 className="text-lg font-bold text-primary">
@@ -580,11 +589,11 @@ export default function HomePage() {
         </section>
 
         <section className="mx-auto my-8 flex w-full max-w-7xl flex-col items-center justify-center gap-4 py-10">
-          <h2 className="max-w-4xl text-4xl font-bold">
+          <h2 className="max-w-4xl text-center text-4xl font-bold">
             Frequently asked questions
           </h2>
 
-          <div className="flex w-full flex-col">
+          <div className="flex w-full flex-col px-4">
             <CommunityFaq />
           </div>
         </section>

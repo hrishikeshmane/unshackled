@@ -242,7 +242,7 @@ export function CommunityFaq() {
     <Accordion type="single" collapsible className="my-6 w-full">
       {faqs.map((faq, index) => (
         <AccordionItem key={index} value={`item-${index}`}>
-          <AccordionTrigger className="text-xl font-semibold">
+          <AccordionTrigger className="text-left text-xl font-semibold">
             {faq.question}
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-4 text-lg">
