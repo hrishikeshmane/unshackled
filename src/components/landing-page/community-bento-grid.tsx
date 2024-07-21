@@ -38,7 +38,7 @@ const features = [
       "Take actionable advice from O-1A, EB-1A, and NIW recipients who've been there, done that - for free.",
     className: "col-span-3 border-primary border-4",
     background: (
-      <div className="absolute right-2 flex h-full items-center justify-center">
+      <div className="absolute -top-14 flex h-full items-center justify-center md:right-2 md:top-0">
         <Image
           src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/community/bento-1.webp"
           width={500}
@@ -53,7 +53,7 @@ const features = [
     name: "Free profile evaluation with top lawyers",
     description:
       "Save hundreds of $$$ and the stress of finding a trusted lawyer. We've done the vetting for you",
-    className: "col-span-1",
+    className: "col-span-3 md:col-span-1",
     background: (
       <div className="absolute flex h-full w-full items-center justify-center">
         <Image
@@ -70,7 +70,7 @@ const features = [
     name: "Monthly workshops with experts in your field",
     description:
       "Meet others like you, and get nuanced answers on your situation from experts who've been there, done that.",
-    className: "col-span-2",
+    className: "col-span-3 md:col-span-2",
     background: (
       <div className="absolute right-2 flex h-full items-start justify-center">
         <Image
@@ -87,7 +87,7 @@ const features = [
     name: "The ultimate “profile-building” tracker",
     description:
       "Avoid overwhelm in gathering hundreds of pages of evidence. Use our Unshackled Dream Tracker template to document all your evidence.",
-    className: "col-span-2",
+    className: "col-span-3 md:col-span-2",
     background: (
       <div className="absolute right-2 flex h-full items-start justify-center ">
         <Image
@@ -143,6 +143,7 @@ const features = [
     className: "col-span-3 lg:col-span-1",
     background: (
       <Marquee
+        reverse
         pauseOnHover
         className="absolute top-10 [--duration:20s] [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] "
       >
@@ -176,7 +177,7 @@ const features = [
     name: "Flagship course on O 1A, EB-1A, & NIW visas in simple language",
     description:
       "Take the only course you'll need to master the requirements for an O-1A, EB-1A, and EB-2 NIW visa. Vetted by our lawyers.",
-    className: "col-span-2",
+    className: "col-span-3 md:col-span-2",
     background: (
       <div className="absolute right-2 flex h-full items-start justify-center ">
         <Image

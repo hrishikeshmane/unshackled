@@ -16,7 +16,7 @@ const Page = () => {
           gripping stories.
         </h2>
         <div className="flex w-full flex-col gap-2 py-8">
-          <div className="my-2 flex gap-2">
+          <div className="my-2 flex flex-col-reverse gap-2 md:flex-row">
             <div className="flex basis-1/2 flex-col rounded-lg bg-card p-10">
               <h2 className="text-3xl font-bold">1. Who is it for?</h2>
               <ol className="ml-6 flex list-disc flex-col items-start gap-4 py-8 text-left text-xl font-semibold text-muted-foreground">
@@ -39,7 +39,7 @@ const Page = () => {
                 <li>Or, you want alternatives to the endless H-1B lottery</li>
               </ol>
             </div>
-            <div className="justify-cente flex basis-1/2 items-center">
+            <div className="flex basis-1/2 items-center justify-center">
               <Image
                 src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/feat-1.webp"
                 alt="alt"
@@ -49,7 +49,7 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="my-2 flex gap-2">
+          <div className="my-2 flex flex-col-reverse gap-2 md:flex-row">
             <div className="flex basis-1/2 flex-col rounded-lg bg-card p-10">
               <h2 className="text-3xl font-bold">
                 2. What&apos;s inside the book?
@@ -80,7 +80,7 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="my-2 flex gap-2">
+          <div className="my-2 flex flex-col-reverse gap-2 md:flex-row">
             <div className="flex basis-1/2 flex-col rounded-lg bg-card p-10">
               <h2 className="text-3xl font-bold">
                 3. What&apos;s on top of the book?
@@ -102,7 +102,7 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="my-2 flex gap-2">
+          <div className="my-2 flex flex-col-reverse gap-2 md:flex-row">
             <div className="flex basis-1/2 flex-col rounded-lg bg-card p-10">
               <h2 className="text-3xl font-bold">4. Why write this?</h2>
               <p className="py-4 text-xl font-semibold text-muted-foreground">
@@ -151,8 +151,8 @@ const Page = () => {
         <h2 className="my-8 mt-5 text-center text-3xl font-bold leading-tight text-gray-900 sm:text-5xl sm:leading-tight lg:text-4xl lg:leading-tight">
           Our Team
         </h2>
-        <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-4 grid-rows-2 gap-10">
-          <div className="col-start-2">
+        <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-2 grid-rows-2 gap-10 px-6 md:grid-cols-4">
+          <div className="col-start-1 md:col-start-2">
             <Image
               src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/Soundarya%20Balasubramani.png?raw=true"
               alt="Soundarya Soundararajan"
@@ -167,7 +167,7 @@ const Page = () => {
               <p className="text-muted-foreground">Author</p>
             </div>
           </div>
-          <div className="col-start-3">
+          <div className="col-start-2 md:col-start-3">
             <Image
               src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/team/Soundarya%20Soundararajan.webp"
               alt="Sameer Khedekar"
@@ -209,7 +209,7 @@ const Page = () => {
               <p className="text-muted-foreground">Design & Illustrator</p>
             </div>
           </div>
-          <div className="col-start-3">
+          <div className="col-start-1 md:col-start-3">
             <Image
               src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/team/Ben%20Merill.webp"
               alt="Ben Merill"
@@ -222,7 +222,7 @@ const Page = () => {
               <p className="text-muted-foreground">Researcher & Contributor</p>
             </div>
           </div>
-          <div className="col-start-4">
+          <div className="col-start-2 md:col-start-4">
             <Image
               src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/team/Anaik%20Alcasas.webp"
               alt="Anaik Alcasas"
@@ -246,6 +246,7 @@ const Page = () => {
           height={0}
           sizes="100vw"
           style={{ width: "100%", height: "auto" }}
+          className="scale-110 md:scale-100"
         />
       </div>
 
@@ -288,6 +289,7 @@ const Page = () => {
           height={0}
           sizes="100vw"
           style={{ width: "50%", height: "auto", margin: "4rem auto" }}
+          className="scale-150 md:scale-100"
         />
       </div>
 

@@ -21,7 +21,7 @@ const PricingGrid = () => {
             you. All courses taught by licensed attorney.
           </p>
 
-          <div className="mt-8 space-y-4">
+          <div className="mb-10 mt-8 space-y-4">
             <div className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,7 @@ const PricingGrid = () => {
 
           <Button
             variant={"outline"}
-            className="mt-auto w-full transform self-end rounded-md border-primary  px-4 py-2 font-medium tracking-wide  transition-colors duration-300 "
+            className="mt-auto w-full transform self-end rounded-md border-primary  px-4 py-2 font-medium tracking-wide  transition-colors duration-300"
           >
             Get access to courses
           </Button>

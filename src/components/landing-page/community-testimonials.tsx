@@ -116,17 +116,36 @@ const ReviewCard = ({
 const CommunityTestimonials = () => {
   return (
     <div>
-      <div className="relative flex h-[40rem] flex-row items-center justify-center overflow-hidden bg-background sm:px-20">
-        <Marquee pauseOnHover vertical className="[--duration:30s]">
-          {firstRow.map((review) => (
-            <ReviewCard key={review.name} {...review} />
-          ))}
-        </Marquee>
-        <Marquee reverse pauseOnHover vertical className="[--duration:30s]">
-          {secondRow.map((review) => (
-            <ReviewCard key={review.name} {...review} />
-          ))}
-        </Marquee>
+      <div className="relative flex flex-row items-center justify-center overflow-hidden bg-background sm:px-20 md:h-[40rem]">
+        <div className="hidden md:flex">
+          <Marquee pauseOnHover vertical className="[--duration:30s]">
+            {firstRow.map((review) => (
+              <ReviewCard key={review.name} {...review} />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover vertical className="[--duration:30s]">
+            {secondRow.map((review) => (
+              <ReviewCard key={review.name} {...review} />
+            ))}
+          </Marquee>
+        </div>
+        <div className="scale-75 flex-col px-4 md:hidden">
+          <Marquee pauseOnHover>
+            {firstRow.map((review) => (
+              <ReviewCard key={review.name} {...review} />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover>
+            {secondRow.map((review) => (
+              <ReviewCard key={review.name} {...review} />
+            ))}
+          </Marquee>
+          {/* <Marquee pauseOnHover vertical >
+            {[...firstRow, ...secondRow].map((review) => (
+              <ReviewCard key={review.name} {...review} />
+            ))}
+          </Marquee> */}
+        </div>
         <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-background"></div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white dark:from-background"></div>
       </div>

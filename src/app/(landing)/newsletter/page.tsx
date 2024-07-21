@@ -9,8 +9,8 @@ const NewsLetterPage = () => {
   return (
     <div className="flex min-h-screen w-full flex-col bg-[#F5F9FF]">
       <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg py-28">
-        <div className="flex">
-          <div className="flex basis-2/3 flex-col items-start justify-start gap-10 px-8 py-20 text-left">
+        <div className="flex flex-col md:flex-row">
+          <div className="flex basis-2/3 flex-col items-start justify-start gap-10 px-8 text-left md:py-20">
             <h2 className="max-w-4xl text-5xl font-bold leading-[4rem]">
               Don’t waste your time and money trying to keep up with U.S.
               immigration
@@ -24,7 +24,7 @@ const NewsLetterPage = () => {
               <JoinNewsletterForm />
             </div>
           </div>
-          <div className="flex basis-1/3 items-center justify-center">
+          <div className="flex basis-1/3 scale-75 items-center justify-center md:scale-100">
             <Image
               src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/newletter/newsletter-phone.png?raw=true"
               alt="Soundarya"
@@ -35,11 +35,11 @@ const NewsLetterPage = () => {
         </div>
       </section>
 
-      <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg py-28">
+      <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg px-4 md:py-28">
         <h2 className="pb-8 text-center text-4xl font-bold">
-          Hear it from our readers :)
+          Hear it from our readers
         </h2>
-        <div className="grid grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-10">
           <div className="flex flex-col rounded-lg bg-card p-8 px-10">
             <div className="flex items-center justify-between">
               <Avatar>
@@ -117,7 +117,7 @@ const NewsLetterPage = () => {
         </div>
       </section>
 
-      <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg py-16">
+      <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg px-4 py-16 ">
         <h2 className="pb-8 text-center text-5xl font-bold">
           U.S. immigration is <span className="text-primary">complex</span>{" "}
           <br /> and <span className="text-primary">overwhelming</span>
@@ -167,23 +167,23 @@ const NewsLetterPage = () => {
         </div>
       </section>
 
-      <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg py-16">
+      <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg px-4  py-16 ">
         <h2 className="pb-8 text-center text-5xl font-bold">
           That’s what the <span className="text-primary">Unshackled</span>{" "}
           <br /> newsletter is for.
         </h2>
 
-        <div className="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-4 bg-card py-8">
+        <div className="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-4 bg-card px-4 py-8 ">
           <JoinNewsletterForm />
         </div>
       </section>
 
-      <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg py-16">
+      <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg px-4 py-16 ">
         <h2 className="pb-8 text-center text-4xl font-bold">
           Breaking news. Free webinars. Latest trends.
         </h2>
 
-        <div className="relative mx-auto py-6">
+        <div className="relative mx-auto scale-75 py-6 md:scale-100">
           <Image
             src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/newletter/newsletter-phone-2.png?raw=true"
             alt="Soundarya"
@@ -191,7 +191,7 @@ const NewsLetterPage = () => {
             height={300}
             className="opacity-60"
           />
-          <div className="absolute -right-40 top-8 w-64 rounded-md border border-primary bg-card px-4 py-2 text-sm text-primary">
+          <div className="absolute -right-32 top-8 w-64 rounded-md border border-primary bg-card px-4 py-2 text-sm text-primary">
             Premium Processing Fee Surge: USCIS Announces Hike for Key Visa
             Applications
           </div>
@@ -205,7 +205,7 @@ const NewsLetterPage = () => {
         </div>
       </section>
 
-      <section className="mx-auto flex w-full max-w-3xl flex-col justify-center gap-4 rounded-lg py-16">
+      <section className="mx-auto flex w-full max-w-3xl flex-col justify-center gap-4 rounded-lg px-4 py-16">
         <h2 className="pb-4 text-left text-4xl font-bold">
           The Unshackled newsletter isn’t for everyone.
         </h2>
@@ -251,13 +251,13 @@ const NewsLetterPage = () => {
         </div>
       </section>
 
-      <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg bg-card py-16">
+      <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg bg-card px-4 py-16 ">
         <h2 className="pb-4 text-center text-4xl font-bold">
           Instead of wasting 10+ hours of your time, spend <br />
           <span className="text-primary">{` < 5 minutes a week`}</span>{" "}
           de-risking your future.
         </h2>
-        <div className="flex w-full flex-col items-center justify-center gap-4 pt-8">
+        <div className="flex w-full flex-col items-center justify-center gap-4 px-4 pt-8 ">
           <JoinNewsletterForm />
         </div>
       </section>

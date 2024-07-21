@@ -18,7 +18,7 @@ export default function HomePage() {
           <h2 className="text-4xl font-bold">Here’s how we help you</h2>
         </section>
         <section className="my-8">
-          <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
+          <div className="mx-auto flex w-full max-w-7xl flex-col-reverse gap-4 p-4 md:flex-row">
             <div className="basis-1/2 bg-white p-8">
               <h2 className="rounded-lg py-4 text-3xl font-bold leading-[4rem] text-primary">
                 Get started
@@ -64,7 +64,7 @@ export default function HomePage() {
         </section>
 
         <section className="my-8">
-          <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
+          <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 p-4 md:flex-row">
             <div className="relative flex basis-1/2 items-center justify-center rounded-lg p-8">
               <Image
                 src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/landing/circle-platform.png?raw=true"
@@ -77,7 +77,7 @@ export default function HomePage() {
                   Imran Khan, RAN Engineer @ Samsung
                 </p>
                 <blockquote>
-                  &quot; I joined the community only a few weeks ago. I've
+                  &quot; I joined the community only a few weeks ago. I&apos;ve
                   already been able to book a free call with an EB-2 NIW
                   recipient, who has now become a mentor of mine that I talk to
                   regularly! &quot;
@@ -101,7 +101,7 @@ export default function HomePage() {
         </section>
 
         <section className="my-8">
-          <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
+          <div className="mx-auto flex w-full max-w-7xl flex-col-reverse gap-4 p-4 md:flex-row">
             <div className="basis-1/2 bg-white p-8">
               <h2 className="rounded-lg py-4 text-3xl font-bold leading-[4rem] text-primary">
                 Love reading books?
@@ -156,9 +156,9 @@ export default function HomePage() {
                 <blockquote>
                   &quot; Reading this book was a pivotal moment for me. Not only
                   did it give me the clarity to navigate my entrepreneurial
-                  journey, it also came with stories of others who'd done this
-                  before. Honestly, I wish this book was given to me along with
-                  my visa stamp at the US consulate. &quot;
+                  journey, it also came with stories of others who&apos;d done
+                  this before. Honestly, I wish this book was given to me along
+                  with my visa stamp at the US consulate. &quot;
                 </blockquote>
               </div>
             </div>
