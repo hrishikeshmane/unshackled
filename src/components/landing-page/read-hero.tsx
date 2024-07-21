@@ -20,7 +20,7 @@ const ReadHeroSection = () => {
 
       <div className="realtive mx-auto w-full">
         <Image
-          src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66263c0f9352e25bddf1ee14_Rectangle%202029%20(2)-p-800.png"
+          src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/book/book.png?raw=true"
           alt="book chapter image with cover"
           width={400}
           height={400}
@@ -55,7 +55,7 @@ const ReadHeroSection = () => {
       </div>
       <div className="w-full">
         <Image
-          src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/660539ac1005b7c3e85bcb8c_bg-1.png"
+          src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/book/book-2.png?raw=true"
           alt="book chapter image"
           width={0}
           height={0}

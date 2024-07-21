@@ -7,10 +7,12 @@ import { ShoppingBag } from "lucide-react";
 import Link from "next/link";
 
 const avatarUrls = [
-  "https://avatars.githubusercontent.com/u/16860528",
-  "https://avatars.githubusercontent.com/u/20110627",
-  "https://avatars.githubusercontent.com/u/106103625",
-  "https://avatars.githubusercontent.com/u/59228569",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Hitesh%20Kenjale.png?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Digvijay%20Singh.jpeg?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Chinmay%20Jog.png?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Twinkle%20Mohan.png?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Dominic%20Damoah.jpeg?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Zoya%20Brar.jpeg?raw=true",
 ];
 
 const HeroSection = () => {

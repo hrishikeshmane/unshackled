@@ -139,7 +139,7 @@ export default function HomePage() {
             <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-4 grid-rows-2 gap-6">
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/661146688101b845ca4d45b5_Rectangle%202091-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Aswarth.png?raw=true"
                   alt="Aswarth Abhilash Dara"
                   width={270}
                   height={270}
@@ -157,7 +157,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/661146685e3125edbced43b6_Rectangle%202091-1-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Nikin.png?raw=true"
                   alt="Nikin Tharan"
                   width={270}
                   height={270}
@@ -175,7 +175,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66114668a3de6dd984db53fa_Rectangle%202091-2-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Hitesh.png?raw=true"
                   alt="Hitesh Kenjale"
                   width={270}
                   height={270}
@@ -193,7 +193,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66114667cfd687f3274e556f_Rectangle%202091-3-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Chinmay.png?raw=true"
                   alt="Chinmay Jog"
                   width={270}
                   height={270}
@@ -210,7 +210,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/661146684894562998fbccad_Rectangle%202091-4-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Sunku.png?raw=true"
                   alt="Sunku Ranganath"
                   width={270}
                   height={270}
@@ -227,7 +227,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66114668882f79fe097a7aa0_Rectangle%202091-5-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Nirupama.png?raw=true"
                   alt="Nirupama Narayanaswamy"
                   width={270}
                   height={270}
@@ -244,7 +244,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/6611466852601225c77830ba_Rectangle%202091-6-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Jenil.png?raw=true"
                   alt="Jenil Shah"
                   width={270}
                   height={270}
@@ -259,7 +259,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/661146688101b845ca4d45bc_Rectangle%202091-7-p-500.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Sharath.png?raw=true"
                   alt="Sharath Kumar"
                   width={270}
                   height={270}
@@ -402,10 +402,16 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto my-4 flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg bg-card p-10">
+        <section className="mx-auto my-4 flex w-full max-w-7xl flex-col items-center justify-center gap-4 rounded-lg bg-card p-10">
           <h2 className="mx-auto max-w-4xl text-center text-4xl font-bold">
             Not ready to commit yet?
           </h2>
+          <p className="text-xl font-bold leading-8 text-muted-foreground">
+            No problem! Start with our free, 5-day course on talent visas first.
+          </p>
+          <Link href="/course">
+            <Button size="lg">Get free course</Button>
+          </Link>
           {/* TODO: Add form here to get free courses */}
         </section>
 
@@ -438,7 +444,7 @@ export default function HomePage() {
             </div>
             <div className="flex basis-1/2 items-center justify-center">
               <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f17882131b6fade744d32c_Group%208320.png"
+                src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/founder.png?raw=true"
                 alt="Soundarya"
                 width={300}
                 height={300}
@@ -534,7 +540,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f17c706b521a73c8e044ca_Rectangle%202050.png"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/Bhuvan%20Shakthi.png?raw=true"
                   alt="Bhuvan Shakthi"
                   width={270}
                   height={270}

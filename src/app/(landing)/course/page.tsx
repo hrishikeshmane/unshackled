@@ -2,9 +2,6 @@ import Image from "next/image";
 import React from "react";
 import { StartHereForm } from "~/components/landing-page/convertkit-forms";
 import Footer from "~/components/landing-page/footer";
-import { Button } from "~/components/ui/button";
-
-import { Input } from "~/components/ui/input";
 
 const page = () => {
   return (
@@ -21,7 +18,7 @@ const page = () => {
         </div>
         <div className="flex basis-1/2 items-center justify-center ">
           <Image
-            src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f2d6d098fbff9c6ee0a7ce_Rotated%20right.png"
+            src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/course/slant-phone-course.webp"
             alt="Course page image"
             width={450}
             height={450}

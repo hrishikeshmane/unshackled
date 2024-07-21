@@ -41,7 +41,7 @@ const Page = () => {
             </div>
             <div className="justify-cente flex basis-1/2 items-center">
               <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fb34622d750e22cb0ba93e_img5.png"
+                src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/feat-1.webp"
                 alt="alt"
                 width={400}
                 height={400}
@@ -72,7 +72,7 @@ const Page = () => {
             </div>
             <div className="flex basis-1/2 items-center justify-center ">
               <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fb34622368a97778590b2f_img10.png"
+                src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/feat-2.webp"
                 alt="alt"
                 width={400}
                 height={400}
@@ -94,7 +94,7 @@ const Page = () => {
             </div>
             <div className="flex basis-1/2 items-center justify-center ">
               <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/6606caa7a7f091e0d6dfcf6e_3rd4-p-800.png"
+                src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/feat-3.webp"
                 alt="alt"
                 width={400}
                 height={400}
@@ -126,7 +126,7 @@ const Page = () => {
             </div>
             <div className="flex basis-1/2 items-center justify-center ">
               <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/6606c9d5ac5dad20c6d27da9_4th1-p-800.png"
+                src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/feat-4.webp"
                 alt="alt"
                 width={400}
                 height={400}
@@ -138,7 +138,7 @@ const Page = () => {
 
       <section className="w-full">
         <Image
-          src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/660977e72c8e3c5d53276574_Unshackled_Book_Mockup-p-3200.png"
+          src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/book-3.webp"
           alt="book chapter image 2"
           width={0}
           height={0}
@@ -154,7 +154,7 @@ const Page = () => {
         <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-4 grid-rows-2 gap-10">
           <div className="col-start-2">
             <Image
-              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f17c70b31e0313c78c7afd_Rectangle%202048.png"
+              src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/Soundarya%20Balasubramani.png?raw=true"
               alt="Soundarya Soundararajan"
               width={270}
               height={270}
@@ -169,7 +169,7 @@ const Page = () => {
           </div>
           <div className="col-start-3">
             <Image
-              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fc184d777e6eaf167f9439_Rectangle%202047.png"
+              src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/team/Soundarya%20Soundararajan.webp"
               alt="Sameer Khedekar"
               width={270}
               height={270}
@@ -185,7 +185,7 @@ const Page = () => {
 
           <div className="col-start-1">
             <Image
-              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fc185d267de660e1243889_t2.png"
+              src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/team/Rishabh%20Singh.webp"
               alt="Rishabh Singh"
               width={270}
               height={270}
@@ -198,7 +198,7 @@ const Page = () => {
           </div>
           <div className="col-start-2">
             <Image
-              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fc185d31cf9a31366f4ba6_t3.png"
+              src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/team/Komal%20Telagavi.webp"
               alt="Komal Telagavi"
               width={270}
               height={270}
@@ -211,7 +211,7 @@ const Page = () => {
           </div>
           <div className="col-start-3">
             <Image
-              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fc185d54b325f0b07effd7_t4.png"
+              src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/team/Ben%20Merill.webp"
               alt="Ben Merill"
               width={270}
               height={270}
@@ -224,7 +224,7 @@ const Page = () => {
           </div>
           <div className="col-start-4">
             <Image
-              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fc185d6b2c0baaafbbdd6f_t5.png"
+              src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/team/Anaik%20Alcasas.webp"
               alt="Anaik Alcasas"
               width={270}
               height={270}
@@ -240,7 +240,7 @@ const Page = () => {
 
       <div className="w-full">
         <Image
-          src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66053d554d81a9b6abcfde29_Group%208321.png"
+          src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/book-4.webp"
           alt="book chapter image with cover"
           width={0}
           height={0}
@@ -257,7 +257,7 @@ const Page = () => {
               <span className="text-primary">2000+ hours</span>
             </h2>
             <Image
-              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65fc2055affa13bb084c9b14_img18.png"
+              src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/book-5.webp"
               alt="us working on the book"
               width={1220}
               height={567}
@@ -282,7 +282,7 @@ const Page = () => {
 
       <div className="w-full">
         <Image
-          src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/6606d415bb4624996034c903_Rectangle%202067-p-1600.png"
+          src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/book-6.webp"
           alt="book chapter images with cover"
           width={0}
           height={0}

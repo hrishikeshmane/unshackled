@@ -30,7 +30,7 @@ const config = {
       },
       {
         protocol: "https",
-        hostname: "pagedone.io",
+        hostname: "raw.githubusercontent.com",
       },
       {
         protocol: "https",

@@ -1,7 +1,6 @@
 import Footer from "@/components/landing-page/footer";
 import HeroSection from "@/components/landing-page/hero";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -35,7 +34,7 @@ export default function HomePage() {
             </div>
             <div className="relative flex basis-1/2 items-center justify-center rounded-lg p-8">
               <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66072884f1d9b815a0b8fa54_1-p-800.png"
+                src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/landing/phone-slant.png?raw=true"
                 alt="Newsletter sample image"
                 width={400}
                 height={400}
@@ -68,7 +67,7 @@ export default function HomePage() {
           <div className="mx-auto flex w-full max-w-7xl gap-4 p-4">
             <div className="relative flex basis-1/2 items-center justify-center rounded-lg p-8">
               <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/660728c0e47b67010e851002_2-p-1080.png"
+                src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/landing/circle-platform.png?raw=true"
                 alt="Unshackled platform sample image"
                 width={550}
                 height={550}
@@ -134,7 +133,7 @@ export default function HomePage() {
             </div>
             <div className="relative flex basis-1/2 items-center justify-center rounded-lg p-8">
               <Image
-                src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66092281d4cb0876d08742fb_Rectangle%202075-p-500.png"
+                src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/landing/unshackled-hard-cover-book.png?raw=true"
                 alt="Book Cover image"
                 width={300}
                 height={300}

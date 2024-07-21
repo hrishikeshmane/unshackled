@@ -26,7 +26,7 @@ const NewsLetterPage = () => {
           </div>
           <div className="flex basis-1/3 items-center justify-center">
             <Image
-              src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65e99858d54f35bc9a7a7aa2_phone%202.png"
+              src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/newletter/newsletter-phone.png?raw=true"
               alt="Soundarya"
               width={300}
               height={300}
@@ -45,7 +45,7 @@ const NewsLetterPage = () => {
               <Avatar>
                 <AvatarImage
                   className="object-cover"
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66070e54cdd9af35f36c8754_T1-p-500.jpg"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/newletter/reviews/Nithin%20Rao.jpeg?raw=true"
                 />
                 <AvatarFallback>NR</AvatarFallback>
               </Avatar>
@@ -71,7 +71,7 @@ const NewsLetterPage = () => {
               <Avatar>
                 <AvatarImage
                   className="object-cover"
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66070ffc5df50a5a3d23302a_Finn%20Reynolds-p-500.jpeg"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/newletter/reviews/Finn%20Reynolds.jpeg?raw=true"
                 />
                 <AvatarFallback>FR</AvatarFallback>
               </Avatar>
@@ -96,7 +96,7 @@ const NewsLetterPage = () => {
               <Avatar>
                 <AvatarImage
                   className="object-cover"
-                  src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/6607109ba651f655ff4776f8_Pramit%20Bhatia.jpeg"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/newletter/reviews/Pramit%20Bhatia.jpeg?raw=true"
                 />
                 <AvatarFallback>PB</AvatarFallback>
               </Avatar>
@@ -185,7 +185,7 @@ const NewsLetterPage = () => {
 
         <div className="relative mx-auto py-6">
           <Image
-            src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65ecc188eefb822fc07254df_phone%203.png"
+            src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/newletter/newsletter-phone-2.png?raw=true"
             alt="Soundarya"
             width={300}
             height={300}
