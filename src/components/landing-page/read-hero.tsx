@@ -18,9 +18,9 @@ const ReadHeroSection = () => {
         </div>
       </div>
 
-      <div className="realtive mx-auto w-full">
+      <div className="realtive mx-auto w-full scale-75 md:scale-100">
         <Image
-          src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66263c0f9352e25bddf1ee14_Rectangle%202029%20(2)-p-800.png"
+          src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/book/book.png?raw=true"
           alt="book chapter image with cover"
           width={400}
           height={400}
@@ -28,7 +28,7 @@ const ReadHeroSection = () => {
           //   sizes="100vw"
           //   style={{ width: "50%", height: "auto", margin: "4rem auto" }}
         />
-        <div className="absolute right-[28%] top-[25%] hidden max-w-64 rounded-md bg-card p-6 lg:block">
+        <div className="absolute -right-[10%] -top-[18%] max-w-64 rounded-md bg-card p-6 md:right-[28%] md:top-[25%] lg:block">
           <blockquote className="text-lg font-semibold text-primary">
             &ldquo;Finally, a book that demystifies the complex immigration
             system.&rdquo;
@@ -38,7 +38,7 @@ const ReadHeroSection = () => {
             <p className="font-bold text-muted-foreground">CEO of Boundless</p>
           </div>
         </div>
-        <div className="absolute left-[28%] top-[35%] hidden max-w-64 rounded-md bg-card p-6 lg:block">
+        <div className="absolute -left-[10%] top-[85%] max-w-64 rounded-md bg-card p-6 md:left-[28%] md:top-[35%] lg:block">
           <blockquote className="text-lg font-semibold text-primary">
             &ldquo;Dynamite stuff.&rdquo;
           </blockquote>
@@ -50,17 +50,18 @@ const ReadHeroSection = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto w-full items-center justify-center">
+      <div className="mx-auto w-full scale-[80%] items-center justify-center md:scale-100">
         <Companies />
       </div>
       <div className="w-full">
         <Image
-          src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/660539ac1005b7c3e85bcb8c_bg-1.png"
+          src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/book/book-2.png?raw=true"
           alt="book chapter image"
           width={0}
           height={0}
           sizes="100vw"
           style={{ width: "100%", height: "auto" }}
+          className="scale-150 md:scale-100"
         />
       </div>
     </section>
@@ -79,7 +80,11 @@ export const ReadHeroSectionCTAButtons = () => {
       >
         <Button size={"lg"}>Buy on Amazon</Button>
       </Link>
-      <Link href="/marketplace">
+      <Link
+        href="https://buy.stripe.com/cN27w48Pz7Ay7csbIJ"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Button
           variant={"outline"}
           size={"lg"}

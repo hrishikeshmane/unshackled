@@ -7,10 +7,12 @@ import { ShoppingBag } from "lucide-react";
 import Link from "next/link";
 
 const avatarUrls = [
-  "https://avatars.githubusercontent.com/u/16860528",
-  "https://avatars.githubusercontent.com/u/20110627",
-  "https://avatars.githubusercontent.com/u/106103625",
-  "https://avatars.githubusercontent.com/u/59228569",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Hitesh%20Kenjale.png?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Digvijay%20Singh.jpeg?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Chinmay%20Jog.png?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Twinkle%20Mohan.png?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Dominic%20Damoah.jpeg?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Zoya%20Brar.jpeg?raw=true",
 ];
 
 const HeroSection = () => {
@@ -32,9 +34,11 @@ const HeroSection = () => {
           </p>
 
           <div className="group relative mx-auto mt-10 inline-flex flex-col items-center justify-center gap-4 md:flex-row">
-            <Button size={"lg"} className="w-full md:w-fit">
-              Become a member
-            </Button>
+            <Link href="/community">
+              <Button size={"lg"} className="w-full md:w-fit">
+                Become a member
+              </Button>
+            </Link>
             <Link href="/marketplace">
               <Button
                 variant={"outline"}

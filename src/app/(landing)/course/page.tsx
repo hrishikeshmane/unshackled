@@ -2,14 +2,11 @@ import Image from "next/image";
 import React from "react";
 import { StartHereForm } from "~/components/landing-page/convertkit-forms";
 import Footer from "~/components/landing-page/footer";
-import { Button } from "~/components/ui/button";
-
-import { Input } from "~/components/ui/input";
 
 const page = () => {
   return (
     <div className="bg-[#F5F9FF]">
-      <div className="mx-auto  flex w-full max-w-7xl p-8 py-20">
+      <div className="mx-auto flex w-full max-w-7xl flex-col px-6 py-20 md:flex-row md:p-8">
         <div className="basis-1/2  p-4">
           <h1 className="text-5xl font-bold">
             A <span className="text-primary">5-day free course</span> on talent
@@ -21,15 +18,16 @@ const page = () => {
         </div>
         <div className="flex basis-1/2 items-center justify-center ">
           <Image
-            src="https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/65f2d6d098fbff9c6ee0a7ce_Rotated%20right.png"
+            src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/course/slant-phone-course.webp"
             alt="Course page image"
             width={450}
             height={450}
+            className="scale-[85%] md:scale-100"
           />
         </div>
       </div>
 
-      <section className="mx-auto w-full max-w-7xl py-10 text-center">
+      <section className="mx-auto w-full max-w-7xl px-8 py-10 text-center ">
         <h2 className="text-4xl font-bold">
           Escape the H-1B lottery.{" "}
           <span className="text-primary">
@@ -50,7 +48,7 @@ const page = () => {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl py-12 text-center">
+      <section className="mx-auto w-full max-w-7xl px-8 py-12 text-center ">
         <h2 className="text-4xl font-bold">
           Our course will teach you <span className="text-primary">what</span>{" "}
           they are, <br />
@@ -71,7 +69,7 @@ const page = () => {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl py-10 text-center">
+      <section className="mx-auto w-full max-w-7xl px-8 py-10 text-center ">
         <h2 className="text-4xl font-bold">
           No boring legal jargon. Watch 5 short videos.
         </h2>
@@ -82,7 +80,7 @@ const page = () => {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl rounded-lg bg-card p-16 text-center">
+      <section className="mx-auto w-full max-w-6xl rounded-lg bg-card px-8 py-16 text-center md:px-16">
         <h2 className="text-4xl font-bold">
           Know the what, who, and why of talent visas in 5 short videos.{" "}
           <span className="text-primary">No legal jargon</span>.

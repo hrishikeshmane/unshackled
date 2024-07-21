@@ -8,7 +8,7 @@ const StoryPage = () => {
   return (
     <div className="lex min-h-screen w-full flex-col bg-[#F5F9FF]">
       <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg py-28">
-        <div className="flex">
+        <div className="flex flex-col md:flex-row">
           <div className="flex basis-1/2 flex-col items-start justify-start gap-10 p-8 text-left">
             <h2 className="max-w-4xl text-5xl font-bold">Our Story</h2>
             <p className="text-xl font-bold text-muted-foreground">
@@ -47,7 +47,7 @@ const StoryPage = () => {
           </div>
         </div>
       </section>
-      <section>
+      <section className="px-4">
         <StoryStartedTimeline />
       </section>
       <Footer />

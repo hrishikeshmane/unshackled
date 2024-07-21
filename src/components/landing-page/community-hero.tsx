@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import HeroVideo from "./hero-video";
+import Link from "next/link";
 
 const CommunityHeroSection = () => {
   return (
@@ -14,7 +15,9 @@ const CommunityHeroSection = () => {
           </h1>
 
           <div className="group relative mt-10 inline-flex space-x-4">
-            <Button size={"lg"}>Become a member</Button>
+            <Link href="#pricing-grid">
+              <Button size={"lg"}>Become a member</Button>
+            </Link>
             {/* <Link href="/marketplace">
               <Button
                 variant={"outline"}

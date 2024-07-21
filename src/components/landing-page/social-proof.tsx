@@ -1,11 +1,11 @@
 import Image from "next/image";
 
 const features = [
-  "https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66052a59eaa3185d691dadde_Rectangle%202030-p-500.png",
-  "https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/6605be1f8d2abaaa598be048_Rectangle%202031-p-500.png",
-  "https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66052adf7e2dde43904047db_Rectangle%202032-p-500.png",
-  "https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66052adfba15766969a8f635_Rectangle%202033-p-500.png",
-  "https://cdn.prod.website-files.com/65d45d280fe16f42cb43e774/66052adf67febd152668d3eb_Rectangle%202034-p-500.png",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/features/emergent.png?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/features/toi.png?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/features/fortune.png?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/features/Indiacurrent.png?raw=true",
+  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/features/marginal.png?raw=true",
 ];
 
 export function Companies() {
