@@ -10,13 +10,20 @@ import { ShoppingBag } from "lucide-react";
 
 interface NavButtonsProps {
   role?: CustomJwtSessionClaims["metadata"]["role"];
+  toggleSheet?: () => void;
 }
 
-const NavButtons = ({ role }: NavButtonsProps) => {
+const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
   const pathname = usePathname();
 
+  const mobileSheetToggle = () => {
+    if (toggleSheet) {
+      toggleSheet();
+    }
+  };
+
   return (
-    <div className="ml-auto flex w-full flex-col items-center justify-end gap-4 md:flex-row lg:gap-4">
+    <div className="ml-auto flex w-full items-center justify-end gap-4 md:flex-row lg:gap-4">
       {pathname.includes("marketplace")}
       {!pathname.includes("marketplace") && (
         <div className="flex gap-4">
@@ -34,6 +41,7 @@ const NavButtons = ({ role }: NavButtonsProps) => {
                 <Button
                   variant={"outline"}
                   className="flex gap-2 border-2 border-primary text-primary hover:text-primary"
+                  onClick={mobileSheetToggle}
                 >
                   <ShoppingBag className="h-5" />
                   Shop on Marketplace
@@ -46,7 +54,7 @@ const NavButtons = ({ role }: NavButtonsProps) => {
                     : "/community"
                 }
               >
-                <Button>Become a member</Button>
+                <Button onClick={mobileSheetToggle}>Become a member</Button>
               </Link>
             </div>
           )}

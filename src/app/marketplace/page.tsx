@@ -11,59 +11,26 @@ import { billboard } from "~/server/db/schema";
 import BecomeASeller from "./_components/become-a-seller";
 
 export default async function MarketplacePage() {
-  const perks = [
-    {
-      name: "Instant Delivery",
-      Icon: ArrowDownToLine,
-      description:
-        "Get your assets delivered to your email in seconds and download them right away.",
-    },
-    {
-      name: "Guaranteed Quality",
-      Icon: CheckCircle,
-      description:
-        "Every asset on our platform is verified by our team to ensure our highest quality standards. Not happy? We offer a 30-day refund guarantee.",
-    },
-    {
-      name: "For the Planet",
-      Icon: Leaf,
-      description:
-        "We've pledged 1% of sales to the preservation and restoration of the natural environment.",
-    },
-  ];
-  // const stores = [
-  //   {
-  //     id: '1',
-  //     title: 'Store 1',
-  //     description: 'This is the first store description.',
-  //     imageUrl: '/path/to/image1.jpg',
-  //     link: '/stores/1',
-  //   },
-  //   {
-  //     id: '2',
-  //     title: 'Store 2',
-  //     description: 'This is the second store description.',
-  //     imageUrl: '/path/to/image2.jpg',
-  //     link: '/stores/2',
-  //   },
-  //   // ... more stores
-  // ];
-
   const storesRaw = await api.store.getStores();
   const billboards = await api.billboard.getBillboards();
 
-  const stores = await Promise.all(storesRaw.map(async (store) => {
-    const storeBillboards = billboards.filter(billboard => billboard.storeId === store.id);
-    const imageUrl = storeBillboards.length > 0 ? storeBillboards[0]?.imageUrl : '';
+  const stores = await Promise.all(
+    storesRaw.map(async (store) => {
+      const storeBillboards = billboards.filter(
+        (billboard) => billboard.storeId === store.id,
+      );
+      const imageUrl =
+        storeBillboards.length > 0 ? storeBillboards[0]?.imageUrl : "";
 
-    return {
-      id: store.id,
-      title: store.name,
-      description: store.description ?? "",
-      imageUrl: imageUrl ?? "",
-      link: `/marketplace/${store.id}`,
-    };
-  }));
+      return {
+        id: store.id,
+        title: store.name,
+        description: store.description ?? "",
+        imageUrl: imageUrl ?? "",
+        link: `/marketplace/${store.id}`,
+      };
+    }),
+  );
 
   const products = await api.product.getApprovedProducts();
   const featuredProducts = products.filter((product) => product.isFeatured);
@@ -73,26 +40,26 @@ export default async function MarketplacePage() {
       <MaxWidthWrapper>
         <div className="mx-auto flex max-w-3xl flex-col items-center py-20 text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Your marketplace for high-quality{" "}
+            Your talent visa marketplace for high-quality{" "}
             <span className="text-primary">Vendors</span>.
           </h1>
           <p className="mt-6 max-w-prose text-lg text-muted-foreground">
             Welcome to Unshackled. Every asset on our platform is verified by
             our team to ensure our highest quality standards.
           </p>
-          <div className="mt-6 flex flex-col gap-4 sm:flex-row">
+          {/* <div className="mt-6 flex flex-col gap-4 sm:flex-row">
             <Link href="/products" className={buttonVariants()}>
               Browse Trending
             </Link>
             <Button variant="ghost">Our quality promise &rarr;</Button>
-          </div>
+          </div> */}
         </div>
       </MaxWidthWrapper>
 
       {/* border-t border-gray-200 bg-gray-50 */}
       <section className="">
         <MaxWidthWrapper>
-          <div className="py-10 sm:py-10 pb-0">
+          <div className="py-10 pb-0 sm:py-10">
             {featuredProducts && featuredProducts?.length > 0 ? (
               <ProductsReel
                 products={featuredProducts}
@@ -103,34 +70,11 @@ export default async function MarketplacePage() {
           </div>
 
           <div className="">
-          <StoresReel
+            <StoresReel
               stores={stores}
               reelTitle="Shop Collections"
               reelSubtitle="Discover amazing services from our trusted partners"
             />
-          </div>
-          <div className="mt-10 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0">
-            {perks.map((perk) => (
-              <div
-                key={perk.name}
-                className="text-center md:flex md:items-start md:text-left lg:block lg:text-center"
-              >
-                <div className="flex justify-center md:flex-shrink-0">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-primary">
-                    {<perk.Icon className="h-1/3 w-1/3" />}
-                  </div>
-                </div>
-
-                <div className="mt-6 md:ml-4 md:mt-0 lg:ml-0 lg:mt-6">
-                  <h3 className="text-base font-medium text-gray-900">
-                    {perk.name}
-                  </h3>
-                  <p className="mt-3 text-sm text-muted-foreground">
-                    {perk.description}
-                  </p>
-                </div>
-              </div>
-            ))}
           </div>
         </MaxWidthWrapper>
       </section>
