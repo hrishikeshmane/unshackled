@@ -9,6 +9,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Logo from "./logo";
 import { type Routes } from "./header";
 import NavButtons from "./nav-buttons";
+import { Separator } from "../ui/separator";
 
 export type NavComponent = { title: string; href: string; description: string };
 
@@ -45,6 +46,11 @@ const MobileNav = ({
               <Logo className="h-6 w-6" />
             </Link>
 
+            <div>
+              {/* This is wehre dashboard buttons will go */}
+              <NavButtons role={role} toggleSheet={toggleSheet} />
+            </div>
+
             {/* Landing page routes */}
             {
               <>
@@ -76,12 +82,20 @@ const MobileNav = ({
                 >
                   Newsletter
                 </Link>
-                <NavButtons role={role} />
+                <Link
+                  href={"/our-story"}
+                  onClick={toggleSheet}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Our Story
+                </Link>
+                {/* <NavButtons role={role} toggleSheet={toggleSheet} /> */}
               </>
             }
 
             {isMarketplaceRoute && (
               <>
+                <Separator />
                 {components.marketplaceRoutes.map((route) => (
                   <Link
                     key={route.href}
@@ -96,6 +110,7 @@ const MobileNav = ({
             )}
             {isVendorRoute && (
               <>
+                <Separator />
                 {components.vendorRoutes.map((route) => (
                   <Link
                     key={route.href}
@@ -110,6 +125,7 @@ const MobileNav = ({
             )}
             {isAdminRoute && (
               <>
+                <Separator />
                 {components.adminRoutes.map((route) => (
                   <Link
                     key={route.href}
