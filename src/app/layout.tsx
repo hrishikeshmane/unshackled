@@ -10,6 +10,7 @@ import { cn } from "~/lib/utils";
 import Header from "~/components/elements/header";
 import { Toaster } from "@/components/ui/sonner";
 import { Outfit } from "next/font/google";
+import { AxiomWebVitals } from "next-axiom";
 
 const outflit = Outfit({
   weight: "500",
@@ -58,6 +59,7 @@ export default function RootLayout({
               <Toaster position="top-center" richColors />
             </TRPCReactProvider>
           </ClerkProvider>
+          <AxiomWebVitals />
         </main>
       </body>
     </html>
