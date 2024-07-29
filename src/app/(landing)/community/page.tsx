@@ -534,7 +534,7 @@ export default function HomePage() {
                 />
                 <div className="flex flex-col py-4 text-center">
                   <h3 className="text-lg font-bold text-primary">Akash Mali</h3>
-                  <p className="text-muted-foreground">Software Engineer</p>
+                  <p className="text-muted-foreground">Engineering & Tech</p>
                 </div>
               </div>
               <div>
