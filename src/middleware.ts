@@ -37,21 +37,42 @@
 
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { Logger } from "next-axiom";
+import type { NextFetchEvent, NextRequest } from "next/server";
 
 const isProtectedRoute = createRouteMatcher([
   "/admin(.*)",
   "/marketplace/cart(.*)",
 ]);
 
-export default clerkMiddleware((auth, req) => {
+async function loggingMiddleware(
+  request: NextRequest,
+  event: NextFetchEvent,
+  url?: URL,
+) {
+  const logger = new Logger({ source: "middleware" });
+  logger.middleware(request);
+
+  event.waitUntil(logger.flush());
+
+  if (url) {
+    return NextResponse.redirect(url);
+  }
+  return NextResponse.next();
+}
+
+export default clerkMiddleware(async (auth, req, event: NextFetchEvent) => {
   if (!auth().userId && isProtectedRoute(req)) {
     // Add custom logic to run before redirecting
     const url = new URL(req.nextUrl.origin);
     url.pathname = "/sign-in";
-    return NextResponse.redirect(url);
 
-    // return auth().redirectToSignIn();
+    // return NextResponse.redirect(url);
+    await loggingMiddleware(req, event, url);
+
+    // return auth().redirectToSignIn()
   }
+  await loggingMiddleware(req, event);
 });
 
 export const config = {

@@ -18,8 +18,6 @@ import {
 const BecomeASeller = () => {
   const { user, isLoaded } = useUser();
 
-  console.log("user", user?.id);
-
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
