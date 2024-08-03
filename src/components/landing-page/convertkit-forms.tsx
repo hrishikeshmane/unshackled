@@ -23,7 +23,7 @@ export const JoinTheClubForm = () => {
     <ConvertKitForm
       template="clare"
       formId={JOIN_THE_CLUB_FORM_ID}
-      submitText="Join 400+ ambitious immigrants"
+      submitText="Join 500+ ambitious immigrants"
       buttonBackground="#1454A1"
     />
   );
@@ -34,7 +34,7 @@ export const JoinNewsletterForm = () => {
     <ConvertKitForm
       template="clare"
       formId={JOIN_NEWSLETTER_FORM_ID}
-      submitText="Join 15000+ immigrants"
+      submitText="Join 16500+ immigrants"
       buttonBackground="#1454A1"
     />
   );

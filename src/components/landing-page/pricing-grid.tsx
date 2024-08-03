@@ -99,12 +99,14 @@ const PricingGrid = () => {
             </div>
           </div>
 
-          <Button
-            variant={"outline"}
-            className="mt-auto w-full transform self-end rounded-md border-primary  px-4 py-2 font-medium tracking-wide  transition-colors duration-300"
-          >
-            Get access to courses
-          </Button>
+          <Link href="/newsletter" className="mt-auto w-full self-end">
+            <Button
+              variant={"outline"}
+              className="mt-auto w-full transform self-end rounded-md border-primary px-4 py-2 font-medium tracking-wide transition-colors duration-300"
+            >
+              Coming soon. Join Newsletter
+            </Button>
+          </Link>
         </div>
 
         <div className="relative flex transform flex-col justify-between rounded-lg border-2 border-primary px-6 py-4 transition-colors duration-300 ">

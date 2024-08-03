@@ -6,7 +6,7 @@ import Cart from "../cart";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import UserAuthButton from "./user-auth-button";
-import { ShoppingBag } from "lucide-react";
+import { Phone, ShoppingBag } from "lucide-react";
 
 interface NavButtonsProps {
   role?: CustomJwtSessionClaims["metadata"]["role"];
@@ -37,7 +37,7 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
             </Link>
           ) : (
             <div className="flex flex-col gap-4 md:flex md:flex-row">
-              <Link href="/marketplace">
+              {/* <Link href="/marketplace">
                 <Button
                   variant={"outline"}
                   className="flex gap-2 border-2 border-primary text-primary hover:text-primary"
@@ -46,7 +46,7 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
                   <ShoppingBag className="h-5" />
                   Shop on Marketplace
                 </Button>
-              </Link>
+              </Link> */}
               <Link
                 href={
                   pathname.includes("/community")
@@ -55,6 +55,19 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
                 }
               >
                 <Button onClick={mobileSheetToggle}>Become a member</Button>
+              </Link>
+              <Link
+                href="https://go.greencard.inc/evaluation"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  variant={"outline"}
+                  className="flex gap-2 border-2 border-primary text-primary hover:text-primary"
+                >
+                  <Phone className="h-5" />
+                  Book a Free Call
+                </Button>
               </Link>
             </div>
           )}

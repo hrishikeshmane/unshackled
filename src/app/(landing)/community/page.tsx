@@ -131,7 +131,7 @@ export default function HomePage() {
           </h2>
           <p className="mt-8 text-center text-xl font-bold leading-8 text-muted-foreground">
             Our community of{" "}
-            <span className="text-primary">450+ aspirants</span> span all
+            <span className="text-primary">500+ aspirants</span> span all
             corners of tech, STEM and business fields.
           </p>
 
@@ -362,7 +362,7 @@ export default function HomePage() {
 
         <section className="mx-auto my-8 mt-24 flex w-full flex-col items-center justify-center">
           <h2 className="text-center text-4xl font-bold">
-            Join <span className="text-primary">450+</span> ambitious immigrants
+            Join <span className="text-primary">500+</span> ambitious immigrants
           </h2>
 
           <PricingGrid />
@@ -454,7 +454,8 @@ export default function HomePage() {
 
         <section className="mx-auto my-4 flex w-full max-w-6xl flex-col justify-center gap-4 rounded-lg p-10">
           <h2 className="mx-auto mb-10 max-w-5xl text-center text-4xl font-bold">
-            The <span className="text-primary">Team</span> behind Unshackled
+            The <span className="text-primary">Team</span> behind Unshackled x
+            Greencard Inc
           </h2>
           <div className="mx-auto my-10 w-full items-center justify-center">
             <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-2 grid-rows-2 gap-6 md:grid-cols-4">
