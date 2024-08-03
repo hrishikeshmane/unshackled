@@ -13,8 +13,33 @@ const StoryPage = () => {
             <h2 className="max-w-4xl text-5xl font-bold">Our Story</h2>
             <p className="text-xl font-bold text-muted-foreground">
               Hi there, <br />
-              Soundarya, Rathnakumar (RK), and Nikin here. We’re the founders of
-              Unshackled and{" "}
+              <Link
+                href="https://www.linkedin.com/in/rathanuday/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline"
+              >
+                Soundarya
+              </Link>
+              ,{" "}
+              <Link
+                href="https://www.linkedin.com/in/rathanuday/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline"
+              >
+                Rathnakumar (RK)
+              </Link>
+              , and{" "}
+              <Link
+                href="https://www.linkedin.com/in/ntharan/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline"
+              >
+                Nikin
+              </Link>{" "}
+              here. We’re the founders of Unshackled and{" "}
               <Link
                 className="text-primary underline"
                 href={"https://greencard.inc/"}
@@ -39,7 +64,7 @@ const StoryPage = () => {
           </div>
           <div className="flex basis-1/2 items-center justify-center">
             <Image
-              src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/our-story/our-story.png?raw=true"
+              src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/our-story/our-story-founders.jpeg?raw=true"
               alt="Soundarya"
               width={500}
               height={500}

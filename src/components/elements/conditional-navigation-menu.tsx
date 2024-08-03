@@ -76,7 +76,25 @@ export function ConditionalNavigationMenu({
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Marketplace</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                      <li className="row-span-3">
+                        <NavigationMenuLink asChild>
+                          <Link
+                            className="flex h-full w-full select-none flex-col justify-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                            href="/"
+                          >
+                            <Logo className="border-3 m-auto" />
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <div className="flex h-full flex-col p-4">
+                        <h2 className="text-xl font-semibold">
+                          All your talent visas needs - in one place
+                        </h2>
+                        <p>Comming soon!</p>
+                      </div>
+                    </ul>
+                    {/* <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                       {components.marketplaceRoutes.map((component) => (
                         <ListItem
                           key={component.title}
@@ -86,7 +104,7 @@ export function ConditionalNavigationMenu({
                           {component.description}
                         </ListItem>
                       ))}
-                    </ul>
+                    </ul> */}
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>

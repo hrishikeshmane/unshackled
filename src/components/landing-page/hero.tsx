@@ -3,7 +3,7 @@ import AvatarCircles from "@/components/magicui/avatar-circles";
 import { Button } from "@/components/ui/button";
 import { Companies } from "./social-proof";
 import HeroVideo from "./hero-video";
-import { ShoppingBag } from "lucide-react";
+import { Phone, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 
 const avatarUrls = [
@@ -39,7 +39,21 @@ const HeroSection = () => {
                 Become a member
               </Button>
             </Link>
-            <Link href="/marketplace">
+            <Link
+              href="https://go.greencard.inc/evaluation"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                variant={"outline"}
+                size={"lg"}
+                className="flex gap-2 border-2 border-primary text-primary hover:text-primary"
+              >
+                <Phone className="h-5" />
+                Book a Free Call
+              </Button>
+            </Link>
+            {/* <Link href="/marketplace">
               <Button
                 variant={"outline"}
                 size={"lg"}
@@ -48,14 +62,14 @@ const HeroSection = () => {
                 <ShoppingBag className="h-5" />
                 Shop on Marketplace
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
       <div className="mx-auto mt-8 flex w-full flex-col items-center justify-center space-x-4 md:mt-12 md:flex-row ">
         <AvatarCircles numPeople={400} avatarUrls={avatarUrls} />
         <span className="font-semibold">
-          Trusted by 400+ ambitious immigrants
+          Trusted by 500+ ambitious immigrants
         </span>
       </div>
       <div className="mx-auto w-full items-center justify-center">

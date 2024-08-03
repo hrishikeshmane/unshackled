@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import {
+  JoinNewsletterForm,
   JoinTheClubForm,
   StartHereForm,
 } from "~/components/landing-page/convertkit-forms";
@@ -53,10 +54,10 @@ export default function HomePage() {
               </div>
               <div className="absolute bottom-5 right-16 max-w-56 space-y-2 rounded-md bg-card p-4 text-xs">
                 <blockquote>
-                  &quot; I literally stayed up till 3 AM finishing this course.
-                  I was pretty hopeless about my shot at the O-1 thinking my
-                  profile isn&apos;t good enough, but now I have some hope.
-                  &quot;
+                  &quot;I literally stayed up till 3 AM finishing this course. I
+                  was pretty hopeless about my shot at the O-1 thinking my
+                  profile isn&apos;t good enough, but now I have some
+                  hope.&quot;
                 </blockquote>
               </div>
             </div>
@@ -72,15 +73,15 @@ export default function HomePage() {
                 width={550}
                 height={550}
               />
-              <div className="absolute left-0 top-2 max-w-[16rem] space-y-2 rounded-md bg-card p-4 text-xs">
+              <div className="absolute -left-20 bottom-2 max-w-[15rem] space-y-2 rounded-md bg-card p-4 text-xs">
                 <p className="font-semibold text-primary">
                   Imran Khan, RAN Engineer @ Samsung
                 </p>
                 <blockquote>
-                  &quot; I joined the community only a few weeks ago. I&apos;ve
+                  &quot;I joined the community only a few weeks ago. I&apos;ve
                   already been able to book a free call with an EB-2 NIW
                   recipient, who has now become a mentor of mine that I talk to
-                  regularly! &quot;
+                  regularly!&quot;
                 </blockquote>
               </div>
             </div>
@@ -143,10 +144,10 @@ export default function HomePage() {
                   Apurv Gautham, Incoming CMU Student
                 </p>
                 <blockquote>
-                  &quot; My first purchase in USA! Except for Harry Potter and
+                  &quot;My first purchase in USA! Except for Harry Potter and
                   the Deathly Hallows 2 movie, this book is the most anticipated
                   thing in my life. Thank you for putting in effort to write
-                  this book, Soundarya and Sameer. 😊 &quot;
+                  this book, Soundarya and Sameer. 😊&quot;
                 </blockquote>
               </div>
               <div className="absolute bottom-2 right-0 max-w-[16rem] space-y-2 rounded-md bg-card p-4 text-xs">
@@ -154,11 +155,11 @@ export default function HomePage() {
                   Anurupa Sinha, Tech Founder
                 </p>
                 <blockquote>
-                  &quot; Reading this book was a pivotal moment for me. Not only
+                  &quot;Reading this book was a pivotal moment for me. Not only
                   did it give me the clarity to navigate my entrepreneurial
                   journey, it also came with stories of others who&apos;d done
                   this before. Honestly, I wish this book was given to me along
-                  with my visa stamp at the US consulate. &quot;
+                  with my visa stamp at the US consulate.&quot;
                 </blockquote>
               </div>
             </div>
@@ -171,12 +172,12 @@ export default function HomePage() {
             immigration.
           </h2>
           <p className="mx-auto max-w-4xl text-center text-2xl font-bold leading-8 text-muted-foreground ">
-            Join 15,000+ immigrants who get a careful curation of breaking news,
+            Join 16,500+ immigrants who get a careful curation of breaking news,
             free webinar invites & latest trends on immigration every week.
             Reading time: 5 minutes.
           </p>
           <div className="flex w-full flex-col items-center justify-center gap-4 py-4">
-            <JoinTheClubForm />
+            <JoinNewsletterForm />
           </div>
         </section>
       </div>
