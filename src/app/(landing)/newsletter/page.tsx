@@ -5,6 +5,13 @@ import { JoinNewsletterForm } from "~/components/landing-page/convertkit-forms";
 import Footer from "~/components/landing-page/footer";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
+export const metadata = {
+  title: "Don’t waste your time keeping up with US immigration.",
+  description:
+    "Join 16,500+ immigrants who get a careful curation of breaking news, free webinar invites & latest trends on immigration every week. Spend <5 minutes a week de-risking your future.”",
+  icons: [{ rel: "icon", url: "/favicon.png" }],
+};
+
 const NewsLetterPage = () => {
   return (
     <div className="flex min-h-screen w-full flex-col bg-[#F5F9FF]">

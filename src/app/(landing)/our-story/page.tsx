@@ -4,6 +4,13 @@ import React from "react";
 import Footer from "~/components/landing-page/footer";
 import StoryStartedTimeline from "~/components/landing-page/story-started-timeline";
 
+export const metadata = {
+  title: "Read the story behind unshackled.club.",
+  description:
+    "Read the inside story of how Soundarya, Rathnakumar (RK), and Nikin started Unshackled and Greencard.inc",
+  icons: [{ rel: "icon", url: "/favicon.png" }],
+};
+
 const StoryPage = () => {
   return (
     <div className="lex min-h-screen w-full flex-col bg-[#F5F9FF]">
