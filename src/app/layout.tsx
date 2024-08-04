@@ -11,6 +11,7 @@ import Header from "~/components/elements/header";
 import { Toaster } from "@/components/ui/sonner";
 import { Outfit } from "next/font/google";
 import { AxiomWebVitals } from "next-axiom";
+import { CSPostHogProvider } from "./_analytics/posthog-provider";
 
 const outflit = Outfit({
   weight: "500",
@@ -31,38 +32,40 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={cn(
-          "min-w-screen relative h-full min-h-screen bg-background font-sans antialiased ",
-          GeistSans.variable,
-          outflit.variable,
-        )}
-      >
-        <main className="relative flex flex-col">
-          <ClerkProvider
-            appearance={{
-              layout: {
-                socialButtonsPlacement: "bottom",
-                socialButtonsVariant: "blockButton",
-              },
-              variables: {
-                colorPrimary: "#03449E",
-                colorText: "#000000",
-              },
-            }}
+    <ClerkProvider
+      appearance={{
+        layout: {
+          socialButtonsPlacement: "bottom",
+          socialButtonsVariant: "blockButton",
+        },
+        variables: {
+          colorPrimary: "#03449E",
+          colorText: "#000000",
+        },
+      }}
+    >
+      <CSPostHogProvider>
+        <html lang="en">
+          <body
+            className={cn(
+              "min-w-screen relative h-full min-h-screen bg-background font-sans antialiased ",
+              GeistSans.variable,
+              outflit.variable,
+            )}
           >
-            <TRPCReactProvider>
-              {/* <ToastProvider /> */}
-              {/* <Navbar /> */}
-              <Header />
-              <div className="flex-1 flex-grow">{children}</div>
-              <Toaster position="top-center" richColors />
-            </TRPCReactProvider>
-          </ClerkProvider>
-          <AxiomWebVitals />
-        </main>
-      </body>
-    </html>
+            <main className="relative flex flex-col">
+              <TRPCReactProvider>
+                {/* <ToastProvider /> */}
+                {/* <Navbar /> */}
+                <Header />
+                <div className="flex-1 flex-grow">{children}</div>
+                <Toaster position="top-center" richColors />
+              </TRPCReactProvider>
+              <AxiomWebVitals />
+            </main>
+          </body>
+        </html>
+      </CSPostHogProvider>
+    </ClerkProvider>
   );
 }
