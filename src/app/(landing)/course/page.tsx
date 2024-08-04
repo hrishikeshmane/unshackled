@@ -3,6 +3,13 @@ import React from "react";
 import { StartHereForm } from "~/components/landing-page/convertkit-forms";
 import Footer from "~/components/landing-page/footer";
 
+export const metadata = {
+  title: "5-day free course on talent visas in America",
+  description:
+    "Take a 5-day free course on talent visas in America. The H-1B let’s you work based on merit; talent visas let you work based on your talent. Start taking control of your future.",
+  icons: [{ rel: "icon", url: "/favicon.png" }],
+};
+
 const page = () => {
   return (
     <div className="bg-[#F5F9FF]">

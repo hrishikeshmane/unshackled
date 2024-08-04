@@ -50,7 +50,7 @@ const ReadHeroSection = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto w-full scale-[80%] items-center justify-center md:scale-100">
+      <div className="mx-auto -mt-16 w-full scale-[80%] items-center justify-center md:mt-0 md:scale-100">
         <Companies />
       </div>
       <div className="w-full">

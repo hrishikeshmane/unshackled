@@ -5,6 +5,13 @@ import ReadHeroSection, {
   ReadHeroSectionCTAButtons,
 } from "~/components/landing-page/read-hero";
 
+export const metadata = {
+  title: "Read the first book that makes U.S. immigration fun.",
+  description:
+    "Unshackled is the first book that breaks down U.S. immigration for the masses, with gripping stories and beautiful visuals. Some say it reads like “a thriller novel.”",
+  icons: [{ rel: "icon", url: "/favicon.png" }],
+};
+
 const Page = () => {
   return (
     <div className="bg-[#F5F9FF]">

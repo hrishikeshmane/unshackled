@@ -46,7 +46,7 @@ const MobileNav = ({
               <Logo className="h-6 w-6" />
             </Link>
 
-            <div>
+            <div className="">
               {/* This is wehre dashboard buttons will go */}
               <NavButtons role={role} toggleSheet={toggleSheet} />
             </div>

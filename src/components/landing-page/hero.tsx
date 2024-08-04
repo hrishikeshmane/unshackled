@@ -67,7 +67,7 @@ const HeroSection = () => {
         </div>
       </div>
       <div className="mx-auto mt-8 flex w-full flex-col items-center justify-center space-x-4 md:mt-12 md:flex-row ">
-        <AvatarCircles numPeople={400} avatarUrls={avatarUrls} />
+        <AvatarCircles numPeople={500} avatarUrls={avatarUrls} />
         <span className="font-semibold">
           Trusted by 500+ ambitious immigrants
         </span>
