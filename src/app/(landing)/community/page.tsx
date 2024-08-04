@@ -1,5 +1,6 @@
 import Footer from "@/components/landing-page/footer";
 import { Button } from "@/components/ui/button";
+import { Check, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -32,7 +33,7 @@ export default function HomePage() {
             <span className="text-primary">unshackled.club</span> is an
             exclusive community.
           </h2>
-          <p className="mx-auto mt-8 max-w-4xl text-center text-2xl font-semibold leading-8 text-muted-foreground ">
+          <p className="mx-auto mt-8 max-w-4xl px-2 text-center text-2xl font-semibold leading-8 text-muted-foreground">
             We built it for{" "}
             <span className="text-primary">ambitious immigrants</span> who
             contribute significantly to their fields - and have big dreams for
@@ -45,7 +46,7 @@ export default function HomePage() {
               <h3 className="text-2xl font-bold">You should only join if:</h3>
               <div className="mx-auto flex flex-col gap-2 py-4">
                 <div className="flex gap-4 text-lg font-semibold">
-                  {/* <Check className="w-6 text-green-600" /> */}
+                  <Check size={32} className="text-green-600" />
                   <p className="text-muted-foreground">
                     You have a basic understanding of talent visas, especially
                     the O-1A, EB-1A, or EB-2 NIW. If you don&apos;t, no worries.
@@ -53,7 +54,7 @@ export default function HomePage() {
                   </p>
                 </div>
                 <div className="flex gap-4 text-lg font-semibold">
-                  {/* <Check className="w-6 text-green-600" /> */}
+                  <Check size={32} className="text-green-600" />
                   <p className="text-muted-foreground">
                     You are clear about your motivation for getting a talent
                     visa. E.g. starting your company, quitting your job, getting
@@ -61,7 +62,7 @@ export default function HomePage() {
                   </p>
                 </div>
                 <div className="flex gap-4 text-lg font-semibold">
-                  {/* <Check className="w-6 text-green-600" /> */}
+                  <Check size={18} className="text-green-600" />
                   <p className="text-muted-foreground">
                     You are willing to invest time and effort into the community
                     and your future.
@@ -73,14 +74,14 @@ export default function HomePage() {
               <h3 className="text-2xl font-bold">You should NOT join if:</h3>
               <div className="mx-auto flex flex-col py-4">
                 <div className="flex gap-2 py-2 text-lg font-semibold">
-                  {/* <X className="text-destructive " /> */}
+                  <X size={16} className="text-destructive " />
                   <p className="text-muted-foreground">
                     You&apos;re looking for a &quot;hack&quot; to get your green
                     card. There is
                   </p>
                 </div>
                 <div className="flex gap-2 py-2 text-lg font-semibold">
-                  {/* <X className="text-destructive " /> */}
+                  <X size={35} className="text-destructive " />
                   <p className="text-muted-foreground">
                     You want hand-holding through every step of the process
                     until you file. We look for members who are proactive and
@@ -88,7 +89,7 @@ export default function HomePage() {
                   </p>
                 </div>
                 <div className="flex gap-2 py-2 text-lg font-semibold">
-                  {/* <X className="text-destructive " /> */}
+                  <X size={35} className="text-destructive " />
                   <p className="text-muted-foreground">
                     You come from a field that we don&apos;t have resources for.
                     E.g. artists, actresses, chefs, etc. Our community is geared
@@ -101,10 +102,12 @@ export default function HomePage() {
         </section>
 
         <section className="mx-auto my-8 flex w-full flex-col items-center justify-center">
-          <h2 className="text-4xl font-bold text-primary">
+          <h2 className="text-center text-4xl font-bold text-primary">
             Sounds like you? Awesome.
           </h2>
-          <h2 className="text-4xl font-bold">This is the place for you.</h2>
+          <h2 className="text-center text-4xl font-bold">
+            This is the place for you.
+          </h2>
           <div className="group relative mt-10 inline-flex scale-150 space-x-4">
             <Link href="#pricing-grid">
               <Button size={"lg"}>Become a member</Button>
@@ -113,7 +116,7 @@ export default function HomePage() {
         </section>
 
         <section className="mx-auto my-8 mt-24 flex w-full flex-col items-center justify-center">
-          <h2 className="text-center text-4xl font-bold">
+          <h2 className="px-2 text-center text-4xl font-bold">
             Hear it from <span className="text-primary">Hitesh Kenjale</span>,
             one of our <br /> members who got the{" "}
             <span className="text-primary">O-1A</span>
@@ -136,7 +139,7 @@ export default function HomePage() {
           </p>
 
           <div className="mx-auto my-10 w-full items-center justify-center">
-            <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-2 grid-rows-2 gap-6 px-6 md:grid-cols-4">
+            <div className="mx-auto mb-4 grid w-full max-w-7xl grid-cols-2 grid-rows-2 gap-6 px-6 md:grid-cols-4">
               <div>
                 <Image
                   src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Aswarth.png?raw=true"
@@ -277,7 +280,7 @@ export default function HomePage() {
         </section>
 
         <section id="companies">
-          <div className="py-8">
+          <div className="mb-8 pb-8">
             <div className="container mx-auto px-4 md:px-8">
               <h3 className="pb-6 text-center text-3xl font-semibold">
                 Our members come from{" "}
@@ -349,8 +352,8 @@ export default function HomePage() {
               visa only amplifies the loneliness.
             </p>
             <p className="mt-2 pb-8 text-left font-semibold text-muted-foreground">
-              So we designed unshackled.club to be the ONE place you can go to
-              any day and get what you need - whether that is connecting with
+              So we designed unshackled to be the ONE place you can go to any
+              day and get what you need - whether that is connecting with
               another aspirant, speaking to a past recipient, consulting with a
               top lawyer, or getting a list of competitions to judge.
             </p>

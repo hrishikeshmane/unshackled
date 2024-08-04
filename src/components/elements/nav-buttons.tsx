@@ -23,7 +23,7 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
   };
 
   return (
-    <div className="ml-auto flex w-full items-center justify-end gap-4 md:flex-row lg:gap-4">
+    <div className="ml-auto flex w-full items-center gap-4 md:flex-row md:justify-end lg:gap-4">
       {pathname.includes("marketplace")}
       {!pathname.includes("marketplace") && (
         <div className="flex gap-4">
@@ -36,7 +36,7 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
               <Button className="">Admin Dashboard</Button>
             </Link>
           ) : (
-            <div className="flex flex-col gap-4 md:flex md:flex-row">
+            <div className="flex w-full flex-col gap-4 md:flex md:flex-row">
               {/* <Link href="/marketplace">
                 <Button
                   variant={"outline"}
@@ -53,6 +53,7 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
                     ? "#pricing-grid"
                     : "/community"
                 }
+                className="w-full"
               >
                 <Button onClick={mobileSheetToggle}>Become a member</Button>
               </Link>

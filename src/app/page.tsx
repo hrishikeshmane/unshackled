@@ -73,7 +73,7 @@ export default function HomePage() {
                 width={550}
                 height={550}
               />
-              <div className="absolute -left-20 bottom-2 max-w-[15rem] space-y-2 rounded-md bg-card p-4 text-xs">
+              <div className="absolute -left-20 bottom-2 hidden max-w-[15rem] space-y-2 rounded-md bg-card p-4 text-xs md:block">
                 <p className="font-semibold text-primary">
                   Imran Khan, RAN Engineer @ Samsung
                 </p>
@@ -139,7 +139,7 @@ export default function HomePage() {
                 width={300}
                 height={300}
               />
-              <div className="absolute left-0 top-2 max-w-[16rem] space-y-2 rounded-md bg-card p-4 text-xs">
+              <div className="absolute -top-16 left-0 max-w-[16rem] space-y-2 rounded-md bg-card p-4 text-xs md:top-2 ">
                 <p className="font-semibold text-primary">
                   Apurv Gautham, Incoming CMU Student
                 </p>
@@ -150,7 +150,7 @@ export default function HomePage() {
                   this book, Soundarya and Sameer. 😊&quot;
                 </blockquote>
               </div>
-              <div className="absolute bottom-2 right-0 max-w-[16rem] space-y-2 rounded-md bg-card p-4 text-xs">
+              <div className="absolute -bottom-8 right-0 max-w-[16rem] space-y-2 rounded-md bg-card p-4 text-xs md:bottom-2 ">
                 <p className="font-semibold text-primary">
                   Anurupa Sinha, Tech Founder
                 </p>
