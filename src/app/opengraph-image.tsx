@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import Logo from "~/components/elements/logo";
 
 // Route segment config
-// export const runtime = "edge";
+export const runtime = "edge";
 
 // Image metadata
 export const alt = "Unshackled: One-stop-shop for talent visas in America.";
