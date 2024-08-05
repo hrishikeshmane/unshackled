@@ -534,11 +534,14 @@ export default function HomePage() {
                   alt="Akash Mali"
                   width={270}
                   height={270}
-                  className="rounded-lg"
+                  className="h-[163px] w-[163px] rounded-lg object-cover md:h-[250px] md:w-[250px]"
                 />
                 <div className="flex flex-col py-4 text-center">
                   <h3 className="text-lg font-bold text-primary">Akash Mali</h3>
-                  <p className="text-muted-foreground">Engineering & Tech</p>
+                  <p className="text-muted-foreground">
+                    Engineering & Tech,
+                    <br /> Greencard Inc
+                  </p>
                 </div>
               </div>
               <div>

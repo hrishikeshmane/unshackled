@@ -21,7 +21,7 @@ const StoryPage = () => {
             <p className="text-xl font-bold text-muted-foreground">
               Hi there, <br />
               <Link
-                href="https://www.linkedin.com/in/rathanuday/"
+                href="https://www.linkedin.com/in/soundarya-balasubramani/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary underline"
