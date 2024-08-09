@@ -16,7 +16,6 @@ const DotIcon = () => {
 };
 
 const UserAuthButton = () => {
-  return <></>; // Remove this when we need auth button
   return (
     <div className="">
       <SignedIn>
