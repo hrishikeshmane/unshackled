@@ -37,6 +37,7 @@ export type VendorTable = {
 export type StoreTable = {
   id: string;
   name: string;
+  isLive: boolean | null;
   description: string | null;
   createdAt: Date;
   updatedAt: Date | null;

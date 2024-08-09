@@ -22,7 +22,7 @@ const AdminSetupPage = async () => {
         return null
     }
 
-    const store = await api.store.getStores();   
+    const store = await api.store.getStores({live: false});   
     
     return (
         <div>

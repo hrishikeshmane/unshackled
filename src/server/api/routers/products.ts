@@ -338,4 +338,41 @@ export const productsRouter = createTRPCRouter({
 
     return productsWithTypeandTagandStore;
   }),
+  // getApprovedProducts: publicProcedure.query(async ({ ctx }) => {
+  //   const products = await ctx.db.query.product.findMany({
+  //     where: (table) => eq(table.isApproved, "approved"),
+  //   });
+  
+  //   const productsWithTypeandTagandStore = await Promise.all(
+  //     products.map(async (product) => {
+  //       const TypeForProduct = await ctx.db.query.type.findFirst({
+  //         where: (table) => eq(table.id, product.typeId),
+  //       });
+  //       const TagForProduct = await ctx.db.query.tag.findFirst({
+  //         where: (table) => eq(table.id, product.tagId),
+  //       });
+  //       const storeForProduct = await ctx.db.query.store.findFirst({
+  //         where: (table) => eq(table.id, product.storeId),
+  //       });
+  
+  //       // Check if the store is live
+  //       if (storeForProduct && storeForProduct.isLive) {
+  //         return {
+  //           ...product,
+  //           type: TypeForProduct as TypeTable,
+  //           tag: TagForProduct as TagTable,
+  //           store: storeForProduct as StoreTable,
+  //         };
+  //       }
+  //       return null; // Return null for products with non-live stores
+  //     })
+  //   );
+  
+  //   // Filter out null values (products with non-live stores)
+  //   const filteredProducts = productsWithTypeandTagandStore.filter(
+  //     (product): product is NonNullable<typeof product> => product !== null
+  //   );
+  
+  //   return filteredProducts;
+  // }),
 });

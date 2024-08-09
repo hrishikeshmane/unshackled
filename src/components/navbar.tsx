@@ -7,7 +7,7 @@ import NavItems from "./NavItems";
 import UserAuthButton from "./elements/user-auth-button";
 
 const Navbar = async () => {
-  const stores = await api.store.getStores();
+  const stores = await api.store.getStores({live: true});
 
   return (
     <MaxWidthWrapper>

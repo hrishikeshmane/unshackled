@@ -42,7 +42,7 @@ export const AddStoreModal: React.FC<ModalProps> = ({ children }) => {
   const [isPending, startTransition] = useTransition();
   // const [isOpen, setIsOpen] = useState(true);
 
-  const getStores = api.store.getStores.useQuery();
+  const getStores = api.store.getStores.useQuery({live: true});
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
