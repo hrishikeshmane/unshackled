@@ -32,7 +32,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   };
 
 
-  const markProductFulfilledMutation = api.product.deleteProductById.useMutation({
+  const markProductFulfilledMutation = api.order.updateOrderItemIsFulfilled.useMutation({
     onSuccess: () => {
       toast.success("Congratulation on completing your order!");
       router.refresh();
