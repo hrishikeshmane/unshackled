@@ -70,6 +70,12 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
             <Copy className="mr-2 h-4 w-4" />
             Copy Id
           </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => setOpen(true)}
+          >
+            {/* <Trash className="mr-2 h-4 w-4" /> */}
+            Mark Completed
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>
