@@ -119,7 +119,7 @@ export const orderRouter = createTRPCRouter({
             return orderItemsWithDetails;
           }),
 
-    updateOrderItemIsFulfilled: adminProcedure
+    updateOrderItemIsFulfilled: adminOrVendorProcedure
           .input(
             z.object({
               id: z.string(),
