@@ -135,12 +135,12 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
             />
             <div className="flex items-end justify-between gap-1.5 sm:hidden">
               <TagBadge Tag={tag} />
-              <AccessButton storeId={String(params.storeId)} productId={id} />
+              {/* <AccessButton storeId={String(params.storeId)} productId={id} /> */}
             </div>
           </div>
         </div>
         <div className="ml-auto hidden shrink-0 flex-col items-end justify-between sm:flex">
-          <AccessButton storeId={String(params.storeId)} productId={id} />
+          {/* <AccessButton storeId={String(params.storeId)} productId={id} /> */}
           <div className="flex flex-col items-end">
             <TagBadge Tag={tag} />
             <span className="flex items-center gap-1 text-muted-foreground">
