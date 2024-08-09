@@ -137,6 +137,7 @@ export type OrderTable = {
   paymentIntentId: string | null,
   sessionId: string | null,
   receipt: string | null,
+  paymentStatus: string,
   customerId: string;
   createdAt: Date;
   updatedAt: Date | null;

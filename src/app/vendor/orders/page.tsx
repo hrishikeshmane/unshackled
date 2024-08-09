@@ -18,6 +18,7 @@ const OrdersPage = async () => {
         orderId: item.order.id,
         product: item.product.name,
         quantity: item.quantity,
+        paymentStatus: item.order.paymentStatus,
         isFullfilled: item.isFulfilled,
         isPaid: item.order.isPaid,
         vendorPayout: item.vendorPayout,

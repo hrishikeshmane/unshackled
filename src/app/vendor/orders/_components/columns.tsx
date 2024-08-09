@@ -7,6 +7,7 @@ export type OrdersColumn = {
     product: string
     isFullfilled: boolean
     isPaid: boolean
+    paymentStatus: string
     quantity: number
     vendorPayout: boolean
     orderId: string
@@ -33,6 +34,10 @@ export const columns: ColumnDef<OrdersColumn>[] = [
     {
         accessorKey: 'isPaid',
         header: 'Paid',
+    },
+    {
+        accessorKey: 'paymentStatus',
+        header: 'paymentStatus'
     },
     // {
     //     accessorKey: 'vendorPayout',
