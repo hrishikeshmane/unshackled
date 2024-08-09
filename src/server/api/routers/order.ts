@@ -3,6 +3,7 @@ import { z } from "zod";
 import { createTRPCRouter, adminProcedure, adminOrVendorProcedure, publicProcedure } from "~/server/api/trpc";
 import { eq, or } from "drizzle-orm";
 import { type StoreTable, type OrderTable, type ProductTable } from "~/types/globals";
+import { orderItem } from "~/server/db/schema";
 
 export const orderRouter = createTRPCRouter({
     getOrderItemsByStoreIdWithProductandOrder: adminProcedure
@@ -116,6 +117,24 @@ export const orderRouter = createTRPCRouter({
             );
       
             return orderItemsWithDetails;
+          }),
+
+    updateOrderItemIsFulfilled: adminProcedure
+          .input(
+            z.object({
+              id: z.string(),
+            })
+          )
+          .mutation(async ({ ctx, input }) => {
+            const { id } = input;
+      
+            const updatedOrderItem = await ctx.db
+              .update(orderItem)
+              .set({ isFulfilled: true })
+              .where(eq(orderItem.id, id))
+              .returning();
+      
+            return updatedOrderItem[0];
           }),
     
 })

@@ -34,10 +34,10 @@ export const columns: ColumnDef<OrdersColumn>[] = [
         accessorKey: 'isPaid',
         header: 'Paid',
     },
-    {
-        accessorKey: 'vendorPayout',
-        header: 'Vendor Payout',
-    },
+    // {
+    //     accessorKey: 'vendorPayout',
+    //     header: 'Vendor Payout',
+    // },
     {
         accessorKey: 'createdAt',
         header: 'Date',
