@@ -21,20 +21,29 @@ interface CellActionProps {
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
-  
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
+  const [refundOpen, setRefundOpen] = useState(false);
 
   const onCopy = async (id: string) => {
     await navigator.clipboard.writeText(id);
     toast.success("Order Id copied to the clipboard.");
   };
 
-
   const markProductFulfilledMutation = api.order.updateOrderItemIsFulfilled.useMutation({
     onSuccess: () => {
       toast.success("Congratulation on completing your order!");
+      router.refresh();
+    },
+    onError: (err) => {
+      toast.error(`Something went wrong: ${err.message}`);
+    },
+  });
+
+  const refundOrder = api.payment.refundOrder.useMutation({
+    onSuccess: () => {
+      toast.success("Refund Initiated, should reflect soon!");
       router.refresh();
     },
     onError: (err) => {
@@ -49,12 +58,25 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     });
   };
 
+  const onRefund = async () => {
+    startTransition(() => {
+      refundOrder.mutate({ orderId: data.orderId });
+      setRefundOpen(false);
+    });
+  };
+
   return (
     <>
-       <AlertModal
+      <AlertModal
         isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={onOrderComplete}
+        loading={isPending}
+      />
+      <AlertModal
+        isOpen={refundOpen}
+        onClose={() => setRefundOpen(false)}
+        onConfirm={onRefund}
         loading={isPending}
       />
       <DropdownMenu>
@@ -70,11 +92,11 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
             <Copy className="mr-2 h-4 w-4" />
             Copy Id
           </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => setOpen(true)}
-          >
-            {/* <Trash className="mr-2 h-4 w-4" /> */}
+          <DropdownMenuItem onClick={() => setOpen(true)}>
             Mark Completed
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setRefundOpen(true)}>
+            Refund Order
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

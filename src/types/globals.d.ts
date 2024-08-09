@@ -134,6 +134,9 @@ export type OrderTable = {
   id: string;
   orderTotal: string;
   isPaid: boolean;
+  paymentIntentId: string | null,
+  sessionId: string | null,
+  receipt: string | null,
   customerId: string;
   createdAt: Date;
   updatedAt: Date | null;

@@ -9,9 +9,10 @@ import { TRPCError } from "@trpc/server";
 import { stripe } from "~/lib/stripe";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
-import { order, orderItem } from "~/server/db/schema";
+import { order, orderItem, product } from "~/server/db/schema";
 import { env } from "~/env";
 import { calculateCommissionAndVendorAmount } from "~/lib/utils";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
 export const paymentRouter = createTRPCRouter({
   buyProduct: protectedProcedure
@@ -46,6 +47,7 @@ export const paymentRouter = createTRPCRouter({
       const vendor = await ctx.db.query.vendor.findFirst({
         where: (table) => eq(table.userId, String(products[0]?.creatorId)),
       });
+      const user = await currentUser()
 
       if (!vendor) {
         throw new TRPCError({
@@ -103,6 +105,7 @@ export const paymentRouter = createTRPCRouter({
 
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
+        customer_email: user?.emailAddresses[0] as unknown as string,
         line_items: lineItems,
         payment_intent_data: {
           application_fee_amount: Math.round(totalCommissionAmount * 100),
@@ -114,10 +117,46 @@ export const paymentRouter = createTRPCRouter({
         cancel_url: `${env.NEXT_PUBLIC_SERVER_URL}/marketplace/payment/cancel`,
         metadata: {
           orderId: order_create[0]!.id,
+          customerId: ctx.session.userId,
+          productIds: products.map(p => p.id).join(','),
         },
       });
 
       return { sessionUrl: String(session.url) };
+    }),
+
+    refundOrder: protectedProcedure
+    .input(z.object({ orderId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const { orderId } = input;
+
+      const orderRecord = await ctx.db.query.order.findFirst({
+        where: (table) => eq(table.id, orderId),
+      });
+
+      if (!orderRecord) {
+        throw new TRPCError({ code: "NOT_FOUND", message: "Order not found" });
+      }
+
+      const paymentIntentId = orderRecord.paymentIntentId;
+      if (!paymentIntentId) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "No payment intent associated with this order",
+        });
+      }
+
+      const refund = await stripe.refunds.create({
+        payment_intent: paymentIntentId,
+      });
+
+      await ctx.db.update(order)
+        .set({
+          paymentStatus: "Refund Initiated",
+        })
+        .where(eq(order.id, orderId));
+
+      return { refundId: refund.id, status: refund.status };
     }),
 
   createVendorStripeAccountLink: adminOrVendorProcedure

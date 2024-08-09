@@ -7,9 +7,7 @@ import { eq } from "drizzle-orm";
 
 export async function POST(req: Request) {
   const body = await req.text();
-
   const signature = String(headers().get("Stripe-Signature"));
-
   let event;
 
   try {
@@ -18,22 +16,58 @@ export async function POST(req: Request) {
       signature,
       env.STRIPE_CHECKOUT_WEBHOOK_SECRET
     );
-  } catch (error: unknown) {
-    return new Response("webhook error", { status: 400 });
+  } catch (error) {
+    return new Response("Webhook error", { status: 400 });
   }
 
   switch (event.type) {
     case "checkout.session.completed": {
       const session = event.data.object;
-      
       await db.update(order)
-        .set({ isPaid: true })
-        .where(eq( order.id, String(session?.metadata?.orderId) ));
-      
+        .set({
+          isPaid: false,
+          paymentStatus: "Payment Initiated",
+          paymentIntentId: session.payment_intent as string,
+          sessionId: session.id,
+        })
+        .where(eq(order.id, String(session.metadata?.orderId)));
+      break;
+    }
+    case "payment_intent.succeeded": {
+      const paymentIntent = event.data.object;
+
+      await db.update(order)
+        .set({
+          isPaid: true,
+          paymentStatus: "Payment succeeded",
+        })
+        .where(eq(order.id, String(paymentIntent.metadata?.orderId)));
+      break;
+    }
+    case "payment_intent.payment_failed": {
+      const paymentIntent = event.data.object;
+      await db.update(order)
+        .set({
+          isPaid: false,
+          paymentStatus: "Payment failed",
+        })
+        .where(eq(order.id, String(paymentIntent.metadata?.orderId)));
+      break;
+    }
+    case "charge.refunded": {
+      const charge = event.data.object;
+      const paymentIntentId = charge.payment_intent as string;
+
+      await db.update(order)
+        .set({
+          isPaid: false,
+          paymentStatus: "Refund Successful",
+        })
+        .where(eq(order.paymentIntentId, paymentIntentId));
       break;
     }
     default: {
-      console.log("unhandled event");
+      console.log("Unhandled event type:", event.type);
     }
   }
 

@@ -195,7 +195,11 @@ export const product = createTable("product", {
 export const order = createTable("order", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
   isPaid: integer("isPaid", { mode: "boolean" }).notNull(),
+  paymentStatus: text('paymentStatus').default("Not Initiated"),
   orderTotal: text("orderTotal", { length: 256 }).notNull(),
+  paymentIntentId: text('paymentIntentId'),
+  sessionId: text('sessionId'),
+  receipt: text('receipt'),
   createdAt: int("createdAt", { mode: "timestamp" })
     .default(sql`(unixepoch())`)
     .notNull(),
