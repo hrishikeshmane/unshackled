@@ -31,7 +31,7 @@ const MobileNav = ({
 
   return (
     <div className="flex items-center gap-2">
-      <UserAuthButton />
+      {/* <UserAuthButton /> */}
       <Sheet open={sheetOpen} onOpenChange={toggleSheet}>
         <SheetTrigger asChild>
           <Button variant="ghost" size="icon" className="shrink-0 md:hidden">
