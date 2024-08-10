@@ -18,12 +18,10 @@ export const vendorAnalyticsRouter = createTRPCRouter({
         where: (table) => eq(table.isPaid, true),
       });
 
-      const validPaidOrders = paidOrders.filter(order => order.paymentStatus !== "Not Initiated");
-
       const orderItems = await ctx.db.query.orderItem.findMany({});
 
       const paidOrderItems = orderItems.filter((orderItem) => {
-        return validPaidOrders.some((order) => order.id === orderItem.orderId);
+        return paidOrders.some((order) => order.id === orderItem.orderId);
       });
 
       const monthlyRevenue: Record<number, number> = {};
@@ -87,17 +85,16 @@ export const vendorAnalyticsRouter = createTRPCRouter({
         where: (table) => eq(table.isPaid, true),
       });
 
-      const validPaidOrders = paidOrders.filter(order => order.paymentStatus !== "Not Initiated");
-
       const orderItems = await ctx.db.query.orderItem.findMany({});
 
       const paidOrderItems = orderItems.filter((orderItem) => {
-        return validPaidOrders.some((order) => order.id === orderItem.orderId);
+        return paidOrders.some((order) => order.id === orderItem.orderId);
       });
 
       let totalRevenue = 0;
 
       for (const orderItem of paidOrderItems) {
+        
         const order = await ctx.db.query.order.findFirst({
           where: (table) => eq(table.id, orderItem.orderId),
         });
@@ -132,12 +129,10 @@ export const vendorAnalyticsRouter = createTRPCRouter({
         where: (table) => eq(table.isPaid, true),
       });
 
-      const validPaidOrders = paidOrders.filter(order => order.paymentStatus !== "Not Initiated");
-
       const orderItems = await ctx.db.query.orderItem.findMany({});
 
       const paidOrderItems = orderItems.filter((orderItem) => {
-        return validPaidOrders.some((order) => order.id === orderItem.orderId);
+        return paidOrders.some((order) => order.id === orderItem.orderId);
       });
 
       const salesCount = await Promise.all(

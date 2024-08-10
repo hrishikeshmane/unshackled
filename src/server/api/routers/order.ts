@@ -1,7 +1,16 @@
 import { z } from "zod";
-import { createTRPCRouter, adminProcedure, adminOrVendorProcedure, publicProcedure } from "~/server/api/trpc";
+import {
+  createTRPCRouter,
+  adminProcedure,
+  adminOrVendorProcedure,
+  publicProcedure,
+} from "~/server/api/trpc";
 import { eq, or } from "drizzle-orm";
-import { type StoreTable, type OrderTable, type ProductTable } from "~/types/globals";
+import {
+  type StoreTable,
+  type OrderTable,
+  type ProductTable,
+} from "~/types/globals";
 import { orderItem } from "~/server/db/schema";
 
 export const orderRouter = createTRPCRouter({
@@ -22,21 +31,15 @@ export const orderRouter = createTRPCRouter({
             where: (table) => eq(table.id, orderItem.orderId),
           });
 
-          // Filter out orders that are not paid or have "Not Initiated" status
-          if (!OrderDetails || !OrderDetails.isPaid || OrderDetails.paymentStatus === "Not Initiated") {
-            return null;
-          }
-
           return {
             ...orderItem,
             product: ProductForOrderItem as ProductTable,
             order: OrderDetails as OrderTable,
           };
-        })
+        }),
       );
 
-      // Filter out null values
-      return orderItemsWithProductandCustomer.filter(item => item !== null);
+      return orderItemsWithProductandCustomer;
     }),
 
   getOrderItemsWithProductAndOrderByCreatorId: adminOrVendorProcedure
@@ -63,11 +66,6 @@ export const orderRouter = createTRPCRouter({
             where: (table) => eq(table.id, orderItem.orderId),
           });
 
-          // Filter out orders that are not paid or have "Not Initiated" status
-          if (!order || !order.isPaid || order.paymentStatus === "Not Initiated") {
-            return null;
-          }
-
           const store = await ctx.db.query.store.findFirst({
             where: (table) => eq(table.id, String(product?.storeId)),
           });
@@ -78,11 +76,11 @@ export const orderRouter = createTRPCRouter({
             order: order as OrderTable,
             store: store as StoreTable,
           };
-        })
+        }),
       );
 
       // Filter out null values
-      return orderItemsWithDetails.filter(item => item !== null);
+      return orderItemsWithDetails;
     }),
 
   getOrderItemsWithDetailsForUser: publicProcedure
@@ -112,13 +110,8 @@ export const orderRouter = createTRPCRouter({
             where: (table) => eq(table.id, orderItem.orderId),
           });
 
-          if (!order || !order.isPaid || order.paymentStatus === "Not Initiated") {
-            return null;
-          }
-
           const store = await ctx.db.query.store.findFirst({
-            where: (table) =>
-              eq(table.id, String(product?.storeId)),
+            where: (table) => eq(table.id, String(product?.storeId)),
           });
 
           return {
@@ -127,17 +120,17 @@ export const orderRouter = createTRPCRouter({
             order: order as OrderTable,
             store: store as StoreTable,
           };
-        })
+        }),
       );
 
-      return orderItemsWithDetails.filter(item => item !== null);
+      return orderItemsWithDetails;
     }),
 
   updateOrderItemIsFulfilled: adminOrVendorProcedure
     .input(
       z.object({
         id: z.string(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const { id } = input;
