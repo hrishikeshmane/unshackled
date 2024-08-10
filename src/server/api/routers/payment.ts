@@ -130,6 +130,11 @@ export const paymentRouter = createTRPCRouter({
           transfer_data: {
             destination: String(vendor.stripeConnectedId),
           },
+          metadata: {
+            orderId: order_create[0]!.id,
+            customerId: ctx.session.userId,
+            productIds: products.map((p) => p.id).join(","),
+          },
         },
         success_url: `${env.NEXT_PUBLIC_SERVER_URL}/marketplace/payment/success`,
         cancel_url: `${env.NEXT_PUBLIC_SERVER_URL}/marketplace/payment/cancel`,
