@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      env.STRIPE_CHECKOUT_WEBHOOK_SECRET
+      env.STRIPE_CHECKOUT_WEBHOOK_SECRET,
     );
   } catch (error) {
     return new Response("Webhook error", { status: 400 });
@@ -23,9 +23,10 @@ export async function POST(req: Request) {
   switch (event.type) {
     case "checkout.session.completed": {
       const session = event.data.object;
-      await db.update(order)
+      await db
+        .update(order)
         .set({
-          isPaid: false,
+          isPaid: true,
           paymentStatus: "Payment Initiated",
           paymentIntentId: session.payment_intent as string,
           sessionId: session.id,
@@ -35,7 +36,8 @@ export async function POST(req: Request) {
     }
     case "payment_intent.succeeded": {
       const paymentIntent = event.data.object;
-      await db.update(order)
+      await db
+        .update(order)
         .set({
           isPaid: true,
           paymentStatus: "Payment Succeeded",
@@ -45,7 +47,8 @@ export async function POST(req: Request) {
     }
     case "payment_intent.payment_failed": {
       const paymentIntent = event.data.object;
-      await db.update(order)
+      await db
+        .update(order)
         .set({
           isPaid: false,
           paymentStatus: "Payment Failed",
@@ -55,7 +58,8 @@ export async function POST(req: Request) {
     }
     case "payment_intent.canceled": {
       const paymentIntent = event.data.object;
-      await db.update(order)
+      await db
+        .update(order)
         .set({
           isPaid: false,
           paymentStatus: "Payment Reverted",
@@ -66,7 +70,8 @@ export async function POST(req: Request) {
     case "charge.refunded": {
       const charge = event.data.object;
       const paymentIntentId = charge.payment_intent as string;
-      await db.update(order)
+      await db
+        .update(order)
         .set({
           isPaid: false,
           paymentStatus: "Refund Successful",
@@ -76,6 +81,7 @@ export async function POST(req: Request) {
     }
     default: {
       console.log("Unhandled event type:", event.type);
+      return new Response(null, { status: 400 });
     }
   }
 
