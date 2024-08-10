@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       await db.update(order)
         .set({
           isPaid: true,
-          paymentStatus: "Payment succeeded",
+          paymentStatus: "Payment Succeeded",
         })
         .where(eq(order.id, String(paymentIntent.metadata?.orderId)));
       break;
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
       await db.update(order)
         .set({
           isPaid: false,
-          paymentStatus: "Payment failed",
+          paymentStatus: "Payment Failed",
         })
         .where(eq(order.id, String(paymentIntent.metadata?.orderId)));
       break;
