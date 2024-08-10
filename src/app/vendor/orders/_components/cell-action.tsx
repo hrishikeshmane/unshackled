@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Copy, MoreHorizontal } from "lucide-react";
 import { toast } from "sonner";
 import { AlertModal } from "~/app/admin/_components/modals/alert-modal";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { api } from "~/trpc/react";
 import { useState, useTransition } from "react";
 
@@ -25,6 +25,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
   const [refundOpen, setRefundOpen] = useState(false);
+  const [denyOpen, setDenyOpen] = useState(false);
 
   const onCopy = async (id: string) => {
     await navigator.clipboard.writeText(id);
@@ -34,7 +35,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const markProductFulfilledMutation = api.order.updateOrderItemIsFulfilled.useMutation({
     onSuccess: () => {
       toast.success("Congratulation on completing your order!");
-      router.refresh();
+      router.refresh(); 
     },
     onError: (err) => {
       toast.error(`Something went wrong: ${err.message}`);
@@ -44,7 +45,17 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const refundOrder = api.payment.refundOrder.useMutation({
     onSuccess: () => {
       toast.success("Refund Initiated, should reflect soon!");
-      router.refresh();
+      router.refresh(); 
+    },
+    onError: (err) => {
+      toast.error(`Something went wrong: ${err.message}`);
+    },
+  });
+
+  const rejectOrder = api.payment.rejectOrder.useMutation({
+    onSuccess: () => {
+      toast.success("Order has been rejected and refunded!");
+      router.refresh(); 
     },
     onError: (err) => {
       toast.error(`Something went wrong: ${err.message}`);
@@ -65,6 +76,22 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     });
   };
 
+  const onRejectOrder = async () => {
+    startTransition(() => {
+      rejectOrder.mutate({ orderId: data.orderId });
+      setDenyOpen(false);
+    });
+  };
+
+  const hideRefund = [
+    "Refund Initiated",
+    "Refund Successful",
+    "Payment Reverted",
+    "Reverting Payment",
+  ].includes(data.paymentStatus) || data.approval === "denied";
+
+  const hideDeny = hideRefund || data.approval === "denied";
+
   return (
     <>
       <AlertModal
@@ -77,6 +104,12 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
         isOpen={refundOpen}
         onClose={() => setRefundOpen(false)}
         onConfirm={onRefund}
+        loading={isPending}
+      />
+      <AlertModal
+        isOpen={denyOpen}
+        onClose={() => setDenyOpen(false)}
+        onConfirm={onRejectOrder}
         loading={isPending}
       />
       <DropdownMenu>
@@ -95,9 +128,16 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
           <DropdownMenuItem onClick={() => setOpen(true)}>
             Mark Completed
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setRefundOpen(true)}>
-            Refund Order
-          </DropdownMenuItem>
+          {!hideRefund && (
+            <DropdownMenuItem onClick={() => setRefundOpen(true)}>
+              Refund Order
+            </DropdownMenuItem>
+          )}
+          {!hideDeny && (
+            <DropdownMenuItem onClick={() => setDenyOpen(true)}>
+              Deny Order
+            </DropdownMenuItem>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
     </>

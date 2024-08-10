@@ -149,6 +149,7 @@ export type OrderItemTable = {
   vendorPayout: boolean;
   orderId: string;
   productId: string;
+  approval: "requested" | "approved" | "denied"
   quantity: string;
   storeId: string;
   createdAt: Date;

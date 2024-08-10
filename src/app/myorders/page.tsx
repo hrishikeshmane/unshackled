@@ -18,6 +18,8 @@ const OrdersPage = async () => {
         id: item.id,
         orderId: item.order.id,
         product: item.product.name,
+        paymentStatus: item.order.paymentStatus,
+        approval: item.approval as string,
         isFullfilled: item.isFulfilled,
         isPaid: item.order.isPaid,
         createdAt: format(item.order.createdAt, "MMMM do, yyyy"),

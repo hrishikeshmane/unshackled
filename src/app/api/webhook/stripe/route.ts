@@ -35,7 +35,6 @@ export async function POST(req: Request) {
     }
     case "payment_intent.succeeded": {
       const paymentIntent = event.data.object;
-
       await db.update(order)
         .set({
           isPaid: true,
@@ -54,10 +53,19 @@ export async function POST(req: Request) {
         .where(eq(order.id, String(paymentIntent.metadata?.orderId)));
       break;
     }
+    case "payment_intent.canceled": {
+      const paymentIntent = event.data.object;
+      await db.update(order)
+        .set({
+          isPaid: false,
+          paymentStatus: "Payment Reverted",
+        })
+        .where(eq(order.id, String(paymentIntent.metadata?.orderId)));
+      break;
+    }
     case "charge.refunded": {
       const charge = event.data.object;
       const paymentIntentId = charge.payment_intent as string;
-
       await db.update(order)
         .set({
           isPaid: false,

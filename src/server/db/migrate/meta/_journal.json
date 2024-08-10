@@ -50,6 +50,20 @@
       "when": 1723171477903,
       "tag": "0006_simple_freak",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1723199736441,
+      "tag": "0007_greedy_sentry",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1723250245250,
+      "tag": "0008_dizzy_young_avengers",
+      "breakpoints": true
     }
   ]
 }

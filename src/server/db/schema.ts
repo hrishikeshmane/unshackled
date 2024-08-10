@@ -218,6 +218,9 @@ export const orderItem = createTable("orderItem", {
   //   enum: ["notInitiated", "inProgress", "completed"],
   // }).default("notInitiated"),
   vendorPayout: integer("vendorPayout", { mode: "boolean" }).notNull(),
+  approval: text("approval", {
+  enum: ["requested", "approved", "denied"], 
+  }).default("approved"),
   orderId: text("orderId", { length: 256 })
     .notNull()
     .references(() => order.id),
