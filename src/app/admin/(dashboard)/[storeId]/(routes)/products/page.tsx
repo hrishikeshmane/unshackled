@@ -18,7 +18,7 @@ const ProductsPage = async ({ params }: { params: { storeId: string } }) => {
         if (user) {
           creatorName =
             `${user.firstName} ${user.lastName}`.trim() ??
-            user.emailAddresses[0] ??
+            user.emailAddresses[0]?.emailAddress ??
             item.creatorId;
         }
       } catch (error) {

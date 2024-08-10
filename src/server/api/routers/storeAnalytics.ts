@@ -14,16 +14,19 @@ export const storeAnalyticsRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       const { storeId } = input;
 
+      
       const paidOrders = await ctx.db.query.order.findMany({
         where: (table) => eq(table.isPaid, true),
       });
+
+      const validPaidOrders = paidOrders.filter(order => order.paymentStatus !== "Not Initiated");
 
       const orderItems = await ctx.db.query.orderItem.findMany({
         where: (table) => eq(table.storeId, storeId),
       });
 
       const paidOrderItems = orderItems.filter((orderItem) => {
-        return paidOrders.some((order) => order.id === orderItem.orderId);
+        return validPaidOrders.some((order) => order.id === orderItem.orderId);
       });
 
       const monthlyRevenue: Record<number, number> = {};
@@ -83,12 +86,14 @@ export const storeAnalyticsRouter = createTRPCRouter({
         where: (table) => eq(table.isPaid, true),
       });
 
+      const validPaidOrders = paidOrders.filter(order => order.paymentStatus !== "Not Initiated");
+
       const orderItems = await ctx.db.query.orderItem.findMany({
         where: (table) => eq(table.storeId, storeId),
       });
 
       const paidOrderItems = orderItems.filter((orderItem) => {
-        return paidOrders.some((order) => order.id === orderItem.orderId);
+        return validPaidOrders.some((order) => order.id === orderItem.orderId);
       });
 
       let totalRevenue = 0;
@@ -123,12 +128,14 @@ export const storeAnalyticsRouter = createTRPCRouter({
         where: (table) => eq(table.isPaid, true),
       });
 
+      const validPaidOrders = paidOrders.filter(order => order.paymentStatus !== "Not Initiated");
+
       const orderItems = await ctx.db.query.orderItem.findMany({
         where: (table) => eq(table.storeId, storeId),
       });
 
       const paidOrderItems = orderItems.filter((orderItem) => {
-        return paidOrders.some((order) => order.id === orderItem.orderId);
+        return validPaidOrders.some((order) => order.id === orderItem.orderId);
       });
 
       return paidOrderItems.reduce((total, item) => total + item.quantity, 0);
