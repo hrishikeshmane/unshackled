@@ -5,6 +5,15 @@ import { db } from "~/server/db";
 import { order } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 
+// Not Initiated
+// Payment Initiated
+// Payment Succeeded
+// Payment Failed
+// Reverting Payment
+// Payment Reverted
+// Refund Initiated
+// Refund Successful
+
 export async function POST(req: Request) {
   const body = await req.text();
   const signature = String(headers().get("Stripe-Signature"));
