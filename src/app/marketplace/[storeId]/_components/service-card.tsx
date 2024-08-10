@@ -12,6 +12,7 @@ import { LockClosedIcon } from "@radix-ui/react-icons";
 import { type ModifiedProduct } from "./columns";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { formatPrice } from "~/lib/utils";
 
 const AccessButton = ({
   storeId,
@@ -134,11 +135,17 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
             />
             <div className="flex items-end justify-between gap-1.5 sm:hidden">
               <TagBadge Tag={tag} />
+              <span className="flex items-center gap-1.5">
+                {price ? `${formatPrice(price)}` : "Contact for Price"}
+              </span>
               {/* <AccessButton storeId={String(params.storeId)} productId={id} /> */}
             </div>
           </div>
         </div>
         <div className="ml-auto hidden shrink-0 flex-col items-end justify-between sm:flex">
+          <span className="flex items-center gap-1.5">
+            {price ? `${formatPrice(price)}` : "Contact for Price"}
+          </span>
           {/* <AccessButton storeId={String(params.storeId)} productId={id} /> */}
           <div className="flex flex-col items-end">
             <TagBadge Tag={tag} />

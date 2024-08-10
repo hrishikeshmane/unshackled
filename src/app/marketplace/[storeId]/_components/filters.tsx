@@ -133,18 +133,16 @@ export function MarketplaceFilters<TData>({ table }: Props<TData>) {
             options={tagOptions}
           />
         </div>
-        {/* <div>
+        <div>
           <>
-            {table.getColumn("domainRank") && (
+            {table.getColumn("price") && (
               <RangeFilter
-                column={
-                  table.getColumn("domainRank") as Column<TData, number>
-                }
-                title="Domain Ranking"
+                column={table.getColumn("domainRank") as Column<TData, number>}
+                title="Price"
               />
             )}
           </>
-        </div> */}
+        </div>
         <div>
           <SwitchFilter
             column={table.getColumn("isFeatured")}
