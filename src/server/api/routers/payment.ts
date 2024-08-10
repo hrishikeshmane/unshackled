@@ -275,6 +275,8 @@ export const paymentRouter = createTRPCRouter({
       if (paymentIntent.status === "succeeded") {
         const refund = await stripe.refunds.create({
           payment_intent: paymentIntentId,
+          refund_application_fee: true, // Refund the application fee
+          reverse_transfer: true,      // Reverse the transfer to the vendor
         });
 
         await ctx.db
@@ -326,6 +328,8 @@ export const paymentRouter = createTRPCRouter({
       if (paymentIntent.status === "succeeded") {
         const refund = await stripe.refunds.create({
           payment_intent: paymentIntentId,
+          refund_application_fee: true, // Refund the application fee
+          reverse_transfer: true,      // Reverse the transfer to the vendor
         });
 
         await ctx.db
