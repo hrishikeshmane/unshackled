@@ -1,0 +1,1 @@
+ALTER TABLE `unshackled_orderItem` ADD `approval` text DEFAULT 'approved';

@@ -4,7 +4,7 @@ import StoreSwitcher from "./store-switcher";
 import { api } from "~/trpc/server";
 
 const Navbar = async () => {
-  const stores = await api.store.getStores();
+  const stores = await api.store.getStores({ live: false });
 
   // const transformedStores: StoreTable[] = stores.data.map((store) => ({
   //     id: store.id,

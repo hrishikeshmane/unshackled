@@ -20,11 +20,14 @@ type Options = {
 };
 
 export function MarketplaceFilters<TData>({ table }: Props<TData>) {
-
   const { storeId } = useParams();
 
-  const getTypes = api.types.getTypesByStoreId.useQuery({storeId: String(storeId)});
-  const getTags = api.tag.getTagsByStoreId.useQuery({storeId: String(storeId)});
+  const getTypes = api.types.getTypesByStoreId.useQuery({
+    storeId: String(storeId),
+  });
+  const getTags = api.tag.getTagsByStoreId.useQuery({
+    storeId: String(storeId),
+  });
 
   const typeOptions = getTypes.data?.map((type) => ({
     label: type.name,
@@ -36,9 +39,14 @@ export function MarketplaceFilters<TData>({ table }: Props<TData>) {
     value: tag.name,
   })) as Options[];
 
-  if (getTypes.isLoading || getTags.isLoading || getTypes.isPending || getTags.isPending) return 
-  <div>Loading...</div>
-  ;
+  if (
+    getTypes.isLoading ||
+    getTags.isLoading ||
+    getTypes.isPending ||
+    getTags.isPending
+  )
+    return;
+  <div>Loading...</div>;
 
   const isFiltered = table.getState().columnFilters.length > 0;
   return (
@@ -71,7 +79,9 @@ export function MarketplaceFilters<TData>({ table }: Props<TData>) {
             type="search"
             placeholder="Search products by tagline ..."
             className="bg-white pl-8"
-            value={(table.getColumn("tagline")?.getFilterValue() as string) ?? ""}
+            value={
+              (table.getColumn("tagline")?.getFilterValue() as string) ?? ""
+            }
             onChange={(event) =>
               table.getColumn("tagline")?.setFilterValue(event.target.value)
             }
@@ -79,23 +89,34 @@ export function MarketplaceFilters<TData>({ table }: Props<TData>) {
         </div>
         <div className="">
           <div className="flex justify-between">
-            {table
-              .getHeaderGroups()
-              .map((headerGroup) =>
-                headerGroup.headers.map(
-                  (header) =>
-                    (header.id === "price" || header.id === "domainRank") && (
-                      <div key={header.id}>
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext(),
-                            )}
-                      </div>
-                    ),
-                ),
-              )}
+            {table.getHeaderGroups().map((headerGroup) =>
+              // Removed domainRank from the filter
+              // headerGroup.headers.map(
+              //   (header) =>
+              //     (header.id === "price" || header.id === "domainRank") && (
+              //       <div key={header.id}>
+              //         {header.isPlaceholder
+              //           ? null
+              //           : flexRender(
+              //               header.column.columnDef.header,
+              //               header.getContext(),
+              //             )}
+              //       </div>
+              //     ),
+              headerGroup.headers.map(
+                (header) =>
+                  header.id === "price" && (
+                    <div key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                    </div>
+                  ),
+              ),
+            )}
           </div>
         </div>
         <div>
@@ -114,18 +135,19 @@ export function MarketplaceFilters<TData>({ table }: Props<TData>) {
         </div>
         <div>
           <>
-            {table.getColumn("domainRank") && (
+            {table.getColumn("price") && (
               <RangeFilter
-                column={
-                  table.getColumn("domainRank") as Column<TData, number>
-                }
-                title="Domain Ranking"
+                column={table.getColumn("domainRank") as Column<TData, number>}
+                title="Price"
               />
             )}
           </>
         </div>
         <div>
-          <SwitchFilter column={table.getColumn("isFeatured")} title="Featured" />
+          <SwitchFilter
+            column={table.getColumn("isFeatured")}
+            title="Featured"
+          />
         </div>
       </nav>
     </div>

@@ -37,6 +37,7 @@ export type VendorTable = {
 export type StoreTable = {
   id: string;
   name: string;
+  isLive: boolean | null;
   description: string | null;
   createdAt: Date;
   updatedAt: Date | null;
@@ -133,6 +134,10 @@ export type OrderTable = {
   id: string;
   orderTotal: string;
   isPaid: boolean;
+  paymentIntentId: string | null,
+  sessionId: string | null,
+  receipt: string | null,
+  paymentStatus: string,
   customerId: string;
   createdAt: Date;
   updatedAt: Date | null;
@@ -144,6 +149,7 @@ export type OrderItemTable = {
   vendorPayout: boolean;
   orderId: string;
   productId: string;
+  approval: "requested" | "approved" | "denied"
   quantity: string;
   storeId: string;
   createdAt: Date;

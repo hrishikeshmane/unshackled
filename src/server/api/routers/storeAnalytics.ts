@@ -41,8 +41,8 @@ export const storeAnalyticsRouter = createTRPCRouter({
 
           if (product) {
             const [commissionAmount] = calculateCommissionAndVendorAmount(
-              Number(product.price),
-              orderItem.quantity,
+              Number(order.orderTotal),
+              1,
               Number(product.commission),
               product.commissionType
             );
@@ -94,13 +94,16 @@ export const storeAnalyticsRouter = createTRPCRouter({
       let totalRevenue = 0;
 
       for (const orderItem of paidOrderItems) {
+        const order = await ctx.db.query.order.findFirst({
+          where: (table) => eq(table.id, orderItem.orderId),
+        });
         const product = await ctx.db.query.product.findFirst({
           where: (table) => eq(table.id, orderItem.productId),
         });
         if (product) {
           const [commissionAmount] = calculateCommissionAndVendorAmount(
-            Number(product.price),
-            orderItem.quantity,
+            Number(order?.orderTotal),
+            1,
             Number(product.commission),
             product.commissionType
           );

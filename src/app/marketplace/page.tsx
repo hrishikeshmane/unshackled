@@ -11,7 +11,7 @@ import { billboard } from "~/server/db/schema";
 import BecomeASeller from "./_components/become-a-seller";
 
 export default async function MarketplacePage() {
-  const storesRaw = await api.store.getStores();
+  const storesRaw = await api.store.getStores({live: true});
   const billboards = await api.billboard.getBillboards();
 
   const stores = await Promise.all(

@@ -10,6 +10,7 @@ import Logo from "./logo";
 import { type Routes } from "./header";
 import NavButtons from "./nav-buttons";
 import { Separator } from "../ui/separator";
+import UserAuthButton from "./user-auth-button";
 
 export type NavComponent = { title: string; href: string; description: string };
 
@@ -29,7 +30,8 @@ const MobileNav = ({
   const isAdminRoute = pathname.startsWith("/admin");
 
   return (
-    <div>
+    <div className="flex items-center gap-2">
+      {/* <UserAuthButton /> */}
       <Sheet open={sheetOpen} onOpenChange={toggleSheet}>
         <SheetTrigger asChild>
           <Button variant="ghost" size="icon" className="shrink-0 md:hidden">

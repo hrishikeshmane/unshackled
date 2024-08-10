@@ -1,0 +1,1 @@
+ALTER TABLE `unshackled_store` ADD `isLive` integer DEFAULT false NOT NULL;

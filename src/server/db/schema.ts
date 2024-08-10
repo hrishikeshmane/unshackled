@@ -9,6 +9,7 @@ import {
   integer,
 } from "drizzle-orm/sqlite-core";
 import { createId } from "@paralleldrive/cuid2";
+import { boolean } from "drizzle-orm/mysql-core";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -80,6 +81,7 @@ export const store = createTable("store", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
   name: text("name", { length: 256 }).notNull(),
   description: text("description").default(""),
+  isLive: integer("isLive", { mode: "boolean" }).default(false),
   createdAt: int("createdAt", { mode: "timestamp" })
     .default(sql`(unixepoch())`)
     .notNull(),
@@ -193,7 +195,11 @@ export const product = createTable("product", {
 export const order = createTable("order", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
   isPaid: integer("isPaid", { mode: "boolean" }).notNull(),
+  paymentStatus: text('paymentStatus').default("Not Initiated"),
   orderTotal: text("orderTotal", { length: 256 }).notNull(),
+  paymentIntentId: text('paymentIntentId'),
+  sessionId: text('sessionId'),
+  receipt: text('receipt'),
   createdAt: int("createdAt", { mode: "timestamp" })
     .default(sql`(unixepoch())`)
     .notNull(),
@@ -208,7 +214,13 @@ export const order = createTable("order", {
 export const orderItem = createTable("orderItem", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
   isFulfilled: integer("isFulfilled", { mode: "boolean" }).notNull(),
+  // isFulfilled: text("isFulfilled", {
+  //   enum: ["notInitiated", "inProgress", "completed"],
+  // }).default("notInitiated"),
   vendorPayout: integer("vendorPayout", { mode: "boolean" }).notNull(),
+  approval: text("approval", {
+  enum: ["requested", "approved", "denied"], 
+  }).default("approved"),
   orderId: text("orderId", { length: 256 })
     .notNull()
     .references(() => order.id),

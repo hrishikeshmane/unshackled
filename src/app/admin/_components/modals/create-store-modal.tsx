@@ -33,6 +33,7 @@ interface ModalProps {
 const formSchema = z.object({
   name: z.string().min(1),
   description: z.string(),
+  isLive: z.boolean(),
 });
 
 export const CreateStoreModal: React.FC<ModalProps> = ({ children }) => {
@@ -55,6 +56,7 @@ export const CreateStoreModal: React.FC<ModalProps> = ({ children }) => {
     defaultValues: {
       name: "",
       description: "",
+      isLive: false,
     },
   });
 

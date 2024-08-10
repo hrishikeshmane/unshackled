@@ -7,7 +7,7 @@ import NavItems from "./NavItems";
 import UserAuthButton from "./elements/user-auth-button";
 
 const Navbar = async () => {
-  const stores = await api.store.getStores();
+  const stores = await api.store.getStores({ live: true });
 
   return (
     <MaxWidthWrapper>
@@ -33,7 +33,7 @@ const Navbar = async () => {
                   {/* <div className="ml-4 flow-root lg:ml-6">
                     <Cart />
                   </div> */}
-                  <UserAuthButton />
+                  {/* <UserAuthButton /> */}
                 </div>
               </div>
             </div>
