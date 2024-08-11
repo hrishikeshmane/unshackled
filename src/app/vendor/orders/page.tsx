@@ -1,19 +1,21 @@
-import { format } from 'date-fns'
+import { format } from 'date-fns';
 import { OrderClient } from './_components/client';
 import { api } from '~/trpc/server';
 import { type OrdersColumn } from './_components/columns';
 import { auth } from '@clerk/nextjs/server';
 
 const OrdersPage = async () => {
-    const { userId } = auth()
+    const { userId } = auth();
     
     if (!userId) {
-        return null
+        return null;
     }
 
     const orders = await api.order.getOrderItemsWithProductAndOrderByCreatorId({ creatorId: userId });
 
-    const formattedOrders: OrdersColumn[] = orders.map(item => ({
+    const filteredOrders = orders.filter(item => item.order.paymentStatus !== "Not Initiated");
+
+    const formattedOrders: OrdersColumn[] = filteredOrders.map(item => ({
         id: item.id,
         orderId: item.order.id,
         product: item.product.name,
@@ -32,7 +34,7 @@ const OrdersPage = async () => {
                 <OrderClient data={formattedOrders} />
             </div>
         </div>
-    )
+    );
 }
 
 export default OrdersPage;
