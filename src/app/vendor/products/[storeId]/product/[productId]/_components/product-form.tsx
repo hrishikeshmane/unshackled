@@ -36,7 +36,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useAuth } from "@clerk/nextjs";
+import { RocketIcon } from "@radix-ui/react-icons";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -161,6 +163,21 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   return (
     <>
+      {/* <div className="sticky top-16 flex h-12 w-screen items-center justify-center bg-primary text-primary-foreground">
+        Your listings are subject to approval. New/Edited Listings will not be
+        visible until approved.
+      </div> */}
+      <Alert variant={"primary"}>
+        <RocketIcon className="h-4 w-4" />
+        <AlertTitle>Heads up!</AlertTitle>
+        <AlertDescription>
+          <>
+            New/Edited listings will not be visible until approved. Listings are
+            subject to a commission around 20% of the listing price. Final
+            commission will be decided when approved.
+          </>
+        </AlertDescription>
+      </Alert>
       <AlertModal
         isOpen={open}
         onClose={() => setOpen(false)}
