@@ -20,8 +20,16 @@ export default function SuccessRoute() {
               instructions.
             </p>
 
-            <Button className="mt-5 w-full sm:mt-6" asChild>
-              <Link href="/marketplace">Back to Homepage</Link>
+            <Button
+              className="broder-primary b-1 mt-5 w-full sm:mt-6"
+              asChild
+              variant={"outline"}
+            >
+              <Link href="/myorders">My Orders</Link>
+            </Button>
+
+            <Button className="mt-5 w-full sm:mt-4" asChild>
+              <Link href="/marketplace">Back to Marketplace</Link>
             </Button>
           </div>
         </div>
