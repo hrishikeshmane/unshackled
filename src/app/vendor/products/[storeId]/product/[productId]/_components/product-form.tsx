@@ -44,11 +44,14 @@ const formSchema = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
   tagline: z.string().min(1),
-  price: z.string().min(1),
-  estTurnAroundTime: z.string().min(1),
+  // price: z.string().min(1),
+  // estTurnAroundTime: z.string().min(1),
+  price: z.number().min(0.01),
+  estTurnAroundTime: z.number().min(1),
   stripeId: z.string(),
   imageUrl: z.string().min(1),
-  domainRank: z.string().min(1),
+  // domainRank: z.string().min(1),
+  domainRank: z.number().int().min(1),
   tagId: z.string().min(1),
   typeId: z.string().min(1),
   // images: z.object({ url: z.string() }).array(),
@@ -104,20 +107,41 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   const [open, setOpen] = useState(false);
 
+  const modifiedInitialData = initialData
+    ? {
+        ...initialData,
+        price: Number(initialData.price) || 0,
+        estTurnAroundTime: Number(initialData.estTurnAroundTime) || 0,
+        domainRank: Number(initialData.domainRank) || 0,
+      }
+    : {
+        name: "",
+        description: "",
+        tagline: "",
+        price: 0,
+        estTurnAroundTime: 0,
+        stripeId: "",
+        imageUrl: "",
+        domainRank: 0,
+        tagId: "",
+        typeId: "",
+      };
+
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData ?? {
-      name: "",
-      description: "",
-      tagline: "",
-      price: "",
-      estTurnAroundTime: "",
-      stripeId: "",
-      imageUrl: "",
-      domainRank: "",
-      tagId: "",
-      typeId: "",
-    },
+    defaultValues : modifiedInitialData,
+    // defaultValues: initialData ?? {
+    //   name: "",
+    //   description: "",
+    //   tagline: "",
+    //   price: "",
+    //   estTurnAroundTime: "",
+    //   stripeId: "",
+    //   imageUrl: "",
+    //   domainRank: "",
+    //   tagId: "",
+    //   typeId: "",
+    // },
   });
 
   const onSubmit = (data: ProductFormValues) => {
@@ -130,13 +154,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         name: data.name,
         tagline: data.tagline,
         description: data.description,
-        price: data.price,
+        price: String(data.price),
         commission: "20",
         commissionType: "percentage",
         stripeId: "xxx",
         imageUrl: data.imageUrl,
-        estTurnAroundTime: data.estTurnAroundTime,
-        domainRank: data.domainRank,
+        estTurnAroundTime: String(data.estTurnAroundTime),
+        domainRank: String(data.domainRank),
         isFeatured: false,
         isArchived: false,
         isApproved: "pending",
@@ -282,6 +306,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Est. TurnAround Time</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="EstTurnAround Time (days)"
                       {...field}
@@ -299,6 +324,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Domain Rank</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="Domain Ranking"
                       {...field}
@@ -316,6 +342,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Price</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="Product Price"
                       {...field}
