@@ -6,6 +6,8 @@ import { type ProductWithRelations } from "~/types/globals";
 import { formatPrice } from "~/lib/utils";
 import { clerkClient } from "@clerk/nextjs/server";
 
+export const dynamic = "force-dynamic";
+
 const ProductsPage = async ({ params }: { params: { storeId: string } }) => {
   const products: ProductWithRelations[] =
     await api.product.getProductsByStoreId({ storeId: params.storeId });

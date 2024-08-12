@@ -46,12 +46,12 @@ const formSchema = z.object({
   tagline: z.string().min(1),
   // price: z.string().min(1),
   // estTurnAroundTime: z.string().min(1),
-  price: z.number().min(0.01),
-  estTurnAroundTime: z.number().min(1),
+  price: z.coerce.number().min(0.01),
+  estTurnAroundTime: z.coerce.number().min(1),
   stripeId: z.string(),
   imageUrl: z.string().min(1),
   // domainRank: z.string().min(1),
-  domainRank: z.number().int().min(1),
+  // domainRank: z.coerce.number().int().min(1),
   tagId: z.string().min(1),
   typeId: z.string().min(1),
   // images: z.object({ url: z.string() }).array(),
@@ -112,7 +112,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         ...initialData,
         price: Number(initialData.price) || 0,
         estTurnAroundTime: Number(initialData.estTurnAroundTime) || 0,
-        domainRank: Number(initialData.domainRank) || 0,
+        // domainRank: Number(initialData.domainRank) || 0,
       }
     : {
         name: "",
@@ -122,14 +122,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         estTurnAroundTime: 0,
         stripeId: "",
         imageUrl: "",
-        domainRank: 0,
+        // domainRank: 0,
         tagId: "",
         typeId: "",
       };
 
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues : modifiedInitialData,
+    defaultValues: modifiedInitialData,
     // defaultValues: initialData ?? {
     //   name: "",
     //   description: "",
@@ -160,7 +160,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         stripeId: "xxx",
         imageUrl: data.imageUrl,
         estTurnAroundTime: String(data.estTurnAroundTime),
-        domainRank: String(data.domainRank),
+        // domainRank: String(data.domainRank),
+        domainRank: "0",
         isFeatured: false,
         isArchived: false,
         isApproved: "pending",
@@ -316,7 +317,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 </FormItem>
               )}
             />
-            <FormField
+            {/* <FormField
               control={form.control}
               name="domainRank"
               render={({ field }) => (
@@ -333,7 +334,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
             <FormField
               control={form.control}
               name="price"
