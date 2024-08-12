@@ -1,4 +1,4 @@
-import { format } from 'date-fns'
+import { format } from 'date-fns';
 import { OrderClient } from './_components/client';
 import { api } from '~/trpc/server';
 import { type OrdersColumn } from './_components/columns';
@@ -12,12 +12,14 @@ const OrdersPage = async ({
 
     const orders = await api.order.getOrderItemsByStoreIdWithProductandOrder({ storeId: params.storeId });
 
-    const formattedOrders: OrdersColumn[] = await Promise.all(orders.map(async item => {
+    const filteredOrders = orders.filter(item => item.order.paymentStatus !== "Not Initiated");
+
+    const formattedOrders: OrdersColumn[] = await Promise.all(filteredOrders.map(async item => {
         let customerName = item.order.customerId;
         try {
             const user = await clerkClient.users.getUser(item.order.customerId);
             if (user) {
-                customerName = `${user.firstName} ${user.lastName ?? ""}`.trim() ?? user.emailAddresses[0]?.emailAddress ?? item.order.customerId;
+                customerName = `${user.firstName} ${user.lastName ?? ""}`.trim() || user.emailAddresses[0]?.emailAddress || item.order.customerId;
             }
         } catch (error) {
             console.error(`Error fetching user for customerId ${item.order.customerId}:`, error);
@@ -28,6 +30,7 @@ const OrdersPage = async ({
             orderId: item.order.id,
             customer: customerName,
             product: item.product.name,
+            approval: item.approval as string,
             paymentStatus: item.order.paymentStatus,
             quantity: item.quantity,
             isFullfilled: item.isFulfilled,
@@ -43,7 +46,7 @@ const OrdersPage = async ({
                 <OrderClient data={formattedOrders} />
             </div>
         </div>
-    )
+    );
 }
 
-export default OrdersPage
+export default OrdersPage;

@@ -316,8 +316,10 @@ export const productsRouter = createTRPCRouter({
       where: (table) => eq(table.isApproved, "approved"),
     });
 
+  const activeProducts = products.filter(product => !product.isArchived);
+
     const productsWithTypeandTagandStore = await Promise.all(
-      products.map(async (product) => {
+      activeProducts.map(async (product) => {
         const TypeForProduct = await ctx.db.query.type.findFirst({
           where: (table) => eq(table.id, product.typeId),
         });

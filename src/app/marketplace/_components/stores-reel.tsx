@@ -16,34 +16,38 @@ interface StoresReelProps {
   reelSubtitle?: string;
 }
 
-const StoresReel: React.FC<StoresReelProps> = ({ stores, reelTitle, reelSubtitle }) => {
+const StoresReel: React.FC<StoresReelProps> = ({
+  stores,
+  reelTitle,
+  reelSubtitle,
+}) => {
   return (
     <section className="py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-primary text-center mb-2">
+        <h2 className="mb-2 text-center text-4xl font-bold text-primary">
           {reelTitle}
         </h2>
         {reelSubtitle && (
-          <p className="text-lg text-muted-foreground text-center mb-8">
+          <p className="mb-8 text-center text-lg text-muted-foreground">
             {reelSubtitle}
           </p>
         )}
         <div className="space-y-8">
           {stores.map((store) => (
             <Link key={store.id} href={store.link}>
-              <div className="relative w-full h-64 bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02] cursor-pointer mb-10">
+              <div className="relative mb-10 h-64 w-full cursor-pointer overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
                 <Image
                   src={store.imageUrl}
                   alt={store.title}
                   layout="fill"
                   objectFit="cover"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-10 flex items-center justify-center">
-                  <div className="text-center p-6">
-                    <h3 className="text-4xl font-bold text-primary mb-2">
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10">
+                  <div className="p-6 text-center">
+                    <h3 className="mb-2 text-4xl font-bold text-primary">
                       {store.title}
                     </h3>
-                    <p className="text-primary text-opacity-80">
+                    <p className="max-w-3xl text-center text-white text-opacity-80">
                       {store.description}
                     </p>
                   </div>

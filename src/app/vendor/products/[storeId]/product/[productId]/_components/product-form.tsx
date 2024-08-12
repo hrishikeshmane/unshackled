@@ -36,17 +36,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useAuth } from "@clerk/nextjs";
+import { RocketIcon } from "@radix-ui/react-icons";
 
 const formSchema = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
   tagline: z.string().min(1),
-  price: z.string().min(1),
-  estTurnAroundTime: z.string().min(1),
+  // price: z.string().min(1),
+  // estTurnAroundTime: z.string().min(1),
+  price: z.number().min(0.01),
+  estTurnAroundTime: z.number().min(1),
   stripeId: z.string(),
   imageUrl: z.string().min(1),
-  domainRank: z.string().min(1),
+  // domainRank: z.string().min(1),
+  domainRank: z.number().int().min(1),
   tagId: z.string().min(1),
   typeId: z.string().min(1),
   // images: z.object({ url: z.string() }).array(),
@@ -102,20 +107,41 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   const [open, setOpen] = useState(false);
 
+  const modifiedInitialData = initialData
+    ? {
+        ...initialData,
+        price: Number(initialData.price) || 0,
+        estTurnAroundTime: Number(initialData.estTurnAroundTime) || 0,
+        domainRank: Number(initialData.domainRank) || 0,
+      }
+    : {
+        name: "",
+        description: "",
+        tagline: "",
+        price: 0,
+        estTurnAroundTime: 0,
+        stripeId: "",
+        imageUrl: "",
+        domainRank: 0,
+        tagId: "",
+        typeId: "",
+      };
+
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData ?? {
-      name: "",
-      description: "",
-      tagline: "",
-      price: "",
-      estTurnAroundTime: "",
-      stripeId: "",
-      imageUrl: "",
-      domainRank: "",
-      tagId: "",
-      typeId: "",
-    },
+    defaultValues : modifiedInitialData,
+    // defaultValues: initialData ?? {
+    //   name: "",
+    //   description: "",
+    //   tagline: "",
+    //   price: "",
+    //   estTurnAroundTime: "",
+    //   stripeId: "",
+    //   imageUrl: "",
+    //   domainRank: "",
+    //   tagId: "",
+    //   typeId: "",
+    // },
   });
 
   const onSubmit = (data: ProductFormValues) => {
@@ -128,13 +154,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         name: data.name,
         tagline: data.tagline,
         description: data.description,
-        price: data.price,
+        price: String(data.price),
         commission: "20",
         commissionType: "percentage",
         stripeId: "xxx",
         imageUrl: data.imageUrl,
-        estTurnAroundTime: data.estTurnAroundTime,
-        domainRank: data.domainRank,
+        estTurnAroundTime: String(data.estTurnAroundTime),
+        domainRank: String(data.domainRank),
         isFeatured: false,
         isArchived: false,
         isApproved: "pending",
@@ -161,6 +187,21 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   return (
     <>
+      {/* <div className="sticky top-16 flex h-12 w-screen items-center justify-center bg-primary text-primary-foreground">
+        Your listings are subject to approval. New/Edited Listings will not be
+        visible until approved.
+      </div> */}
+      <Alert variant={"primary"}>
+        <RocketIcon className="h-4 w-4" />
+        <AlertTitle>Heads up!</AlertTitle>
+        <AlertDescription>
+          <>
+            New/Edited listings will not be visible until approved. Listings are
+            subject to a commission around 20% of the listing price. Final
+            commission will be decided when approved.
+          </>
+        </AlertDescription>
+      </Alert>
       <AlertModal
         isOpen={open}
         onClose={() => setOpen(false)}
@@ -265,6 +306,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Est. TurnAround Time</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="EstTurnAround Time (days)"
                       {...field}
@@ -282,6 +324,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Domain Rank</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="Domain Ranking"
                       {...field}
@@ -299,6 +342,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Price</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="Product Price"
                       {...field}

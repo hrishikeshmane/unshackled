@@ -43,13 +43,17 @@ const formSchema = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
   tagline: z.string().min(1),
-  price: z.string().min(1),
-  commission: z.string().min(1),
+  // price: z.string().min(1),
+  // estTurnAroundTime: z.string().min(1),
+  // commission: z.string().min(1),
+  price: z.number().min(0.01),
+  estTurnAroundTime: z.number().min(1),
+  commission: z.number().min(1),
   commissionType: z.enum(["percentage", "flat"]),
-  estTurnAroundTime: z.string().min(1),
   stripeId: z.string(),
   imageUrl: z.string().min(1),
-  domainRank: z.string().min(1),
+  // domainRank: z.string().min(1),
+  domainRank: z.number().int().min(1),
   isFeatured: z.boolean().default(false),
   isArchived: z.boolean().default(false),
   isApproved: z.enum(["approved", "pending", "denied"]),
@@ -108,19 +112,52 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   const [open, setOpen] = useState(false);
 
+  // const modifiedInitialData = initialData
+  //   ? {
+  //       ...initialData,
+  //       price: Number(initialData.price) || 0,
+  //       estTurnAroundTime: Number(initialData.estTurnAroundTime) || 0,
+  //       domainRank: Number(initialData.domainRank) || 0,
+  //       commission: Number(initialData.commission) || 0,
+  //     }
+  //   : {
+  //       name: "",
+  //       description: "",
+  //       tagline: "",
+  //       price: 0,
+  //       commission: 0,
+  //       commissionType: "percentage",
+  //       estTurnAroundTime: 0,
+  //       stripeId: "",
+  //       imageUrl: "",
+  //       domainRank: 0,
+  //       isFeatured: false,
+  //       isArchived: false,
+  //       isApproved: "pending",
+  //       tagId: "",
+  //       typeId: "",
+  //     };
+
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData ?? {
+    // defaultValues: modifiedInitialData,
+    defaultValues: initialData ? {
+      ...initialData,
+      price: Number(initialData.price) || 0,
+      estTurnAroundTime: Number(initialData.estTurnAroundTime) || 0,
+      domainRank: Number(initialData.domainRank) || 0,
+      commission: Number(initialData.commission) || 0,
+      } : {
       name: "",
       description: "",
       tagline: "",
-      price: "",
-      commission: "",
+      price: 0,
+      commission: 0,
       commissionType: "percentage",
-      estTurnAroundTime: "",
+      estTurnAroundTime: 0,
       stripeId: "",
       imageUrl: "",
-      domainRank: "",
+      domainRank: 0,
       isFeatured: false,
       isArchived: false,
       isApproved: "pending",
@@ -140,13 +177,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         name: data.name,
         tagline: data.tagline,
         description: data.description,
-        price: data.price,
-        commission: data.commission,
+        price: String(data.price),
+        commission: String(data.commission),
         commissionType: data.commissionType,
         stripeId: "xxx",
         imageUrl: data.imageUrl,
-        estTurnAroundTime: data.estTurnAroundTime,
-        domainRank: data.domainRank,
+        estTurnAroundTime: String(data.estTurnAroundTime),
+        domainRank: String(data.domainRank),
         isFeatured: data.isFeatured,
         isArchived: data.isArchived,
         isApproved: data.isApproved,
@@ -277,6 +314,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Est. TurnAround Time</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="EstTurnAround Time (days)"
                       {...field}
@@ -294,6 +332,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Domain Rank</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="Domain Ranking"
                       {...field}
@@ -311,6 +350,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Price</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="Product Price"
                       {...field}
@@ -328,6 +368,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Commission</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="Commission"
                       {...field}
