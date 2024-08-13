@@ -88,9 +88,9 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     "Refund Successful",
     "Payment Reverted",
     "Reverting Payment",
-  ].includes(data.paymentStatus) || data.approval === "denied";
+  ].includes(data.paymentStatus) || data.approval === "denied" || data.isFullfilled === true;
 
-  const hideDeny = hideRefund || data.approval === "denied";
+  const hideDeny = hideRefund || data.approval === "denied" || data.isFullfilled === true;
 
   return (
     <>
@@ -125,9 +125,12 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
             <Copy className="mr-2 h-4 w-4" />
             Copy Id
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setOpen(true)}>
-            Mark Completed
-          </DropdownMenuItem>
+          {!hideRefund && (
+              <DropdownMenuItem onClick={() => setOpen(true)}>
+                Mark Completed
+              </DropdownMenuItem>
+            )
+          }
           {!hideRefund && (
             <DropdownMenuItem onClick={() => setRefundOpen(true)}>
               Refund Order
