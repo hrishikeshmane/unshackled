@@ -36,7 +36,8 @@ export async function POST(req: Request) {
         .update(order)
         .set({
           isPaid: true,
-          paymentStatus: "Payment Initiated",
+          // paymentStatus: "Payment Initiated",
+          paymentStatus: "Payment Succeeded",
           paymentIntentId: session.payment_intent as string,
           sessionId: session.id,
         })
