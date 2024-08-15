@@ -11,7 +11,7 @@ import { type OrdersColumn } from "./columns";
 import { Button } from "@/components/ui/button";
 import { Copy, MoreHorizontal } from "lucide-react";
 import { toast } from "sonner";
-import { AlertModal } from "~/app/admin/_components/modals/alert-modal"; 
+import { AlertModal } from "~/app/admin/_components/modals/alert-modal";
 import { api } from "~/trpc/react";
 import { useState } from "react";
 
@@ -20,8 +20,8 @@ interface CellActionProps {
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
-  const [alertOpen, setAlertOpen] = useState(false); 
-  const [isPending, setIsPending] = useState(false); 
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
   const onCopy = async (id: string) => {
     await navigator.clipboard.writeText(id);
@@ -42,11 +42,12 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   });
 
   const onRetryPayment = async () => {
-    setIsPending(true); 
+    setIsPending(true);
     retryPayment.mutate({ orderId: data.orderId });
   };
 
-  const showRetryPayment = data.paymentStatus === "Payment Failed" && data.approval === "accepted";
+  const showRetryPayment =
+    data.paymentStatus === "Payment Failed" && data.approval === "accepted";
 
   return (
     <>
@@ -69,11 +70,11 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
             <Copy className="mr-2 h-4 w-4" />
             Copy Id
           </DropdownMenuItem>
-          {showRetryPayment && (
+          {/* {showRetryPayment && (
             <DropdownMenuItem onClick={() => setAlertOpen(true)}>
               Retry Payment
             </DropdownMenuItem>
-          )}
+          )} */}
         </DropdownMenuContent>
       </DropdownMenu>
     </>

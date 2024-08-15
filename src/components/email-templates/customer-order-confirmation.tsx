@@ -12,17 +12,17 @@ import {
   Text,
 } from "@react-email/components";
 
-interface VendorListingConfirmationEmailTemplateProps {
+interface CustomerOrderConfirmationEmailTemplateProps {
   firstName: string;
 }
 
-export const VendorListingConfirmationEmailTemplate: React.FC<
-  Readonly<VendorListingConfirmationEmailTemplateProps>
+export const CustomerOrderConfirmationEmailTemplate: React.FC<
+  Readonly<CustomerOrderConfirmationEmailTemplateProps>
 > = ({ firstName }) => (
   <Html>
     <Head />
     <Preview>
-      Thanks for your order. Let us introduce you to the vendor who will be
+      Thanks for your order. Let us introduce you to your vendor who will be
       working with you to deliver you the promised service.
     </Preview>
     <Body style={main}>
@@ -36,11 +36,12 @@ export const VendorListingConfirmationEmailTemplate: React.FC<
         />
         <Text style={paragraph}>Hi {firstName},</Text>
         <Text style={paragraph}>
-          Thanks for your order. Let us introduce you to the vendor who will be
+          Thanks for your order. Let us introduce you to your vendor who will be
           working with you to deliver you the promised service
         </Text>
         <Text style={paragraph}>
-          You can find the vendor email in this email cc list.
+          The vendor will be taking over this email thread. Please keep your
+          communication on this email thread for visibity.
         </Text>
         <Text style={paragraph}>
           Best,

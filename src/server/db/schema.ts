@@ -19,21 +19,6 @@ import { boolean } from "drizzle-orm/mysql-core";
  */
 export const createTable = sqliteTableCreator((name) => `unshackled_${name}`);
 
-// export const posts = createTable(
-//   "post",
-//   {
-//     id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-//     name: text("name", { length: 256 }),
-//     createdAt: int("created_at", { mode: "timestamp" })
-//       .default(sql`CURRENT_TIMESTAMP`)
-//       .notNull(),
-//     updatedAt: int("updatedAt", { mode: "timestamp" }),
-//   },
-//   (example) => ({
-//     nameIndex: index("name_idx").on(example.name),
-//   })
-// );
-
 export const waitlist = createTable("waitlist", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   email: text("email", { length: 256 }).unique(),
@@ -69,13 +54,6 @@ export const vendor = createTable("vendorInfo", {
     .default(sql`(unixepoch())`)
     .notNull(),
 });
-
-// export const userInfo = createTable("userInfo", {
-//   userId: text("userId")
-//     .notNull()
-//     .primaryKey()
-//     .references(() => users.userId, { onDelete: "cascade" }),
-// });
 
 export const store = createTable("store", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
@@ -178,29 +156,15 @@ export const product = createTable("product", {
   ),
 });
 
-// export const image = createTable("image", {
-//   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
-//   productId: text("productId", { length: 256 })
-//     .notNull()
-//     .references(() => product.id, { onDelete: 'cascade' }),
-//   url: text("url", { length: 256 }).notNull(),
-//   createdAt: int("createdAt", { mode: "timestamp" })
-//     .default(sql`(unixepoch())`)
-//     .notNull(),
-//   updatedAt: int("updatedAt", { mode: "timestamp" }).default(
-//     sql`(unixepoch())`,
-//   ),
-// });
-
 export const order = createTable("order", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
   isPaid: integer("isPaid", { mode: "boolean" }).notNull(),
-  paymentStatus: text('paymentStatus').default("Not Initiated"),
+  paymentStatus: text("paymentStatus").default("Not Initiated"),
   orderTotal: text("orderTotal", { length: 256 }).notNull(),
-  vendorAmount: text('vendorAmount', { length: 256 }).notNull(),
-  paymentIntentId: text('paymentIntentId'),
-  sessionId: text('sessionId'),
-  receipt: text('receipt'),
+  vendorAmount: text("vendorAmount", { length: 256 }).notNull(),
+  paymentIntentId: text("paymentIntentId"),
+  sessionId: text("sessionId"),
+  receipt: text("receipt"),
   createdAt: int("createdAt", { mode: "timestamp" })
     .default(sql`(unixepoch())`)
     .notNull(),
@@ -220,7 +184,7 @@ export const orderItem = createTable("orderItem", {
   // }).default("notInitiated"),
   vendorPayout: integer("vendorPayout", { mode: "boolean" }).notNull(),
   approval: text("approval", {
-  enum: ["requested", "approved", "denied"], 
+    enum: ["requested", "approved", "denied"],
   }).default("approved"),
   orderId: text("orderId", { length: 256 })
     .notNull()

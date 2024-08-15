@@ -2,8 +2,12 @@ import { stripe } from "~/lib/stripe";
 import { headers } from "next/headers";
 import { env } from "~/env";
 import { db } from "~/server/db";
-import { order } from "~/server/db/schema";
+import { order, orderItem, product } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
+import { sendCustomerOrderEmail } from "~/app/_actions/emails";
+import { clerkClient } from "@clerk/nextjs/server";
+import { log } from "node:console";
+import { Logger } from "next-axiom";
 
 // Not Initiated
 // Payment Initiated
@@ -32,7 +36,8 @@ export async function POST(req: Request) {
   switch (event.type) {
     case "checkout.session.completed": {
       const session = event.data.object;
-      await db
+      const log = new Logger().with({ userId: session.metadata?.customerId });
+      const updatedOrder = await db
         .update(order)
         .set({
           isPaid: true,
@@ -41,7 +46,54 @@ export async function POST(req: Request) {
           paymentIntentId: session.payment_intent as string,
           sessionId: session.id,
         })
+        .where(eq(order.id, String(session.metadata?.orderId)))
+        .returning();
+
+      if (!updatedOrder || updatedOrder.length === 0) {
+        log.error(
+          `Result for updatedOrder is nullish. sending 400 error code to stripe. updatedOrder = ${updatedOrder.toString()}`,
+        );
+        await log.flush();
+        return new Response(null, { status: 400 });
+      }
+
+      const result = await db
+        .select({
+          orderId: order.id,
+          customerId: order.customerId,
+          productId: orderItem.productId,
+          creatorId: product.creatorId,
+        })
+        .from(order)
+        .innerJoin(orderItem, eq(order.id, orderItem.orderId))
+        .innerJoin(product, eq(orderItem.productId, product.id))
         .where(eq(order.id, String(session.metadata?.orderId)));
+
+      if (!result?.[0] || result.length === 0) {
+        log.error(
+          `Result for order is nullish. sending 400 error code to stripe. result = ${result.toString()} ; orderId = ${updatedOrder[0].id} `,
+        );
+        await log.flush();
+        return new Response(null, { status: 400 });
+      }
+
+      const customerUser = await clerkClient.users.getUser(
+        result[0].customerId,
+      );
+      const customerEmail = customerUser.emailAddresses[0]?.emailAddress ?? "";
+      const customerFirstName = customerUser.firstName ?? "Customer User";
+
+      const vendorUser = await clerkClient.users.getUser(result[0].customerId);
+      const vedorEmail = vendorUser.emailAddresses[0]?.emailAddress ?? "";
+      const vedorFistName = vendorUser.firstName ?? "Vendor User";
+
+      // trigger email to customer for successfull order
+      await sendCustomerOrderEmail(
+        customerEmail,
+        customerFirstName,
+        vedorEmail,
+      );
+
       break;
     }
     case "payment_intent.succeeded": {

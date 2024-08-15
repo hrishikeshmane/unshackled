@@ -7,10 +7,7 @@ import NavButtons from "./nav-buttons";
 import { auth } from "@clerk/nextjs/server";
 import MobileNav from "./mobilNav";
 import { Button } from "../ui/button";
-import {
-  sendVenorIsApprovedEmail,
-  sendWelcomeEmail,
-} from "~/app/_actions/emails";
+import { sendTestEmailToSelf, sendWelcomeEmail } from "~/app/_actions/emails";
 
 export type NavComponent = { title: string; href: string; description: string };
 export type Route = {
@@ -120,7 +117,7 @@ const Header = async () => {
 
   const welcomeEmail = async (data: FormData) => {
     "use server";
-    await sendVenorIsApprovedEmail("delivered@resend.dev");
+    await sendTestEmailToSelf("delivered@resend.dev");
   };
   return (
     <>

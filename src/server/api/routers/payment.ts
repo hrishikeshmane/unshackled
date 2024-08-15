@@ -102,11 +102,22 @@ export const paymentRouter = createTRPCRouter({
         .values({
           isPaid: false,
           orderTotal: String(totalOrderAmount),
-          vendorAmount: String(totalOrderAmount-totalCommissionAmount),
+          vendorAmount: String(totalOrderAmount - totalCommissionAmount),
           customerId: ctx.session.userId,
         })
         .returning();
       log.debug("buyProduct.order_create", order_create);
+
+      if (!order_create || order_create.length === 0) {
+        log.warn(
+          "Could not create an order at this time. Please try again later",
+        );
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message:
+            "Could not create an order at this time. Please try again later",
+        });
+      }
 
       await Promise.all(
         products.map((product) =>
