@@ -79,7 +79,7 @@ export function ConditionalNavigationMenu({
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Marketplace</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    {/* <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                       <li className="row-span-3">
                         <NavigationMenuLink asChild>
                           <Link
@@ -99,8 +99,9 @@ export function ConditionalNavigationMenu({
                         </h2>
                         <p>Comming soon!</p>
                       </div>
-                    </ul> */}
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                    </ul>
+
+                    {/* <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                       <ListItem title={"Marketplace"} href={"/marketplace"}>
                         All your talent visas needs - in one place
                       </ListItem>
@@ -116,7 +117,7 @@ export function ConditionalNavigationMenu({
                       <ListItem title={"My orders"} href={"/myorders"}>
                         View your orders
                       </ListItem>
-                    </ul>
+                    </ul> */}
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
