@@ -13,6 +13,7 @@ import { order, orderItem, product } from "~/server/db/schema";
 import { env } from "~/env";
 import { calculateCommissionAndVendorAmount } from "~/lib/utils";
 import { auth, currentUser } from "@clerk/nextjs/server";
+import { Logger } from "next-axiom";
 
 export const paymentRouter = createTRPCRouter({
   buyProduct: protectedProcedure
@@ -27,6 +28,7 @@ export const paymentRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
+      const log = new Logger().with({ userId: ctx.session.userId });
       const { items } = input;
       if (items.length === 0) {
         throw new TRPCError({
@@ -41,6 +43,7 @@ export const paymentRouter = createTRPCRouter({
             where: (table) => eq(table.id, String(item.productId)),
           });
           if (!product) {
+            log.info(`Product with ID ${item.productId} not found`);
             throw new TRPCError({
               code: "NOT_FOUND",
               message: `Product with ID ${item.productId} not found`,
@@ -49,15 +52,16 @@ export const paymentRouter = createTRPCRouter({
           return { ...product, quantity: item.quantity };
         }),
       );
-      console.log("buyProduct.products", products);
+      log.debug("buyProduct.products", products);
 
       const vendor = await ctx.db.query.vendor.findFirst({
         where: (table) => eq(table.userId, String(products[0]?.creatorId)),
       });
-      console.log("buyProduct.vendor", vendor);
+      log.debug("buyProduct.vendor", vendor);
       const user = await currentUser();
 
       if (!vendor) {
+        log.info(`Vendor not found`);
         throw new TRPCError({
           code: "NOT_FOUND",
           message: "Vendor not found",
@@ -91,17 +95,18 @@ export const paymentRouter = createTRPCRouter({
           quantity: product.quantity,
         };
       });
-      console.log("buyProduct.lineItems", lineItems);
+      log.debug("buyProduct.lineItems", lineItems);
 
       const order_create = await ctx.db
         .insert(order)
         .values({
           isPaid: false,
           orderTotal: String(totalOrderAmount),
+          vendorAmount: String(totalOrderAmount-totalCommissionAmount),
           customerId: ctx.session.userId,
         })
         .returning();
-      console.log("buyProduct.order_create", order_create);
+      log.debug("buyProduct.order_create", order_create);
 
       await Promise.all(
         products.map((product) =>
@@ -116,9 +121,9 @@ export const paymentRouter = createTRPCRouter({
           }),
         ),
       );
-      console.log(
-        "buyProduct.orderitem created orderId=",
-        String(order_create[0]!.id),
+      log.debug(
+        `buyProduct.orderitem created orderId=,
+        ${String(order_create[0]!.id)}`,
       );
 
       const session = await stripe.checkout.sessions.create({
@@ -144,14 +149,15 @@ export const paymentRouter = createTRPCRouter({
           productIds: products.map((p) => p.id).join(","),
         },
       });
-      console.log("buyProduct.session created", order_create[0]!.id);
-
+      log.debug(`buyProduct.session created, ${order_create[0]!.id}`);
+      await log.flush();
       return { sessionUrl: String(session.url) };
     }),
 
   retryPayment: protectedProcedure
     .input(z.object({ orderId: z.string() }))
     .mutation(async ({ ctx, input }) => {
+      const log = new Logger().with({ userId: ctx.session.userId });
       const { orderId } = input;
 
       const orderRecord = await ctx.db.query.order.findFirst({
@@ -159,6 +165,7 @@ export const paymentRouter = createTRPCRouter({
       });
 
       if (!orderRecord) {
+        log.info(`Order ${orderId} not found`);
         throw new TRPCError({ code: "NOT_FOUND", message: "Order not found" });
       }
 
@@ -167,6 +174,7 @@ export const paymentRouter = createTRPCRouter({
       });
 
       if (orderItems.length === 0) {
+        log.info(`No items found for this order, ${orderItems.toString()}`);
         throw new TRPCError({
           code: "BAD_REQUEST",
           message: "No items found for this order",
@@ -179,6 +187,7 @@ export const paymentRouter = createTRPCRouter({
             where: (table) => eq(table.id, item.productId),
           });
           if (!product) {
+            log.info(`Product with ID ${item.productId} not found`);
             throw new TRPCError({
               code: "NOT_FOUND",
               message: `Product with ID ${item.productId} not found`,
@@ -193,6 +202,7 @@ export const paymentRouter = createTRPCRouter({
       });
 
       if (!vendor) {
+        log.info(`Vendor ${String(products[0]?.creatorId)} not found`);
         throw new TRPCError({
           code: "NOT_FOUND",
           message: "Vendor not found",
@@ -225,7 +235,7 @@ export const paymentRouter = createTRPCRouter({
       });
 
       const user = await currentUser();
-
+      log.info("creating a session with stripe");
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
         customer_email: user?.emailAddresses[0]?.emailAddress,
@@ -245,12 +255,14 @@ export const paymentRouter = createTRPCRouter({
         },
       });
 
+      await log.flush();
       return { sessionUrl: String(session.url) };
     }),
 
   refundOrder: adminOrVendorProcedure
     .input(z.object({ orderId: z.string() }))
     .mutation(async ({ ctx, input }) => {
+      const log = new Logger().with({ userId: ctx.session.userId });
       const { orderId } = input;
 
       const orderRecord = await ctx.db.query.order.findFirst({
@@ -258,11 +270,13 @@ export const paymentRouter = createTRPCRouter({
       });
 
       if (!orderRecord) {
+        log.info(`Order ${orderId} not found`);
         throw new TRPCError({ code: "NOT_FOUND", message: "Order not found" });
       }
 
-      const paymentIntentId = orderRecord.paymentIntentId as string;
+      const paymentIntentId = orderRecord.paymentIntentId!;
       if (!paymentIntentId) {
+        log.info(`No payment intent associated with this order ${orderId}`);
         throw new TRPCError({
           code: "BAD_REQUEST",
           message: "No payment intent associated with this order",
@@ -273,10 +287,11 @@ export const paymentRouter = createTRPCRouter({
         await stripe.paymentIntents.retrieve(paymentIntentId);
 
       if (paymentIntent.status === "succeeded") {
+        log.info(`Initiating a refund for order ${orderId}`);
         const refund = await stripe.refunds.create({
           payment_intent: paymentIntentId,
           refund_application_fee: true, // Refund the application fee
-          reverse_transfer: true,      // Reverse the transfer to the vendor
+          reverse_transfer: true, // Reverse the transfer to the vendor
         });
 
         await ctx.db
@@ -285,7 +300,7 @@ export const paymentRouter = createTRPCRouter({
             paymentStatus: "Refund Initiated",
           })
           .where(eq(order.id, orderId));
-
+        await log.flush();
         return { refundId: refund.id, status: refund.status };
       } else {
         await stripe.paymentIntents.cancel(paymentIntentId);
@@ -296,7 +311,7 @@ export const paymentRouter = createTRPCRouter({
             paymentStatus: "Reverting Payment",
           })
           .where(eq(order.id, orderId));
-
+        await log.flush();
         return { message: "Payment was not completed and has been canceled." };
       }
     }),
@@ -304,6 +319,7 @@ export const paymentRouter = createTRPCRouter({
   rejectOrder: adminOrVendorProcedure
     .input(z.object({ orderId: z.string() }))
     .mutation(async ({ ctx, input }) => {
+      const log = new Logger().with({ userId: ctx.session.userId });
       const { orderId } = input;
 
       const orderRecord = await ctx.db.query.order.findFirst({
@@ -311,11 +327,13 @@ export const paymentRouter = createTRPCRouter({
       });
 
       if (!orderRecord) {
+        log.info(`Order ${orderId} not found`);
         throw new TRPCError({ code: "NOT_FOUND", message: "Order not found" });
       }
 
-      const paymentIntentId = orderRecord.paymentIntentId as string;
+      const paymentIntentId = orderRecord.paymentIntentId!;
       if (!paymentIntentId) {
+        log.info(`No payment intent associated with this order ${orderId}`);
         throw new TRPCError({
           code: "BAD_REQUEST",
           message: "No payment intent associated with this order",
@@ -326,10 +344,11 @@ export const paymentRouter = createTRPCRouter({
         await stripe.paymentIntents.retrieve(paymentIntentId);
 
       if (paymentIntent.status === "succeeded") {
+        log.info(`Initiating a refund for ${orderId}`);
         const refund = await stripe.refunds.create({
           payment_intent: paymentIntentId,
           refund_application_fee: true, // Refund the application fee
-          reverse_transfer: true,      // Reverse the transfer to the vendor
+          reverse_transfer: true, // Reverse the transfer to the vendor
         });
 
         await ctx.db
@@ -345,7 +364,7 @@ export const paymentRouter = createTRPCRouter({
             approval: "denied",
           })
           .where(eq(orderItem.orderId, orderId));
-
+        await log.flush();
         return { refundId: refund.id, status: refund.status };
       } else {
         await stripe.paymentIntents.cancel(paymentIntentId);
@@ -363,7 +382,7 @@ export const paymentRouter = createTRPCRouter({
             approval: "denied",
           })
           .where(eq(orderItem.orderId, orderId));
-
+        await log.flush();
         return { message: "Payment was not completed and has been canceled." };
       }
     }),
