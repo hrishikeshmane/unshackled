@@ -98,6 +98,7 @@ export const paymentRouter = createTRPCRouter({
         .values({
           isPaid: false,
           orderTotal: String(totalOrderAmount),
+          vendorAmount: String(totalOrderAmount-totalCommissionAmount),
           customerId: ctx.session.userId,
         })
         .returning();

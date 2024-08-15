@@ -197,6 +197,7 @@ export const order = createTable("order", {
   isPaid: integer("isPaid", { mode: "boolean" }).notNull(),
   paymentStatus: text('paymentStatus').default("Not Initiated"),
   orderTotal: text("orderTotal", { length: 256 }).notNull(),
+  vendorAmount: text('vendorAmount', { length: 256 }).notNull(),
   paymentIntentId: text('paymentIntentId'),
   sessionId: text('sessionId'),
   receipt: text('receipt'),
