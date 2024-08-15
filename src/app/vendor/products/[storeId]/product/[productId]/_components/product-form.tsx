@@ -155,8 +155,12 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         tagline: data.tagline,
         description: data.description,
         price: String(data.price),
-        commission: "20",
-        commissionType: "percentage",
+        commission: initialData?.commission
+          ? String(initialData?.commission ?? 0)
+          : "20",
+        commissionType: initialData?.commissionType
+          ? initialData?.commissionType
+          : "percentage",
         stripeId: "xxx",
         imageUrl: data.imageUrl,
         estTurnAroundTime: String(data.estTurnAroundTime),
