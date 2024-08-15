@@ -71,7 +71,7 @@ export async function POST(req: Request) {
 
       if (!result?.[0] || result.length === 0) {
         log.error(
-          `Result for order is nullish. sending 400 error code to stripe. result = ${result.toString()} ; orderId = ${updatedOrder[0].id} `,
+          `Result for order is nullish. sending 400 error code to stripe. result = ${result.toString()} ; orderId = ${updatedOrder.toString()} `,
         );
         await log.flush();
         return new Response(null, { status: 400 });
@@ -83,7 +83,7 @@ export async function POST(req: Request) {
       const customerEmail = customerUser.emailAddresses[0]?.emailAddress ?? "";
       const customerFirstName = customerUser.firstName ?? "Customer User";
 
-      const vendorUser = await clerkClient.users.getUser(result[0].customerId);
+      const vendorUser = await clerkClient.users.getUser(result[0].creatorId);
       const vedorEmail = vendorUser.emailAddresses[0]?.emailAddress ?? "";
       const vedorFistName = vendorUser.firstName ?? "Vendor User";
 
