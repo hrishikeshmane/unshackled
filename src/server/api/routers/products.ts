@@ -91,7 +91,9 @@ export const productsRouter = createTRPCRouter({
           .returning();
 
         //triger email to admin to noify new/edit listing
-        updatedProduct?.[0] && (await sendAdminNotificationForListing(id));
+        updatedProduct?.[0] &&
+          isApproved !== "approved" &&
+          (await sendAdminNotificationForListing(id));
 
         // trigger email to vendor to notify status
         // Note: This will trigger email to vendor when admin performs edit operation on product
