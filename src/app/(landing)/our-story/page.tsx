@@ -13,7 +13,7 @@ export const metadata = {
 
 const StoryPage = () => {
   return (
-    <div className="lex min-h-screen w-full flex-col bg-[#F5F9FF]">
+    <div className="flex min-h-screen w-full flex-col bg-[#F5F9FF]">
       <section className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg py-28">
         <div className="flex flex-col md:flex-row">
           <div className="flex basis-1/2 flex-col items-start justify-start gap-10 p-8 text-left">
