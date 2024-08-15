@@ -14,11 +14,12 @@ import {
 
 interface VendorListingDeniedEmailTemplateProps {
   firstName: string;
+  isEdit: boolean;
 }
 
 export const VendorListingDeniedEmailTemplate: React.FC<
   Readonly<VendorListingDeniedEmailTemplateProps>
-> = ({ firstName }) => (
+> = ({ firstName, isEdit }) => (
   <Html>
     <Head />
     <Preview>

@@ -14,15 +14,17 @@ import {
 
 interface VendorListingApprovedEmailTemplateProps {
   firstName: string;
+  isEdit: boolean;
 }
 
 export const VendorListingApprovedEmailTemplate: React.FC<
   Readonly<VendorListingApprovedEmailTemplateProps>
-> = ({ firstName }) => (
+> = ({ firstName, isEdit }) => (
   <Html>
     <Head />
     <Preview>
-      Congratz! Your listing on Unshackled marketplace has been approved.
+      Congratz! Your listing on Unshackled marketplace has been approved or was
+      edited by the Admin.
     </Preview>
     <Body style={main}>
       <Container style={container}>
@@ -35,7 +37,9 @@ export const VendorListingApprovedEmailTemplate: React.FC<
         />
         <Text style={paragraph}>Hi {firstName},</Text>
         <Text style={paragraph}>
-          Congratz! Your listing on Unshackled marketplace has been approved.
+          Congratz! Your listing on Unshackled marketplace has been approved or
+          was edited by the Admin. Please have a look at your listing on the
+          dashboard.
         </Text>
         <Text style={paragraph}>
           Best,

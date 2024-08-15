@@ -12,12 +12,12 @@ import {
   Text,
 } from "@react-email/components";
 
-interface VendorListingConfirmationEmailTemplateProps {
+interface CustomerOrderFullfilledConfirmationEmailTemplateProps {
   firstName: string;
 }
 
-export const VendorListingConfirmationEmailTemplate: React.FC<
-  Readonly<VendorListingConfirmationEmailTemplateProps>
+export const CustomerOrderFullfilledConfirmationEmailTemplate: React.FC<
+  Readonly<CustomerOrderFullfilledConfirmationEmailTemplateProps>
 > = ({ firstName }) => (
   <Html>
     <Head />

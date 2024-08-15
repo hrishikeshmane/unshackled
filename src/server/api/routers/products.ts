@@ -11,6 +11,12 @@ import {
   type TagTable,
   type TypeTable,
 } from "~/types/globals";
+import {
+  sendAdminNotificationForListing,
+  sendVenorListingApproval,
+  sendVenorListingDenied,
+} from "~/app/_actions/emails";
+import { clerkClient, currentUser } from "@clerk/nextjs/server";
 
 export const productsRouter = createTRPCRouter({
   createOrUpdateProduct: adminOrVendorProcedure
@@ -57,6 +63,7 @@ export const productsRouter = createTRPCRouter({
         isApproved,
         tagId,
       } = input;
+      const vendorUser = await clerkClient.users.getUser(creatorId);
 
       if (id) {
         const updatedProduct = await ctx.db
@@ -83,6 +90,20 @@ export const productsRouter = createTRPCRouter({
           .where(eq(product.id, id))
           .returning();
 
+        //triger email to admin to noify new/edit listing
+        updatedProduct?.[0] && (await sendAdminNotificationForListing(id));
+
+        // trigger email to vendor to notify status
+        // Note: This will trigger email to vendor when admin performs edit operation on product
+        const vendorEmail = vendorUser.emailAddresses[0]?.emailAddress ?? "";
+        const vendorFirstName = vendorUser.firstName ?? "User";
+        updatedProduct?.[0] &&
+          isApproved === "approved" &&
+          (await sendVenorListingApproval(vendorEmail, vendorFirstName, true));
+        updatedProduct?.[0] &&
+          isApproved === "denied" &&
+          (await sendVenorListingDenied(vendorEmail, vendorFirstName, true));
+
         return updatedProduct[0];
       } else {
         const newProduct = await ctx.db
@@ -107,6 +128,10 @@ export const productsRouter = createTRPCRouter({
             tagId,
           })
           .returning();
+
+        //triger email to admin to noify new/edit listing
+        newProduct?.[0] &&
+          (await sendAdminNotificationForListing(newProduct[0].id));
 
         return newProduct[0];
       }
@@ -316,7 +341,7 @@ export const productsRouter = createTRPCRouter({
       where: (table) => eq(table.isApproved, "approved"),
     });
 
-  const activeProducts = products.filter(product => !product.isArchived);
+    const activeProducts = products.filter((product) => !product.isArchived);
 
     const productsWithTypeandTagandStore = await Promise.all(
       activeProducts.map(async (product) => {
@@ -344,7 +369,7 @@ export const productsRouter = createTRPCRouter({
   //   const products = await ctx.db.query.product.findMany({
   //     where: (table) => eq(table.isApproved, "approved"),
   //   });
-  
+
   //   const productsWithTypeandTagandStore = await Promise.all(
   //     products.map(async (product) => {
   //       const TypeForProduct = await ctx.db.query.type.findFirst({
@@ -356,7 +381,7 @@ export const productsRouter = createTRPCRouter({
   //       const storeForProduct = await ctx.db.query.store.findFirst({
   //         where: (table) => eq(table.id, product.storeId),
   //       });
-  
+
   //       // Check if the store is live
   //       if (storeForProduct && storeForProduct.isLive) {
   //         return {
@@ -369,12 +394,12 @@ export const productsRouter = createTRPCRouter({
   //       return null; // Return null for products with non-live stores
   //     })
   //   );
-  
+
   //   // Filter out null values (products with non-live stores)
   //   const filteredProducts = productsWithTypeandTagandStore.filter(
   //     (product): product is NonNullable<typeof product> => product !== null
   //   );
-  
+
   //   return filteredProducts;
   // }),
 });

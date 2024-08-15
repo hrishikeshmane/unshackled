@@ -14,11 +14,12 @@ import {
 
 interface AdminListingrNotificationEmailTemplateProps {
   firstName: string;
+  listingId: string;
 }
 
 export const AdminListingNotificationEmailTemplate: React.FC<
   Readonly<AdminListingrNotificationEmailTemplateProps>
-> = ({ firstName }) => (
+> = ({ firstName, listingId }) => (
   <Html>
     <Head />
     <Preview>
@@ -39,6 +40,7 @@ export const AdminListingNotificationEmailTemplate: React.FC<
           We have a new listing/ edit listing request for the marketplace.
           Please review the listing and give a decision.
         </Text>
+        <Text style={paragraph}>Listing Id: {listingId}</Text>
         <Text style={paragraph}>
           Best,
           <br />
