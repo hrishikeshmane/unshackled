@@ -5,11 +5,13 @@ import { CellAction } from './cell-action';
 export type OrdersColumn = {
     id: string
     product: string
-    customer: string
+    customerName: string
+    customerEmail: string
     isFullfilled: boolean
     paymentStatus: string
     approval: string
     isPaid: boolean
+    orderTotal: string
     quantity: number
     vendorPayout: boolean
     orderId: string
@@ -30,8 +32,16 @@ export const columns: ColumnDef<OrdersColumn>[] = [
         header: 'Quantity',
     },
     {
+        accessorKey: 'orderTotal',
+        header: 'Order Total',
+    },
+    {
         accessorKey: 'customer',
-        header: 'Customer',
+        header: 'Customer Name',
+    },
+    {
+        accessorKey: 'customerEmail',
+        header: 'Customer Email',
     },
     {
         accessorKey: 'isFullfilled',
