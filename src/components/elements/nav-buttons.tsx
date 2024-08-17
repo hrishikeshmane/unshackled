@@ -74,7 +74,9 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
           )}
         </div>
       )}
-      <div className="hidden md:block">{/* <UserAuthButton /> */}</div>
+      <div className="hidden md:block">
+        <UserAuthButton />
+      </div>
     </div>
   );
 };
