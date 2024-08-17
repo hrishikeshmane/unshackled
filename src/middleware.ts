@@ -35,7 +35,11 @@
 //   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 // };
 
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import {
+  clerkMiddleware,
+  ClerkMiddlewareAuth,
+  createRouteMatcher,
+} from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { Logger } from "next-axiom";
 import type { NextFetchEvent, NextRequest } from "next/server";
@@ -49,6 +53,7 @@ const isProtectedRoute = createRouteMatcher([
 async function loggingMiddleware(
   request: NextRequest,
   event: NextFetchEvent,
+  auth: ClerkMiddlewareAuth,
   url?: URL,
 ) {
   const logger = new Logger({ source: "middleware" });
@@ -57,7 +62,8 @@ async function loggingMiddleware(
   event.waitUntil(logger.flush());
 
   if (url) {
-    return NextResponse.redirect(url);
+    // return NextResponse.redirect(url);
+    return auth().redirectToSignIn();
   }
   return NextResponse.next();
 }
@@ -69,11 +75,11 @@ export default clerkMiddleware(async (auth, req, event: NextFetchEvent) => {
     url.pathname = "/sign-in";
 
     // return NextResponse.redirect(url);
-    await loggingMiddleware(req, event, url);
+    await loggingMiddleware(req, event, auth, url);
 
     // return auth().redirectToSignIn()
   }
-  await loggingMiddleware(req, event);
+  await loggingMiddleware(req, event, auth);
 });
 
 export const config = {
