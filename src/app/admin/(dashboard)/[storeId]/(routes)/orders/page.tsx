@@ -3,6 +3,7 @@ import { OrderClient } from './_components/client';
 import { api } from '~/trpc/server';
 import { type OrdersColumn } from './_components/columns';
 import { clerkClient } from "@clerk/nextjs/server";
+import { formatPrice } from '~/lib/utils';
 
 const OrdersPage = async ({ 
     params
@@ -36,7 +37,7 @@ const OrdersPage = async ({
             approval: item.approval as string,
             paymentStatus: item.order.paymentStatus,
             quantity: item.quantity,
-            orderTotal: item.order.orderTotal,
+            orderTotal: formatPrice(item.order.orderTotal) as string,
             isFullfilled: item.isFulfilled,
             isPaid: item.order.isPaid,
             vendorPayout: item.vendorPayout,
