@@ -15,11 +15,13 @@ const OrdersPage = async ({
     const filteredOrders = orders.filter(item => item.order.paymentStatus !== "Not Initiated");
 
     const formattedOrders: OrdersColumn[] = await Promise.all(filteredOrders.map(async item => {
-        let customerName = item.order.customerId;
+        let customerName = '';
+        let customerEmail = '';
         try {
             const user = await clerkClient.users.getUser(item.order.customerId);
             if (user) {
-                customerName = `${user.firstName} ${user.lastName ?? ""}`.trim() || user.emailAddresses[0]?.emailAddress || item.order.customerId;
+                customerName = `${user.firstName} ${user.lastName ?? ''}`.trim();
+                customerEmail = user.emailAddresses[0]?.emailAddress ?? '';
             }
         } catch (error) {
             console.error(`Error fetching user for customerId ${item.order.customerId}:`, error);
@@ -28,11 +30,13 @@ const OrdersPage = async ({
         return {
             id: item.id,
             orderId: item.order.id,
-            customer: customerName,
+            customerName: customerName,
+            customerEmail: customerEmail,
             product: item.product.name,
             approval: item.approval as string,
             paymentStatus: item.order.paymentStatus,
             quantity: item.quantity,
+            orderTotal: item.order.orderTotal,
             isFullfilled: item.isFulfilled,
             isPaid: item.order.isPaid,
             vendorPayout: item.vendorPayout,

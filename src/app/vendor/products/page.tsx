@@ -30,6 +30,7 @@ const ProductsPage = async () => {
     isArchived: item.isArchived,
     price: formatPrice(Number(item.price)),
     commission: item.commission,
+    commissionType: item.commissionType,
     estTurnAroundTime: item.estTurnAroundTime,
     domainRank: item.domainRank,
     createdAt: format(item.createdAt, "MMMM do, yyyy"),

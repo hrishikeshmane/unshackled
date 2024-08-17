@@ -5,6 +5,8 @@ import { CellAction } from './cell-action';
 export type VendorColumn = {
     id: string
     userId: string
+    vendorName: string
+    vendorEmail: string
     stripeConnected: boolean
     stripeConnectedId: string
     status: string
@@ -15,6 +17,14 @@ export const columns: ColumnDef<VendorColumn>[] = [
     {
         accessorKey: 'userId',
         header: 'User ID',
+    },
+    {
+        accessorKey: 'vendorEmail',
+        header: 'Email',
+    },
+    {
+        accessorKey: 'vendorName',
+        header: 'Name',
     },
     {
         accessorKey: 'stripeConnected',
