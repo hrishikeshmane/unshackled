@@ -4,6 +4,7 @@ import {
   adminProcedure,
   adminOrVendorProcedure,
   publicProcedure,
+  protectedProcedure,
 } from "~/server/api/trpc";
 import { eq, or } from "drizzle-orm";
 import {
@@ -83,14 +84,14 @@ export const orderRouter = createTRPCRouter({
       return orderItemsWithDetails;
     }),
 
-  getOrderItemsWithDetailsForUser: publicProcedure
+  getOrderItemsWithDetailsForUser: protectedProcedure
     .input(z.object({ userId: z.string() }))
     .query(async ({ ctx, input }) => {
       const { userId } = input;
 
       // Find orders with the given userId
       const orders = await ctx.db.query.order.findMany({
-        where: (table) => eq(table.customerId, userId),
+        where: (table) => eq(table.customerId, String(ctx.session.userId)),
       });
 
       // Find order items for the orders
