@@ -28,9 +28,10 @@ const Page = () => {
   });
 
   const onCheckout = () => {
-    const cartItems = items.map(({ product, quantity }) => ({
+    const cartItems = items.map(({ product, isDownPayment, quantity }) => ({
       productId: product.id,
       quantity: quantity,
+      isDownPayment: isDownPayment
     }));
 
     startTransition(async () => {
@@ -43,9 +44,17 @@ const Page = () => {
     setIsMounted(true);
   }, []);
 
+  // const cartTotal = items.reduce(
+  //   (total, { product, quantity }) => total + Number(product.price) * quantity,
+  //   0,
+  // );
+
   const cartTotal = items.reduce(
-    (total, { product, quantity }) => total + Number(product.price) * quantity,
-    0,
+    (total, { product, quantity, isDownPayment }) => {
+      const price = isDownPayment ? product.downPayment : product.price;
+      return total + Number(price) * quantity;
+    },
+    0
   );
 
   const fee = 0;

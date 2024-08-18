@@ -10,9 +10,11 @@ import { useRouter } from 'next/navigation'
 interface BuyNowButtonProps {
   product: ProductWithRelations;
   quantity: number;
+  isDownPayment: boolean;
+  buttonText?: string;
 }
 
-const BuyNowButton: React.FC<BuyNowButtonProps> = ({ product, quantity }) => {
+const BuyNowButton: React.FC<BuyNowButtonProps> = ({ product, quantity, isDownPayment, buttonText="Buy Now" }) => {
   const { clearCart, addItem } = useCart()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const router = useRouter()
@@ -20,7 +22,7 @@ const BuyNowButton: React.FC<BuyNowButtonProps> = ({ product, quantity }) => {
   const handleBuyNow = () => {
     setIsLoading(true)
     clearCart()
-    addItem(product, quantity)
+    addItem(product, isDownPayment, quantity)
     router.push('/marketplace/cart')
   }
 
@@ -31,7 +33,7 @@ const BuyNowButton: React.FC<BuyNowButtonProps> = ({ product, quantity }) => {
       className='w-full'
       disabled={isLoading}
     >
-      {isLoading ? 'Processing...' : 'Buy Now'}
+      {isLoading ? 'Processing...' : buttonText}
     </Button>
   )
 }

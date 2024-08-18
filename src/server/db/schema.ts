@@ -145,6 +145,11 @@ export const product = createTable("product", {
   isApproved: text("isApproved", {
     enum: ["approved", "pending", "denied"],
   }).notNull(),
+  requiresVendorApproval: integer("requiresVendorApproval", { mode: "boolean" }).notNull().default(false),
+  hasDownPayment: integer("hasDownPayment", { mode: "boolean" }).notNull().default(false),
+  downPayment: text("downpayment", { length: 256 }).notNull().default("0"),
+  orderCommunicationEmail: text("orderCommunicationEmail", { length: 256 }).notNull().default(""),
+  additionalOrderEmailText: text("additionalOrderEmailText", { length: 256 }).notNull().default(""),
   tagId: text("tagId", { length: 256 })
     .notNull()
     .references(() => tag.id),
@@ -193,6 +198,7 @@ export const orderItem = createTable("orderItem", {
     .notNull()
     .references(() => product.id),
   quantity: integer("quantity").notNull().default(1),
+  isDownPayment: integer("vendorPayout", { mode: "boolean" }).notNull().default(false),
   storeId: text("storeId", { length: 256 })
     .notNull()
     .references(() => store.id),

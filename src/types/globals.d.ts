@@ -89,6 +89,11 @@ export type ProductTable = {
   isFeatured: boolean;
   isArchived: boolean;
   isApproved: "approved" | "pending" | "denied";
+  requiresVendorApproval: boolean;
+  hasDownPayment: boolean;
+  downPayment: string;
+  orderCommunicationEmail: string;
+  additionalOrderEmailText: string;
   tagId: string;
   createdAt: Date;
   updatedAt: Date | null;
@@ -114,6 +119,11 @@ export type ProductWithRelations = {
   isFeatured: boolean;
   isArchived: boolean;
   isApproved: "approved" | "pending" | "denied";
+  requiresVendorApproval: boolean;
+  hasDownPayment: boolean;
+  downPayment: string;
+  orderCommunicationEmail: string;
+  additionalOrderEmailText: string;
   tagId: string;
   createdAt: Date;
   updatedAt: Date | null;
@@ -149,7 +159,8 @@ export type OrderItemTable = {
   vendorPayout: boolean;
   orderId: string;
   productId: string;
-  approval: "requested" | "approved" | "denied"
+  approval: "requested" | "approved" | "denied";
+  isDownPayment: boolean;
   quantity: string;
   storeId: string;
   createdAt: Date;

@@ -158,8 +158,19 @@ const ProductPage = () => {
                   onDecrease={handleDecrease}
                   onManualChange={handleManualChange}
                 />
-                <BuyNowButton product={product.data} quantity={quantity} />
+                <BuyNowButton product={product.data} quantity={quantity} isDownPayment={false} />
               </div>
+              {
+                product.data.hasDownPayment &&
+                <>
+                <div className="flex flex-col items-center text-center space-x-4">
+                  <p className="text-muted-foreground">
+                    OR get started with initial down payment of {product.data.downPayment} and pay the rest to vendor later on.
+                  </p>
+                  <BuyNowButton product={product.data} quantity={quantity} isDownPayment={true} buttonText="Buy with DownPayment"/>
+                </div>
+                </>
+              }
               <div className="mt-6 text-center">
                 <div className="text-medium group inline-flex text-sm">
                   <Shield
