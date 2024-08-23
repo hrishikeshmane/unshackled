@@ -62,6 +62,9 @@ const formSchema = z.object({
   downPayment: z.coerce.number().min(0),
   orderCommunicationEmail: z.string(),
   additionalOrderEmailText: z.string(),
+  hasAdditionalLink: z.boolean(),
+  additionalLinkLabel: z.string(),
+  additionalLinkUrl: z.string(),
   tagId: z.string().min(1),
   typeId: z.string().min(1),
   // images: z.object({ url: z.string() }).array(),
@@ -176,6 +179,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           downPayment: 0,
           orderCommunicationEmail: "",
           additionalOrderEmailText: "",
+          hasAdditionalLink: false,
+          additionalLinkLabel: "",
+          additionalLinkUrl: "",        
           // images: [],
         },
   });
@@ -206,6 +212,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         downPayment: String(data.downPayment),
         orderCommunicationEmail: data.orderCommunicationEmail,
         additionalOrderEmailText: data.additionalOrderEmailText,
+        hasAdditionalLink: data.hasAdditionalLink,
+        additionalLinkLabel: data.additionalLinkLabel,
+        additionalLinkUrl: data.additionalLinkUrl,
         tagId: data.tagId,
         typeId: data.typeId,
         creatorId: initialData?.creatorId
@@ -645,6 +654,60 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     <Textarea
                       disabled={isPending}
                       placeholder="Text to be added at the end of order email."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="hasAdditionalLink"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Additional Link?</FormLabel>
+                    <FormDescription>
+                      Select if you want additional link/button included.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="additionalLinkLabel"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Additional Link label</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      placeholder="Calendly Link"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="additionalLinkUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Additional Link Url</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      disabled={isPending}
+                      placeholder="https://calendly.com"
                       {...field}
                     />
                   </FormControl>

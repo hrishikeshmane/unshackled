@@ -94,6 +94,9 @@ export type ProductTable = {
   downPayment: string;
   orderCommunicationEmail: string;
   additionalOrderEmailText: string;
+  hasAdditionalLink: boolean,
+  additionalLinkLabel: string,
+  additionalLinkUrl: string,
   tagId: string;
   createdAt: Date;
   updatedAt: Date | null;
@@ -124,6 +127,9 @@ export type ProductWithRelations = {
   downPayment: string;
   orderCommunicationEmail: string;
   additionalOrderEmailText: string;
+  hasAdditionalLink: boolean,
+  additionalLinkLabel: string,
+  additionalLinkUrl: string,
   tagId: string;
   createdAt: Date;
   updatedAt: Date | null;

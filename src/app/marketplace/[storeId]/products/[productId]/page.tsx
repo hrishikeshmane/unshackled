@@ -12,6 +12,7 @@ import { Badge } from "~/components/ui/badge";
 import BuyNowButton from "~/components/buy-now-button";
 import ProductsReel from "~/app/marketplace/_components/products-reel";
 import QuantitySelector from "~/components/quantity-selector";
+import { Button } from "~/components/ui/button";
 
 const ProductPage = () => {
   const params = useParams();
@@ -168,6 +169,21 @@ const ProductPage = () => {
                     OR get started with initial down payment of {product.data.downPayment} and pay the rest to vendor later on.
                   </p>
                   <BuyNowButton product={product.data} quantity={quantity} isDownPayment={true} buttonText="Buy with DownPayment"/>
+                </div>
+                </>
+              }
+              {
+                product.data.hasAdditionalLink &&
+                <>
+                <div className="flex flex-col items-center text-center space-x-4">
+                  <Button
+                    size='lg'
+                    className='w-full'
+                  >
+                    <Link href={product.data.additionalLinkUrl}>
+                      {product.data.additionalLinkLabel}
+                    </Link>
+                  </Button>
                 </div>
                 </>
               }
