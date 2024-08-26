@@ -23,6 +23,7 @@ export const paymentRouter = createTRPCRouter({
           z.object({
             productId: z.string(),
             quantity: z.number().int().positive(),
+            isDownPayment: z.boolean(),
           }),
         ),
       }),
@@ -49,7 +50,7 @@ export const paymentRouter = createTRPCRouter({
               message: `Product with ID ${item.productId} not found`,
             });
           }
-          return { ...product, quantity: item.quantity };
+          return { ...product, quantity: item.quantity, isDownPayment: item.isDownPayment };
         }),
       );
       log.debug("buyProduct.products", products);
@@ -72,21 +73,22 @@ export const paymentRouter = createTRPCRouter({
       let totalCommissionAmount = 0;
 
       const lineItems = products.map((product) => {
+        const finalPrice = product.isDownPayment ? product.downPayment : product.price;
         const [commissionAmount, vendorAmount] =
           calculateCommissionAndVendorAmount(
-            Number(product.price),
+            Number(finalPrice),
             product.quantity,
             Number(product.commission),
             product.commissionType,
           );
 
-        totalOrderAmount += Number(product.price) * product.quantity;
+        totalOrderAmount += Number(finalPrice) * product.quantity;
         totalCommissionAmount += commissionAmount;
 
         return {
           price_data: {
             currency: "usd",
-            unit_amount: Math.round(Number(product.price) * 100),
+            unit_amount: Math.round(Number(finalPrice) * 100),
             product_data: {
               name: product.name,
               images: [product.imageUrl],
@@ -127,6 +129,7 @@ export const paymentRouter = createTRPCRouter({
             orderId: String(order_create[0]!.id),
             storeId: String(product.storeId),
             productId: String(product.id),
+            isDownPayment: product.isDownPayment,
             quantity: product.quantity,
             vendorPayout: false,
           }),
@@ -164,7 +167,8 @@ export const paymentRouter = createTRPCRouter({
       await log.flush();
       return { sessionUrl: String(session.url) };
     }),
-
+  
+  // TODO: DownPayment Logic and more
   retryPayment: protectedProcedure
     .input(z.object({ orderId: z.string() }))
     .mutation(async ({ ctx, input }) => {
