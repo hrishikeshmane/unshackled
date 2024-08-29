@@ -39,23 +39,23 @@ export const LAWYER_INFO: ILAWYER_INFO[] = [
     consultLink:
       "https://calendly.com/readunshackled/allison-paid-consultation",
   },
-  {
-    id: 3,
-    name: "Joel A. Wisniewski",
-    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/joel.png?raw=true",
-    title: "Partner at Lodestone Legal, LLC",
-    experince: 15,
-    visa: ["EB-A", "O-1A", "EB-2 NIW"],
-    strikePrice: "150",
-    priceTitle: "$100 for 30 minutes",
-    bio: "Joel is an experienced immigration attorney with over 15 years of experience supporting employers and employees as they navigate through the non-immigrant and immigrant landscape.",
-    whoShouldBookACall:
-      "Joel ideally works with software engineers, machine learning engineers, data engineers, researchers, scientists, C-level executives, business leaders, critical employees, founders, entrepreneurs, product managers, marketing managers, and others.",
-    website: "https://www.lodestonelegal.com/",
-    linkedin: "https://www.linkedin.com/in/joel-wisniewski-a95859a/",
-    consultLink:
-      "https://calendly.com/readunshackled/joel-a-wisniewski-paid-consultation",
-  },
+  // {
+  //   id: 3,
+  //   name: "Joel A. Wisniewski",
+  //   img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/joel.png?raw=true",
+  //   title: "Partner at Lodestone Legal, LLC",
+  //   experince: 15,
+  //   visa: ["EB-A", "O-1A", "EB-2 NIW"],
+  //   strikePrice: "150",
+  //   priceTitle: "$100 for 30 minutes",
+  //   bio: "Joel is an experienced immigration attorney with over 15 years of experience supporting employers and employees as they navigate through the non-immigrant and immigrant landscape.",
+  //   whoShouldBookACall:
+  //     "Joel ideally works with software engineers, machine learning engineers, data engineers, researchers, scientists, C-level executives, business leaders, critical employees, founders, entrepreneurs, product managers, marketing managers, and others.",
+  //   website: "https://www.lodestonelegal.com/",
+  //   linkedin: "https://www.linkedin.com/in/joel-wisniewski-a95859a/",
+  //   consultLink:
+  //     "https://calendly.com/readunshackled/joel-a-wisniewski-paid-consultation",
+  // },
   {
     id: 4,
     name: "Charles Gillman",
