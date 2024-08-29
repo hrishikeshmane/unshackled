@@ -13,7 +13,7 @@ import { EmailTemplate } from "~/components/email-templates/welcome";
 
 const FROM_EMAIL = "Unshackled <hi@unshackled.club>";
 const RESEND_KEY = process.env.RESEND_KEY;
-const UNSHACKLED_ADMIN_EMAIL = "hi+admin@readunshackled.com?";
+const UNSHACKLED_ADMIN_EMAIL = "hi+admin@readunshackled.com";
 
 export async function sendWelcomeEmail() {
   const resend = new Resend(RESEND_KEY);
