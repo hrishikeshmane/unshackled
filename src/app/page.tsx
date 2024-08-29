@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   JoinNewsletterForm,
-  JoinTheClubForm,
   StartHereForm,
 } from "~/components/landing-page/convertkit-forms";
 
@@ -95,7 +94,11 @@ export default function HomePage() {
                 personal invite to join our paid community.
               </p>
               <div className="flex flex-col gap-4 py-4">
-                <JoinTheClubForm />
+                <Link href={"/community"}>
+                  <Button size={"lg"} className="mt-10 w-full">
+                    Become a Member
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
