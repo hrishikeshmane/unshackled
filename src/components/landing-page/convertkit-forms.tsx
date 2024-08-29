@@ -18,17 +18,6 @@ export const StartHereForm = () => {
   );
 };
 
-export const JoinTheClubForm = () => {
-  return (
-    <ConvertKitForm
-      template="clare"
-      formId={JOIN_THE_CLUB_FORM_ID}
-      submitText="Join 500+ ambitious immigrants"
-      buttonBackground="#1454A1"
-    />
-  );
-};
-
 export const JoinNewsletterForm = () => {
   return (
     <ConvertKitForm

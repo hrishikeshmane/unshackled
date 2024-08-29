@@ -10,7 +10,6 @@ import {
 import Image from "next/image";
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
-import { JoinTheClubForm } from "~/components/landing-page/convertkit-forms";
 import Footer from "~/components/landing-page/footer";
 
 interface PageParams {
@@ -126,7 +125,11 @@ const page = ({ params }: PageParams) => {
             evaluations with all the top lawyers listed above, and a lot more.
           </p>
           <div className="flex w-full flex-col items-center justify-center gap-4 py-4">
-            <JoinTheClubForm />
+            <Link href={"/community"}>
+              <Button size={"lg"} className="scale-125">
+                Become a Member
+              </Button>
+            </Link>
           </div>
         </section>
       </MaxWidthWrapper>
