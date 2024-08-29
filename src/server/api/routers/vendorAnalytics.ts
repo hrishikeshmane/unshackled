@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, adminOrVendorProcedure } from "~/server/api/trpc";
 import { and, eq } from "drizzle-orm";
-import { calculateCommissionAndVendorAmount } from '@/lib/utils';
 
 interface GraphData {
   name: string;
@@ -42,12 +41,7 @@ export const vendorAnalyticsRouter = createTRPCRouter({
           });
 
           if (product) {
-            const [, vendorAmount] = calculateCommissionAndVendorAmount(
-              Number(product.price),
-              orderItem.quantity,
-              Number(product.commission),
-              product.commissionType
-            );
+            const vendorAmount = Number(order.vendorAmount);
             monthlyRevenue[month] = (monthlyRevenue[month] ?? 0) + vendorAmount;
           }
         }
@@ -94,6 +88,10 @@ export const vendorAnalyticsRouter = createTRPCRouter({
       let totalRevenue = 0;
 
       for (const orderItem of paidOrderItems) {
+        const order = await ctx.db.query.order.findFirst({
+          where: (table) => eq(table.id, orderItem.orderId),
+        });
+
         const product = await ctx.db.query.product.findFirst({
           where: (table) =>
             and(
@@ -101,13 +99,9 @@ export const vendorAnalyticsRouter = createTRPCRouter({
               eq(table.creatorId, creatorId),
             ),
         });
-        if (product) {
-          const [, vendorAmount] = calculateCommissionAndVendorAmount(
-            Number(product.price),
-            orderItem.quantity,
-            Number(product.commission),
-            product.commissionType
-          );
+
+        if (product && order) {
+          const vendorAmount = Number(order.vendorAmount);
           totalRevenue += vendorAmount;
         }
       }

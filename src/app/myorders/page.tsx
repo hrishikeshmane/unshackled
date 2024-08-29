@@ -4,6 +4,7 @@ import { api } from '~/trpc/server';
 import { type OrdersColumn } from './_components/columns';
 import { auth } from '@clerk/nextjs/server';
 import MaxWidthWrapper from '~/components/MaxWidthWrapper';
+import { formatPrice } from '~/lib/utils';
 
 const OrdersPage = async () => {
     const { userId } = auth()
@@ -18,6 +19,9 @@ const OrdersPage = async () => {
         id: item.id,
         orderId: item.order.id,
         product: item.product.name,
+        orderTotal: formatPrice(item.order.orderTotal) as string,
+        paymentStatus: item.order.paymentStatus,
+        approval: item.approval as string,
         isFullfilled: item.isFulfilled,
         isPaid: item.order.isPaid,
         createdAt: format(item.order.createdAt, "MMMM do, yyyy"),

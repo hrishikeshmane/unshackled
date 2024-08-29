@@ -11,6 +11,12 @@ import {
   type TagTable,
   type TypeTable,
 } from "~/types/globals";
+import {
+  sendAdminNotificationForListing,
+  sendVenorListingApproval,
+  sendVenorListingDenied,
+} from "~/app/_actions/emails";
+import { clerkClient, currentUser } from "@clerk/nextjs/server";
 
 export const productsRouter = createTRPCRouter({
   createOrUpdateProduct: adminOrVendorProcedure
@@ -33,6 +39,14 @@ export const productsRouter = createTRPCRouter({
         isFeatured: z.boolean(),
         isArchived: z.boolean(),
         isApproved: z.enum(["approved", "pending", "denied"]),
+        requiresVendorApproval: z.boolean(),
+        hasDownPayment: z.boolean(),
+        downPayment: z.string(),
+        hasAdditionalLink: z.boolean(),
+        additionalLinkLabel: z.string(),
+        additionalLinkUrl: z.string(),    
+        orderCommunicationEmail: z.string(),
+        additionalOrderEmailText: z.string(),
         tagId: z.string(),
       }),
     )
@@ -51,12 +65,21 @@ export const productsRouter = createTRPCRouter({
         commission,
         commissionType,
         estTurnAroundTime,
+        requiresVendorApproval,
+        hasDownPayment,
+        downPayment,
+        orderCommunicationEmail,
+        additionalOrderEmailText,
+        hasAdditionalLink,
+        additionalLinkUrl,
+        additionalLinkLabel,   
         domainRank,
         isFeatured,
         isArchived,
         isApproved,
         tagId,
       } = input;
+      const vendorUser = await clerkClient.users.getUser(creatorId);
 
       if (id) {
         const updatedProduct = await ctx.db
@@ -78,10 +101,34 @@ export const productsRouter = createTRPCRouter({
             isFeatured,
             isArchived,
             isApproved,
+            requiresVendorApproval,
+            hasDownPayment,
+            downPayment,
+            orderCommunicationEmail,
+            additionalOrderEmailText,
+            hasAdditionalLink,
+            additionalLinkUrl,
+            additionalLinkLabel, 
             tagId,
           })
           .where(eq(product.id, id))
           .returning();
+
+        //triger email to admin to noify new/edit listing
+        updatedProduct?.[0] &&
+          isApproved !== "approved" &&
+          (await sendAdminNotificationForListing(id));
+
+        // trigger email to vendor to notify status
+        // Note: This will trigger email to vendor when admin performs edit operation on product
+        const vendorEmail = vendorUser.emailAddresses[0]?.emailAddress ?? "";
+        const vendorFirstName = vendorUser.firstName ?? "User";
+        updatedProduct?.[0] &&
+          isApproved === "approved" &&
+          (await sendVenorListingApproval(vendorEmail, vendorFirstName, true));
+        updatedProduct?.[0] &&
+          isApproved === "denied" &&
+          (await sendVenorListingDenied(vendorEmail, vendorFirstName, true));
 
         return updatedProduct[0];
       } else {
@@ -104,9 +151,21 @@ export const productsRouter = createTRPCRouter({
             isFeatured,
             isArchived,
             isApproved,
+            requiresVendorApproval,
+            hasDownPayment,
+            downPayment,
+            orderCommunicationEmail,
+            additionalOrderEmailText,
+            hasAdditionalLink,
+            additionalLinkUrl,
+            additionalLinkLabel, 
             tagId,
           })
           .returning();
+
+        //triger email to admin to noify new/edit listing
+        newProduct?.[0] &&
+          (await sendAdminNotificationForListing(newProduct[0].id));
 
         return newProduct[0];
       }
@@ -316,8 +375,10 @@ export const productsRouter = createTRPCRouter({
       where: (table) => eq(table.isApproved, "approved"),
     });
 
+    const activeProducts = products.filter((product) => !product.isArchived);
+
     const productsWithTypeandTagandStore = await Promise.all(
-      products.map(async (product) => {
+      activeProducts.map(async (product) => {
         const TypeForProduct = await ctx.db.query.type.findFirst({
           where: (table) => eq(table.id, product.typeId),
         });
@@ -338,4 +399,41 @@ export const productsRouter = createTRPCRouter({
 
     return productsWithTypeandTagandStore;
   }),
+  // getApprovedProducts: publicProcedure.query(async ({ ctx }) => {
+  //   const products = await ctx.db.query.product.findMany({
+  //     where: (table) => eq(table.isApproved, "approved"),
+  //   });
+
+  //   const productsWithTypeandTagandStore = await Promise.all(
+  //     products.map(async (product) => {
+  //       const TypeForProduct = await ctx.db.query.type.findFirst({
+  //         where: (table) => eq(table.id, product.typeId),
+  //       });
+  //       const TagForProduct = await ctx.db.query.tag.findFirst({
+  //         where: (table) => eq(table.id, product.tagId),
+  //       });
+  //       const storeForProduct = await ctx.db.query.store.findFirst({
+  //         where: (table) => eq(table.id, product.storeId),
+  //       });
+
+  //       // Check if the store is live
+  //       if (storeForProduct && storeForProduct.isLive) {
+  //         return {
+  //           ...product,
+  //           type: TypeForProduct as TypeTable,
+  //           tag: TagForProduct as TagTable,
+  //           store: storeForProduct as StoreTable,
+  //         };
+  //       }
+  //       return null; // Return null for products with non-live stores
+  //     })
+  //   );
+
+  //   // Filter out null values (products with non-live stores)
+  //   const filteredProducts = productsWithTypeandTagandStore.filter(
+  //     (product): product is NonNullable<typeof product> => product !== null
+  //   );
+
+  //   return filteredProducts;
+  // }),
 });

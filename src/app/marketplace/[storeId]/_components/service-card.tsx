@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ServiceCardTitle } from "./service-card-title";
@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/hover-card";
 import { LockClosedIcon } from "@radix-ui/react-icons";
 import { type ModifiedProduct } from "./columns";
-import { redirect } from "next/navigation";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { formatPrice } from "~/lib/utils";
 
 const AccessButton = ({
   storeId,
@@ -64,7 +64,7 @@ const ServiceInfo = ({
       <Briefcase size={16} className="shrink-0" />
       <span className="capitalize">{service}</span>
     </div>
-    <p className="flex items-center gap-1">
+    {/* <p className="flex items-center gap-1">
       <Globe2 size={16} className="shrink-0" />
       <span>
         Domain Ranking:{" "}
@@ -78,11 +78,11 @@ const ServiceInfo = ({
         </HoverCardTrigger>
         <HoverCardContent>Blah blah .....</HoverCardContent>
       </HoverCard>
-    </p>
-    <p className="flex items-center gap-1.5 sm:hidden">
+    </p> */}
+    {/* <p className="flex items-center gap-1.5 sm:hidden">
       <Clock size={16} className="shrink-0" />
-      {estTurnaroundTime || "Contact for Turnaround Time"}
-    </p>
+      {estTurnaroundTime ?? "Contact for Turnaround Time"}
+    </p> */}
   </>
 );
 
@@ -135,12 +135,18 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
             />
             <div className="flex items-end justify-between gap-1.5 sm:hidden">
               <TagBadge Tag={tag} />
-              <AccessButton storeId={String(params.storeId)} productId={id} />
+              <span className="flex items-center gap-1.5">
+                {price ? `${formatPrice(price)}` : "Contact for Price"}
+              </span>
+              {/* <AccessButton storeId={String(params.storeId)} productId={id} /> */}
             </div>
           </div>
         </div>
         <div className="ml-auto hidden shrink-0 flex-col items-end justify-between sm:flex">
-          <AccessButton storeId={String(params.storeId)} productId={id} />
+          <span className="flex items-center gap-1.5">
+            {price ? `${formatPrice(price)}` : "Contact for Price"}
+          </span>
+          {/* <AccessButton storeId={String(params.storeId)} productId={id} /> */}
           <div className="flex flex-col items-end">
             <TagBadge Tag={tag} />
             <span className="flex items-center gap-1 text-muted-foreground">

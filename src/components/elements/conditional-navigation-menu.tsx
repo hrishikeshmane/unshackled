@@ -50,7 +50,7 @@ export function ConditionalNavigationMenu({
                   <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                      <li className="row-span-3">
+                      <li className="row-span-4">
                         <NavigationMenuLink asChild>
                           <Link
                             className="flex h-full w-full select-none flex-col justify-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
@@ -70,6 +70,9 @@ export function ConditionalNavigationMenu({
                       <ListItem href="/course" title="Free Course">
                         5-day free course on talent visas. No legal jargon.
                       </ListItem>
+                      {/* <ListItem href="/student-plan" title="Student Plan">
+                        Complete plan tailored for F-1 students
+                      </ListItem> */}
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
@@ -84,6 +87,9 @@ export function ConditionalNavigationMenu({
                             href="/"
                           >
                             <Logo className="border-3 m-auto" />
+                            <h2 className="mx-auto pt-4 text-xl">
+                              Marketplace
+                            </h2>
                           </Link>
                         </NavigationMenuLink>
                       </li>
@@ -95,6 +101,9 @@ export function ConditionalNavigationMenu({
                       </div>
                     </ul>
                     {/* <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                      <ListItem title={"Marketplace"} href={"/marketplace"}>
+                        All your talent visas needs - in one place
+                      </ListItem>
                       {components.marketplaceRoutes.map((component) => (
                         <ListItem
                           key={component.title}
@@ -104,8 +113,20 @@ export function ConditionalNavigationMenu({
                           {component.description}
                         </ListItem>
                       ))}
+                      <ListItem title={"My orders"} href={"/myorders"}>
+                        View your orders
+                      </ListItem>
                     </ul> */}
                   </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/find-lawyers" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Find Lawyers
+                    </NavigationMenuLink>
+                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link href="/newsletter" legacyBehavior passHref>

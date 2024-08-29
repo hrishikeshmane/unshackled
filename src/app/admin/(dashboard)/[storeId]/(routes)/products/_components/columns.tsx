@@ -21,6 +21,10 @@ export type ProductColumn = {
 
 export const columns: ColumnDef<ProductColumn>[] = [
     {
+        accessorKey: 'id',
+        header: 'Listing ID',
+    },
+    {
         accessorKey: 'name',
         header: 'name',
     },
@@ -28,14 +32,14 @@ export const columns: ColumnDef<ProductColumn>[] = [
         accessorKey: 'creator',
         header: 'Creator',
     },
-    {
-        accessorKey: 'tag',
-        header: 'Tag',
-    },
-    {
-        accessorKey: 'type',
-        header: 'Type',
-    },
+    // {
+    //     accessorKey: 'tag',
+    //     header: 'Tag',
+    // },
+    // {
+    //     accessorKey: 'type',
+    //     header: 'Type',
+    // },
     {
         accessorKey: 'price',
         header: 'price',
@@ -52,10 +56,10 @@ export const columns: ColumnDef<ProductColumn>[] = [
         accessorKey: 'estTurnAroundTime',
         header: 'Turnaround Time',
     },
-    {
-        accessorKey: 'domainRank',
-        header: 'Rank',
-    },
+    // {
+    //     accessorKey: 'domainRank',
+    //     header: 'Rank',
+    // },
     {
         accessorKey: 'isFeatured',
         header: 'Featured',

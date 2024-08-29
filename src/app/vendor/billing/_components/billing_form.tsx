@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface BillingFormProps {
   stripeConnected: boolean;
@@ -38,7 +39,9 @@ const BillingForm = ({ link, stripeConnected }: BillingFormProps) => {
           )}
 
           {stripeConnected === true && (
-            <Button onClick={handleOnClick}>View Dashboard</Button>
+            <Link href={link}>
+              <Button>View Stripe Dashboard</Button>
+            </Link>
           )}
         </CardContent>
       </Card>

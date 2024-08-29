@@ -36,19 +36,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useAuth } from "@clerk/nextjs";
+import { RocketIcon } from "@radix-ui/react-icons";
+import { Checkbox } from "~/components/ui/checkbox";
 
 const formSchema = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
   tagline: z.string().min(1),
-  price: z.string().min(1),
-  estTurnAroundTime: z.string().min(1),
+  // price: z.string().min(1),
+  // estTurnAroundTime: z.string().min(1),
+  price: z.coerce.number().min(0.01),
+  estTurnAroundTime: z.coerce.number().min(1),
   stripeId: z.string(),
   imageUrl: z.string().min(1),
-  domainRank: z.string().min(1),
+  // domainRank: z.string().min(1),
+  // domainRank: z.coerce.number().int().min(1),
   tagId: z.string().min(1),
   typeId: z.string().min(1),
+  requiresVendorApproval: z.boolean().default(false),
+  hasDownPayment: z.boolean().default(false),
+  downPayment: z.coerce.number().min(0.01),
+  orderCommunicationEmail: z.string(),
+  additionalOrderEmailText: z.string(),
+  hasAdditionalLink: z.boolean(),
+  additionalLinkLabel: z.string(),
+  additionalLinkUrl: z.string(),
   // images: z.object({ url: z.string() }).array(),
 });
 
@@ -102,20 +116,50 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   const [open, setOpen] = useState(false);
 
+  const modifiedInitialData = initialData
+    ? {
+        ...initialData,
+        price: Number(initialData.price) || 0,
+        estTurnAroundTime: Number(initialData.estTurnAroundTime) || 0,
+        // domainRank: Number(initialData.domainRank) || 0,
+        downPayment: Number(initialData.downPayment) || 0,
+      }
+    : {
+        name: "",
+        description: "",
+        tagline: "",
+        price: 0,
+        estTurnAroundTime: 0,
+        stripeId: "",
+        imageUrl: "",
+        // domainRank: 0,
+        tagId: "",
+        typeId: "",
+        requiresVendorApproval: false,
+        hasDownPayment: false,
+        downPayment: 0,
+        orderCommunicationEmail: "",
+        additionalOrderEmailText: "",
+        hasAdditionalLink: false,
+        additionalLinkLabel: "",
+        additionalLinkUrl: "",
+      };
+
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData ?? {
-      name: "",
-      description: "",
-      tagline: "",
-      price: "",
-      estTurnAroundTime: "",
-      stripeId: "",
-      imageUrl: "",
-      domainRank: "",
-      tagId: "",
-      typeId: "",
-    },
+    defaultValues: modifiedInitialData,
+    // defaultValues: initialData ?? {
+    //   name: "",
+    //   description: "",
+    //   tagline: "",
+    //   price: "",
+    //   estTurnAroundTime: "",
+    //   stripeId: "",
+    //   imageUrl: "",
+    //   domainRank: "",
+    //   tagId: "",
+    //   typeId: "",
+    // },
   });
 
   const onSubmit = (data: ProductFormValues) => {
@@ -128,16 +172,29 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         name: data.name,
         tagline: data.tagline,
         description: data.description,
-        price: data.price,
-        commission: "20",
-        commissionType: "percentage",
+        price: String(data.price),
+        commission: initialData?.commission
+          ? String(initialData?.commission ?? 0)
+          : "20",
+        commissionType: initialData?.commissionType
+          ? initialData?.commissionType
+          : "percentage",
         stripeId: "xxx",
         imageUrl: data.imageUrl,
-        estTurnAroundTime: data.estTurnAroundTime,
-        domainRank: data.domainRank,
+        estTurnAroundTime: String(data.estTurnAroundTime),
+        // domainRank: String(data.domainRank),
+        domainRank: "0",
         isFeatured: false,
         isArchived: false,
         isApproved: "pending",
+        requiresVendorApproval: data.requiresVendorApproval,
+        hasDownPayment: data.hasDownPayment,
+        downPayment: String(data.downPayment),
+        orderCommunicationEmail: data.orderCommunicationEmail,
+        additionalOrderEmailText: data.additionalOrderEmailText,
+        hasAdditionalLink: data.hasAdditionalLink,
+        additionalLinkLabel: data.additionalLinkLabel,
+        additionalLinkUrl: data.additionalLinkUrl,
         tagId: data.tagId,
         typeId: data.typeId,
         creatorId: initialData?.creatorId
@@ -161,6 +218,21 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   return (
     <>
+      {/* <div className="sticky top-16 flex h-12 w-screen items-center justify-center bg-primary text-primary-foreground">
+        Your listings are subject to approval. New/Edited Listings will not be
+        visible until approved.
+      </div> */}
+      <Alert variant={"primary"}>
+        <RocketIcon className="h-4 w-4" />
+        <AlertTitle>Heads up!</AlertTitle>
+        <AlertDescription>
+          <>
+            New/Edited listings will not be visible until approved. Listings are
+            subject to a commission around 20% of the listing price. Final
+            commission will be decided when approved.
+          </>
+        </AlertDescription>
+      </Alert>
       <AlertModal
         isOpen={open}
         onClose={() => setOpen(false)}
@@ -265,6 +337,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Est. TurnAround Time</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="EstTurnAround Time (days)"
                       {...field}
@@ -274,7 +347,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 </FormItem>
               )}
             />
-            <FormField
+            {/* <FormField
               control={form.control}
               name="domainRank"
               render={({ field }) => (
@@ -282,6 +355,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Domain Rank</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="Domain Ranking"
                       {...field}
@@ -290,7 +364,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
             <FormField
               control={form.control}
               name="price"
@@ -299,6 +373,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Price</FormLabel>
                   <FormControl>
                     <Input
+                      type="number"
                       disabled={isPending}
                       placeholder="Product Price"
                       {...field}
@@ -368,6 +443,153 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                       ))}
                     </SelectContent>
                   </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* <FormField
+              control={form.control}
+              name="requiresVendorApproval"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Requires Vendor Approval</FormLabel>
+                    <FormDescription>
+                      The product will require vendor approval before placing an order.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            /> */}
+            <FormField
+              control={form.control}
+              name="hasDownPayment"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>DownPayment Plan</FormLabel>
+                    <FormDescription>
+                      Indicates if this product has down payment plan.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="downPayment"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>DownPayment Amount</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      disabled={isPending}
+                      placeholder="DownPayment Amount"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="orderCommunicationEmail"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Order Communication Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      placeholder="hello@yourservices.com"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="additionalOrderEmailText"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tagline</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      disabled={isPending}
+                      placeholder="Text to be added at the end of order email."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="hasAdditionalLink"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Additional Link?</FormLabel>
+                    <FormDescription>
+                      Select if you want additional link/button included.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="additionalLinkLabel"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Additional Link label</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      placeholder="Calendly Link"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="additionalLinkUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Additional Link Url</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      disabled={isPending}
+                      placeholder="https://calendly.com"
+                      {...field}
+                    />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}

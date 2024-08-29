@@ -6,6 +6,8 @@ import Logo from "./logo";
 import NavButtons from "./nav-buttons";
 import { auth } from "@clerk/nextjs/server";
 import MobileNav from "./mobilNav";
+import { Button } from "../ui/button";
+import { sendTestEmailToSelf, sendWelcomeEmail } from "~/app/_actions/emails";
 
 export type NavComponent = { title: string; href: string; description: string };
 export type Route = {
@@ -22,7 +24,7 @@ export type Routes = {
 };
 
 const Header = async () => {
-  const data = await api.store.getStores();
+  const data = await api.store.getStores({ live: true });
   const { sessionClaims } = auth();
   const role = sessionClaims?.metadata.role;
 
@@ -113,6 +115,10 @@ const Header = async () => {
     ],
   };
 
+  const welcomeEmail = async (data: FormData) => {
+    "use server";
+    await sendTestEmailToSelf("delivered@resend.dev");
+  };
   return (
     <>
       <header className="sticky top-0 z-50 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
@@ -134,6 +140,9 @@ const Header = async () => {
           <Logo className="h-6 w-6" />
           <MobileNav role={role} components={routes} />
         </div>
+        {/* <form action={welcomeEmail}>
+          <button type="submit">Email</button>
+        </form> */}
       </header>
     </>
   );

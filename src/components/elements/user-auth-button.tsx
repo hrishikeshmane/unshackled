@@ -16,16 +16,15 @@ const DotIcon = () => {
 };
 
 const UserAuthButton = () => {
-  return <></>; // Remove this when we need auth button
   return (
     <div className="">
       <SignedIn>
         <UserButton afterSignOutUrl="/">
-          <UserButton.UserProfileLink
+          {/* <UserButton.UserProfileLink
             label="Vendor Dashboard"
             url="/vendor"
             labelIcon={<DotIcon />}
-          />
+          /> */}
           <UserButton.UserProfileLink
             label="My Orders"
             url="/myorders"

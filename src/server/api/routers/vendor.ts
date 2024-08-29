@@ -7,9 +7,14 @@ import {
 import { vendor } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
-import { clerkClient } from "@clerk/nextjs/server";
+import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { TRPCError } from "@trpc/server";
 import { stripe } from "~/lib/stripe";
+import {
+  sendAdminNotificationForSellerRequest,
+  sendVendorSellerRequestApproved,
+  sendVendorSellerRequestDenied,
+} from "~/app/_actions/emails";
 
 export const vendorRouter = createTRPCRouter({
   createVendorApplication: protectedProcedure
@@ -41,6 +46,11 @@ export const vendorRouter = createTRPCRouter({
           stripeConnectedId: "",
           status: "pending",
         });
+
+        // Trigger email
+        const vendorUser = await currentUser();
+        const vendorEmail = vendorUser?.emailAddresses[0]?.emailAddress ?? "";
+        await sendAdminNotificationForSellerRequest();
 
         return {
           res: "Your vendor application has been submitted successfully. Please wait for the approval process.",
@@ -108,6 +118,16 @@ export const vendorRouter = createTRPCRouter({
           .update(vendor)
           .set({ stripeConnectedId: account.id })
           .where(eq(vendor.userId, userId));
+      }
+
+      // Email trigger
+      const vendorEmail = user.emailAddresses[0]?.emailAddress ?? "";
+      const vendorFristName = user.firstName ?? "User";
+      if (status === "approved") {
+        await sendVendorSellerRequestApproved(vendorEmail, vendorFristName);
+      }
+      if (status === "denied") {
+        await sendVendorSellerRequestDenied(vendorEmail, vendorFristName);
       }
     }),
 });

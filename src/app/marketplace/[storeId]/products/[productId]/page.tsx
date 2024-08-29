@@ -12,6 +12,9 @@ import { Badge } from "~/components/ui/badge";
 import BuyNowButton from "~/components/buy-now-button";
 import ProductsReel from "~/app/marketplace/_components/products-reel";
 import QuantitySelector from "~/components/quantity-selector";
+import { Button } from "~/components/ui/button";
+import { formatPrice } from "~/lib/utils";
+import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 
 const ProductPage = () => {
   const params = useParams();
@@ -26,7 +29,7 @@ const ProductPage = () => {
   const similarProductsFiltered = similarProducts.data?.filter(
     (p) => p.id !== productId,
   );
-  
+
   const [quantity, setQuantity] = useState(1);
 
   if (product.isPending || similarProducts.isPending) {
@@ -42,9 +45,8 @@ const ProductPage = () => {
     { id: 2, name: "Products", href: `/marketplace/${String(storeId)}` },
   ];
 
-
-  const handleIncrease = () => setQuantity(prev => prev + 1);
-  const handleDecrease = () => setQuantity(prev => Math.max(1, prev - 1));
+  const handleIncrease = () => setQuantity((prev) => prev + 1);
+  const handleDecrease = () => setQuantity((prev) => Math.max(1, prev - 1));
   const handleManualChange = (value: number) => setQuantity(Math.max(1, value));
 
   return (
@@ -101,7 +103,7 @@ const ProductPage = () => {
               <section className="mt-4">
                 <div className="flex items-center">
                   <p className="font-medium text-gray-900">
-                    {product.data.price}
+                    {formatPrice(product.data.price)}
                   </p>
 
                   <div className="ml-4 border-l border-gray-300 pl-4 text-muted-foreground">
@@ -149,30 +151,74 @@ const ProductPage = () => {
 
             {/* add to cart part */}
             <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
-            <div>
-              <div className="mt-10 flex items-center space-x-4">
-                {/* <BuyNowButton product={product.data} /> */}
-                <QuantitySelector
-                  quantity={quantity}
-                  onIncrease={handleIncrease}
-                  onDecrease={handleDecrease}
-                  onManualChange={handleManualChange}
-                />
-                <BuyNowButton product={product.data} quantity={quantity} />
-              </div>
-              <div className="mt-6 text-center">
-                <div className="text-medium group inline-flex text-sm">
-                  <Shield
-                    aria-hidden="true"
-                    className="mr-2 h-5 w-5 flex-shrink-0 text-gray-400"
+              <div>
+                <div className="mt-10 flex items-center space-x-4">
+                  {/* <BuyNowButton product={product.data} /> */}
+                  <QuantitySelector
+                    quantity={quantity}
+                    onIncrease={handleIncrease}
+                    onDecrease={handleDecrease}
+                    onManualChange={handleManualChange}
                   />
-                  <span className="text-muted-foreground hover:text-gray-700">
-                    Unshackled Trusted
-                  </span>
+                  <BuyNowButton
+                    product={product.data}
+                    quantity={quantity}
+                    isDownPayment={false}
+                  />
+                </div>
+                {product.data.hasDownPayment && (
+                  <>
+                    <div className="mt-4 flex flex-col items-center text-center">
+                      <p className="text-muted-foreground">
+                        OR get started with initial down payment of{" "}
+                        {formatPrice(product.data.downPayment)} and pay the rest
+                        to vendor later.
+                      </p>
+                      <BuyNowButton
+                        className="b-2 mx-0 my-4 border-primary"
+                        variant="outline"
+                        product={product.data}
+                        quantity={quantity}
+                        isDownPayment={true}
+                        buttonText="Start with Down Payment"
+                      />
+                    </div>
+                  </>
+                )}
+                {product.data.hasAdditionalLink && (
+                  <>
+                    <div className="flex flex-col items-center space-x-4 text-center">
+                      <Link
+                        className="w-full"
+                        href={product.data.additionalLinkUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button
+                          size="lg"
+                          className="flex w-full items-center gap-1"
+                          variant="secondary"
+                        >
+                          {product.data.additionalLinkLabel}
+                          <ArrowTopRightIcon />
+                        </Button>
+                      </Link>
+                    </div>
+                  </>
+                )}
+                <div className="mt-6 text-center">
+                  <div className="text-medium group inline-flex text-sm">
+                    <Shield
+                      aria-hidden="true"
+                      className="mr-2 h-5 w-5 flex-shrink-0 text-gray-400"
+                    />
+                    <span className="text-muted-foreground hover:text-gray-700">
+                      Unshackled Trusted
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           </div>
         </div>
 

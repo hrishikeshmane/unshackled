@@ -9,6 +9,7 @@ import {
   integer,
 } from "drizzle-orm/sqlite-core";
 import { createId } from "@paralleldrive/cuid2";
+import { boolean } from "drizzle-orm/mysql-core";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -17,21 +18,6 @@ import { createId } from "@paralleldrive/cuid2";
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
 export const createTable = sqliteTableCreator((name) => `unshackled_${name}`);
-
-// export const posts = createTable(
-//   "post",
-//   {
-//     id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-//     name: text("name", { length: 256 }),
-//     createdAt: int("created_at", { mode: "timestamp" })
-//       .default(sql`CURRENT_TIMESTAMP`)
-//       .notNull(),
-//     updatedAt: int("updatedAt", { mode: "timestamp" }),
-//   },
-//   (example) => ({
-//     nameIndex: index("name_idx").on(example.name),
-//   })
-// );
 
 export const waitlist = createTable("waitlist", {
   id: integer("id").primaryKey({ autoIncrement: true }),
@@ -69,17 +55,11 @@ export const vendor = createTable("vendorInfo", {
     .notNull(),
 });
 
-// export const userInfo = createTable("userInfo", {
-//   userId: text("userId")
-//     .notNull()
-//     .primaryKey()
-//     .references(() => users.userId, { onDelete: "cascade" }),
-// });
-
 export const store = createTable("store", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
   name: text("name", { length: 256 }).notNull(),
   description: text("description").default(""),
+  isLive: integer("isLive", { mode: "boolean" }).default(false),
   createdAt: int("createdAt", { mode: "timestamp" })
     .default(sql`(unixepoch())`)
     .notNull(),
@@ -165,6 +145,14 @@ export const product = createTable("product", {
   isApproved: text("isApproved", {
     enum: ["approved", "pending", "denied"],
   }).notNull(),
+  requiresVendorApproval: integer("requiresVendorApproval", { mode: "boolean" }).notNull().default(false),
+  hasDownPayment: integer("hasDownPayment", { mode: "boolean" }).notNull().default(false),
+  downPayment: text("downpayment", { length: 256 }).notNull().default("0"),
+  orderCommunicationEmail: text("orderCommunicationEmail", { length: 256 }).notNull().default(""),
+  additionalOrderEmailText: text("additionalOrderEmailText", { length: 256 }).notNull().default(""),
+  hasAdditionalLink: integer("hasAdditionalLink", { mode: "boolean" }).notNull().default(false),
+  additionalLinkLabel: text("additionalLinkLabel", { length: 256 }).notNull().default(""),
+  additionalLinkUrl: text("additionalLinkUrl", { length: 256 }).notNull().default(""),
   tagId: text("tagId", { length: 256 })
     .notNull()
     .references(() => tag.id),
@@ -176,24 +164,15 @@ export const product = createTable("product", {
   ),
 });
 
-// export const image = createTable("image", {
-//   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
-//   productId: text("productId", { length: 256 })
-//     .notNull()
-//     .references(() => product.id, { onDelete: 'cascade' }),
-//   url: text("url", { length: 256 }).notNull(),
-//   createdAt: int("createdAt", { mode: "timestamp" })
-//     .default(sql`(unixepoch())`)
-//     .notNull(),
-//   updatedAt: int("updatedAt", { mode: "timestamp" }).default(
-//     sql`(unixepoch())`,
-//   ),
-// });
-
 export const order = createTable("order", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
   isPaid: integer("isPaid", { mode: "boolean" }).notNull(),
+  paymentStatus: text("paymentStatus").default("Not Initiated"),
   orderTotal: text("orderTotal", { length: 256 }).notNull(),
+  vendorAmount: text("vendorAmount", { length: 256 }).notNull(),
+  paymentIntentId: text("paymentIntentId"),
+  sessionId: text("sessionId"),
+  receipt: text("receipt"),
   createdAt: int("createdAt", { mode: "timestamp" })
     .default(sql`(unixepoch())`)
     .notNull(),
@@ -208,7 +187,13 @@ export const order = createTable("order", {
 export const orderItem = createTable("orderItem", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
   isFulfilled: integer("isFulfilled", { mode: "boolean" }).notNull(),
+  // isFulfilled: text("isFulfilled", {
+  //   enum: ["notInitiated", "inProgress", "completed"],
+  // }).default("notInitiated"),
   vendorPayout: integer("vendorPayout", { mode: "boolean" }).notNull(),
+  approval: text("approval", {
+    enum: ["requested", "approved", "denied"],
+  }).default("approved"),
   orderId: text("orderId", { length: 256 })
     .notNull()
     .references(() => order.id),
@@ -216,6 +201,7 @@ export const orderItem = createTable("orderItem", {
     .notNull()
     .references(() => product.id),
   quantity: integer("quantity").notNull().default(1),
+  isDownPayment: integer("isDownPayment", { mode: "boolean" }).notNull().default(false),
   storeId: text("storeId", { length: 256 })
     .notNull()
     .references(() => store.id),

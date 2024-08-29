@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, adminProcedure } from "~/server/api/trpc";
 import { eq } from "drizzle-orm";
-import { calculateCommissionAndVendorAmount } from '@/lib/utils';
 
 interface GraphData {
   name: string;
@@ -35,19 +34,10 @@ export const storeAnalyticsRouter = createTRPCRouter({
 
         if (order) {
           const month = order.createdAt.getMonth();
-          const product = await ctx.db.query.product.findFirst({
-            where: (table) => eq(table.id, orderItem.productId),
-          });
-
-          if (product) {
-            const [commissionAmount] = calculateCommissionAndVendorAmount(
-              Number(product.price),
-              orderItem.quantity,
-              Number(product.commission),
-              product.commissionType
-            );
-            monthlyRevenue[month] = (monthlyRevenue[month] ?? 0) + commissionAmount;
-          }
+          const platformRevenue =
+            Number(order.orderTotal) - Number(order.vendorAmount);
+          monthlyRevenue[month] =
+            (monthlyRevenue[month] ?? 0) + platformRevenue;
         }
       }
 
@@ -94,17 +84,14 @@ export const storeAnalyticsRouter = createTRPCRouter({
       let totalRevenue = 0;
 
       for (const orderItem of paidOrderItems) {
-        const product = await ctx.db.query.product.findFirst({
-          where: (table) => eq(table.id, orderItem.productId),
+        const order = await ctx.db.query.order.findFirst({
+          where: (table) => eq(table.id, orderItem.orderId),
         });
-        if (product) {
-          const [commissionAmount] = calculateCommissionAndVendorAmount(
-            Number(product.price),
-            orderItem.quantity,
-            Number(product.commission),
-            product.commissionType
-          );
-          totalRevenue += commissionAmount;
+
+        if (order) {
+          const platformRevenue =
+            Number(order.orderTotal) - Number(order.vendorAmount);
+          totalRevenue += platformRevenue;
         }
       }
 

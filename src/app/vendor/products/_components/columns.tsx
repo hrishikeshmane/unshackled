@@ -8,6 +8,7 @@ export type ProductColumn = {
     price: string;
     storeId: string;
     commission: string;
+    commissionType: string;
     creator: string;
     estTurnAroundTime: string;
     domainRank: string;
@@ -21,17 +22,21 @@ export type ProductColumn = {
 
 export const columns: ColumnDef<ProductColumn>[] = [
     {
+        accessorKey: "id",
+        header: "Listing ID",
+    },
+    {
         accessorKey: 'name',
         header: 'name',
     },
-    {
-        accessorKey: 'tag',
-        header: 'Tag',
-    },
-    {
-        accessorKey: 'type',
-        header: 'Type',
-    },
+    // {
+    //     accessorKey: 'tag',
+    //     header: 'Tag',
+    // },
+    // {
+    //     accessorKey: 'type',
+    //     header: 'Type',
+    // },
     {
         accessorKey: 'price',
         header: 'price',
@@ -41,6 +46,10 @@ export const columns: ColumnDef<ProductColumn>[] = [
         header: 'Commission',
     },
     {
+        accessorKey: 'commissionType',
+        header: 'Commission Type'
+    },
+    {
         accessorKey: 'isApproved',
         header: 'Approval',
     },
@@ -48,10 +57,10 @@ export const columns: ColumnDef<ProductColumn>[] = [
         accessorKey: 'estTurnAroundTime',
         header: 'Turnaround Time',
     },
-    {
-        accessorKey: 'domainRank',
-        header: 'Rank',
-    },
+    // {
+    //     accessorKey: 'domainRank',
+    //     header: 'Rank',
+    // },
     {
         accessorKey: 'isFeatured',
         header: 'Featured',

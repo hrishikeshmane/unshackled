@@ -23,7 +23,7 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
   };
 
   return (
-    <div className="ml-auto flex w-full items-center gap-4 md:flex-row md:justify-end lg:gap-4">
+    <div className="ml-auto flex w-full flex-col gap-4 md:flex-row md:items-center md:justify-end lg:gap-4">
       {pathname.includes("marketplace")}
       {!pathname.includes("marketplace") && (
         <div className="flex gap-4">
@@ -74,7 +74,9 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
           )}
         </div>
       )}
-      <UserAuthButton />
+      <div className="hidden md:block">
+        <UserAuthButton />
+      </div>
     </div>
   );
 };

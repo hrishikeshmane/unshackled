@@ -43,16 +43,28 @@ const formSchema = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
   tagline: z.string().min(1),
-  price: z.string().min(1),
-  commission: z.string().min(1),
+  // price: z.string().min(1),
+  // estTurnAroundTime: z.string().min(1),
+  // commission: z.string().min(1),
+  price: z.coerce.number().min(0.01),
+  estTurnAroundTime: z.coerce.number().min(1),
+  commission: z.coerce.number().min(0),
   commissionType: z.enum(["percentage", "flat"]),
-  estTurnAroundTime: z.string().min(1),
   stripeId: z.string(),
   imageUrl: z.string().min(1),
-  domainRank: z.string().min(1),
+  // domainRank: z.string().min(1),
+  // domainRank: z.coerce.number().int().min(1),
   isFeatured: z.boolean().default(false),
   isArchived: z.boolean().default(false),
   isApproved: z.enum(["approved", "pending", "denied"]),
+  requiresVendorApproval: z.boolean().default(false),
+  hasDownPayment: z.boolean().default(false),
+  downPayment: z.coerce.number().min(0),
+  orderCommunicationEmail: z.string(),
+  additionalOrderEmailText: z.string(),
+  hasAdditionalLink: z.boolean(),
+  additionalLinkLabel: z.string(),
+  additionalLinkUrl: z.string(),
   tagId: z.string().min(1),
   typeId: z.string().min(1),
   // images: z.object({ url: z.string() }).array(),
@@ -108,26 +120,70 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   const [open, setOpen] = useState(false);
 
+  // const modifiedInitialData = initialData
+  //   ? {
+  //       ...initialData,
+  //       price: Number(initialData.price) || 0,
+  //       estTurnAroundTime: Number(initialData.estTurnAroundTime) || 0,
+  //       domainRank: Number(initialData.domainRank) || 0,
+  //       commission: Number(initialData.commission) || 0,
+  //     }
+  //   : {
+  //       name: "",
+  //       description: "",
+  //       tagline: "",
+  //       price: 0,
+  //       commission: 0,
+  //       commissionType: "percentage",
+  //       estTurnAroundTime: 0,
+  //       stripeId: "",
+  //       imageUrl: "",
+  //       domainRank: 0,
+  //       isFeatured: false,
+  //       isArchived: false,
+  //       isApproved: "pending",
+  //       tagId: "",
+  //       typeId: "",
+  //     };
+
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData ?? {
-      name: "",
-      description: "",
-      tagline: "",
-      price: "",
-      commission: "",
-      commissionType: "percentage",
-      estTurnAroundTime: "",
-      stripeId: "",
-      imageUrl: "",
-      domainRank: "",
-      isFeatured: false,
-      isArchived: false,
-      isApproved: "pending",
-      tagId: "",
-      typeId: "",
-      // images: [],
-    },
+    // defaultValues: modifiedInitialData,
+    defaultValues: initialData
+      ? {
+          ...initialData,
+          price: parseInt(initialData.price) || 0,
+          estTurnAroundTime: Number(initialData.estTurnAroundTime) || 0,
+          // domainRank: Number(initialData.domainRank) || 0,
+          commission: Number(initialData.commission) || 0,
+          downPayment: Number(initialData.downPayment) || 0,
+        }
+      : {
+          name: "",
+          description: "",
+          tagline: "",
+          price: 0,
+          commission: 0,
+          commissionType: "percentage",
+          estTurnAroundTime: 0,
+          stripeId: "",
+          imageUrl: "",
+          // domainRank: 0,
+          isFeatured: false,
+          isArchived: false,
+          isApproved: "pending",
+          tagId: "",
+          typeId: "",
+          requiresVendorApproval: false,
+          hasDownPayment: false,
+          downPayment: 0,
+          orderCommunicationEmail: "",
+          additionalOrderEmailText: "",
+          hasAdditionalLink: false,
+          additionalLinkLabel: "",
+          additionalLinkUrl: "",
+          // images: [],
+        },
   });
 
   const onSubmit = (data: ProductFormValues) => {
@@ -140,16 +196,25 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         name: data.name,
         tagline: data.tagline,
         description: data.description,
-        price: data.price,
-        commission: data.commission,
+        price: String(data.price),
+        commission: String(data.commission),
         commissionType: data.commissionType,
         stripeId: "xxx",
         imageUrl: data.imageUrl,
-        estTurnAroundTime: data.estTurnAroundTime,
-        domainRank: data.domainRank,
+        estTurnAroundTime: String(data.estTurnAroundTime),
+        // domainRank: String(data.domainRank),
+        domainRank: "0",
         isFeatured: data.isFeatured,
         isArchived: data.isArchived,
         isApproved: data.isApproved,
+        requiresVendorApproval: data.requiresVendorApproval,
+        hasDownPayment: data.hasDownPayment,
+        downPayment: String(data.downPayment),
+        orderCommunicationEmail: data.orderCommunicationEmail,
+        additionalOrderEmailText: data.additionalOrderEmailText,
+        hasAdditionalLink: data.hasAdditionalLink,
+        additionalLinkLabel: data.additionalLinkLabel,
+        additionalLinkUrl: data.additionalLinkUrl,
         tagId: data.tagId,
         typeId: data.typeId,
         creatorId: initialData?.creatorId
@@ -199,144 +264,81 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full space-y-8"
         >
-          <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Product Image (Logo)</FormLabel>
-                <FormControl>
-                  <ImageUpload
-                    value={field.value ? [field.value] : []}
-                    disabled={isPending}
-                    onChange={(url) => field.onChange(url)}
-                    onRemove={() => field.onChange("")}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
-              name="name"
+              name="imageUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Product Image (Logo)</FormLabel>
                   <FormControl>
-                    <Input
+                    <ImageUpload
+                      value={field.value ? [field.value] : []}
                       disabled={isPending}
-                      placeholder="Product Name"
-                      {...field}
+                      onChange={(url) => field.onChange(url)}
+                      onRemove={() => field.onChange("")}
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="tagline"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Tagline</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      disabled={isPending}
-                      placeholder="Product Tagline"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      disabled={isPending}
-                      placeholder="Product description"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="estTurnAroundTime"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Est. TurnAround Time</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={isPending}
-                      placeholder="EstTurnAround Time (days)"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="domainRank"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Domain Rank</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={isPending}
-                      placeholder="Domain Ranking"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="price"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Price</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={isPending}
-                      placeholder="Product Price"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="commission"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Commission</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={isPending}
-                      placeholder="Commission"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="col-span-2">
+              {/* <div className="flex gap-8"></div> */}
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        disabled={isPending}
+                        placeholder="Product Name"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="tagline"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Tagline</FormLabel>
+                    <FormControl>
+                      <Input
+                        disabled={isPending}
+                        placeholder="Product Tagline"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Description</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        disabled={isPending}
+                        placeholder="Product description"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
               name="typeId"
@@ -363,35 +365,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                           {type.name}
                         </SelectItem>
                       ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="commissionType"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Commission Type</FormLabel>
-                  <Select
-                    disabled={isPending}
-                    onValueChange={field.onChange}
-                    value={field.value}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue
-                          defaultValue={field.value}
-                          placeholder="Select a Commission Type"
-                        />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="percentage">Percentage</SelectItem>
-                      <SelectItem value="flat">Flat</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -432,6 +405,275 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             />
             <FormField
               control={form.control}
+              name="estTurnAroundTime"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Est. TurnAround Time</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      disabled={isPending}
+                      placeholder="EstTurnAround Time (days)"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="my-4">
+            <h3 className="p-1 text-2xl font-bold">Pricing</h3>
+            <Separator />
+          </div>
+          <div className="grid grid-cols-3 gap-8">
+            {/* <FormField
+              control={form.control}
+              name="domainRank"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Domain Rank</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      disabled={isPending}
+                      placeholder="Domain Ranking"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            /> */}
+            <FormField
+              control={form.control}
+              name="price"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Price</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      disabled={isPending}
+                      placeholder="Product Price"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="commissionType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Commission Type</FormLabel>
+                  <Select
+                    disabled={isPending}
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue
+                          defaultValue={field.value}
+                          placeholder="Select a Commission Type"
+                        />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="percentage">Percentage</SelectItem>
+                      <SelectItem value="flat">Flat</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="commission"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Commission</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      disabled={isPending}
+                      placeholder="Commission"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="grid grid-cols-3 gap-8">
+            {/* <FormField
+              control={form.control}
+              name="requiresVendorApproval"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Requires Vendor Approval</FormLabel>
+                    <FormDescription>
+                      The product will require vendor approval before placing an order.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            /> */}
+            <FormField
+              control={form.control}
+              name="hasDownPayment"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Down Payment Plan</FormLabel>
+                    <FormDescription>
+                      Indicates if this product has down payment plan.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="downPayment"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Down Payment Amount</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      disabled={isPending}
+                      placeholder="DownPayment Amount"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="my-4">
+            <h3 className="p-1 text-2xl font-bold">Communication</h3>
+            <Separator />
+          </div>
+          <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="hasAdditionalLink"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Additional Link?</FormLabel>
+                    <FormDescription>
+                      Select if you want additional link/button included.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="additionalLinkLabel"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Additional Link label</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      placeholder="Calendly Link"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="additionalLinkUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Additional Link Url</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      placeholder="https://calendly.com"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="orderCommunicationEmail"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Order Communication Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      placeholder="hello@yourservices.com"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="additionalOrderEmailText"
+              render={({ field }) => (
+                <FormItem className="col-span-2">
+                  <FormLabel>Message for the buyer</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      disabled={isPending}
+                      placeholder="Text to be added at the end of order email."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="my-4">
+            <h3 className="p-1 text-2xl font-bold">Admin</h3>
+            <Separator />
+          </div>
+          <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
               name="isFeatured"
               render={({ field }) => (
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
@@ -464,12 +706,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <div className="space-y-1 leading-none">
                     <FormLabel>Archived</FormLabel>
                     <FormDescription>
-                      The product will appear anywhere in the store.
+                      The product will appear nowhere in the store.
                     </FormDescription>
                   </div>
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="isApproved"

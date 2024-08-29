@@ -8,12 +8,19 @@ import { useRouter } from "next/navigation";
 import { type ProductColumn, columns } from "./columns";
 import { DataTable } from "~/app/admin/_components/data-table";
 import { AddStoreModal } from "./add-product-modal";
+import { api } from "~/trpc/react";
 
 interface ProductClientProps {
   data: ProductColumn[];
+  vendorStripeConnected?: boolean;
 }
 
-export const ProductClient: React.FC<ProductClientProps> = ({ data }) => {
+export const ProductClient: React.FC<ProductClientProps> = ({
+  data,
+  vendorStripeConnected,
+}) => {
+  const disableAddButton =
+    vendorStripeConnected == null ? false : !vendorStripeConnected;
   return (
     <>
       <div className="flex items-center justify-between">
@@ -23,7 +30,7 @@ export const ProductClient: React.FC<ProductClientProps> = ({ data }) => {
         />
         <AddStoreModal>
           {/* TODO: Disable button if stripe not connected */}
-          <Button>
+          <Button disabled={disableAddButton}>
             <Plus className="mr-2 h-4 w-4" />
             Add New
           </Button>

@@ -1,27 +1,51 @@
-import { format } from 'date-fns'
+import { format } from 'date-fns';
 import { OrderClient } from './_components/client';
 import { api } from '~/trpc/server';
 import { type OrdersColumn } from './_components/columns';
 import { auth } from '@clerk/nextjs/server';
+import { clerkClient } from '@clerk/nextjs/server'; // Import Clerk client
+import { formatPrice } from '~/lib/utils';
 
 const OrdersPage = async () => {
-    const { userId } = auth()
+    const { userId } = auth();
     
     if (!userId) {
-        return null
+        return null;
     }
 
     const orders = await api.order.getOrderItemsWithProductAndOrderByCreatorId({ creatorId: userId });
 
-    const formattedOrders: OrdersColumn[] = orders.map(item => ({
-        id: item.id,
-        orderId: item.order.id,
-        product: item.product.name,
-        quantity: item.quantity,
-        isFullfilled: item.isFulfilled,
-        isPaid: item.order.isPaid,
-        vendorPayout: item.vendorPayout,
-        createdAt: format(item.order.createdAt, "MMMM do, yyyy"),
+    const filteredOrders = orders.filter(item => item.order.paymentStatus !== "Not Initiated");
+
+    const formattedOrders: OrdersColumn[] = await Promise.all(filteredOrders.map(async (item) => {
+        let customerFullName = '';
+        let customerEmail = '';
+
+        try {
+            const user = await clerkClient.users.getUser(item.order.customerId);
+            if (user) {
+                customerFullName = `${user.firstName} ${user.lastName ?? ''}`.trim();
+                customerEmail = user.emailAddresses[0]?.emailAddress ?? '';
+            }
+        } catch (error) {
+            console.error(`Error fetching user for customerId ${item.order.customerId}:`, error);
+        }
+
+        return {
+            id: item.id,
+            orderId: item.order.id,
+            product: item.product.name,
+            quantity: item.quantity,
+            orderTotal: formatPrice(item.order.orderTotal) as string,
+            approval: item.approval as string,
+            paymentStatus: item.order.paymentStatus,
+            isFullfilled: item.isFulfilled,
+            isPaid: item.order.isPaid,
+            vendorPayout: item.vendorPayout,
+            createdAt: format(item.order.createdAt, "MMMM do, yyyy"),
+            customerFullName: customerFullName,
+            customerEmail: customerEmail,
+        };
     }));
 
     return (
@@ -30,7 +54,7 @@ const OrdersPage = async () => {
                 <OrderClient data={formattedOrders} />
             </div>
         </div>
-    )
+    );
 }
 
 export default OrdersPage;

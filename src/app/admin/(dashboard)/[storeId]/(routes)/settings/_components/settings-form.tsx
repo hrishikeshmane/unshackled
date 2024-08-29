@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -24,6 +25,7 @@ import { type StoreTable } from "~/types/globals";
 import { api } from "~/trpc/react";
 import { desc } from "drizzle-orm";
 import { Textarea } from "~/components/ui/textarea";
+import { Checkbox } from "~/components/ui/checkbox";
 
 interface SettingsFromProps {
   initialData: StoreTable;
@@ -32,6 +34,7 @@ interface SettingsFromProps {
 const formSchema = z.object({
   name: z.string().min(1),
   description: z.string(),
+  isLive: z.boolean(),
 });
 
 type SettingsFormValues = z.infer<typeof formSchema>;
@@ -68,6 +71,7 @@ export const SettingsForm: React.FC<SettingsFromProps> = ({ initialData }) => {
     defaultValues: {
       name: initialData.name,
       description: initialData.description!,
+      isLive: initialData.isLive!,
     },
   });
 
@@ -77,6 +81,7 @@ export const SettingsForm: React.FC<SettingsFromProps> = ({ initialData }) => {
         id: initialData.id,
         name: data.name,
         description: data.description,
+        isLive: data.isLive,
       });
     });
   };
@@ -144,6 +149,26 @@ export const SettingsForm: React.FC<SettingsFromProps> = ({ initialData }) => {
                     />
                   </FormControl>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="isLive"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Live</FormLabel>
+                    <FormDescription>
+                      The store will be live.
+                    </FormDescription>
+                  </div>
                 </FormItem>
               )}
             />
