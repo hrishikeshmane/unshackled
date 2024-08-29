@@ -77,7 +77,7 @@ export default function HomePage() {
                   <X size={16} className="text-destructive " />
                   <p className="text-muted-foreground">
                     You&apos;re looking for a &quot;hack&quot; to get your green
-                    card. There is
+                    card. There is none.
                   </p>
                 </div>
                 <div className="flex gap-2 py-2 text-lg font-semibold">
