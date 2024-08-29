@@ -76,31 +76,10 @@ export function ConditionalNavigationMenu({
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <NavigationMenuTrigger>Marketplace</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                      <li className="row-span-3">
-                        <NavigationMenuLink asChild>
-                          <Link
-                            className="flex h-full w-full select-none flex-col justify-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                            href="/"
-                          >
-                            <Logo className="border-3 m-auto" />
-                            <h2 className="mx-auto pt-4 text-xl">
-                              Marketplace
-                            </h2>
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      <div className="flex h-full flex-col p-4">
-                        <h2 className="text-xl font-semibold">
-                          All your talent visas needs - in one place
-                        </h2>
-                        <p>Comming soon!</p>
-                      </div>
-                    </ul>
-                    {/* <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                       <ListItem title={"Marketplace"} href={"/marketplace"}>
                         All your talent visas needs - in one place
                       </ListItem>
@@ -116,9 +95,9 @@ export function ConditionalNavigationMenu({
                       <ListItem title={"My orders"} href={"/myorders"}>
                         View your orders
                       </ListItem>
-                    </ul> */}
+                    </ul> 
                   </NavigationMenuContent>
-                </NavigationMenuItem>
+                </NavigationMenuItem>*/}
                 <NavigationMenuItem>
                   <Link href="/find-lawyers" legacyBehavior passHref>
                     <NavigationMenuLink
