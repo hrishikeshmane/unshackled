@@ -71,6 +71,13 @@ const MobileNav = ({
                   Community
                 </Link>
                 <Link
+                  href={"/find-lawyers"}
+                  onClick={toggleSheet}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Find Lawyers
+                </Link>
+                <Link
                   href={"/course"}
                   onClick={toggleSheet}
                   className="text-muted-foreground hover:text-foreground"
