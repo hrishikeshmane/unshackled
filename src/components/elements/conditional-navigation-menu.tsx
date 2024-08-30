@@ -70,9 +70,9 @@ export function ConditionalNavigationMenu({
                       <ListItem href="/course" title="Free Course">
                         5-day free course on talent visas. No legal jargon.
                       </ListItem>
-                      {/* <ListItem href="/student-plan" title="Student Plan">
+                      <ListItem href="/student-plan" title="Student Plan">
                         Complete plan tailored for F-1 students
-                      </ListItem> */}
+                      </ListItem>
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>

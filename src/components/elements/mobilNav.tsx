@@ -84,6 +84,14 @@ const MobileNav = ({
                 >
                   Free Course
                 </Link>
+
+                <Link
+                  href="/student-plan"
+                  onClick={toggleSheet}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Student Plan
+                </Link>
                 <Link
                   href={"/newsletter"}
                   onClick={toggleSheet}

@@ -514,7 +514,7 @@ const PricingGrid = () => {
           </div>
 
           <Link
-            href="https://calendly.com/greencardinc"
+            href="https://go.greencard.inc/evaluation"
             target={"_blank"}
             rel={"noreferrer"}
             className="mt-10"
