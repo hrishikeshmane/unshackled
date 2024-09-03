@@ -12,6 +12,9 @@ import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import Footer from "~/components/landing-page/footer";
 import { StudentPlanFaq } from "~/components/landing-page/student-plan-faq";
 import { StudentPlanWaitlistForm } from "~/components/landing-page/convertkit-forms";
+import Link from "next/link";
+import { Button } from "~/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 
 const features = [
   {
@@ -86,7 +89,22 @@ const StudentPlanPage = () => {
             Navigate the Transition from F-1 Visa to Green Card with Unshackled
             Student Plan
           </p>
-          <Globe className="top-56" />
+          <div className="flex justify-center pb-4 pt-2">
+            <Link
+              href="https://go.readunshackled.com/scholarship"
+              target="blank"
+            >
+              <Button
+                variant={"link"}
+                size={"lg"}
+                className="flex gap-1 text-primary hover:text-primary"
+              >
+                Student? Apply for Scholarship
+                <ArrowUpRight className="h-5" />
+              </Button>
+            </Link>
+          </div>
+          <Globe className="top-64" />
         </section>
       </div>
 
