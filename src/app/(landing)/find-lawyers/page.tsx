@@ -5,7 +5,7 @@ import Footer from "~/components/landing-page/footer";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 
-export type VisaType = "EB-A" | "O-1A" | "H-1B" | "EB-2 NIW";
+export type VisaType = "EB-1A" | "O-1A" | "H-1B" | "EB-2 NIW";
 export type ILAWYER_INFO = {
   id: number;
   img: string;
@@ -28,7 +28,7 @@ export const LAWYER_INFO: ILAWYER_INFO[] = [
     img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/allison.png?raw=true",
     title: "Principal Attorney at Lodestone Legal",
     experince: 15,
-    visa: ["EB-A", "O-1A", "EB-2 NIW"],
+    visa: ["EB-1A", "O-1A", "EB-2 NIW"],
     strikePrice: "$150",
     priceTitle: "$100 for 30 minutes",
     bio: "Attorney Allison Kranz, JD, LLM, known as The Nerdy Immigration Lawyer, is the Principal Attorney at Lodestone Legal, specializing in U.S. immigration law. Her personal connection to immigration, with family ties extending globally, fuels her passion for her work. Allison advises Fortune 500 companies and focuses on self-sponsored solutions, assisting professionals, startups, experts, and international students with nonimmigrant and immigrant visas, as well as green cards through Adjustment of Status. She also helps families with permanent residency, waivers, citizenship, fiancée visas, and visas for crime victims. Recognized as an Elite Lawyer in 2022 and 2023, and a Women in the Law Award winner in 2019, Allison holds a JD and an LLM in Human Rights. She is licensed in Michigan and Florida, exclusively practicing immigration and nationality law.",
@@ -36,33 +36,31 @@ export const LAWYER_INFO: ILAWYER_INFO[] = [
       "Allison ideally works with researchers, scientists, software engineers, machine learning engineers, data engineers, product managers, marketing managers, C-level executives, business leaders, critical employees, founders, entrepreneurs, and others.",
     website: "https://www.lodestonelegal.com/",
     linkedin: "https://www.linkedin.com/in/allisonkranz/",
-    consultLink:
-      "https://calendly.com/readunshackled/allison-paid-consultation",
+    consultLink: "https://go.readunshackled.com/lawyer-allison-paid",
   },
-  // {
-  //   id: 3,
-  //   name: "Joel A. Wisniewski",
-  //   img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/joel.png?raw=true",
-  //   title: "Partner at Lodestone Legal, LLC",
-  //   experince: 15,
-  //   visa: ["EB-A", "O-1A", "EB-2 NIW"],
-  //   strikePrice: "150",
-  //   priceTitle: "$100 for 30 minutes",
-  //   bio: "Joel is an experienced immigration attorney with over 15 years of experience supporting employers and employees as they navigate through the non-immigrant and immigrant landscape.",
-  //   whoShouldBookACall:
-  //     "Joel ideally works with software engineers, machine learning engineers, data engineers, researchers, scientists, C-level executives, business leaders, critical employees, founders, entrepreneurs, product managers, marketing managers, and others.",
-  //   website: "https://www.lodestonelegal.com/",
-  //   linkedin: "https://www.linkedin.com/in/joel-wisniewski-a95859a/",
-  //   consultLink:
-  //     "https://calendly.com/readunshackled/joel-a-wisniewski-paid-consultation",
-  // },
+  {
+    id: 3,
+    name: "Joel A. Wisniewski",
+    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/joel.png?raw=true",
+    title: "Partner at Lodestone Legal, LLC",
+    experince: 15,
+    visa: ["EB-1A", "O-1A", "EB-2 NIW"],
+    strikePrice: "150",
+    priceTitle: "$100 for 30 minutes",
+    bio: "Joel is an experienced immigration attorney with over 15 years of experience supporting employers and employees as they navigate through the non-immigrant and immigrant landscape.",
+    whoShouldBookACall:
+      "Joel ideally works with software engineers, machine learning engineers, data engineers, researchers, scientists, C-level executives, business leaders, critical employees, founders, entrepreneurs, product managers, marketing managers, and others.",
+    website: "https://www.lodestonelegal.com/",
+    linkedin: "https://www.linkedin.com/in/joel-wisniewski-a95859a/",
+    consultLink: "https://go.readunshackled.com/lawyer-joel-paid",
+  },
   {
     id: 4,
     name: "Charles Gillman",
-    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/charles.png?raw=true",
+    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Charles.png?raw=true",
     title: "Partner, Head of Employment-Based Immigration Department",
     experince: 20,
-    visa: ["EB-A", "O-1A", "EB-2 NIW"],
+    visa: ["EB-1A", "O-1A", "EB-2 NIW"],
     strikePrice: "$300",
     priceTitle: "$175 for 30 minutes",
     bio: "Charles, with a three-decade career in global mobility, has worked as an in-house attorney for a Fortune 100 company, with major international consulting firms, and with multi-practice law firms. He has had the privilege of learning from some of the finest lawyers in North America. Regularly assessing issues from a mobility or compliance perspective for universities, businesses, investors, and entrepreneurs, Charles is known for being thoughtful, creative, and diligent. His goal is to provide the perspective and analysis that allows clients to pursue successful outcomes as they face ever-evolving U.S. immigration challenges.",
@@ -70,8 +68,39 @@ export const LAWYER_INFO: ILAWYER_INFO[] = [
       "Charles ideally works with founders and entrepreneurs, software engineers, machine learning engineers, data engineers, C-level executives, business leaders, and critical employees.",
     website: "https://www.gonzalezolivierillc.com/attorneys/charles-gillman/",
     linkedin: "https://www.linkedin.com/in/charles-gillman-5654026/",
-    consultLink:
-      "https://calendly.com/readunshackled/charles-gillman-paid-consultation",
+    consultLink: "https://go.readunshackled.com/lawyer-charles-paid",
+  },
+  {
+    id: 5,
+    name: "Kseniya Zavala",
+    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Kseniya.png?raw=true",
+    title: "Partner at Villalpando Law Firm PLLC",
+    experince: 15,
+    visa: ["O-1A", "EB-1A", "EB-2 NIW"],
+    strikePrice: "$250",
+    priceTitle: "$200 for 30 minutes",
+    bio: "As a first-generation immigrant herself, Ms. Zavala understands and appreciates the intricacies and complexity of the US immigration process. Ms. Zavala received LL.M. in International Law from George Washington University School of Law in Washington, DC and LL.M in Comparative Constitutional Law from Central European University in Budapest, Hungary. Ms. Zavala started practicing as an immigration attorney in 2006 and opened her own immigration practice in 2012. Ms. Zavala has extensive experience in business immigration, humanitarian benefits and family-based immigration. She is admitted to the Bar of the State of New York and she is a member of the American Immigration Lawyers Association. Ms. Zavala is bilingual in English and Russian.",
+    whoShouldBookACall:
+      "Kseniya usually works with researchers and scientists to help them obtain their talent visa",
+    website: "https://villalpandolaw.com/",
+    linkedin: "https://www.linkedin.com/in/kseniya-zavala-9bb418b/",
+    consultLink: "https://go.readunshackled.com/lawyer-kseniya-paid",
+  },
+  {
+    id: 6,
+    name: "Poonam Gupta Esq.",
+    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Poonam.png?raw=true",
+    title: "Principal partner at Summit Legal, LLC",
+    experince: 15,
+    visa: ["O-1A", "EB-1A", "EB-2 NIW"],
+    strikePrice: "$250",
+    priceTitle: "$150 for 30 minutes",
+    bio: "With over 25 years of experience in immigration law, complemented by expertise in IP and litigation, Poonam Gupta is a trusted advisor known for her strategic, client-focused approach to navigating complex immigration challenges, backed by a diverse educational background and a commitment to excellence in client service.",
+    whoShouldBookACall:
+      "Poonam ideally works with businesses and individuals in tech, pharma, banking, and finance backgrounds facing complex U.S. immigration challenges. ",
+    website: "https://summit-legal.com/",
+    linkedin: "https://www.linkedin.com/in/pgesq/",
+    consultLink: "https://go.readunshackled.com/lawyer-poonam-paid",
   },
 ];
 
