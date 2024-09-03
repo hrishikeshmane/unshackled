@@ -3,7 +3,7 @@ import AvatarCircles from "@/components/magicui/avatar-circles";
 import { Button } from "@/components/ui/button";
 import { Companies } from "./social-proof";
 import HeroVideo from "./hero-video";
-import { Phone, ShoppingBag } from "lucide-react";
+import { ArrowUpRight, Phone, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 
 const avatarUrls = [
@@ -53,16 +53,21 @@ const HeroSection = () => {
                 Book a Free Call
               </Button>
             </Link>
-            {/* <Link href="/marketplace">
+          </div>
+          <div className="mb-4 mt-6 flex justify-center">
+            <Link
+              href="https://go.readunshackled.com/scholarship"
+              target="blank"
+            >
               <Button
-                variant={"outline"}
+                variant={"link"}
                 size={"lg"}
-                className="flex gap-2 border-2 border-primary text-primary hover:text-primary"
+                className="flex gap-1 text-primary hover:text-primary"
               >
-                <ShoppingBag className="h-5" />
-                Shop on Marketplace
+                Student? Apply for Scholarship
+                <ArrowUpRight className="h-5" />
               </Button>
-            </Link> */}
+            </Link>
           </div>
         </div>
       </div>

@@ -86,7 +86,7 @@ const LawyerPage = () => {
                 Want to consult with a top{" "}
                 <span className="text-primary">immigration lawyer</span>? You’ve
                 come to the
-                <span className="text-primary">right place</span>.
+                <span className="text-primary"> right place</span>.
               </h1>
               <p className="mx-auto mt-8 max-w-4xl px-2 text-center text-2xl font-semibold leading-8 text-muted-foreground">
                 We&apos;ve carefully vetted lawyers who can help you with
