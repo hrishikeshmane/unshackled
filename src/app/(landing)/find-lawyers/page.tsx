@@ -94,7 +94,7 @@ export const LAWYER_INFO: ILAWYER_INFO[] = [
     experince: 15,
     visa: ["O-1A", "EB-1A", "EB-2 NIW"],
     strikePrice: "$250",
-    priceTitle: "$150 for 30 minutes",
+    priceTitle: "$145 for 30 minutes",
     bio: "With over 25 years of experience in immigration law, complemented by expertise in IP and litigation, Poonam Gupta is a trusted advisor known for her strategic, client-focused approach to navigating complex immigration challenges, backed by a diverse educational background and a commitment to excellence in client service.",
     whoShouldBookACall:
       "Poonam ideally works with businesses and individuals in tech, pharma, banking, and finance backgrounds facing complex U.S. immigration challenges. ",
@@ -134,7 +134,7 @@ const LawyerPage = () => {
           <h2 className="mt-5 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl sm:leading-tight lg:text-4xl lg:leading-tight">
             Lawyer Directory
           </h2>
-          <div className="my-8 grid grid-cols-3 gap-10">
+          <div className="my-8 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
             {LAWYER_INFO.map((lawyer) => (
               <div
                 className="flex h-full w-[330px] flex-col justify-between rounded-md bg-card p-4 shadow-lg"
