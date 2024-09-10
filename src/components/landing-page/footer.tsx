@@ -101,10 +101,20 @@ export default async function Footer() {
               <div className="col-span-1">
                 <h3 className="text-lg font-medium">Legal</h3>
                 <nav className="mt-4 space-y-4">
-                  <Link href="#" className="block  " prefetch={false}>
+                  <Link
+                    href="https://soundarya.notion.site/Terms-of-Service-f650de0ceb1e4f61b1bbca0963ca81fc"
+                    target="blank"
+                    className="block  "
+                    prefetch={false}
+                  >
                     Terms of Service
                   </Link>
-                  <Link href="#" className="block  " prefetch={false}>
+                  <Link
+                    href="https://soundarya.notion.site/Privacy-Policy-fae09e978c3d4b09b070182e64811729"
+                    className="block"
+                    target="blank"
+                    prefetch={false}
+                  >
                     Privacy Policy
                   </Link>
                 </nav>
