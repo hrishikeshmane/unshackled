@@ -57,6 +57,12 @@ const NavItems: React.FC<NavItemsProps> = ({ data }) => {
         label: "Billing",
         active: pathname === `/vendor/billing`,
       },
+      {
+        href: `/vendor/approvals`,
+        label: "Customer Requests",
+        active: pathname === `/vendor/approvals`,
+      },
+
     ];
   } else if (isAdminRoute) {
     routes = [
