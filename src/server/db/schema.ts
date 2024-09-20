@@ -207,4 +207,63 @@ export const orderItem = createTable("orderItem", {
     .references(() => store.id),
 });
 
+export const formQuestions = createTable("formQuestions", {
+  id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
+  productId: text("productId", { length: 256 })
+    .notNull()
+    .references(() => product.id),
+  vendorId: text("vendorId", { length: 256 })
+  .notNull()
+  .references(() => users.id),
+  question: text("question").notNull(),
+  type: text("type", { enum: ["short", "long"] }).notNull(),
+  createdAt: int("createdAt", { mode: "timestamp" })
+    .default(sql`(unixepoch())`)
+    .notNull(),
+  updatedAt: int("updatedAt", { mode: "timestamp" }).default(
+    sql`(unixepoch())`,
+  ),
+});
+
+export const formResponses = createTable("formResponses", {
+  id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
+  customerId: text("customerid").notNull()
+    .notNull()
+    .references(() => users.id),
+  productId: text("productId", { length: 256 })
+    .notNull()
+    .references(() => product.id),
+  vendorId: text("vendorId", { length: 256 })
+  .notNull()
+  .references(() => users.id),
+  question: text("question").notNull(),
+  answer: text("answer").notNull(),
+  createdAt: int("createdAt", { mode: "timestamp" })
+    .default(sql`(unixepoch())`)
+    .notNull(),
+  updatedAt: int("updatedAt", { mode: "timestamp" }).default(
+    sql`(unixepoch())`,
+  ),
+});
+
+export const requestApprovals = createTable("requestApprovals", {
+  id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
+  customerId: text("customerid").notNull()
+    .notNull()
+    .references(() => users.id),
+  productId: text("productId", { length: 256 })
+    .notNull()
+    .references(() => product.id),
+  vendorId: text("vendorId", { length: 256 })
+  .notNull()
+  .references(() => users.id),
+  status: text("status", { enum: ["pending", "approved", "denied"] }).notNull().default("pending"),
+  createdAt: int("createdAt", { mode: "timestamp" })
+    .default(sql`(unixepoch())`)
+    .notNull(),
+  updatedAt: int("updatedAt", { mode: "timestamp" }).default(
+    sql`(unixepoch())`,
+  ),
+});
+
 export type IStore = typeof store.$inferSelect;

@@ -6,13 +6,13 @@ import {
   publicProcedure,
   protectedProcedure,
 } from "~/server/api/trpc";
-import { eq, or } from "drizzle-orm";
+import { and, eq, or } from "drizzle-orm";
 import {
   type StoreTable,
   type OrderTable,
   type ProductTable,
 } from "~/types/globals";
-import { orderItem } from "~/server/db/schema";
+import { formResponses, order, orderItem, requestApprovals } from "~/server/db/schema";
 
 export const orderRouter = createTRPCRouter({
   getOrderItemsByStoreIdWithProductandOrder: adminProcedure
@@ -219,21 +219,76 @@ export const orderRouter = createTRPCRouter({
     return orderItemsWithDetails;
   }),
 
+  // updateOrderItemIsFulfilled: adminOrVendorProcedure
+  //   .input(
+  //     z.object({
+  //       id: z.string(),
+  //     }),
+  //   )
+  //   .mutation(async ({ ctx, input }) => {
+  //     const { id } = input;
+
+  //     const updatedOrderItem = await ctx.db
+  //       .update(orderItem)
+  //       .set({ isFulfilled: true })
+  //       .where(eq(orderItem.id, id))
+  //       .returning();
+
+  //     const productId = updatedOrderItem[0]?.productId
+  //     const orderId = updatedOrderItem[0]?.orderId
+
+  //     return updatedOrderItem[0];
+  //   }),
+
   updateOrderItemIsFulfilled: adminOrVendorProcedure
-    .input(
-      z.object({
-        id: z.string(),
-      }),
-    )
-    .mutation(async ({ ctx, input }) => {
-      const { id } = input;
-
-      const updatedOrderItem = await ctx.db
-        .update(orderItem)
-        .set({ isFulfilled: true })
-        .where(eq(orderItem.id, id))
-        .returning();
-
-      return updatedOrderItem[0];
+  .input(
+    z.object({
+      id: z.string(),
     }),
+  )
+  .mutation(async ({ ctx, input }) => {
+    const { id } = input;
+
+    const updatedOrderItem = await ctx.db
+      .update(orderItem)
+      .set({ isFulfilled: true })
+      .where(eq(orderItem.id, id))
+      .returning();
+
+    const productId = updatedOrderItem[0]?.productId;
+    const orderId = updatedOrderItem[0]?.orderId;
+
+    const orderRecord = await ctx.db.query.order.findFirst({
+      where: (table) => eq(table.id, String(orderId)),
+    });
+
+    const productRecord = await ctx.db.query.product.findFirst({
+      where: (table) => eq(table.id, String(productId)),
+    });
+
+    if (orderRecord && productRecord && productRecord.requiresVendorApproval) {
+      const customerId = order.customerId;
+      
+      await ctx.db
+        .delete(requestApprovals)
+        .where(
+          and(
+            eq(requestApprovals.productId, String(productId)),
+            eq(requestApprovals.customerId, customerId),
+          ),
+        );
+
+      await ctx.db
+        .delete(formResponses)
+        .where(
+          and(
+            eq(formResponses.productId, String(productId)),
+            eq(formResponses.customerId, customerId),
+          ),
+        );
+    }
+
+    return updatedOrderItem[0];
+  }),
+
 });

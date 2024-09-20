@@ -23,6 +23,9 @@ const ProductPage = () => {
   const product = api.product.getProductById.useQuery({
     id: String(productId),
   });
+  const existingRequest = api.approvalForms.checkExistingRequest.useQuery({
+    productId: String(productId),
+  });  
   const similarProducts = api.product.getApprovedProductsByStoreId.useQuery({
     storeId: String(storeId),
   });
@@ -32,7 +35,7 @@ const ProductPage = () => {
 
   const [quantity, setQuantity] = useState(1);
 
-  if (product.isPending || similarProducts.isPending) {
+  if (product.isPending || similarProducts.isPending || existingRequest.isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -48,6 +51,9 @@ const ProductPage = () => {
   const handleIncrease = () => setQuantity((prev) => prev + 1);
   const handleDecrease = () => setQuantity((prev) => Math.max(1, prev - 1));
   const handleManualChange = (value: number) => setQuantity(Math.max(1, value));
+
+  const showButtons = !product.data.requiresVendorApproval ||
+    (existingRequest.data?.exists && existingRequest.data.status === "approved");
 
   return (
     <>
@@ -148,64 +154,88 @@ const ProductPage = () => {
                 />
               </div>
             </div>
-
+            
             {/* add to cart part */}
             <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
               <div>
-                <div className="mt-10 flex items-center space-x-4">
-                  {/* <BuyNowButton product={product.data} /> */}
-                  <QuantitySelector
-                    quantity={quantity}
-                    onIncrease={handleIncrease}
-                    onDecrease={handleDecrease}
-                    onManualChange={handleManualChange}
-                  />
-                  <BuyNowButton
-                    product={product.data}
-                    quantity={quantity}
-                    isDownPayment={false}
-                  />
-                </div>
-                {product.data.hasDownPayment && (
-                  <>
-                    <div className="mt-4 flex flex-col items-center text-center">
-                      <p className="text-muted-foreground">
-                        OR get started with initial down payment of{" "}
-                        {formatPrice(product.data.downPayment)} and pay the rest
-                        to vendor later.
-                      </p>
-                      <BuyNowButton
-                        className="b-2 mx-0 my-4 border-primary"
-                        variant="outline"
-                        product={product.data}
-                        quantity={quantity}
-                        isDownPayment={true}
-                        buttonText="Start with Down Payment"
+                { showButtons ? 
+                (  <>
+                  <div className="mt-10 flex items-center space-x-4">
+                    {/* <BuyNowButton product={product.data} /> */}
+                    <QuantitySelector
+                      quantity={quantity}
+                      onIncrease={handleIncrease}
+                      onDecrease={handleDecrease}
+                      onManualChange={handleManualChange}
                       />
-                    </div>
-                  </>
-                )}
-                {product.data.hasAdditionalLink && (
-                  <>
+                    <BuyNowButton
+                      product={product.data}
+                      quantity={quantity}
+                      isDownPayment={false}
+                      />
+                  </div>
+                  {product.data.hasDownPayment && (
+                    <>
+                      <div className="mt-4 flex flex-col items-center text-center">
+                        <p className="text-muted-foreground">
+                          OR get started with initial down payment of{" "}
+                          {formatPrice(product.data.downPayment)} and pay the rest
+                          to vendor later.
+                        </p>
+                        <BuyNowButton
+                          className="b-2 mx-0 my-4 border-primary"
+                          variant="outline"
+                          product={product.data}
+                          quantity={quantity}
+                          isDownPayment={true}
+                          buttonText="Start with Down Payment"
+                          />
+                      </div>
+                    </>
+                  )}
+                  {product.data.hasAdditionalLink && (
+                    <>
+                      <div className="flex flex-col items-center space-x-4 text-center">
+                        <Link
+                          className="w-full"
+                          href={product.data.additionalLinkUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          >
+                          <Button
+                            size="lg"
+                            className="flex w-full items-center gap-1"
+                            variant="secondary"
+                            >
+                            {product.data.additionalLinkLabel}
+                            <ArrowTopRightIcon />
+                          </Button>
+                        </Link>
+                      </div>
+                    </>
+                  )}
+                  </>) : (
+                    <>
                     <div className="flex flex-col items-center space-x-4 text-center">
                       <Link
                         className="w-full"
-                        href={product.data.additionalLinkUrl}
+                        href={`/marketplace/${storeId}/products/${productId}/approval`}
                         target="_blank"
                         rel="noopener noreferrer"
-                      >
+                        >
                         <Button
                           size="lg"
                           className="flex w-full items-center gap-1"
                           variant="secondary"
-                        >
-                          {product.data.additionalLinkLabel}
+                          >
+                          Request Access
                           <ArrowTopRightIcon />
                         </Button>
                       </Link>
                     </div>
                   </>
-                )}
+                  )
+                }
                 <div className="mt-6 text-center">
                   <div className="text-medium group inline-flex text-sm">
                     <Shield

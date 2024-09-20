@@ -40,6 +40,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useAuth } from "@clerk/nextjs";
 import { RocketIcon } from "@radix-ui/react-icons";
 import { Checkbox } from "~/components/ui/checkbox";
+import Link from "next/link";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -594,6 +595,41 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 </FormItem>
               )}
             />
+          </div>
+          <div className="my-4">
+            <h3 className="p-1 text-2xl font-bold">Requires Vendor Approval</h3>
+            <Separator />
+          </div>
+          <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="requiresVendorApproval"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Requires Vendor Approval</FormLabel>
+                    <FormDescription>
+                      This product will require vendor approval first for the customer.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            {
+              initialData && 
+              <div className="inline-flex items-center gap-2">
+                <h2 className="text-lg m-0 p-0">Form &rarr;</h2>
+                <Link href={`/vendor/${initialData.storeId}/product/${initialData.id}/approvalForms/`} className="text-lg">
+                  <p className="m-0 p-0">Create/Edit Form</p>
+                </Link>
+              </div>
+            }
           </div>
           {/* <Button onClick={() =>debug()}>DEBUG</Button> */}
           <Button disabled={isPending} className="ml-auto" type="submit">
