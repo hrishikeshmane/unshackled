@@ -147,7 +147,7 @@ const LawyerPage = () => {
                     width={300}
                     alt={lawyer.name}
                   />
-                  <div className="mt-4 flex flex-col">
+                  <div className="mt-4 flex flex-col ">
                     <h3 className="my-1 text-2xl text-primary">
                       {lawyer.name}
                     </h3>
