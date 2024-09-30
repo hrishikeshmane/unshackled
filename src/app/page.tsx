@@ -13,6 +13,7 @@ export default function HomePage() {
     <div className="flex w-full flex-col bg-[#F5F9FF]">
       <div>
         <HeroSection />
+
         <section className="mx-auto my-8 flex w-full justify-center">
           <h2 className="text-4xl font-bold">Here’s how we help you</h2>
         </section>
