@@ -243,6 +243,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     // console.log("FORM valiation errors>>", form.formState.errors);
     // console.log("PRODUCT DATA>>", data);
     // console.log("IS Pending>>", isPending);
+    console.log("QUESTIONS >> ", data.questions);
 
     startTransition(() => {
       createOrUpdateProductMutation.mutate({

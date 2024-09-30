@@ -17,6 +17,7 @@ import {
   sendVenorListingDenied,
 } from "~/app/_actions/emails";
 import { clerkClient, currentUser } from "@clerk/nextjs/server";
+import { TRPCError } from "@trpc/server";
 
 type Question = {
   type: "short" | "long";
@@ -148,25 +149,56 @@ export const productsRouter = createTRPCRouter({
           isApproved === "denied" &&
           (await sendVenorListingDenied(vendorEmail, vendorFirstName, true));
 
+          // if (updatedProduct && updatedProduct[0] && updatedProduct[0].id && updatedProduct[0].creatorId) {
+          //   questions.forEach(async (question) =>{
+          //     if(question.id) {
+          //       await ctx.db
+          //       .update(formQuestions)
+          //       .set({
+          //         question: question.question,
+          //         type: question.type,
+          //       })
+          //       .where(eq(formQuestions.id, question.id));
+          //       } else {
+          //         await ctx.db.insert(formQuestions).values({
+          //           productId: updatedProduct[0]?.id as string,
+          //           vendorId: updatedProduct[0]?.creatorId as string,
+          //           question: question.question,
+          //           type: question.type,
+          //         });
+          //       }
+          //   })
+          // }
+
           if (updatedProduct && updatedProduct[0] && updatedProduct[0].id && updatedProduct[0].creatorId) {
-            questions.forEach(async (question) =>{
-              if(question.id) {
-                await ctx.db
-                .update(formQuestions)
-                .set({
-                  question: question.question,
-                  type: question.type,
-                })
-                .where(eq(formQuestions.id, question.id));
-                } else {
-                  await ctx.db.insert(formQuestions).values({
-                    productId: updatedProduct[0]?.id as string,
-                    vendorId: updatedProduct[0]?.creatorId as string,
+            const questionsPromises = questions.map(async (question) => {
+              if (question.id) {
+                return ctx.db
+                  .update(formQuestions)
+                  .set({
                     question: question.question,
                     type: question.type,
-                  });
-                }
-            })
+                  })
+                  .where(eq(formQuestions.id, question.id));
+              } else {
+                return ctx.db.insert(formQuestions).values({
+                  productId: updatedProduct[0]?.id as string,
+                  vendorId: updatedProduct[0]?.creatorId as string,
+                  question: question.question,
+                  type: question.type,
+                });
+              }
+            });
+          
+            try {
+              await Promise.all(questionsPromises);
+            } catch (error) {
+              throw new TRPCError({
+                code: 'INTERNAL_SERVER_ERROR',
+                message: error instanceof Error ? error.message : 'Failed to update or insert questions',
+                cause: error,
+              });
+            }
           }
 
         return updatedProduct[0];
@@ -206,25 +238,56 @@ export const productsRouter = createTRPCRouter({
         newProduct?.[0] &&
           (await sendAdminNotificationForListing(newProduct[0].id));
 
+          // if (newProduct && newProduct[0] && newProduct[0].id && newProduct[0].creatorId) {
+          //   questions.forEach(async (question) =>{
+          //     if(question.id) {
+          //       await ctx.db
+          //       .update(formQuestions)
+          //       .set({
+          //         question: question.question,
+          //         type: question.type,
+          //       })
+          //       .where(eq(formQuestions.id, question.id));
+          //       } else {
+          //         await ctx.db.insert(formQuestions).values({
+          //           productId: newProduct[0]?.id as string,
+          //           vendorId: newProduct[0]?.creatorId as string,
+          //           question: question.question,
+          //           type: question.type,
+          //         });
+          //       }
+          //   })
+          // }
+
           if (newProduct && newProduct[0] && newProduct[0].id && newProduct[0].creatorId) {
-            questions.forEach(async (question) =>{
-              if(question.id) {
-                await ctx.db
-                .update(formQuestions)
-                .set({
-                  question: question.question,
-                  type: question.type,
-                })
-                .where(eq(formQuestions.id, question.id));
-                } else {
-                  await ctx.db.insert(formQuestions).values({
-                    productId: newProduct[0]?.id as string,
-                    vendorId: newProduct[0]?.creatorId as string,
+            const questionsPromises = questions.map(async (question) => {
+              if (question.id) {
+                return ctx.db
+                  .update(formQuestions)
+                  .set({
                     question: question.question,
                     type: question.type,
-                  });
-                }
-            })
+                  })
+                  .where(eq(formQuestions.id, question.id));
+              } else {
+                return ctx.db.insert(formQuestions).values({
+                  productId: newProduct[0]?.id as string,
+                  vendorId: newProduct[0]?.creatorId as string,
+                  question: question.question,
+                  type: question.type,
+                });
+              }
+            });
+          
+            try {
+              await Promise.all(questionsPromises);
+            } catch (error) {
+              throw new TRPCError({
+                code: 'INTERNAL_SERVER_ERROR',
+                message: error instanceof Error ? error.message : 'Failed to update or insert questions',
+                cause: error,
+              });
+            }
           }
 
         return newProduct[0];
