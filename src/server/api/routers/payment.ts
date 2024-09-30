@@ -274,6 +274,7 @@ export const paymentRouter = createTRPCRouter({
       return { sessionUrl: String(session.url) };
     }),
 
+  // TODO: if product required approval, clear all records from requestapproval table and formresponses table
   refundOrder: adminOrVendorProcedure
     .input(z.object({ orderId: z.string() }))
     .mutation(async ({ ctx, input }) => {

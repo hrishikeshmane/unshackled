@@ -48,6 +48,8 @@ const isProtectedRoute = createRouteMatcher([
   "/admin(.*)",
   "/marketplace/cart(.*)",
   "/myorders(.*)",
+  "(.*)approval(.*)",
+  "(.*)approvalForms(.*)",
 ]);
 
 async function loggingMiddleware(

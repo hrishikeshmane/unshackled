@@ -136,11 +136,11 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
               Refund Order
             </DropdownMenuItem>
           )}
-          {!hideDeny && (
+          {/* {!hideDeny && (
             <DropdownMenuItem onClick={() => setDenyOpen(true)}>
               Deny Order
             </DropdownMenuItem>
-          )}
+          )} */}
         </DropdownMenuContent>
       </DropdownMenu>
     </>

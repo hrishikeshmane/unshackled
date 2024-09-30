@@ -172,3 +172,34 @@ export type OrderItemTable = {
   createdAt: Date;
   updatedAt: Date | null;
 };
+
+export type formQuestions = {
+  id: string;
+  productId: string;
+  vendorId: string;
+  question: string;
+  type: string;
+  createdAt: Date;
+  updatedAt: Date | null;
+}
+
+export type formResponses = {
+  id: string;
+  productId: string;
+  vendorId: string;
+  customerId: string;
+  question: string;
+  answer: string;
+  createdAt: Date;
+  updatedAt: Date | null;
+}
+
+export type requestApprovals = {
+  id: string;
+  productId: string;
+  vendorId: string;
+  customerId: string;
+  status: "pending" | "approved" | "denied";
+  createdAt: Date;
+  updatedAt: Date | null;
+}
