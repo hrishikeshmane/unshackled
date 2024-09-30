@@ -5,8 +5,8 @@ import * as z from "zod";
 import { Heading } from "~/app/admin/_components/heading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Trash } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { PlusCircle, Trash } from "lucide-react";
+import { useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -65,20 +65,40 @@ const formSchema = z.object({
   additionalLinkLabel: z.string(),
   additionalLinkUrl: z.string(),
   // images: z.object({ url: z.string() }).array(),
+  questions: z.array(
+    z.object({
+      id: z.string().nullable(),
+      question: z.string().min(1, "Question is required"),
+      type: z.enum(["short", "long"]),
+    })
+  ),
 });
 
 type ProductFormValues = z.infer<typeof formSchema>;
+
+type Question = {
+  type: "short" | "long";
+  id: string;
+  createdAt: Date;
+  updatedAt: Date | null;
+  productId: string;
+  vendorId: string;
+  question: string;
+};
 
 interface ProductFormProps {
   initialData: ProductWithRelations | null | undefined;
   tags: TagTable[];
   types: TypeTable[];
+  questions: Question[] | [];
 }
+
 
 export const ProductForm: React.FC<ProductFormProps> = ({
   initialData,
   tags,
   types,
+  questions,
 }) => {
   const [isPending, startTransition] = useTransition();
 
@@ -124,6 +144,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         estTurnAroundTime: Number(initialData.estTurnAroundTime) || 0,
         // domainRank: Number(initialData.domainRank) || 0,
         downPayment: Number(initialData.downPayment) || 0,
+        questions: questions,
       }
     : {
         name: "",
@@ -144,6 +165,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         hasAdditionalLink: false,
         additionalLinkLabel: "",
         additionalLinkUrl: "",
+        questions: questions,
       };
 
   const form = useForm<ProductFormValues>({
@@ -162,6 +184,28 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     //   typeId: "",
     // },
   });
+
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "questions",
+  });
+
+  const deleteQuestionMutation = api.approvalForms.deleteQuestion.useMutation({
+    onSuccess: () => {
+      toast.success("Question deleted successfully");
+    },
+    onError: (error) => {
+      toast.error(`Error deleting question: ${error.message}`);
+    },
+  });
+
+  const handleDelete = (index: number) => {
+    const id = form.getValues(`questions.${index}.id`);
+    if (id) {
+      deleteQuestionMutation.mutate({ id });
+    }
+    remove(index);
+  };
 
   const onSubmit = (data: ProductFormValues) => {
     // console.log("FORM valiation errors>>", form.formState.errors);
@@ -203,6 +247,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           : String(userId),
         id: initialData?.id,
         storeId: String(params.storeId),
+        questions: data.questions,
       });
     });
   };
@@ -630,6 +675,66 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 </Link>
               </div>
             }
+          </div>
+          <div className="my-4">
+            <h3 className="p-1 text-2xl font-bold">Approval Form Questions:</h3>
+            {/* <Separator /> */}
+          </div>
+          <div className="space-y-8">
+          {fields.map((field, index) => (
+            <div key={field.id} className="flex items-end space-x-2">
+              <FormField
+                control={form.control}
+                name={`questions.${index}.question`}
+                render={({ field }) => (
+                  <FormItem className="flex-grow">
+                    <FormLabel>Question {index + 1}</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="Enter question" />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name={`questions.${index}.type`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Type</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select type" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="short">Short Answer</SelectItem>
+                        <SelectItem value="long">Long Answer</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )}
+              />
+              <Button
+                type="button"
+                variant="destructive"
+                size="icon"
+                onClick={() => handleDelete(index)}
+              >
+                <Trash className="h-4 w-4" />
+              </Button>
+            </div>
+          ))}
+          <div className="text-center items-center">
+            <Button
+                type="button"
+                variant="outline"
+                onClick={() => append({ id: null, question: "", type: "short" })}
+            >
+                <PlusCircle className="w-5 h-5 mr-2" />
+                Add Question
+            </Button>
+          </div>
           </div>
           {/* <Button onClick={() =>debug()}>DEBUG</Button> */}
           <Button disabled={isPending} className="ml-auto" type="submit">

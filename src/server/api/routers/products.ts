@@ -4,7 +4,7 @@ import {
   publicProcedure,
   adminOrVendorProcedure,
 } from "~/server/api/trpc";
-import { product } from "~/server/db/schema";
+import { formQuestions, product } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 import {
   type StoreTable,
@@ -17,6 +17,16 @@ import {
   sendVenorListingDenied,
 } from "~/app/_actions/emails";
 import { clerkClient, currentUser } from "@clerk/nextjs/server";
+
+type Question = {
+  type: "short" | "long";
+  id: string;
+  createdAt: Date;
+  updatedAt: Date | null;
+  productId: string;
+  vendorId: string;
+  question: string;
+};
 
 export const productsRouter = createTRPCRouter({
   createOrUpdateProduct: adminOrVendorProcedure
@@ -48,6 +58,13 @@ export const productsRouter = createTRPCRouter({
         orderCommunicationEmail: z.string(),
         additionalOrderEmailText: z.string(),
         tagId: z.string(),
+        questions: z.array(
+          z.object({
+            id: z.string().nullable(),
+            question: z.string().min(1, "Question is required"),
+            type: z.enum(["short", "long"]),
+          })
+        ),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -78,6 +95,7 @@ export const productsRouter = createTRPCRouter({
         isArchived,
         isApproved,
         tagId,
+        questions,
       } = input;
       const vendorUser = await clerkClient.users.getUser(creatorId);
 
@@ -130,6 +148,27 @@ export const productsRouter = createTRPCRouter({
           isApproved === "denied" &&
           (await sendVenorListingDenied(vendorEmail, vendorFirstName, true));
 
+          if (updatedProduct && updatedProduct[0] && updatedProduct[0].id && updatedProduct[0].creatorId) {
+            questions.forEach(async (question) =>{
+              if(question.id) {
+                await ctx.db
+                .update(formQuestions)
+                .set({
+                  question: question.question,
+                  type: question.type,
+                })
+                .where(eq(formQuestions.id, question.id));
+                } else {
+                  await ctx.db.insert(formQuestions).values({
+                    productId: updatedProduct[0]?.id as string,
+                    vendorId: updatedProduct[0]?.creatorId as string,
+                    question: question.question,
+                    type: question.type,
+                  });
+                }
+            })
+          }
+
         return updatedProduct[0];
       } else {
         const newProduct = await ctx.db
@@ -166,6 +205,27 @@ export const productsRouter = createTRPCRouter({
         //triger email to admin to noify new/edit listing
         newProduct?.[0] &&
           (await sendAdminNotificationForListing(newProduct[0].id));
+
+          if (newProduct && newProduct[0] && newProduct[0].id && newProduct[0].creatorId) {
+            questions.forEach(async (question) =>{
+              if(question.id) {
+                await ctx.db
+                .update(formQuestions)
+                .set({
+                  question: question.question,
+                  type: question.type,
+                })
+                .where(eq(formQuestions.id, question.id));
+                } else {
+                  await ctx.db.insert(formQuestions).values({
+                    productId: newProduct[0]?.id as string,
+                    vendorId: newProduct[0]?.creatorId as string,
+                    question: question.question,
+                    type: question.type,
+                  });
+                }
+            })
+          }
 
         return newProduct[0];
       }
