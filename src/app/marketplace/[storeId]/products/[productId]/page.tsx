@@ -15,6 +15,7 @@ import QuantitySelector from "~/components/quantity-selector";
 import { Button } from "~/components/ui/button";
 import { formatPrice } from "~/lib/utils";
 import { ArrowTopRightIcon } from "@radix-ui/react-icons";
+import DOMPurify from 'dompurify';
 
 const ProductPage = () => {
   const params = useParams();
@@ -54,6 +55,8 @@ const ProductPage = () => {
 
   const showButtons = !product.data.requiresVendorApproval ||
     (existingRequest.data?.exists && existingRequest.data.status === "approved");
+
+  const sanitizedDescription = DOMPurify.sanitize(product.data.description);
 
   return (
     <>
@@ -119,7 +122,10 @@ const ProductPage = () => {
 
                 <div className="mt-4 space-y-6">
                   <p className="text-base text-muted-foreground">
-                    {product.data.description}
+                    {/* {product.data.description} */}
+                    <div
+                        dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+                      />
                   </p>
                 </div>
 

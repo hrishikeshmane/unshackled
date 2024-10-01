@@ -41,6 +41,11 @@ import { useAuth } from "@clerk/nextjs";
 import { RocketIcon } from "@radix-ui/react-icons";
 import { Checkbox } from "~/components/ui/checkbox";
 import Link from "next/link";
+import dynamic from 'next/dynamic';
+import 'react-quill/dist/quill.snow.css';
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -367,11 +372,17 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormItem>
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Textarea
+                      {/* <Textarea
                         disabled={isPending}
                         placeholder="Service description"
                         {...field}
-                      />
+                      /> */}
+                      <ReactQuill
+                          readOnly={isPending}
+                          placeholder="Service description"
+                          value={field.value} // Use the field value from react-hook-form
+                          onChange={field.onChange} // Use the onChange to update the field value
+                        />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
