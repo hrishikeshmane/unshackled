@@ -5,7 +5,7 @@ import * as z from "zod";
 import { Heading } from "~/app/admin/_components/heading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { PlusCircle, Trash } from "lucide-react";
+import { PlusCircle, RocketIcon, Trash } from "lucide-react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -39,6 +39,7 @@ import {
 import { Checkbox } from "~/components/ui/checkbox";
 import { useAuth } from "@clerk/nextjs";
 import Link from "next/link";
+import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
 
 type Question = {
   type: "short" | "long";
@@ -107,11 +108,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   const { userId, isLoaded, isSignedIn } = useAuth();
 
-  const title = initialData?.id ? "Edit Product" : "Create Product";
-  const description = initialData?.id ? "Edit a Product" : "Add a new Product";
+  const title = initialData?.id ? "Edit Service" : "Create Service";
+  const description = initialData?.id ? "Edit a Service" : "Add a new Service";
   const toastMessage = initialData?.id
-    ? "Product updated."
-    : "Product created.";
+    ? "Service updated."
+    : "Service created.";
   const action = initialData?.id ? "Save changes" : "Create";
 
   const createOrUpdateProductMutation =
@@ -243,7 +244,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     // console.log("FORM valiation errors>>", form.formState.errors);
     // console.log("PRODUCT DATA>>", data);
     // console.log("IS Pending>>", isPending);
-    console.log("QUESTIONS >> ", data.questions);
+    // console.log("QUESTIONS >> ", data.questions);
+
+    // console.log("FORM CHANGED >> ", form.formState.isDirty)
 
     startTransition(() => {
       createOrUpdateProductMutation.mutate({
@@ -313,6 +316,28 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           </Button>
         )}
       </div>
+      <Alert variant={"primary"}>
+        <RocketIcon className="h-4 w-4" />
+        <AlertTitle>Approval Checklist!</AlertTitle>
+        <AlertDescription>
+          <>
+          <p className="mb-4">Before each approval, please ensure you follow these important rules:</p>
+          <ul className="list-disc list-inside space-y-1">
+            <li className="text-gray-700">
+              Thoroughly read through every field and promptly edit or take action as required.
+            </li>
+            <li className="text-gray-700">
+              Verify that all links and supporting text provided by the vendor are appropriate and do not violate any guidelines.
+            </li>
+            <li className="text-gray-700">
+              For commission agreements: if the service offers downpayment options, it is mandatory to apply a flat fee commission, regardless of the vendor arrangement.
+              <br />
+              <span className="italic text-gray-600">Example: If you have a percentage arrangement with the vendor but they opt for a downpayment, ensure you convert it to a flat fee beforehand.</span>
+            </li>
+          </ul>
+          </>
+        </AlertDescription>
+      </Alert>
       <Separator />
       <Form {...form}>
         <form
@@ -325,7 +350,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="imageUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Product Image (Logo)</FormLabel>
+                  <FormLabel>Service Image (Logo)</FormLabel>
                   <FormControl>
                     <ImageUpload
                       value={field.value ? [field.value] : []}
@@ -349,7 +374,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     <FormControl>
                       <Input
                         disabled={isPending}
-                        placeholder="Product Name"
+                        placeholder="Service Name"
                         {...field}
                       />
                     </FormControl>
@@ -366,7 +391,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     <FormControl>
                       <Input
                         disabled={isPending}
-                        placeholder="Product Tagline"
+                        placeholder="Service Tagline"
                         {...field}
                       />
                     </FormControl>
@@ -383,7 +408,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     <FormControl>
                       <Textarea
                         disabled={isPending}
-                        placeholder="Product description"
+                        placeholder="Service description"
                         {...field}
                       />
                     </FormControl>
@@ -463,7 +488,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="estTurnAroundTime"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Est. TurnAround Time</FormLabel>
+                  <FormLabel>Est. TurnAround Time (In days)</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -505,12 +530,12 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="price"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Price</FormLabel>
+                  <FormLabel>Price (In USD)</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       disabled={isPending}
-                      placeholder="Product Price"
+                      placeholder="Service Price"
                       {...field}
                     />
                   </FormControl>
@@ -552,7 +577,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="commission"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Commission</FormLabel>
+                  <FormLabel>Commission Figure (Percent/Flat Fee(USD))</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -601,7 +626,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <div className="space-y-1 leading-none">
                     <FormLabel>Down Payment Plan</FormLabel>
                     <FormDescription>
-                      Indicates if this product has down payment plan.
+                      Indicates if this Service has down payment plan.
                     </FormDescription>
                   </div>
                 </FormItem>
@@ -612,7 +637,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="downPayment"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Down Payment Amount</FormLabel>
+                  <FormLabel>Down Payment Amount (In USD)</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -741,13 +766,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <div className="space-y-1 leading-none">
                     <FormLabel>Requires Vendor Approval</FormLabel>
                     <FormDescription>
-                      This product will require vendor approval first for the customer.
+                      This Service will require vendor approval first for the customer.
+                      Additionally add questions to below form
                     </FormDescription>
                   </div>
                 </FormItem>
               )}
             />
-            {
+            {/* {
               initialData && 
               <div className="inline-flex items-center gap-2">
                 <h2 className="text-lg m-0 p-0">Form &rarr;</h2>
@@ -755,13 +781,15 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <p className="m-0 p-0">Create/Edit Form</p>
                 </Link>
               </div>
-            }
+            } */}
           </div>
-          <div className="my-4">
-            <h3 className="p-1 text-2xl font-bold">Approval Form Questions:</h3>
-            {/* <Separator /> */}
+          <div className="space-y-1 leading-none">
+            <FormLabel className="text-xl">Approval Form Questions:</FormLabel>
+            <FormDescription>
+              Add questions you would like to get information from a customer for approval, this will generate a form.
+            </FormDescription>
           </div>
-          <div className="space-y-8">
+          <div className="space-y-4">
           {fields.map((field, index) => (
             <div key={field.id} className="flex items-end space-x-2">
               <FormField
@@ -836,7 +864,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <div className="space-y-1 leading-none">
                     <FormLabel>Featured</FormLabel>
                     <FormDescription>
-                      The product will appear on the home page.
+                      The service will appear on the home page.
                     </FormDescription>
                   </div>
                 </FormItem>
@@ -856,7 +884,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <div className="space-y-1 leading-none">
                     <FormLabel>Archived</FormLabel>
                     <FormDescription>
-                      The product will appear nowhere in the store.
+                      The service will appear nowhere in the store.
                     </FormDescription>
                   </div>
                 </FormItem>
@@ -895,7 +923,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             />
           </div>
           {/* <Button onClick={() =>debug()}>DEBUG</Button> */}
-          <Button disabled={isPending} className="ml-auto" type="submit">
+          <Button disabled={isPending || !form.formState.isDirty} className="ml-auto" type="submit">
             {action}
           </Button>
         </form>

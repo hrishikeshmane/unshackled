@@ -32,7 +32,7 @@ export function MainNav({ className, ...props } : React.HTMLAttributes<HTMLEleme
     }, 
     {
         href: `/admin/${storeId}/products`,
-        label: 'Products',
+        label: 'Services',
         active: pathname === `/admin/${storeId}/products`
     }, {
         href: `/admin/${storeId}/orders`,

@@ -89,8 +89,8 @@ export default function ConsumerApprovalForm({ productId, vendorId, storeId }: {
   return (
     <div className="space-y-4">
       <Heading
-        title="Product Approval Form"
-        description="Please fill out this form to request approval for the product"
+        title="Service Approval Form"
+        description="Please fill out this form to request approval for the service."
       />
       <Separator />
       <Form {...form}>

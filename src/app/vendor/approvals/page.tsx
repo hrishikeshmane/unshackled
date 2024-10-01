@@ -30,6 +30,7 @@ const ApprovalsPage = async () => {
         return {
             id: item.id,
             productId: item.productId,
+            customerId: item.customerId,
             customerFullName,
             customerEmail,
             status: item.status,

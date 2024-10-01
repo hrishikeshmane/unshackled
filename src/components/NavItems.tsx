@@ -44,7 +44,7 @@ const NavItems: React.FC<NavItemsProps> = ({ data }) => {
       },
       {
         href: `/vendor/products`,
-        label: "Products",
+        label: "Services",
         active: pathname === `/vendor/products`,
       },
       {

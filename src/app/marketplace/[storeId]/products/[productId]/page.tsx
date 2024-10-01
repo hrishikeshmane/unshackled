@@ -45,7 +45,7 @@ const ProductPage = () => {
 
   const BREADCRUMBS = [
     { id: 1, name: "Home", href: "/" },
-    { id: 2, name: "Products", href: `/marketplace/${String(storeId)}` },
+    { id: 2, name: "Services", href: `/marketplace/${String(storeId)}` },
   ];
 
   const handleIncrease = () => setQuantity((prev) => prev + 1);
@@ -256,7 +256,7 @@ const ProductPage = () => {
           {similarProductsFiltered && similarProductsFiltered?.length > 0 ? (
             <ProductsReel
               products={similarProductsFiltered}
-              title="Similar Products"
+              title="Similar Services"
             />
           ) : null}
         </div>

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createTRPCRouter, adminOrVendorProcedure, protectedProcedure } from "~/server/api/trpc";
+import { createTRPCRouter, adminOrVendorProcedure, protectedProcedure, publicProcedure } from "~/server/api/trpc";
 import { formQuestions, formResponses, requestApprovals } from "~/server/db/schema";
 import { eq, and } from "drizzle-orm";
 
@@ -87,18 +87,23 @@ export const formRouter = createTRPCRouter({
       });
     }),
 
-    checkExistingRequest: protectedProcedure
+    checkExistingRequest: publicProcedure
     .input(z.object({
         productId: z.string(),
         // customerId: z.string(),
     }))
     .query(async ({ input, ctx }) => {
         const userId = ctx.session.userId;
+
+        if (!userId) {
+          return { exists: false, status: null };
+        }
+        
         const existingRequest = await ctx.db.query.requestApprovals.findFirst({
         where: (table) => 
             and(
             eq(table.productId, input.productId),
-            eq(table.customerId, ctx.session.userId)
+            eq(table.customerId, userId)
             )
         });
 
@@ -168,5 +173,24 @@ export const formRouter = createTRPCRouter({
       return { success: true };
     });
   }),
+
+  getFormResponses: protectedProcedure
+    .input(
+      z.object({
+        productId: z.string(),
+        customerId: z.string(),
+      })
+    )
+    .query(async ({ input, ctx }) => {
+      const responses = await ctx.db.query.formResponses.findMany({
+        where: (table) =>
+          and(
+            eq(table.productId, input.productId),
+            eq(table.customerId, input.customerId)
+          ),
+      });
+
+      return responses;
+    }),
 
 });
