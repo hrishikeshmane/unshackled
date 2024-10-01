@@ -46,7 +46,7 @@ const Header = async () => {
       },
       {
         href: `/vendor/products`,
-        title: "Products",
+        title: "Services",
         description: "",
       },
       {
@@ -60,6 +60,11 @@ const Header = async () => {
         title: "Billing",
         description:
           "A modal dialog that interrupts the user with important content and expects a response.",
+      },
+      {
+        href: `/vendor/approvals`,
+        title: "Customer Requests",
+        description: "Approval requests from customer.",
       },
     ],
     adminRoutes: [

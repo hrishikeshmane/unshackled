@@ -153,7 +153,7 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
               <Clock size={16} className="shrink-0" />
               <span>Est. Turnaround Time:</span>
               <span className="font-semibold">
-                {estTurnAroundTime || "Contact for Turnaround Time"}
+                {estTurnAroundTime ? `${estTurnAroundTime} day${estTurnAroundTime > 1 ? 's' : ''}` : "Contact for Turnaround Time"}
               </span>
             </span>
           </div>

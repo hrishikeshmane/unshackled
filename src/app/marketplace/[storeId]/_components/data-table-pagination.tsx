@@ -23,7 +23,7 @@ import {
     table,
   }: DataTablePaginationProps<TData>) {
     return (
-      <div className="flex items-center justify-between px-2">
+      <div className="flex items-center justify-center px-2">
         <div className="hidden md:flex-1 text-sm font-medium">
           Total services: {table.getRowCount()}
         </div>

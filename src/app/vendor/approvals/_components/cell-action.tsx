@@ -15,6 +15,7 @@ import { AlertModal } from "~/app/admin/_components/modals/alert-modal";
 import { useRouter } from "next/navigation";
 import { api } from "~/trpc/react";
 import { useState, useTransition } from "react";
+import Link from "next/link";
 
 interface CellActionProps {
   data: ApprovalsColumn;
@@ -94,12 +95,22 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
             <Copy className="mr-2 h-4 w-4" />
             Copy ID
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setApproveOpen(true)}>
-            Approve Request
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setDenyOpen(true)}>
-            Deny Request
-          </DropdownMenuItem>
+          {
+            data.status === "pending" &&
+            <DropdownMenuItem onClick={() => setApproveOpen(true)}>
+              Approve Request
+            </DropdownMenuItem>
+          }
+          { data.status === "pending" && 
+            <DropdownMenuItem onClick={() => setDenyOpen(true)}>
+              Deny Request
+            </DropdownMenuItem>
+          }
+          <DropdownMenuItem>
+          <Link href={`/vendor/approvals/${data.productId}/${data.customerId}`}>
+            View Form Responses
+          </Link>
+        </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>

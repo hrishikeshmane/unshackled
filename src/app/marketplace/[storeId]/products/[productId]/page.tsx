@@ -15,6 +15,7 @@ import QuantitySelector from "~/components/quantity-selector";
 import { Button } from "~/components/ui/button";
 import { formatPrice } from "~/lib/utils";
 import { ArrowTopRightIcon } from "@radix-ui/react-icons";
+import DOMPurify from 'dompurify';
 
 const ProductPage = () => {
   const params = useParams();
@@ -45,7 +46,7 @@ const ProductPage = () => {
 
   const BREADCRUMBS = [
     { id: 1, name: "Home", href: "/" },
-    { id: 2, name: "Products", href: `/marketplace/${String(storeId)}` },
+    { id: 2, name: "Services", href: `/marketplace/${String(storeId)}` },
   ];
 
   const handleIncrease = () => setQuantity((prev) => prev + 1);
@@ -54,6 +55,8 @@ const ProductPage = () => {
 
   const showButtons = !product.data.requiresVendorApproval ||
     (existingRequest.data?.exists && existingRequest.data.status === "approved");
+
+  const sanitizedDescription = DOMPurify.sanitize(product.data.description);
 
   return (
     <>
@@ -119,7 +122,10 @@ const ProductPage = () => {
 
                 <div className="mt-4 space-y-6">
                   <p className="text-base text-muted-foreground">
-                    {product.data.description}
+                    {/* {product.data.description} */}
+                    <div
+                        dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+                      />
                   </p>
                 </div>
 
@@ -256,7 +262,7 @@ const ProductPage = () => {
           {similarProductsFiltered && similarProductsFiltered?.length > 0 ? (
             <ProductsReel
               products={similarProductsFiltered}
-              title="Similar Products"
+              title="Similar Services"
             />
           ) : null}
         </div>

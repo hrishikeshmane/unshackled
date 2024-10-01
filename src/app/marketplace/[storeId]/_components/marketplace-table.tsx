@@ -71,7 +71,7 @@ export function MarketplaceTable<TData extends ModifiedProduct, TValue>({
   return (
     <>
       <div className="mx-auto grid w-full max-w-6xl items-start gap-6 lg:grid-cols-[300px_1fr]">
-        <div className="lg:sticky lg:top-[6.5rem]">
+        <div className="hidden md:block lg:sticky lg:top-[6.5rem]">
           <MarketplaceFilters table={table} />
         </div>
         <div className="ml-2 grid gap-4">
@@ -79,7 +79,7 @@ export function MarketplaceTable<TData extends ModifiedProduct, TValue>({
             <>
               <div className="mb-0 ml-2">
                 <h2 className="text-2xl font-bold text-primary ">Featured</h2>
-                <p className="text-muted-foreground">Featured products.</p>
+                <p className="text-muted-foreground">Featured Services from Unshackled.</p>
               </div>
               {featuredProducts.map((row) => {
                 const obj = row.original as ModifiedProduct;
@@ -91,9 +91,9 @@ export function MarketplaceTable<TData extends ModifiedProduct, TValue>({
             <>
               <div className="mb-0 ml-2">
                 <h2 className="text-2xl font-bold text-primary ">
-                  Other Products
+                  Other Services
                 </h2>
-                <p className="text-muted-foreground">All other products.</p>
+                <p className="text-muted-foreground">All other Services.</p>
               </div>
               {otherProducts.map((row) => {
                 const obj = row.original as ModifiedProduct;
@@ -105,11 +105,13 @@ export function MarketplaceTable<TData extends ModifiedProduct, TValue>({
             <div className="py-4 text-center">
               <h2 className="mb-2 text-lg font-bold">No Items Found</h2>
               <p className="text-gray-500">
-                We could not find any products matching your criteria.
+                We could not find any services matching your criteria.
               </p>
             </div>
           )}
-          <DataTablePagination table={table} />
+          <div className="flex items-center justify-center">
+            <DataTablePagination table={table} />
+          </div>
         </div>
       </div>
     </>

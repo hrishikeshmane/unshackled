@@ -63,8 +63,8 @@ export default async function MarketplacePage() {
             {featuredProducts && featuredProducts?.length > 0 ? (
               <ProductsReel
                 products={featuredProducts}
-                title="Featured Products"
-                subtitle="Unshackled trusted & recommended exclusive products for you."
+                title="Featured Services"
+                subtitle="Unshackled trusted & recommended exclusive Services for you."
               />
             ) : null}
           </div>

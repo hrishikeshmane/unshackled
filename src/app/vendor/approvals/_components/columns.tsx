@@ -9,12 +9,17 @@ export type ApprovalsColumn = {
     customerEmail: string;
     status: string;
     createdAt: string;
+    customerId: string;
 }
 
 export const columns: ColumnDef<ApprovalsColumn>[] = [
     {
         accessorKey: 'productId',
         header: 'Product ID',
+    },
+    {
+       accessorKey: 'customerId',
+       header: 'Customer Id', 
     },
     {
         accessorKey: 'customerFullName',
