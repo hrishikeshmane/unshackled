@@ -87,12 +87,30 @@ export default async function Footer() {
                   <Link href="/newsletter" className="block  " prefetch={false}>
                     Newsletter
                   </Link>
+                  <Link
+                    href="/find-lawyers"
+                    className="block  "
+                    prefetch={false}
+                  >
+                    Find Lawyers
+                  </Link>
+                  <Link
+                    href="https://unshackled.thinkific.com/courses/eb1a"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block  "
+                    prefetch={false}
+                  >
+                    Course
+                  </Link>
+                  <Link href="/copilot" className="block  " prefetch={false}>
+                    EB-1A Copilot
+                  </Link>
+
                   {/* <Link href="#" className="block  " prefetch={false}>
                     Our story
                   </Link> */}
-                  {/* <Link href="#" className="block  " prefetch={false}>
-                    Become an affiliate
-                  </Link> */}
+
                   {/* <Link href="#" className="block  " prefetch={false}>
                     Get in touch
                   </Link> */}

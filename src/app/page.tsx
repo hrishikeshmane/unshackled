@@ -7,6 +7,7 @@ import {
   JoinNewsletterForm,
   StartHereForm,
 } from "~/components/landing-page/convertkit-forms";
+import { siteConfig } from "~/lib/config";
 
 export default function HomePage() {
   return (
@@ -175,9 +176,9 @@ export default function HomePage() {
             immigration.
           </h2>
           <p className="mx-auto max-w-4xl text-center text-2xl font-bold leading-8 text-muted-foreground ">
-            Join 16,500+ immigrants who get a careful curation of breaking news,
+            {`Join ${siteConfig.newsletterCount} immigrants who get a careful curation of breaking news,
             free webinar invites & latest trends on immigration every week.
-            Reading time: 5 minutes.
+            Reading time: 5 minutes.`}
           </p>
           <div className="flex w-full flex-col items-center justify-center gap-4 py-4">
             <JoinNewsletterForm />
