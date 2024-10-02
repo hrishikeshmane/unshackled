@@ -107,7 +107,7 @@ export function ConditionalNavigationMenu({
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <Link href="/newsletter" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
@@ -115,8 +115,30 @@ export function ConditionalNavigationMenu({
                       Newsletter
                     </NavigationMenuLink>
                   </Link>
+                </NavigationMenuItem> */}
+                <NavigationMenuItem>
+                  <Link
+                    href="https://unshackled.thinkific.com/courses/eb1a"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Course
+                    </NavigationMenuLink>
+                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
+                  <Link href="/copilot" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      EB-1A Copilot
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <Link href="/our-story" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
@@ -124,7 +146,7 @@ export function ConditionalNavigationMenu({
                       Our Story
                     </NavigationMenuLink>
                   </Link>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
                 {/* <NavigationMenuItem>
               <Link href="/our-story" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>

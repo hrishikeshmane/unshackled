@@ -2,6 +2,7 @@
 
 import React from "react";
 import ConvertKitForm from "convertkit-react";
+import { siteConfig } from "~/lib/config";
 
 const GETTING_STARTED_FORM_ID = 6173806;
 const JOIN_THE_CLUB_FORM_ID = 6394156;
@@ -29,7 +30,7 @@ export const JoinNewsletterForm = () => {
     <ConvertKitForm
       template="clare"
       formId={JOIN_NEWSLETTER_FORM_ID}
-      submitText="Join 16500+ immigrants"
+      submitText={`Join ${siteConfig.newsletterCount} immigrants`}
       buttonBackground="#1454A1"
     />
   );

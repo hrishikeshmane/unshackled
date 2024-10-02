@@ -37,6 +37,7 @@ const config = withAxiom({
         protocol: "https",
         hostname: "cdn.prod.website-files.com",
       },
+      { hostname: "lh6.googleusercontent.com" },
     ],
   },
   typescript: {

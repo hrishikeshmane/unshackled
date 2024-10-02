@@ -8,11 +8,11 @@ const PricingGrid = () => {
       <div className="mt-16 grid gap-6 sm:grid-cols-1 md:grid-cols-3">
         <div className="flex transform flex-col rounded-lg border px-6 py-4 transition-colors duration-300">
           <p className="pb-2 text-lg font-medium text-gray-800 dark:text-gray-100">
-            Course Tier
+            EB-1A Course Tier
           </p>
 
           <h4 className="mt-2 text-4xl font-semibold text-gray-800 dark:text-gray-100">
-            $499
+            $249
           </h4>
 
           <p className="mt-4">
@@ -56,7 +56,7 @@ const PricingGrid = () => {
               </svg>
 
               <span className="mx-4 text-gray-700 dark:text-gray-300">
-                O-1A self-paced course
+                24 in-depth modules
               </span>
             </div>
 
@@ -75,7 +75,7 @@ const PricingGrid = () => {
               </svg>
 
               <span className="mx-4 text-gray-700 dark:text-gray-300">
-                EB-2 NIW self-paced course
+                Attorney-led course
               </span>
             </div>
 
@@ -99,19 +99,23 @@ const PricingGrid = () => {
             </div>
           </div>
 
-          <Link href="/newsletter" className="mt-auto w-full self-end">
+          <Link
+            target="_blank"
+            href="https://go.readunshackled.com/course-eb1a"
+            className="mt-auto w-full self-end"
+          >
             <Button
               variant={"outline"}
               className="mt-auto w-full transform self-end rounded-md border-primary px-4 py-2 font-medium tracking-wide transition-colors duration-300"
             >
-              Coming soon. Join Newsletter
+              Start my EB-1A journey
             </Button>
           </Link>
         </div>
 
         <div className="relative flex transform flex-col justify-between rounded-lg border-2 border-primary px-6 py-4 transition-colors duration-300 ">
           <p className="pb-2 text-lg font-medium text-gray-800 dark:text-gray-100">
-            Lifetime Community
+            Community Tier
           </p>
 
           <h4 className="mt-2 text-4xl font-semibold text-gray-800 dark:text-gray-100">
@@ -155,9 +159,7 @@ const PricingGrid = () => {
                 />
               </svg>
 
-              <span className="mx-4 ">
-                Free profile-evaluation with attorney
-              </span>
+              <span className="mx-4 ">Free consults with top lawyers</span>
             </div>
 
             <div className="flex items-center">
@@ -192,23 +194,6 @@ const PricingGrid = () => {
               </svg>
 
               <span className="mx-4 ">Monthly expert masterclasses</span>
-            </div>
-
-            <div className="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-primary"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-
-              <span className="mx-4 ">Monthly lawyer Q&As</span>
             </div>
 
             <div className="flex items-center">
@@ -293,11 +278,11 @@ const PricingGrid = () => {
                 />
               </svg>
 
-              <span className="mx-4 ">Access to 500+ aspirants</span>
+              <span className="mx-4 ">Access to 700+ aspirants</span>
             </div>
           </div>
           <Link
-            href="https://unshackled.thrivecart.com/unshackled-membership-main-lifetime/"
+            href="https://go.readunshackled.com/membership"
             target={"_blank"}
             rel={"noreferrer"}
           >
@@ -313,12 +298,13 @@ const PricingGrid = () => {
           </p>
 
           <h4 className="mt-2 text-4xl font-semibold text-gray-800 dark:text-gray-100">
-            $7499
+            <del className="text-muted-foreground">14,999</del> $9,999
           </h4>
 
           <p className="mt-4">
-            Choose this if you want personalized support from past recipients &
-            a roadmap to get your talent visa within the next 6-12 months.
+            Choose this if you want 1:1 personalized support from past
+            recipients & a roadmap to get your talent visa within the next 6-12
+            months.
           </p>
 
           <div className="mt-8 space-y-4">
@@ -436,7 +422,7 @@ const PricingGrid = () => {
               </span>
             </div>
 
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-primary"
@@ -452,6 +438,25 @@ const PricingGrid = () => {
 
               <span className="mx-4 text-gray-700 dark:text-gray-300">
                 10% discount on marketplace products
+              </span>
+            </div> */}
+
+            <div className="flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-primary"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+
+              <span className="mx-4 text-gray-700 dark:text-gray-300">
+                Dedicated accountability manager
               </span>
             </div>
 
@@ -470,7 +475,7 @@ const PricingGrid = () => {
               </svg>
 
               <span className="mx-4 text-gray-700 dark:text-gray-300">
-                Dedicated accountability manager
+                Priority support on Slack
               </span>
             </div>
 
