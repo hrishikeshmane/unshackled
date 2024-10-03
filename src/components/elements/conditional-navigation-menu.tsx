@@ -46,7 +46,7 @@ export function ConditionalNavigationMenu({
           <NavigationMenuList>
             {!isMarketplaceRoute && !isVendorRoute && !isAdminRoute && (
               <>
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -75,7 +75,7 @@ export function ConditionalNavigationMenu({
                       </ListItem>
                     </ul>
                   </NavigationMenuContent>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
                 {/* <NavigationMenuItem>
                   <NavigationMenuTrigger>Marketplace</NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -98,6 +98,15 @@ export function ConditionalNavigationMenu({
                     </ul> 
                   </NavigationMenuContent>
                 </NavigationMenuItem>*/}
+                <NavigationMenuItem>
+                  <Link href="/read-unshackled" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Read Unshackled
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link href="/find-lawyers" legacyBehavior passHref>
                     <NavigationMenuLink
