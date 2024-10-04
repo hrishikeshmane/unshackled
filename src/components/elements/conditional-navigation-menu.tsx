@@ -143,7 +143,7 @@ export function ConditionalNavigationMenu({
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
                     >
-                      EB-1A Copilot
+                      [NEW] EB-1A Copilot
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>

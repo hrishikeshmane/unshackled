@@ -519,16 +519,17 @@ const PricingGrid = () => {
           </div>
 
           <Link
-            href="https://go.greencard.inc/evaluation"
-            target={"_blank"}
-            rel={"noreferrer"}
+            // href="https://go.greencard.inc/evaluation"
+            // target={"_blank"}
+            // rel={"noreferrer"}
+            href={"/copilot"}
             className="mt-10"
           >
             <Button
               variant={"outline"}
               className="mt-auto w-full transform self-end rounded-md border-primary  px-4 py-2 font-medium tracking-wide  transition-colors duration-300 "
             >
-              Book call to learn more
+              Get started
             </Button>
           </Link>
         </div>
