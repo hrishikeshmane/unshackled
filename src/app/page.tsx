@@ -1,8 +1,10 @@
 import Footer from "@/components/landing-page/footer";
 import HeroSection from "@/components/landing-page/hero";
 import { Button } from "@/components/ui/button";
+import { Dialog } from "@radix-ui/react-dialog";
 import Image from "next/image";
 import Link from "next/link";
+import JoinNewsLetterDialog from "~/components/elements/JoinNewsLetterDialog";
 import {
   JoinNewsletterForm,
   StartHereForm,
@@ -184,6 +186,7 @@ export default function HomePage() {
             <JoinNewsletterForm />
           </div>
         </section>
+        <JoinNewsLetterDialog />
       </div>
       <Footer />
     </div>
