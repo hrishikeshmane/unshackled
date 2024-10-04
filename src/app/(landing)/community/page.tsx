@@ -394,7 +394,7 @@ export default function HomePage() {
             <div className="mx-auto mb-20 grid w-full max-w-7xl grid-cols-2 grid-rows-2 gap-6 md:grid-cols-4">
               <div>
                 <Image
-                  src="https://media.licdn.com/dms/image/D5603AQELuWAMSvSyyA/profile-displayphoto-shrink_400_400/0/1713936959454?e=1726099200&v=beta&t=_RCEE6pMW484M0rxZyL9OXIaF1Fw0xwg_e27M1ZNldU"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/sb.jpeg?raw=true"
                   alt="Aswarth Abhilash Dara"
                   width={270}
                   height={270}
@@ -411,7 +411,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://media.licdn.com/dms/image/C4E03AQG9NKjrMutBUQ/profile-displayphoto-shrink_400_400/0/1568339357589?e=1726099200&v=beta&t=97HtoDIqYXjXlD8t2zaxvmF9w4IBB18vtwgLpudLoNk"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/rk.jpeg?raw=true"
                   alt="Rathnakumar Udhayakumar"
                   width={270}
                   height={270}
@@ -428,7 +428,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://media.licdn.com/dms/image/C5603AQF_OKOLQaTSWg/profile-displayphoto-shrink_400_400/0/1586088240292?e=1726099200&v=beta&t=oqHPxUYgmFiTFbHvYzQkUxh-qqPeRsdTjlaytj7YlXI"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/nikin.jpeg?raw=true"
                   alt="Nikin Tharan"
                   width={270}
                   height={270}
@@ -445,7 +445,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://media.licdn.com/dms/image/C4D03AQFAK2rWdPXGdQ/profile-displayphoto-shrink_800_800/0/1658730194543?e=1726099200&v=beta&t=XqnX5nWqS4ISLe4KNvQQS68vS20ar6_VKl273JUSt9U"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/Hrishikesh.jpeg?raw=true"
                   alt="Hrishikesh Mane"
                   width={270}
                   height={270}
@@ -460,7 +460,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://media.licdn.com/dms/image/C5103AQGDCPwmMWqDEg/profile-displayphoto-shrink_400_400/0/1585381762613?e=1726099200&v=beta&t=EAfaJE8rFAElNWmayowbFd7RSC7bKlhJUsqAwaIWwo4"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/mali.jpeg?raw=true"
                   alt="Akash Mali"
                   width={270}
                   height={270}
@@ -493,7 +493,7 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://media.licdn.com/dms/image/D5603AQFOVI4j3MLHGg/profile-displayphoto-shrink_800_800/0/1720263627775?e=1726099200&v=beta&t=qADhDNQIqTHKv77539Y-x2JPf2oE_CjNuenj-L9ujHA"
+                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/swatilina.jpeg?raw=true"
                   alt="Swatilina Barik"
                   width={270}
                   height={270}
