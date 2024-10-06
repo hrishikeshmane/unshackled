@@ -91,9 +91,9 @@ export function MarketplaceTable<TData extends ModifiedProduct, TValue>({
             <>
               <div className="mb-0 ml-2">
                 <h2 className="text-2xl font-bold text-primary ">
-                  Other Services
+                  All Services
                 </h2>
-                <p className="text-muted-foreground">All other Services.</p>
+                <p className="text-muted-foreground">All Services in this collection.</p>
               </div>
               {otherProducts.map((row) => {
                 const obj = row.original as ModifiedProduct;

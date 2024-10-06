@@ -10,7 +10,7 @@ export type ModifiedProduct = {
   name: string;
   store: string;
   tag: string;
-    type: string;
+  type: string;
   tagline: string;
   logo: string;
   price: number;
@@ -18,6 +18,11 @@ export type ModifiedProduct = {
   isFeatured: boolean;
   createdAt: Date;
   estTurnAroundTime: number;
+  hasAdditionalLink: boolean,
+  additionalLinkLabel: string,
+  additionalLinkUrl: string,
+  hasDownPayment: boolean,
+  downPayment: number,
 };
 
 export const columns: ColumnDef<ModifiedProduct>[] = [

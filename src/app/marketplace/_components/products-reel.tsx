@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { type ProductWithRelations } from "~/types/globals";
 import Link from "next/link";
-import AddToCartButton from "~/components/add-to-cart-button";
 import { formatPrice } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
+import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 
 interface ProductsReelProps {
   products: ProductWithRelations[];
@@ -14,7 +14,7 @@ interface ProductsReelProps {
 
 const ProductsReel = ({ products, title, subtitle }: ProductsReelProps) => {
   return (
-    <section className="">
+    <section>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-primary max-xl:text-center">
           {title}
@@ -26,43 +26,49 @@ const ProductsReel = ({ products, title, subtitle }: ProductsReelProps) => {
           {products.map((product) => (
             <div
               key={product.id}
-              className="rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl"
+              className="rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl flex flex-col"
             >
               <Link href={`/marketplace/${product.storeId}/products/${product.id}`}>
-                <div className="relative h-48 w-full rounded-t-xl overflow-hidden">
+                <div className="relative h-48 w-full rounded-t-xl overflow-hidden bg-gray-100"> 
+                  {/* remove bg color if required */}
                   <Image
                     src={product.imageUrl}
                     alt="Product"
-                    className="object-cover object-center"
+                    className="object-contain object-center"
+                    // "object-cover"
                     fill
                     quality={100}
                   />
                 </div>
               </Link>
-              <div className="px-4 py-3">
-                {/* Rest of the product details */}
-                  <span className="mr-3 text-xs uppercase text-gray-400">
-                    {product.store?.name}
-                  </span>
-                  <p className="block truncate text-lg font-bold capitalize text-primary">
-                    {product.name}
-                  </p>
-                  <div className="flex items-center">
-                    <p className="my-3 cursor-auto text-lg font-semibold text-black">
-                        {formatPrice(product.price)}
-                    </p>
-                    {/* <del>
-                      <p className="ml-2 cursor-auto text-sm text-gray-600">
-                        $199
-                      </p>
-                    </del> */}
-                    <div className="ml-auto max-w-40 mx-2">
-                      {/* <AddToCartButton product={product} /> */}
-                      <Link href={`/marketplace/${product.storeId}/products/${product.id}`}>
-                          <Button>View</Button>
-                      </Link>
-                    </div>
+              <div className="flex-grow px-4 py-3">
+                <span className="mr-3 text-xs uppercase text-gray-400">
+                  {product.store?.name}
+                </span>
+                <p className="block truncate text-lg font-bold capitalize text-primary">
+                  {product.name}
+                </p>
+                {product.hasAdditionalLink && (
+                  <div className="text-gray-400 underline">
+                    {/* More at{" "} */}
+                    <Link href={product.additionalLinkUrl}>
+                      {product.additionalLinkLabel}
+                    </Link>
                   </div>
+                )}
+              </div>
+              {/* Price and Button at the bottom */}
+              <div className="px-4 pb-3 flex items-center">
+                <p className="my-3 cursor-auto text-lg font-semibold text-black">
+                  {product.hasDownPayment
+                    ? `Starting from ${formatPrice(product.downPayment)}`
+                    : formatPrice(product.price)}
+                </p>
+                <div className="ml-auto">
+                  <Link href={`/marketplace/${product.storeId}/products/${product.id}`}>
+                    <Button>View <ArrowTopRightIcon className="ml-2"/></Button>
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
@@ -71,6 +77,5 @@ const ProductsReel = ({ products, title, subtitle }: ProductsReelProps) => {
     </section>
   );
 };
-
 
 export default ProductsReel;

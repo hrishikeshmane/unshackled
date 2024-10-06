@@ -29,7 +29,8 @@ export default function FormResponsesPage() {
     <div className="space-y-4">
       <Heading
         title="Form Responses"
-        description={`Responses for product ${productId} and customer ${customerId}`}
+        description=""
+        // description={`Responses for product ${productId} and customer ${customerId}`}
       />
       <Separator />
       <div className="space-y-6">
