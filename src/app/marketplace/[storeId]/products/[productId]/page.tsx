@@ -222,6 +222,27 @@ const ProductPage = () => {
                   )}
                   </>) : (
                     <>
+                      {product.data.hasAdditionalLink && (
+                        <>
+                          <div className="flex flex-col items-center space-x-4 text-center">
+                            <Link
+                              className="w-full"
+                              href={product.data.additionalLinkUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              >
+                              <Button
+                                size="lg"
+                                className="flex w-full items-center gap-1"
+                                variant="secondary"
+                                >
+                                {product.data.additionalLinkLabel}
+                                <ArrowTopRightIcon />
+                              </Button>
+                            </Link>
+                          </div>
+                        </>
+                      )}
                     <div className="flex flex-col items-center space-x-4 text-center">
                       <Link
                         className="w-full"

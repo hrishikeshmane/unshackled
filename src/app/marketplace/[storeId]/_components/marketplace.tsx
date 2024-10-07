@@ -22,7 +22,12 @@ const modifiedProducts = products.map((product) => {
       domainRank: parseFloat(product.domainRank),
       isFeatured: product.isFeatured,
       createdAt: product.createdAt,
-      estTurnAroundTime: parseFloat(product.estTurnAroundTime)
+      estTurnAroundTime: parseFloat(product.estTurnAroundTime),
+      hasAdditionalLink: product.hasAdditionalLink,
+      additionalLinkLabel: product.additionalLinkLabel,
+      additionalLinkUrl: product.additionalLinkUrl,
+      hasDownPayment:product.hasDownPayment,
+      downPayment: parseFloat(product.downPayment),
     };
   });
 

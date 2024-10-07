@@ -405,7 +405,7 @@ export default function HomePage() {
                     Soundarya Balasubramani
                   </h3>
                   <p className="text-muted-foreground">
-                    Founder and CEO, Unshackled (by Greencard Inc)
+                    Founder and CMO, Unshackled (by Greencard Inc)
                   </p>
                 </div>
               </div>

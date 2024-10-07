@@ -44,7 +44,7 @@ const AccessButton = ({
 
 const TagBadge = ({ Tag }: { Tag: string }) => (
   <p
-    className={`flex gap-2 rounded-full bg-yellow-100 px-2.5 py-0.5 text-sm font-medium text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300`}
+    className={`hidden md:flex gap-2 rounded-full bg-yellow-100 px-2.5 py-0.5 text-sm font-medium text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300`}
   >
     {Tag}
   </p>
@@ -95,6 +95,11 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
     tagline,
     logo,
     price,
+    hasAdditionalLink,
+    additionalLinkLabel,
+    additionalLinkUrl,
+    hasDownPayment,
+    downPayment,
     type,
     domainRank,
     isFeatured,
@@ -129,14 +134,20 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
           </div>
           <div className="text-muted-foreground">
             <ServiceInfo
-              service={store}
+              service={type}
               domainRanking={domainRank}
               estTurnaroundTime={estTurnAroundTime}
             />
+            <p className="underline">
+              {additionalLinkLabel}
+            </p>
             <div className="flex items-end justify-between gap-1.5 sm:hidden">
               <TagBadge Tag={tag} />
               <span className="flex items-center gap-1.5">
-                {price ? `${formatPrice(price)}` : "Contact for Price"}
+                {/* {price ? `${formatPrice(price)}` : "Contact for Price"} */}
+                {hasDownPayment
+                    ? `Starting from ${formatPrice(downPayment)}`
+                    : formatPrice(price)}
               </span>
               {/* <AccessButton storeId={String(params.storeId)} productId={id} /> */}
             </div>
@@ -144,7 +155,10 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
         </div>
         <div className="ml-auto hidden shrink-0 flex-col items-end justify-between sm:flex">
           <span className="flex items-center gap-1.5">
-            {price ? `${formatPrice(price)}` : "Contact for Price"}
+            {/* {price ? `${formatPrice(price)}` : "Contact for Price"} */}
+            {hasDownPayment
+                ? `Starting from ${formatPrice(downPayment)}`
+                : formatPrice(price)}
           </span>
           {/* <AccessButton storeId={String(params.storeId)} productId={id} /> */}
           <div className="flex flex-col items-end">
