@@ -18,6 +18,7 @@ import { MoveRight, PhoneCall } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Timeline } from "@/components/elements/timeline";
 import Footer from "~/components/landing-page/footer";
+import Pricing from "@/components/sections/pricing";
 
 export default function Component() {
   return (
@@ -202,6 +203,7 @@ export default function Component() {
             </div>
           </div>
         </section>
+        <Pricing />
       </main>
       <FAQ />
       <CTA />
