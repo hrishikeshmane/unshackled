@@ -78,6 +78,22 @@ const MobileNav = ({
                   Find Lawyers
                 </Link>
                 <Link
+                  href="https://unshackled.thinkific.com/courses/eb1a"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={toggleSheet}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Course
+                </Link>
+                <Link
+                  href={"/copilot"}
+                  onClick={toggleSheet}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  [NEW] EB-1A Copilot
+                </Link>
+                {/*<Link
                   href={"/course"}
                   onClick={toggleSheet}
                   className="text-muted-foreground hover:text-foreground"
@@ -105,7 +121,7 @@ const MobileNav = ({
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Our Story
-                </Link>
+                </Link> */}
                 {/* <NavButtons role={role} toggleSheet={toggleSheet} /> */}
               </>
             }

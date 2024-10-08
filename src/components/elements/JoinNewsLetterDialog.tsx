@@ -18,7 +18,7 @@ const JoinNewsLetterDialog = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-[60vw] md:max-w-4xl">
+      <DialogContent className="scale-50 sm:max-w-[60vw] md:max-w-4xl md:scale-100">
         <div className="mx-auto my-4 flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg bg-card p-10">
           <h2 className="mx-auto max-w-4xl text-center text-4xl font-bold leading-[4rem] text-primary sm:text-2xl">
             Don’t waste your time and money trying to keep up with U.S.
