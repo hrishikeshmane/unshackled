@@ -18,6 +18,7 @@ import { MoveRight, PhoneCall } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Timeline } from "@/components/elements/timeline";
 import Footer from "~/components/landing-page/footer";
+import PricingGrid from "~/components/landing-page/pricing-grid";
 
 export default function Component() {
   return (
@@ -67,18 +68,18 @@ export default function Component() {
             </h2>
             <div className="grid gap-6 lg:grid-cols-3">
               {[
-                "Dedicated Accountability Manager",
-                "Progress Management Dashboard",
-                "Sample Letters & Petitions",
-                "30 days return policy",
-                "Bi-weekly Q&A Sessions",
-                "Connect w/ 70+ EB-1A Recepients",
-                "Unlimited Access until EB-1A approval",
                 "Attorney Discount ($2,999)",
                 "EB-1A Roadmapping with Attorney ($499 value)",
+                "Two consults with EB-1A mentors ($499 value)",
                 "Press Coverage in 5 outlets ($3,999 value)",
-                "Lifetime Community Membership ($999 value)",
-                "Access to Course Videos ($799 value)",
+                "Lifetime Unshackled Community Membership ($999 value)",
+                "Lifetime Access to Course ($799 value)",
+                "Dedicated Accountability Manager",
+                "Progress Management Dashboard",
+                "30 Days Return Policy",
+                "Bi-weekly Q&A Sessions",
+                "Connect w/ 50+ EB-1A Aspirants",
+                "Unlimited Access until EB-1A approval",
               ].map((feature, index) => (
                 <Card key={index}>
                   <CardHeader>
@@ -203,6 +204,7 @@ export default function Component() {
           </div>
         </section>
       </main>
+      <PricingGrid />
       <FAQ />
       <CTA />
       <Footer />

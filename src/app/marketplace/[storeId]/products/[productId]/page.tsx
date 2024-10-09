@@ -243,7 +243,7 @@ const ProductPage = () => {
                           </div>
                         </>
                       )}
-                    <div className="flex flex-col items-center space-x-4 text-center">
+                    <div className="flex mt-4 flex-col items-center space-x-4 text-center">
                       <Link
                         className="w-full"
                         href={`/marketplace/${storeId}/products/${productId}/approval`}

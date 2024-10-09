@@ -218,6 +218,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     name: "questions",
   });
 
+  const requiresVendorApprovalState = form.watch("requiresVendorApproval")
+
   const createOrUpdateQuestionMutation = api.approvalForms.createOrUpdateQuestion.useMutation({
     onSuccess: () => {
       toast.success("Questions saved successfully");
@@ -354,7 +356,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="imageUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Service Image (Logo)</FormLabel>
+                  <FormLabel>Service Image (Logo)<span className="ml-1 text-red-500">*</span></FormLabel>
                   <FormControl>
                     <ImageUpload
                       value={field.value ? [field.value] : []}
@@ -374,7 +376,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>Name<span className="ml-1 text-red-500">*</span></FormLabel>
                     <FormControl>
                       <Input
                         disabled={isPending}
@@ -391,7 +393,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 name="tagline"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tagline</FormLabel>
+                    <FormLabel>Tagline<span className="ml-1 text-red-500">*</span></FormLabel>
                     <FormControl>
                       <Input
                         disabled={isPending}
@@ -408,7 +410,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>Description<span className="ml-1 text-red-500">*</span></FormLabel>
                     <FormControl>
                       {/* <Textarea
                         disabled={isPending}
@@ -434,7 +436,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="typeId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Type</FormLabel>
+                  <FormLabel>Type<span className="ml-1 text-red-500">*</span></FormLabel>
                   <Select
                     disabled={isPending}
                     onValueChange={field.onChange}
@@ -466,7 +468,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="tagId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Tag</FormLabel>
+                  <FormLabel>Tag<span className="ml-1 text-red-500">*</span></FormLabel>
                   <Select
                     disabled={isPending}
                     onValueChange={field.onChange}
@@ -498,7 +500,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="estTurnAroundTime"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Est. TurnAround Time (In days)</FormLabel>
+                  <FormLabel>Est. TurnAround Time (In days)<span className="ml-1 text-red-500">*</span></FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -540,7 +542,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="price"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Price (In USD)</FormLabel>
+                  <FormLabel>Price (In USD)<span className="ml-1 text-red-500">*</span></FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -558,7 +560,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="commissionType"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Commission Type</FormLabel>
+                  <FormLabel>Commission Type<span className="ml-1 text-red-500">*</span></FormLabel>
                   <Select
                     disabled={isPending}
                     onValueChange={field.onChange}
@@ -587,7 +589,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="commission"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Commission Figure (Percent/Flat Fee(USD))</FormLabel>
+                  <FormLabel>Commission Figure (Percent/Flat Fee(USD))<span className="ml-1 text-red-500">*</span></FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -728,6 +730,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Order Communication Email</FormLabel>
+                  <FormDescription>
+                      Additional Email where you want order details and communications to happen.
+                    </FormDescription>
                   <FormControl>
                     <Input
                       disabled={isPending}
@@ -745,6 +750,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               render={({ field }) => (
                 <FormItem className="col-span-2">
                   <FormLabel>Message for the buyer</FormLabel>
+                  <FormDescription>
+                      Additional message to be added at end of order confirmation email for customer.
+                    </FormDescription>
                   <FormControl>
                     <Textarea
                       disabled={isPending}
@@ -809,7 +817,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormItem className="flex-grow">
                     <FormLabel>Question {index + 1}</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Enter question" />
+                      <Input {...field} disabled={!requiresVendorApprovalState} placeholder="Enter question" />
                     </FormControl>
                   </FormItem>
                 )}
@@ -820,7 +828,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Type</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} disabled={!requiresVendorApprovalState} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select type" />
@@ -839,6 +847,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 variant="destructive"
                 size="icon"
                 onClick={() => handleDelete(index)}
+                disabled={!requiresVendorApprovalState}
               >
                 <Trash className="h-4 w-4" />
               </Button>
@@ -849,6 +858,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 type="button"
                 variant="outline"
                 onClick={() => append({ id: null, question: "", type: "short" })}
+                disabled={!requiresVendorApprovalState}
             >
                 <PlusCircle className="w-5 h-5 mr-2" />
                 Add Question
@@ -906,7 +916,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="isApproved"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Approval</FormLabel>
+                  <FormLabel>Approval<span className="ml-1 text-red-500">*</span></FormLabel>
                   <Select
                     disabled={isPending}
                     onValueChange={field.onChange}

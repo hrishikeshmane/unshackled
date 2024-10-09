@@ -47,6 +47,7 @@ import type { NextFetchEvent, NextRequest } from "next/server";
 const isProtectedRoute = createRouteMatcher([
   "/admin(.*)",
   "/marketplace/cart(.*)",
+  "/marketplace/(.*)/products/(.*)",
   "/myorders(.*)",
   "(.*)approval(.*)",
   "(.*)approvalForms(.*)",
