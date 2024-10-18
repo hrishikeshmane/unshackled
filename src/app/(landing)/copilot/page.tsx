@@ -14,8 +14,6 @@ import Header from "@/components/elements/header";
 import { HeroCopilot } from "@/components/sections/hero";
 import CTA from "@/components/sections/cta";
 import FAQ from "@/components/sections/faq";
-import { MoveRight, PhoneCall } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Timeline } from "@/components/elements/timeline";
 import Footer from "~/components/landing-page/footer";
 import PricingGrid from "~/components/landing-page/pricing-grid";
