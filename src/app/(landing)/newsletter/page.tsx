@@ -23,9 +23,12 @@ const NewsLetterPage = () => {
               immigration
             </h2>
             <p className="text-2xl font-bold leading-8 text-muted-foreground">
-              Join <span className="text-primary">16,500+ immigrants</span> who
-              get a careful curation of breaking news, free webinar invites &
-              latest trends on immigration every week.
+              Join{" "}
+              <span className="text-primary">
+                {siteConfig.newsletterCount} immigrants
+              </span>{" "}
+              who get a careful curation of breaking news, free webinar invites
+              & latest trends on immigration every week.
             </p>
             <div className="rounded-md bg-white p-4">
               <JoinNewsletterForm />
