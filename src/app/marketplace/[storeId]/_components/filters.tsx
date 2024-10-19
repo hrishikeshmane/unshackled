@@ -77,13 +77,13 @@ export function MarketplaceFilters<TData>({ table }: Props<TData>) {
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-primary" />
           <Input
             type="search"
-            placeholder="Search products by tagline ..."
+            placeholder="Search products by name ..."
             className="bg-white pl-8"
             value={
-              (table.getColumn("tagline")?.getFilterValue() as string) ?? ""
+              (table.getColumn("name")?.getFilterValue() as string) ?? ""
             }
             onChange={(event) =>
-              table.getColumn("tagline")?.setFilterValue(event.target.value)
+              table.getColumn("name")?.setFilterValue(event.target.value)
             }
           />
         </div>
@@ -105,7 +105,7 @@ export function MarketplaceFilters<TData>({ table }: Props<TData>) {
               //     ),
               headerGroup.headers.map(
                 (header) =>
-                  header.id === "price" && (
+                 (header.id === "price" || header.id === "estTurnAroundTime") && (
                     <div key={header.id}>
                       {header.isPlaceholder
                         ? null
@@ -137,7 +137,7 @@ export function MarketplaceFilters<TData>({ table }: Props<TData>) {
           <>
             {table.getColumn("price") && (
               <RangeFilter
-                column={table.getColumn("domainRank") as Column<TData, number>}
+                column={table.getColumn("price") as Column<TData, number>}
                 title="Price"
               />
             )}
