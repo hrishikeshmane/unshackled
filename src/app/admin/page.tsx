@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button, buttonVariants } from "~/components/ui/button";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { cn } from "~/lib/utils";
+import { PlusCircle } from "lucide-react";
 
 const DotIcon = () => {
     return (
@@ -75,7 +76,9 @@ const AdminSetupPage = async () => {
           <div className="mt-10">
             {
                     <CreateStoreModal>
-                        <Button>Create Store</Button>
+                        <Button>
+                        <PlusCircle className="w-5 h-5 mr-2" /> Create Store
+                        </Button>
                     </CreateStoreModal>
                 }
           </div>

@@ -9,6 +9,7 @@ import Footer from "~/components/landing-page/footer";
 import StoresReel from "./_components/stores-reel";
 import { billboard } from "~/server/db/schema";
 import BecomeASeller from "./_components/become-a-seller";
+import BecomeASellerSection from "./_components/become-a-seller-section";
 
 export default async function MarketplacePage() {
   const storesRaw = await api.store.getStores({live: true});
@@ -24,8 +25,8 @@ export default async function MarketplacePage() {
 
       return {
         id: store.id,
-        title: store.name,
-        description: store.description ?? "",
+        title: storeBillboards[0]?.label ?? "",
+        description: storeBillboards[0]?.description ?? "",
         imageUrl: imageUrl ?? "",
         link: `/marketplace/${store.id}`,
       };
@@ -76,6 +77,11 @@ export default async function MarketplacePage() {
               reelSubtitle="Discover amazing services from our trusted partners"
             />
           </div>
+          
+          {/* <div className="py-10">
+            <BecomeASellerSection />
+          </div> */}
+          
         </MaxWidthWrapper>
       </section>
       <Footer />

@@ -104,6 +104,22 @@ export const columns: ColumnDef<ModifiedProduct>[] = [
   },
   {
     accessorKey: "estTurnAroundTime",
-    header: "Estimated Turnaround Time",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          TurnAround Time
+          {column.getIsSorted() === "desc" ? (
+            <ArrowDownIcon className="ml-2 h-4 w-4 text-primary" />
+          ) : column.getIsSorted() === "asc" ? (
+            <ArrowUpIcon className="ml-2 h-4 w-4 text-primary" />
+          ) : (
+            <CaretSortIcon className="ml-2 h-4 w-4 text-primary" />
+          )}
+        </Button>
+      );
+    },
   },
 ];

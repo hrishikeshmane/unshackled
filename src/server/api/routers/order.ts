@@ -179,9 +179,14 @@ export const orderRouter = createTRPCRouter({
     const { userId } = input;
 
     // Find orders with the given userId
-    const orders = await ctx.db.query.order.findMany({
+    const ordersRaw = await ctx.db.query.order.findMany({
       where: (table) => eq(table.customerId, userId),
     });
+
+    // Filter approved products in application logic
+    const orders = ordersRaw.filter(
+      (order) => order.paymentStatus !== "notInitiated",
+    );
 
     // Extract order IDs
     const orderIds = orders.map((order) => order.id);

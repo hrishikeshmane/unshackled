@@ -490,7 +490,11 @@ export const productsRouter = createTRPCRouter({
         (product) => product.isApproved === "approved",
       );
 
-      return approvedProducts;
+      const liveProducts = approvedProducts.filter(
+        (product) => product.isArchived === false,
+      );
+
+      return liveProducts;
     }),
 
   getApprovedProducts: publicProcedure.query(async ({ ctx }) => {
