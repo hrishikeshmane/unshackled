@@ -68,10 +68,10 @@ export default function Component() {
               {[
                 "Attorney Discount ($2,999)",
                 "EB-1A Roadmapping with Attorney ($499 value)",
-                "Two consults with EB-1A mentors ($499 value)",
                 "Press Coverage in 5 outlets ($3,999 value)",
                 "Lifetime Unshackled Community Membership ($999 value)",
                 "Lifetime Access to Course ($799 value)",
+                "Publication Support in High-Impact Journals",
                 "Dedicated Accountability Manager",
                 "Progress Management Dashboard",
                 "30 Days Return Policy",
