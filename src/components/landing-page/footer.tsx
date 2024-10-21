@@ -141,9 +141,9 @@ export default async function Footer() {
                   <MarketplaceLinks stores={stores} />
                 </div> */}
               </div>
-              {/* <div className="col-span-1 hidden md:block">
+              <div className="col-span-1 hidden md:block">
                 <MarketplaceLinks stores={stores} />
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
