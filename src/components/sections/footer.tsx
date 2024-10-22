@@ -1,4 +1,4 @@
-import { Icons } from "@/components/icons";
+// import { Icons } from "@/components/icons";
 import { siteConfig } from "~/lib/config";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
@@ -12,7 +12,7 @@ export default function Footer() {
           title={siteConfig.name}
           className="relative mr-6 flex items-center space-x-2"
         >
-          <Icons.logo className="h-[40px] w-auto" />
+          {/* <Icons.logo className="h-[40px] w-auto" /> */}
           <span className="text-xl font-bold">{siteConfig.name}</span>
         </a>
 
