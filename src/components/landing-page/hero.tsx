@@ -5,6 +5,7 @@ import { Companies } from "./social-proof";
 import HeroVideo from "./hero-video";
 import { ArrowUpRight, Phone, ShoppingBag } from "lucide-react";
 import Link from "next/link";
+import { siteConfig } from "~/lib/config";
 
 const avatarUrls = [
   "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Hitesh%20Kenjale.png?raw=true",
@@ -72,9 +73,12 @@ const HeroSection = () => {
         </div>
       </div>
       <div className="mx-auto mt-8 flex w-full flex-col items-center justify-center space-x-4 md:mt-12 md:flex-row ">
-        <AvatarCircles numPeople={500} avatarUrls={avatarUrls} />
+        <AvatarCircles
+          numPeople={parseInt(siteConfig.memberCount.slice(0, -1))}
+          avatarUrls={avatarUrls}
+        />
         <span className="font-semibold">
-          Trusted by 500+ ambitious immigrants
+          Trusted by {siteConfig.memberCount} ambitious immigrants
         </span>
       </div>
       <div className="mx-auto w-full items-center justify-center">

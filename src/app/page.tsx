@@ -28,7 +28,7 @@ export default function HomePage() {
               </h2>
               <p className="text-xl font-bold leading-8 text-muted-foreground">
                 If you&apos;re hearing the term &quot;talent visas&quot; for the
-                first time, head over here and go through our free, 5-day
+                first time, head over here and go through our free, 5-day Intro
                 course. No legal jargon.
               </p>
               <div className="flex flex-col gap-4 py-4">

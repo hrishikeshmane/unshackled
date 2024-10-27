@@ -43,28 +43,35 @@ const faqs = [
         <p>
           - Access to a flagship course on talent visas that will walk you
           through everything you need to know about the O-1A, EB-1A, and EB-2
-          NIW. A discussion forum where you can get any questions answered. - A
-          biweekly accountability session where you get to meet other members of
-          our community and make progress. - Regular workshops with immigration
-          lawyers and past recipients. We ensure everyone’s questions get
-          answered by the end of the call.
+          NIW. A discussion forum where you can get any questions answered.
         </p>
-        ‍
+        <p>
+          - A biweekly accountability session where you get to meet other
+          members of our community and make progress.
+        </p>
+        <p>
+          - Regular workshops with immigration lawyers and past recipients. We
+          ensure everyone’s questions get answered by the end of the call.
+        </p>
         <p>
           Here are the benefits you get access to the moment you finish our
           flagship course and contribute to the discussion forum:
         </p>
-        ‍
         <p>
           - A database of resources curated over hundreds of hours. This
           includes a profile-building “Dream Tracker”, a masterclass video
           library, a list of competitions to judge to build your O-1/EB-1
-          profile, a list of grants to apply to as a founder, and more. - A
-          directory of 5+ immigration lawyers who all offer a free profile
+          profile, a list of grants to apply to as a founder, and more.
+        </p>
+        <p>
+          - A directory of 5+ immigration lawyers who all offer a free profile
           evaluation. Generally, initial consults with a lawyer are anywhere
-          from $250-$500. - A directory of 10+ immigrant mentors who’ve already
-          gotten a talent visa (O-1/EB-1/NIW) and have been through the process.
-          Generally, these consults can cost anywhere from $100-$250.
+          from $250-$500.
+        </p>
+        <p>
+          - A directory of 10+ immigrant mentors who’ve already gotten a talent
+          visa (O-1/EB-1/NIW) and have been through the process. Generally,
+          these consults can cost anywhere from $100-$250.
         </p>
       </>
     ),
@@ -117,52 +124,6 @@ const faqs = [
     ),
   },
   {
-    question:
-      "What is the difference between the Student and Annual membership?",
-    answer: (
-      <>
-        <p>
-          The Student Tier is meant for those who are currently
-          bachelors/masters/PhD students in America. Given students are not
-          earning yet, we want to lower the bar for them to be able to join our
-          community. The Annual tier is meant for working professionals who are
-          actively wanting to build their profiles and get an O1/EB1/NIW in the
-          next 12-24 months.
-        </p>
-        ‍
-        <p>
-          Further, those in the Student tier will NOT have access to book free
-          consults with immigration lawyers or past recipients of talent visas.
-          This is a benefit reserved only for those in the Annual tier.
-        </p>
-        <p>
-          If you&apos;re a student, begin with a Student tier and then upgrade
-          to an
-        </p>
-      </>
-    ),
-  },
-  {
-    question: "What is the selection criteria for the White-glove tier?",
-    answer: (
-      <>
-        <p>
-          The white-glove tier is a new addition to our membership. It is meant
-          for STEM and business professionals who already check off at least 2
-          criteria in their EB-1A journey, and need one-on-one guidance from
-          past recipients to reach the finish line.
-        </p>
-        <p>
-          We will only choose 10 people for the initial cohort. We will be
-          choosing people based on their industry, job role, years of
-          experience, and what evidence they already have under their belt to
-          secure an EB-1A.
-        </p>
-        <p>If you have questions on this, please email hi@unshackled.club.</p>
-      </>
-    ),
-  },
-  {
     question: "Why is there no monthly tier option?",
     answer: (
       <>
@@ -173,8 +134,8 @@ const faqs = [
           pool of highly invested members and talent visa aspirants.
         </p>
         <p>
-          We recommend you start off with a Quarterly membership and then
-          upgrade to an Annual one later on at a discount.
+          We recommend you start off with a EB-1A Course Tier and then upgrade
+          to an Annual one later on at a discount.
         </p>
       </>
     ),

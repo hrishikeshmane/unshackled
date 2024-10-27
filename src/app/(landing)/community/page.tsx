@@ -12,6 +12,7 @@ import CommunityHeroSection, {
 import CommunityTestimonials from "~/components/landing-page/community-testimonials";
 import HeroVideo from "~/components/landing-page/hero-video";
 import PricingGrid from "~/components/landing-page/pricing-grid";
+import { siteConfig } from "~/lib/config";
 
 const companies = [
   "Google",
@@ -64,8 +65,10 @@ export default function HomePage() {
           </h2>
           <p className="mt-8 text-center text-xl font-bold leading-8 text-muted-foreground">
             Our community of{" "}
-            <span className="text-primary">500+ aspirants</span> span all
-            corners of tech, STEM and business fields.
+            <span className="text-primary">
+              {siteConfig.memberCount} aspirants
+            </span>{" "}
+            span all corners of tech, STEM and business fields.
           </p>
 
           <div className="mx-auto my-10 w-full items-center justify-center">
@@ -295,7 +298,8 @@ export default function HomePage() {
 
         <section className="mx-auto my-8 mt-24 flex w-full flex-col items-center justify-center">
           <h2 className="text-center text-4xl font-bold">
-            Join <span className="text-primary">500+</span> ambitious immigrants
+            Join <span className="text-primary">{siteConfig.memberCount}</span>{" "}
+            ambitious immigrants
           </h2>
 
           <PricingGrid />

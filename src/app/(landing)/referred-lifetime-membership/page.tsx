@@ -3,6 +3,7 @@ import React from "react";
 import CommunityTestimonials from "~/components/landing-page/community-testimonials";
 import Footer from "~/components/landing-page/footer";
 import { Button } from "~/components/ui/button";
+import { siteConfig } from "~/lib/config";
 
 const ReferedPage = () => {
   return (
@@ -14,7 +15,7 @@ const ReferedPage = () => {
               You&apos;ve got a great friend!
               <br />
               Join
-              <span className="text-primary"> 500+ </span>
+              <span className="text-primary"> {siteConfig.memberCount} </span>
               talent visa aspirants to get your O1/EB1/NIW
             </h1>
             <p className="py-4 text-xl font-semibold text-muted-foreground">

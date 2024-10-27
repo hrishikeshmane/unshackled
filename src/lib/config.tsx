@@ -7,7 +7,7 @@ export const BLUR_FADE_DELAY = 0.15;
 
 export const siteConfig = {
   newsletterCount: "20,000+",
-  memberCount: "500+",
+  memberCount: "750+",
   name: "Greencard Inc",
   description:
     "Your one-stop shop to Secure your Green Card with AI-Powered Expertise",
