@@ -9,7 +9,7 @@ import { api } from "~/trpc/server";
 import { type IStore } from "@/server/db/schema";
 
 export default async function Footer() {
-  // const stores = await api.store.getStores({ live: true });
+  const stores = await api.store.getStores({ live: true });
 
   return (
     <footer className="mt-20 bg-secondary py-12">
@@ -137,12 +137,12 @@ export default async function Footer() {
                   </Link>
                 </nav>
 
-                {/* <div className="my-12 block md:hidden">
+                <div className="my-12 block md:hidden">
                   <MarketplaceLinks stores={stores} />
-                </div> */}
+                </div>
               </div>
               <div className="col-span-1 hidden md:block">
-                {/* <MarketplaceLinks stores={stores} /> */}
+                <MarketplaceLinks stores={stores} />
               </div>
             </div>
           </div>
@@ -162,7 +162,7 @@ const MarketplaceLinks = ({ stores }: { stores: IStore[] }) => {
     <>
       <h3 className="text-lg font-medium">Marketplace</h3>
       <nav className="mt-4 space-y-4">
-        {stores.map((store) => (
+        {/* {stores.map((store) => (
           <Link
             key={store.id}
             href={`/marketplace/${store.id}`}
@@ -170,7 +170,7 @@ const MarketplaceLinks = ({ stores }: { stores: IStore[] }) => {
           >
             {store.name}
           </Link>
-        ))}
+        ))} */}
         <BecomeASeller />
       </nav>
     </>

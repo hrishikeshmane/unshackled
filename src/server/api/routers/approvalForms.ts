@@ -2,6 +2,8 @@ import { z } from "zod";
 import { createTRPCRouter, adminOrVendorProcedure, protectedProcedure, publicProcedure } from "~/server/api/trpc";
 import { formQuestions, formResponses, requestApprovals } from "~/server/db/schema";
 import { eq, and } from "drizzle-orm";
+import { clerkClient } from "@clerk/nextjs/server";
+import { sendCustomerApprovalForListing, sendVendorApprovalFormResponse } from "~/app/_actions/emails";
 
 export const formRouter = createTRPCRouter({
   getQuestions: adminOrVendorProcedure
@@ -48,7 +50,7 @@ export const formRouter = createTRPCRouter({
       await ctx.db.delete(formQuestions).where(eq(formQuestions.id, input.id));
     }),
 
-    submitResponses: protectedProcedure
+  submitResponses: protectedProcedure
     .input(
       z.object({
         productId: z.string(),
@@ -63,9 +65,9 @@ export const formRouter = createTRPCRouter({
     )
     .mutation(async ({ input, ctx }) => {
       const { productId, vendorId, responses } = input;
-      const customerId = ctx.session.userId;    
+      const customerId = ctx.session.userId;   
 
-    return await ctx.db.transaction(async (trx) => {
+    const submitResponsesRes= await ctx.db.transaction(async (trx) => {
         for (const response of responses) {
           await trx.insert(formResponses).values({
             customerId,
@@ -83,8 +85,16 @@ export const formRouter = createTRPCRouter({
           status: "pending",
         });
 
-        return { success: true };
+        return { success: true, responses, customerId, vendorId, productId };
       });
+
+      if (submitResponsesRes.success) {
+        const vendorUser = await clerkClient.users.getUser(vendorId);
+        const vendorEmail = vendorUser.emailAddresses[0]?.emailAddress ?? "";
+        const vendorFirstName = vendorUser.firstName ?? "User";
+
+        sendVendorApprovalFormResponse(customerId, productId, responses, vendorEmail, vendorFirstName)
+      }
     }),
 
     checkExistingRequest: publicProcedure
@@ -131,9 +141,17 @@ export const formRouter = createTRPCRouter({
     approveRequest: adminOrVendorProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ input, ctx }) => {
-      await ctx.db.update(requestApprovals).set({
+      const requestDetails = await ctx.db.update(requestApprovals).set({
         status: "approved",
-      }).where(eq(requestApprovals.id, input.id));
+      }).where(eq(requestApprovals.id, input.id)).returning();
+
+      if (requestDetails[0] && requestDetails[0].status === "approved") {
+        const customer = await clerkClient.users.getUser(requestDetails[0]?.customerId);
+        const customerEmail = customer.emailAddresses[0]?.emailAddress ?? "";
+        const customerName = customer.firstName ?? "User";
+
+        sendCustomerApprovalForListing(requestDetails[0].productId, customerEmail, customerName, requestDetails[0].status)
+      }
 
       return { success: true };
     }),
@@ -159,7 +177,7 @@ export const formRouter = createTRPCRouter({
 
     const { customerId, vendorId, productId } = approvalRecord;
 
-    return await ctx.db.transaction(async (trx) => {
+    const denyRequestRes =  await ctx.db.transaction(async (trx) => {
       await trx.delete(formResponses).where(
         and(
           eq(formResponses.customerId, customerId),
@@ -172,6 +190,14 @@ export const formRouter = createTRPCRouter({
 
       return { success: true };
     });
+
+    if (denyRequestRes.success) {  
+    const customer = await clerkClient.users.getUser(customerId);
+    const customerEmail = customer.emailAddresses[0]?.emailAddress ?? "";
+    const customerName = customer.firstName ?? "User";
+
+    sendCustomerApprovalForListing(productId, customerEmail, customerName, "denied");    
+    }
   }),
 
   getFormResponses: protectedProcedure

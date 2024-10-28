@@ -201,7 +201,7 @@ const ProductPage = () => {
                   )}
                   {product.data.hasAdditionalLink && (
                     <>
-                      <div className="flex flex-col items-center space-x-4 text-center">
+                      <div className="mt-4 flex flex-col items-center space-x-4 text-center">
                         <Link
                           className="w-full"
                           href={product.data.additionalLinkUrl}

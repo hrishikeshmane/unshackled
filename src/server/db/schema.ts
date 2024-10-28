@@ -267,3 +267,4 @@ export const requestApprovals = createTable("requestApprovals", {
 });
 
 export type IStore = typeof store.$inferSelect;
+export type IApprovalFormResponses = typeof formResponses.$inferInsert
