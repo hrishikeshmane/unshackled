@@ -114,13 +114,12 @@ const Page = () => {
               <h2 className="text-3xl font-bold">4. Why write this?</h2>
               <p className="py-4 text-xl font-semibold text-muted-foreground">
                 The immigration system in the United States is outdated by 33
-                years
+                years.
               </p>
               <ol className="ml-6 flex list-disc flex-col items-start gap-4 py-4 text-left text-xl font-semibold text-muted-foreground">
-                <li>O-1/EB-1 profile building tracker</li>
-                <li>List of 30+ grants & fellowships</li>
-                <li>6 sample recommendation letters</li>
-                <li>Top VC funds that support immigrants</li>
+                <li>0% chance for start up visa</li>
+                <li>More than 1 million immigrant wait</li>
+                <li>10% chance of H-1B</li>
               </ol>
               <p className="py-4 text-xl font-semibold text-muted-foreground">
                 Yet, despite these constraints, immigrats have done{" "}
