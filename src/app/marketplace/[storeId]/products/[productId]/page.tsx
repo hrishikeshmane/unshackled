@@ -148,12 +148,13 @@ const ProductPage = () => {
             </div>
 
             {/* Product image */}
-            <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
+            {/* lg:mt-0 lg:self-center */}
+            <div className="mt-10 lg:col-start-2 lg:row-span-2">
               <div className="aspect-square rounded-lg">
                 <Image
                   src={product.data.imageUrl}
                   alt={`${product.data.name} logo`}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                   width={400}
                   height={400}
                   // className="self-center rounded-lg object-contain"
@@ -166,7 +167,7 @@ const ProductPage = () => {
               <div>
                 { showButtons ? 
                 (  <>
-                  <div className="mt-10 flex items-center space-x-4">
+                  <div className="flex items-center space-x-4">
                     {/* <BuyNowButton product={product.data} /> */}
                     <QuantitySelector
                       quantity={quantity}
@@ -189,7 +190,7 @@ const ProductPage = () => {
                           to vendor later.
                         </p>
                         <BuyNowButton
-                          className="b-2 mx-0 my-4 border-primary"
+                          className="b-2 mx-0 border-primary"
                           variant="outline"
                           product={product.data}
                           quantity={quantity}
