@@ -163,6 +163,19 @@ export default function ConsumerApprovalForm({
             </div>
           )}
 
+        {isExtRequiredFormApprovalLink && (
+            <div className="rounded-lg border bg-card p-6">
+              <h3 className="mb-2 font-semibold">Vendor Form</h3>
+              <p className="mb-4 text-sm text-muted-foreground">Please complete the vendor's form before submitting this approval form.</p>
+              <Button
+                onClick={() => window.open(ExtRequiredFormApprovalLink, '_blank')}
+                variant="outline"
+              >
+                Open Vendor Form
+              </Button>
+            </div>
+          )}
+
           <div className="mx-auto max-w-xl space-y-6">
             <FormField
               control={form.control}
