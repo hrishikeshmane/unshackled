@@ -111,7 +111,7 @@ export default function ConsumerApprovalForm({
       />
       <Separator />
       
-      {isExtRequiredFormApprovalLink && (
+      {/* {isExtRequiredFormApprovalLink && (
         <Alert className="bg-amber-50">
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>
@@ -122,7 +122,7 @@ export default function ConsumerApprovalForm({
             </ol>
           </AlertDescription>
         </Alert>
-      )}
+      )} */}
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -149,7 +149,7 @@ export default function ConsumerApprovalForm({
               ))}
             </div>
           }
-          {isExtRequiredFormApprovalLink && (
+          {/* {isExtRequiredFormApprovalLink && (
             <div className="rounded-lg border bg-card">
               <div className="border-b p-4">
                 <h3 className="font-semibold">Vendor Form</h3>
@@ -163,9 +163,9 @@ export default function ConsumerApprovalForm({
                 title="Vendor Form"
               />
             </div>
-          )}
+          )} */}
 
-        {isExtRequiredFormApprovalLink && (
+        {/* {isExtRequiredFormApprovalLink && (
             <div className="rounded-lg border bg-card p-6">
               <h3 className="mb-2 font-semibold">Vendor Form</h3>
               <p className="mb-4 text-sm text-muted-foreground">Please complete the vendor's form before submitting this approval form.</p>
@@ -177,7 +177,7 @@ export default function ConsumerApprovalForm({
                 <ArrowTopRightIcon />
               </Button>
             </div>
-          )}
+          )} */}
 
           <div className="mx-auto max-w-xl space-y-6">
             <FormField

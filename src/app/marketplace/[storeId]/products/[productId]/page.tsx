@@ -247,7 +247,7 @@ const ProductPage = () => {
                     <div className="flex mt-4 flex-col items-center space-x-4 text-center">
                       <Link
                         className="w-full"
-                        href={`/marketplace/${storeId}/products/${productId}/approval`}
+                        href={product.data.isExtRequiredFormApprovalLink ? product.data.ExtRequiredFormApprovalLink : `/marketplace/${storeId}/products/${productId}/approval`}
                         target="_blank"
                         rel="noopener noreferrer"
                         >
