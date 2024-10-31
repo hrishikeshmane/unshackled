@@ -90,6 +90,8 @@ export type ProductTable = {
   isArchived: boolean;
   isApproved: "approved" | "pending" | "denied";
   requiresVendorApproval: boolean;
+  isExtRequiredFormApprovalLink: boolean;
+  ExtRequiredFormApprovalLink: string;
   hasDownPayment: boolean;
   downPayment: string;
   orderCommunicationEmail: string;

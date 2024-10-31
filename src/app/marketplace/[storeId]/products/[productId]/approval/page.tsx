@@ -11,6 +11,8 @@ export default async function ApprovalPage({ params }: { params: { productId: st
   return (
     <div className="container mx-auto py-10">
       <ConsumerApprovalForm 
+        isExtRequiredFormApprovalLink = {product.isExtRequiredFormApprovalLink}
+        ExtRequiredFormApprovalLink = {product.ExtRequiredFormApprovalLink}
         storeId={params.storeId}
         productId={params.productId}
         vendorId={product.creatorId} 

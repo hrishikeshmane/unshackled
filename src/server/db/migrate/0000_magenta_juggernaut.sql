@@ -15,6 +15,22 @@ CREATE TABLE `unshackled_formQuestions` (
 	`vendorId` text(256) NOT NULL,
 	`question` text NOT NULL,
 	`type` text NOT NULL,
+	`createdAt` integer DEFAULT (unixepoch()) NOT NULL,
+	`updatedAt` integer DEFAULT (unixepoch()),
+	FOREIGN KEY (`productId`) REFERENCES `unshackled_product`(`id`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`vendorId`) REFERENCES `unshackled_users`(`id`) ON UPDATE no action ON DELETE no action
+);
+--> statement-breakpoint
+CREATE TABLE `unshackled_formResponses` (
+	`id` text(256) PRIMARY KEY NOT NULL,
+	`customerid` text NOT NULL,
+	`productId` text(256) NOT NULL,
+	`vendorId` text(256) NOT NULL,
+	`question` text NOT NULL,
+	`answer` text NOT NULL,
+	`createdAt` integer DEFAULT (unixepoch()) NOT NULL,
+	`updatedAt` integer DEFAULT (unixepoch()),
+	FOREIGN KEY (`customerid`) REFERENCES `unshackled_users`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`productId`) REFERENCES `unshackled_product`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`vendorId`) REFERENCES `unshackled_users`(`id`) ON UPDATE no action ON DELETE no action
 );
@@ -68,6 +84,8 @@ CREATE TABLE `unshackled_product` (
 	`isArchived` integer NOT NULL,
 	`isApproved` text NOT NULL,
 	`requiresVendorApproval` integer DEFAULT false NOT NULL,
+	`isExtRequiredFormApprovalLink` integer DEFAULT false NOT NULL,
+	`ExtRequiredFormApprovalLink` text(256) DEFAULT '' NOT NULL,
 	`hasDownPayment` integer DEFAULT false NOT NULL,
 	`downpayment` text(256) DEFAULT '0' NOT NULL,
 	`orderCommunicationEmail` text(256) DEFAULT '' NOT NULL,
@@ -82,6 +100,19 @@ CREATE TABLE `unshackled_product` (
 	FOREIGN KEY (`typeId`) REFERENCES `unshackled_type`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`creatorId`) REFERENCES `unshackled_users`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`tagId`) REFERENCES `unshackled_tag`(`id`) ON UPDATE no action ON DELETE no action
+);
+--> statement-breakpoint
+CREATE TABLE `unshackled_requestApprovals` (
+	`id` text(256) PRIMARY KEY NOT NULL,
+	`customerid` text NOT NULL,
+	`productId` text(256) NOT NULL,
+	`vendorId` text(256) NOT NULL,
+	`status` text DEFAULT 'pending' NOT NULL,
+	`createdAt` integer DEFAULT (unixepoch()) NOT NULL,
+	`updatedAt` integer DEFAULT (unixepoch()),
+	FOREIGN KEY (`customerid`) REFERENCES `unshackled_users`(`id`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`productId`) REFERENCES `unshackled_product`(`id`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`vendorId`) REFERENCES `unshackled_users`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `unshackled_store` (

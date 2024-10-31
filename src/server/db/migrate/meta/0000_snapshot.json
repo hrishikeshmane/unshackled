@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "cf956900-a402-480a-b4cb-21d571215a0e",
+  "id": "6c25a049-8fe3-4f19-b402-d1b46d13c86d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "unshackled_billboard": {
@@ -115,6 +115,22 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch())"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(unixepoch())"
         }
       },
       "indexes": {},
@@ -135,6 +151,113 @@
         "unshackled_formQuestions_vendorId_unshackled_users_id_fk": {
           "name": "unshackled_formQuestions_vendorId_unshackled_users_id_fk",
           "tableFrom": "unshackled_formQuestions",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "vendorId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "unshackled_formResponses": {
+      "name": "unshackled_formResponses",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "customerid": {
+          "name": "customerid",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "productId": {
+          "name": "productId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "vendorId": {
+          "name": "vendorId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "question": {
+          "name": "question",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "answer": {
+          "name": "answer",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch())"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(unixepoch())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_formResponses_customerid_unshackled_users_id_fk": {
+          "name": "unshackled_formResponses_customerid_unshackled_users_id_fk",
+          "tableFrom": "unshackled_formResponses",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "customerid"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_formResponses_productId_unshackled_product_id_fk": {
+          "name": "unshackled_formResponses_productId_unshackled_product_id_fk",
+          "tableFrom": "unshackled_formResponses",
+          "tableTo": "unshackled_product",
+          "columnsFrom": [
+            "productId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_formResponses_vendorId_unshackled_users_id_fk": {
+          "name": "unshackled_formResponses_vendorId_unshackled_users_id_fk",
+          "tableFrom": "unshackled_formResponses",
           "tableTo": "unshackled_users",
           "columnsFrom": [
             "vendorId"
@@ -497,6 +620,22 @@
           "autoincrement": false,
           "default": false
         },
+        "isExtRequiredFormApprovalLink": {
+          "name": "isExtRequiredFormApprovalLink",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "ExtRequiredFormApprovalLink": {
+          "name": "ExtRequiredFormApprovalLink",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
         "hasDownPayment": {
           "name": "hasDownPayment",
           "type": "integer",
@@ -624,6 +763,107 @@
           "tableTo": "unshackled_tag",
           "columnsFrom": [
             "tagId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "unshackled_requestApprovals": {
+      "name": "unshackled_requestApprovals",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "customerid": {
+          "name": "customerid",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "productId": {
+          "name": "productId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "vendorId": {
+          "name": "vendorId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'pending'"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch())"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(unixepoch())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_requestApprovals_customerid_unshackled_users_id_fk": {
+          "name": "unshackled_requestApprovals_customerid_unshackled_users_id_fk",
+          "tableFrom": "unshackled_requestApprovals",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "customerid"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_requestApprovals_productId_unshackled_product_id_fk": {
+          "name": "unshackled_requestApprovals_productId_unshackled_product_id_fk",
+          "tableFrom": "unshackled_requestApprovals",
+          "tableTo": "unshackled_product",
+          "columnsFrom": [
+            "productId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_requestApprovals_vendorId_unshackled_users_id_fk": {
+          "name": "unshackled_requestApprovals_vendorId_unshackled_users_id_fk",
+          "tableFrom": "unshackled_requestApprovals",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "vendorId"
           ],
           "columnsTo": [
             "id"

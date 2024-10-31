@@ -62,6 +62,8 @@ const formSchema = z.object({
   tagId: z.string().min(1),
   typeId: z.string().min(1),
   requiresVendorApproval: z.boolean().default(false),
+  isExtRequiredFormApprovalLink: z.boolean().default(false),
+  ExtRequiredFormApprovalLink: z.string(),
   hasDownPayment: z.boolean().default(false),
   downPayment: z.coerce.number().min(0.01),
   orderCommunicationEmail: z.string(),
@@ -163,6 +165,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         tagId: "",
         typeId: "",
         requiresVendorApproval: false,
+        isExtRequiredFormApprovalLink: false,
+        ExtRequiredFormApprovalLink: "",
         hasDownPayment: false,
         downPayment: 0,
         orderCommunicationEmail: "",
@@ -240,6 +244,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         isArchived: initialData?.id ? initialData.isArchived : false,
         isApproved: "pending",
         requiresVendorApproval: data.requiresVendorApproval,
+        isExtRequiredFormApprovalLink: data.isExtRequiredFormApprovalLink,
+        ExtRequiredFormApprovalLink: data.ExtRequiredFormApprovalLink,
         hasDownPayment: data.hasDownPayment,
         downPayment: String(data.downPayment),
         orderCommunicationEmail: data.orderCommunicationEmail,
@@ -694,6 +700,46 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 </Link>
               </div>
             } */}
+          </div>
+          <Separator />
+          <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="isExtRequiredFormApprovalLink"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Custom Approval Form?</FormLabel>
+                    <FormDescription>
+                      Select if you have your own custom approval form and want to use that.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="ExtRequiredFormApprovalLink"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Custom Approval form link URL.</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      placeholder="https://www.yoursite/customForm"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
           <div className="space-y-1 leading-none">
             <FormLabel className="text-xl">Approval Form Questions:</FormLabel>

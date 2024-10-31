@@ -146,6 +146,8 @@ export const product = createTable("product", {
     enum: ["approved", "pending", "denied"],
   }).notNull(),
   requiresVendorApproval: integer("requiresVendorApproval", { mode: "boolean" }).notNull().default(false),
+  isExtRequiredFormApprovalLink: integer("isExtRequiredFormApprovalLink", { mode: "boolean" }).notNull().default(false),
+  ExtRequiredFormApprovalLink: text("ExtRequiredFormApprovalLink", { length: 256 }).notNull().default(""),
   hasDownPayment: integer("hasDownPayment", { mode: "boolean" }).notNull().default(false),
   downPayment: text("downpayment", { length: 256 }).notNull().default("0"),
   orderCommunicationEmail: text("orderCommunicationEmail", { length: 256 }).notNull().default(""),
