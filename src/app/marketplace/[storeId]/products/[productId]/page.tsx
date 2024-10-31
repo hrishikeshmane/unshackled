@@ -17,6 +17,7 @@ import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 import DOMPurify from 'dompurify';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { Card, CardContent } from "@/components/ui/card"
 
 const ProductPage = () => {
   const params = useParams();
@@ -25,9 +26,9 @@ const ProductPage = () => {
   const product = api.product.getProductById.useQuery({
     id: String(productId),
   });
-  const existingRequest = api.approvalForms.checkExistingRequest.useQuery({
-    productId: String(productId),
-  });  
+  // const existingRequest = api.approvalForms.checkExistingRequest.useQuery({
+  //   productId: String(productId),
+  // });  
   const similarProducts = api.product.getApprovedProductsByStoreId.useQuery({
     storeId: String(storeId),
   });
@@ -38,7 +39,9 @@ const ProductPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedPlan, setSelectedPlan] = useState(0);
 
-  if (product.isPending || similarProducts.isPending || existingRequest.isLoading) {
+  if (product.isPending || similarProducts.isPending
+    // || existingRequest.isLoading
+  ) {
     return <div>Loading...</div>;
   }
 
@@ -55,14 +58,15 @@ const ProductPage = () => {
   const handleDecrease = () => setQuantity((prev) => Math.max(1, prev - 1));
   const handleManualChange = (value: number) => setQuantity(Math.max(1, value));
 
-  const showButtons = !product.data.requiresVendorApproval ||
-    (existingRequest.data?.exists && existingRequest.data.status === "approved");
+  const showButtons = !product.data.requiresVendorApproval
+  // ||
+  // (existingRequest.data?.exists && existingRequest.data.status === "approved");
 
   const sanitizedDescription = DOMPurify.sanitize(product.data.description);
 
   const hasPricingPlans = product.data.pricingPlans && product.data.pricingPlans.length > 0;
-  const currentPrice = hasPricingPlans 
-    ? product.data.pricingPlans[selectedPlan]?.price 
+  const currentPrice = hasPricingPlans
+    ? product.data.pricingPlans[selectedPlan]?.price
     : product.data.price;
 
   return (
@@ -146,7 +150,7 @@ const ProductPage = () => {
           </div>
 
           {/* Product image */}
-          <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
+          <div className="mt-10 lg:col-start-2 lg:row-span-2">
             <div className="aspect-square rounded-lg">
               <Image
                 src={product.data.imageUrl}
@@ -163,11 +167,43 @@ const ProductPage = () => {
             <div>
               {showButtons ? (
                 <>
-                  { hasPricingPlans &&
-                    <div className="mt-6 w-full">
-                      <h3 className="text-lg font-medium text-gray-900">Pricing Plans</h3>
-                      <RadioGroup 
-                        defaultValue={product.data.pricingPlans[0]?.label} 
+                  {hasPricingPlans &&
+                    <div className="w-full space-y-4 mb-6">
+                      <h3 className="text-xl text-primary font-semibold mb-4">Choose Your Plan</h3>
+                      <RadioGroup
+                        defaultValue={product.data.pricingPlans[0]?.label}
+                        onValueChange={(value) => product.data && setSelectedPlan(product.data.pricingPlans.findIndex(plan => plan.label === value))}
+                        className="space-y-2"
+                      >
+
+                        {product.data.pricingPlans.map((plan, index) => (
+                          <Card key={plan.label} className={`${selectedPlan === index ? 'ring-2 ring-primary' : ''}`}>
+                            <CardContent className="p-4">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center space-x-4">
+                                  <RadioGroupItem value={plan.label} id={`plan-${index}`} />
+                                  <div>
+                                    <Label htmlFor={`plan-${index}`} className="text-base font-medium">
+                                      {plan.label}
+                                    </Label>
+                                    <p className="text-sm text-muted-foreground mt-1">{plan.description}</p>
+                                  </div>
+                                </div>
+                                <div className="font-semibold">{formatPrice(plan.price)}</div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </RadioGroup>
+                    </div>
+                  }
+          
+                  
+                  {/* {hasPricingPlans &&
+                    <div className="w-full">
+                      <h3 className="text-lg font-medium text-gray-900 mb-6">Pricing Plans</h3>
+                      <RadioGroup
+                        defaultValue={product.data.pricingPlans[0]?.label}
                         onValueChange={(value) => product.data && setSelectedPlan(product.data.pricingPlans.findIndex(plan => plan.label === value))}
                       >
                         {product.data.pricingPlans.map((plan, index) => (
@@ -180,7 +216,8 @@ const ProductPage = () => {
                         ))}
                       </RadioGroup>
                     </div>
-                  }
+                  }  */}
+
                   <div className="flex items-center space-x-4">
                     <QuantitySelector
                       quantity={quantity}
