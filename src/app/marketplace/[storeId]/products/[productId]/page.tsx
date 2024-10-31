@@ -18,17 +18,21 @@ import DOMPurify from 'dompurify';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card"
+import { useSearchParams } from "next/navigation"
 
 const ProductPage = () => {
   const params = useParams();
+  const searchParams = useSearchParams()
   const productId = params.productId;
   const storeId = params.storeId;
+  const vendorShare = searchParams.get('vendorShare')
+
   const product = api.product.getProductById.useQuery({
     id: String(productId),
   });
-  // const existingRequest = api.approvalForms.checkExistingRequest.useQuery({
-  //   productId: String(productId),
-  // });  
+  const existingRequest = api.approvalForms.checkExistingRequest.useQuery({
+    productId: String(productId),
+  });  
   const similarProducts = api.product.getApprovedProductsByStoreId.useQuery({
     storeId: String(storeId),
   });
@@ -40,7 +44,7 @@ const ProductPage = () => {
   const [selectedPlan, setSelectedPlan] = useState(0);
 
   if (product.isPending || similarProducts.isPending
-    // || existingRequest.isLoading
+    || existingRequest.isLoading
   ) {
     return <div>Loading...</div>;
   }
@@ -59,8 +63,8 @@ const ProductPage = () => {
   const handleManualChange = (value: number) => setQuantity(Math.max(1, value));
 
   const showButtons = !product.data.requiresVendorApproval
-  // ||
-  // (existingRequest.data?.exists && existingRequest.data.status === "approved");
+  || (existingRequest.data?.exists && existingRequest.data.status === "approved")
+  || vendorShare === 'true';
 
   const sanitizedDescription = DOMPurify.sanitize(product.data.description);
 
