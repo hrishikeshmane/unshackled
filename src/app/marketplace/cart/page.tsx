@@ -28,10 +28,11 @@ const Page = () => {
   });
 
   const onCheckout = () => {
-    const cartItems = items.map(({ product, isDownPayment, quantity }) => ({
+    const cartItems = items.map(({ product, isDownPayment, quantity, orderPrice }) => ({
       productId: product.id,
       quantity: quantity,
-      isDownPayment: isDownPayment
+      isDownPayment: isDownPayment,
+      orderPrice: orderPrice
     }));
 
     startTransition(async () => {
@@ -50,9 +51,9 @@ const Page = () => {
   // );
 
   const cartTotal = items.reduce(
-    (total, { product, quantity, isDownPayment }) => {
-      const price = isDownPayment ? product.downPayment : product.price;
-      return total + Number(price) * quantity;
+    (total, { product, quantity, isDownPayment, orderPrice }) => {
+      // const price = isDownPayment ? product.downPayment : product.price;
+      return total + Number(orderPrice) * quantity;
     },
     0
   );
@@ -134,7 +135,7 @@ const Page = () => {
                               {formatPrice(Number(product.price))}
                             </span> */}
                             <span className="ml-auto text-sm">
-                              {formatPrice(Number(product.price) * quantity)}
+                              {formatPrice(Number(cartTotal) / quantity)}
                             </span>
                           </div>
                         </div>

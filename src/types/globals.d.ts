@@ -89,6 +89,11 @@ export type ProductTable = {
   isFeatured: boolean;
   isArchived: boolean;
   isApproved: "approved" | "pending" | "denied";
+  pricingPlans: {
+    label: string;
+    description: string;
+    price: string;
+}[];
   requiresVendorApproval: boolean;
   isExtRequiredFormApprovalLink: boolean;
   ExtRequiredFormApprovalLink: string;
@@ -117,6 +122,11 @@ export type ProductWithRelations = {
   tagline: string;
   description: string;
   price: string;
+  pricingPlans: {
+    label: string;
+    description: string;
+    price: string;
+}[];
   // discounts: Record<string, unknown>;
   commission: string;
   commissionType: "percentage" | "flat";

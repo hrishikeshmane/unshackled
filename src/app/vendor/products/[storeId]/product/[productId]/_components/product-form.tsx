@@ -46,6 +46,11 @@ import 'react-quill/dist/quill.snow.css';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
+const pricingPlanSchema = z.object({
+  label: z.string().min(1, "Label is required"),
+  description: z.string().min(1, "Label is required"),
+  price: z.string().min(1, "Label is required"),
+});
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -66,6 +71,7 @@ const formSchema = z.object({
   ExtRequiredFormApprovalLink: z.string(),
   hasDownPayment: z.boolean().default(false),
   downPayment: z.coerce.number().min(0.01),
+  pricingPlans: z.array(pricingPlanSchema),
   orderCommunicationEmail: z.string(),
   additionalOrderEmailText: z.string(),
   hasAdditionalLink: z.boolean(),
@@ -169,6 +175,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         ExtRequiredFormApprovalLink: "",
         hasDownPayment: false,
         downPayment: 0,
+        pricingPlans: [],
         orderCommunicationEmail: "",
         additionalOrderEmailText: "",
         hasAdditionalLink: false,
@@ -197,6 +204,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const { fields, append, remove } = useFieldArray({
     control: form.control,
     name: "questions",
+  });
+
+  const { fields: pricingPlanFields, append: appendPricingPlan, remove: removePricingPlan } = useFieldArray({
+    control: form.control,
+    name: "pricingPlans",
   });
 
   const requiresVendorApprovalState = form.watch("requiresVendorApproval");
@@ -248,6 +260,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         ExtRequiredFormApprovalLink: data.ExtRequiredFormApprovalLink,
         hasDownPayment: data.hasDownPayment,
         downPayment: String(data.downPayment),
+        pricingPlans: data.pricingPlans,
         orderCommunicationEmail: data.orderCommunicationEmail,
         additionalOrderEmailText: data.additionalOrderEmailText,
         hasAdditionalLink: data.hasAdditionalLink,
@@ -563,6 +576,71 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             />
             </div>
           
+            <div className="my-4">
+            <h3 className="p-1 text-2xl font-bold">Pricing Plans</h3>
+            <Separator />
+          </div>
+          <div className="space-y-4">
+            {pricingPlanFields.map((field, index) => (
+              <div key={field.id} className="flex items-end space-x-2">
+                <FormField
+                  control={form.control}
+                  name={`pricingPlans.${index}.label`}
+                  render={({ field }) => (
+                    <FormItem className="flex-grow">
+                      <FormLabel>Label</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="Enter plan label" />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name={`pricingPlans.${index}.description`}
+                  render={({ field }) => (
+                    <FormItem className="flex-grow">
+                      <FormLabel>Description</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="Enter plan description" />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name={`pricingPlans.${index}.price`}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Price</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="Enter price" />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  type="button"
+                  variant="destructive"
+                  size="icon"
+                  onClick={() => removePricingPlan(index)}
+                >
+                  <Trash className="h-4 w-4" />
+                </Button>
+              </div>
+            ))}
+            <div className="text-center items-center">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => appendPricingPlan({ label: "", description: "", price: "" })}
+              >
+                <PlusCircle className="w-5 h-5 mr-2" />
+                Add Pricing Plan
+              </Button>
+            </div>
+          </div>
+
             <div className="my-4">
             <h3 className="p-1 text-2xl font-bold">Communication</h3>
             <Separator />

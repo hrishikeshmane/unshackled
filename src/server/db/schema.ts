@@ -155,6 +155,10 @@ export const product = createTable("product", {
   hasAdditionalLink: integer("hasAdditionalLink", { mode: "boolean" }).notNull().default(false),
   additionalLinkLabel: text("additionalLinkLabel", { length: 256 }).notNull().default(""),
   additionalLinkUrl: text("additionalLinkUrl", { length: 256 }).notNull().default(""),
+  pricingPlans: text('pricingPlans', { mode: 'json' })
+    .notNull()
+    .$type<{ label: string, description: string, price: string }[]>()
+    .default(sql`'[]'`),
   tagId: text("tagId", { length: 256 })
     .notNull()
     .references(() => tag.id),
@@ -269,4 +273,6 @@ export const requestApprovals = createTable("requestApprovals", {
 });
 
 export type IStore = typeof store.$inferSelect;
+export type IProduct = typeof product.$inferSelect;
 export type IApprovalFormResponses = typeof formResponses.$inferInsert
+

@@ -24,6 +24,7 @@ export const paymentRouter = createTRPCRouter({
             productId: z.string(),
             quantity: z.number().int().positive(),
             isDownPayment: z.boolean(),
+            orderPrice: z.string()
           }),
         ),
       }),
@@ -50,7 +51,7 @@ export const paymentRouter = createTRPCRouter({
               message: `Product with ID ${item.productId} not found`,
             });
           }
-          return { ...product, quantity: item.quantity, isDownPayment: item.isDownPayment };
+          return { ...product, quantity: item.quantity, isDownPayment: item.isDownPayment, orderPrice: item.orderPrice };
         }),
       );
       log.debug("buyProduct.products", products);
@@ -73,7 +74,7 @@ export const paymentRouter = createTRPCRouter({
       let totalCommissionAmount = 0;
 
       const lineItems = products.map((product) => {
-        const finalPrice = product.isDownPayment ? product.downPayment : product.price;
+        const finalPrice = product.orderPrice;
         const [commissionAmount, vendorAmount] =
           calculateCommissionAndVendorAmount(
             Number(finalPrice),

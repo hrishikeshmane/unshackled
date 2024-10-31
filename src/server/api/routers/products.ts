@@ -29,6 +29,12 @@ type Question = {
   question: string;
 };
 
+const pricingPlanSchema = z.object({
+  label: z.string(),
+  description: z.string(),
+  price: z.string(),
+});
+
 export const productsRouter = createTRPCRouter({
   createOrUpdateProduct: adminOrVendorProcedure
     .input(
@@ -56,6 +62,7 @@ export const productsRouter = createTRPCRouter({
         hasDownPayment: z.boolean(),
         downPayment: z.string(),
         hasAdditionalLink: z.boolean(),
+        pricingPlans: z.array(pricingPlanSchema),
         additionalLinkLabel: z.string(),
         additionalLinkUrl: z.string(),    
         orderCommunicationEmail: z.string(),
@@ -90,6 +97,7 @@ export const productsRouter = createTRPCRouter({
         ExtRequiredFormApprovalLink,
         hasDownPayment,
         downPayment,
+        pricingPlans,
         orderCommunicationEmail,
         additionalOrderEmailText,
         hasAdditionalLink,
@@ -129,6 +137,7 @@ export const productsRouter = createTRPCRouter({
             ExtRequiredFormApprovalLink,
             hasDownPayment,
             downPayment,
+            pricingPlans,
             orderCommunicationEmail,
             additionalOrderEmailText,
             hasAdditionalLink,
@@ -233,6 +242,7 @@ export const productsRouter = createTRPCRouter({
             ExtRequiredFormApprovalLink,
             hasDownPayment,
             downPayment,
+            pricingPlans,
             orderCommunicationEmail,
             additionalOrderEmailText,
             hasAdditionalLink,
