@@ -115,28 +115,9 @@ const ProductPage = () => {
 
             <section className="mt-4">
               <div className="flex items-center">
-                {hasPricingPlans ? (
-                  <div className="mt-6 w-full">
-                    <h3 className="text-lg font-medium text-gray-900">Pricing Plans</h3>
-                    <RadioGroup 
-                      defaultValue={product.data.pricingPlans[0]?.label} 
-                      onValueChange={(value) => product.data && setSelectedPlan(product.data.pricingPlans.findIndex(plan => plan.label === value))}
-                    >
-                      {product.data.pricingPlans.map((plan, index) => (
-                        <div key={plan.label} className="flex items-center space-x-2 mt-2">
-                          <RadioGroupItem value={plan.label} id={`plan-${index}`} />
-                          <Label htmlFor={`plan-${index}`}>
-                            {plan.label} - {formatPrice(plan.price)}
-                          </Label>
-                        </div>
-                      ))}
-                    </RadioGroup>
-                  </div>
-                ) : (
-                  <p className="text-2xl font-bold tracking-tight text-gray-900">
-                    {formatPrice(product.data.price)}
-                  </p>
-                )}
+                <p className="font-bold tracking-tight text-gray-900">
+                  {formatPrice(product.data.price)}
+                </p>
 
                 <div className="ml-4 border-l border-gray-300 pl-4 text-muted-foreground">
                   {product.data.store.name}
@@ -182,6 +163,24 @@ const ProductPage = () => {
             <div>
               {showButtons ? (
                 <>
+                  { hasPricingPlans &&
+                    <div className="mt-6 w-full">
+                      <h3 className="text-lg font-medium text-gray-900">Pricing Plans</h3>
+                      <RadioGroup 
+                        defaultValue={product.data.pricingPlans[0]?.label} 
+                        onValueChange={(value) => product.data && setSelectedPlan(product.data.pricingPlans.findIndex(plan => plan.label === value))}
+                      >
+                        {product.data.pricingPlans.map((plan, index) => (
+                          <div key={plan.label} className="flex items-center space-x-2 mt-2">
+                            <RadioGroupItem value={plan.label} id={`plan-${index}`} />
+                            <Label htmlFor={`plan-${index}`}>
+                              {plan.label} - {formatPrice(plan.price)}
+                            </Label>
+                          </div>
+                        ))}
+                      </RadioGroup>
+                    </div>
+                  }
                   <div className="flex items-center space-x-4">
                     <QuantitySelector
                       quantity={quantity}
