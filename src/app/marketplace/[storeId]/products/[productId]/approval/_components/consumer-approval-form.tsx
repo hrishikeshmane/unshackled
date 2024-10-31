@@ -17,6 +17,7 @@ import { useAuth } from "@clerk/nextjs"
 import { Checkbox } from "~/components/ui/checkbox"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
+import { ArrowTopRightIcon } from "@radix-ui/react-icons"
 
 const formSchema = z.object({
   confirmCheck: z.boolean().default(false),
@@ -103,7 +104,7 @@ export default function ConsumerApprovalForm({
   }
 
   return (
-    <div className="mx-auto max-w-3xl space-y-8 p-6">
+    <div className="mx-auto max-w-4xl space-y-8 p-6">
       <Heading
         title="Service Approval Form"
         description="Please fill out this form to request approval for the service."
@@ -125,28 +126,29 @@ export default function ConsumerApprovalForm({
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <div className="rounded-lg border bg-card p-6">
-            {questions?.map((question, index) => (
-              <FormField
-                key={question.id}
-                control={form.control}
-                name={`responses.${index}.answer`}
-                render={({ field }) => (
-                  <FormItem className="mb-6">
-                    <FormLabel className="text-base font-semibold">{question.question}</FormLabel>
-                    <FormControl>
-                      {question.type === "short" ? (
-                        <Input {...field} placeholder="Your answer" className="max-w-xl" />
-                      ) : (
-                        <Textarea {...field} placeholder="Your answer" className="max-w-xl" />
-                      )}
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-            ))}
-          </div>
-
+          {questions && questions.length > 0 &&
+            <div className="rounded-lg border bg-card p-6">
+              {questions?.map((question, index) => (
+                <FormField
+                  key={question.id}
+                  control={form.control}
+                  name={`responses.${index}.answer`}
+                  render={({ field }) => (
+                    <FormItem className="mb-6">
+                      <FormLabel className="text-base font-semibold">{question.question}</FormLabel>
+                      <FormControl>
+                        {question.type === "short" ? (
+                          <Input {...field} placeholder="Your answer" className="max-w-xl" />
+                        ) : (
+                          <Textarea {...field} placeholder="Your answer" className="max-w-xl" />
+                        )}
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              ))}
+            </div>
+          }
           {isExtRequiredFormApprovalLink && (
             <div className="rounded-lg border bg-card">
               <div className="border-b p-4">
@@ -172,6 +174,7 @@ export default function ConsumerApprovalForm({
                 variant="outline"
               >
                 Open Vendor Form
+                <ArrowTopRightIcon />
               </Button>
             </div>
           )}
