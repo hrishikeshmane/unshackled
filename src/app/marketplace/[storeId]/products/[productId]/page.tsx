@@ -68,7 +68,7 @@ const ProductPage = () => {
 
   const sanitizedDescription = DOMPurify.sanitize(product.data.description);
 
-  const hasPricingPlans = product.data.pricingPlans && product.data.pricingPlans.length > 0;
+  const hasPricingPlans = product.data.hasPricingPlans && product.data.pricingPlans && product.data.pricingPlans.length > 0;
   const currentPrice = hasPricingPlans
     ? product.data.pricingPlans[selectedPlan]?.price
     : product.data.price;

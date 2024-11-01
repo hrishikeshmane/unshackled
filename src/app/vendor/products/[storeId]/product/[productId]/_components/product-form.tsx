@@ -72,6 +72,7 @@ const formSchema = z.object({
   hasDownPayment: z.boolean().default(false),
   downPayment: z.coerce.number().min(0.01),
   pricingPlans: z.array(pricingPlanSchema),
+  hasPricingPlans: z.boolean().default(false),
   orderCommunicationEmail: z.string(),
   additionalOrderEmailText: z.string(),
   hasAdditionalLink: z.boolean(),
@@ -176,6 +177,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         hasDownPayment: false,
         downPayment: 0,
         pricingPlans: [],
+        hasPricingPlans: false,
         orderCommunicationEmail: "",
         additionalOrderEmailText: "",
         hasAdditionalLink: false,
@@ -261,6 +263,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         hasDownPayment: data.hasDownPayment,
         downPayment: String(data.downPayment),
         pricingPlans: data.pricingPlans,
+        hasPricingPlans: data.hasPricingPlans,
         orderCommunicationEmail: data.orderCommunicationEmail,
         additionalOrderEmailText: data.additionalOrderEmailText,
         hasAdditionalLink: data.hasAdditionalLink,
@@ -580,6 +583,27 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             <h3 className="p-1 text-2xl font-bold">Pricing Plans</h3>
             <Separator />
           </div>
+          <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="hasPricingPlans"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Has Pricing Plans</FormLabel>
+                    <FormDescription>
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            </div>
           <div className="space-y-4">
             {pricingPlanFields.map((field, index) => (
               <div key={field.id} className="flex items-end space-x-2">
