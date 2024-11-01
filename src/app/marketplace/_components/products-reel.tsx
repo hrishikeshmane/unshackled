@@ -60,9 +60,7 @@ const ProductsReel = ({ products, title, subtitle }: ProductsReelProps) => {
               {/* Price and Button at the bottom */}
               <div className="px-4 pb-3 flex items-center">
                 <p className="my-3 cursor-auto text-lg font-semibold text-black">
-                  {product.hasDownPayment
-                    ? `Starting from ${formatPrice(product.downPayment)}`
-                    : formatPrice(product.price)}
+                  {product.hasDownPayment ? `Starting at ${formatPrice(product.downPayment)}` : product.hasPricingPlans ? `Starting at ${formatPrice(product.price)}` : formatPrice(product.price)}
                 </p>
                 <div className="ml-auto">
                   <Link href={`/marketplace/${product.storeId}/products/${product.id}`}>

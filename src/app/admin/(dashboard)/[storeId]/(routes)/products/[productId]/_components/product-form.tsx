@@ -704,8 +704,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Has Pricing Plans</FormLabel>
+                    <FormLabel>Show Pricing Plans?</FormLabel>
                     <FormDescription>
+                      If you opt to have multiple pricing plans, please enter the minimum plan amount in price field as a placeholder.
+                      Also, in future you decide to opt out of multiple pricing plans, enter fixed rate in the price field.
                     </FormDescription>
                   </div>
                 </FormItem>
@@ -877,6 +879,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           </div>
           <div className="my-4">
             <h3 className="p-1 text-2xl font-bold">Requires Vendor Approval</h3>
+            <>
+              <ul>
+                <li>If Vendor approval is required for the customer, and you can approve requests based on the form responses provided.</li>
+                <li>If you prefer to use your own form, Unshackled will supply you with a payment link for customers, which you can send directly after approval.</li>
+                <li>Alternatively, if you choose to utilize Unshackled's built-in forms, you will be able to manage customer requests directly from the dashboard, and we will handle all communications.</li>
+              </ul>
+            </>
             <Separator />
           </div>
           <div className="grid grid-cols-3 gap-8">
@@ -892,10 +901,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Requires Vendor Approval</FormLabel>
+                    <FormLabel>Requires Vendor Approval?</FormLabel>
                     <FormDescription>
-                      This Service will require vendor approval first for the customer.
-                      Additionally add questions to below form
                     </FormDescription>
                   </div>
                 </FormItem>

@@ -124,7 +124,7 @@ const ProductPage = () => {
             <section className="mt-4">
               <div className="flex items-center">
                 <p className="font-bold tracking-tight text-gray-900">
-                  {formatPrice(product.data.price)}
+                  {product.data.hasDownPayment ? `Starting at ${formatPrice(product.data.downPayment)}` : hasPricingPlans ? `Starting at ${formatPrice(product.data.price)}` : formatPrice(product.data.price)}
                 </p>
 
                 <div className="ml-4 border-l border-gray-300 pl-4 text-muted-foreground">
