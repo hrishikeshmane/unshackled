@@ -139,6 +139,21 @@ export function ConditionalNavigationMenu({
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
+                  <Link
+                    href="https://go.readunshackled.com/webinar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    // legacyBehavior
+                    // passHref
+                  >
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Free Webinar
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
                   <Link href="/copilot" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
