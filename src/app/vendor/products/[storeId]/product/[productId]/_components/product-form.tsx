@@ -73,6 +73,7 @@ const formSchema = z.object({
   downPayment: z.coerce.number().min(0.01),
   pricingPlans: z.array(pricingPlanSchema),
   hasPricingPlans: z.boolean().default(false),
+  showPricing: z.boolean().default(false),
   orderCommunicationEmail: z.string(),
   additionalOrderEmailText: z.string(),
   hasAdditionalLink: z.boolean(),
@@ -178,6 +179,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         downPayment: 0,
         pricingPlans: [],
         hasPricingPlans: false,
+        showPricing: false,
         orderCommunicationEmail: "",
         additionalOrderEmailText: "",
         hasAdditionalLink: false,
@@ -264,6 +266,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         downPayment: String(data.downPayment),
         pricingPlans: data.pricingPlans,
         hasPricingPlans: data.hasPricingPlans,
+        showPricing: data.showPricing,
         orderCommunicationEmail: data.orderCommunicationEmail,
         additionalOrderEmailText: data.additionalOrderEmailText,
         hasAdditionalLink: data.hasAdditionalLink,
@@ -498,6 +501,28 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               )}
             />
           </div>
+          <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="showPricing"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Hide Pricing?</FormLabel>
+                    <FormDescription>
+                      If you opt for this, your listing will only be present on Unshackled for marketing, you have to process orders and more from your end, also fill in the dummy values for prices wherever necessary in the form.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            </div>
           <div className="my-4">
             <h3 className="p-1 text-2xl font-bold">Pricing</h3>
             <Separator />

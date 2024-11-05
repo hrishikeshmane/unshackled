@@ -123,9 +123,11 @@ const ProductPage = () => {
 
             <section className="mt-4">
               <div className="flex items-center">
-                <p className="font-bold tracking-tight text-gray-900">
-                  {product.data.hasDownPayment ? `Starting at ${formatPrice(product.data.downPayment)}` : hasPricingPlans ? `Starting at ${formatPrice(product.data.price)}` : formatPrice(product.data.price)}
-                </p>
+                { !product.data.showPricing &&
+                  <p className="font-bold tracking-tight text-gray-900">
+                    {product.data.hasDownPayment ? `Starting at ${formatPrice(product.data.downPayment)}` : hasPricingPlans ? `Starting at ${formatPrice(product.data.price)}` : formatPrice(product.data.price)}
+                  </p>
+                }
 
                 <div className="ml-4 border-l border-gray-300 pl-4 text-muted-foreground">
                   {product.data.store.name}
@@ -169,7 +171,7 @@ const ProductPage = () => {
           {/* Add to cart part */}
           <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
             <div>
-              {showButtons ? (
+              {showButtons && !product.data.showPricing ? (
                 <>
                   {hasPricingPlans &&
                     <div className="w-full space-y-4 mb-6">

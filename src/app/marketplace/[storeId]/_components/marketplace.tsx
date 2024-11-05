@@ -23,6 +23,8 @@ const modifiedProducts = products.map((product) => {
       isFeatured: product.isFeatured,
       createdAt: product.createdAt,
       estTurnAroundTime: parseFloat(product.estTurnAroundTime),
+      hasPricingPlans: product.hasPricingPlans,
+      showPricing: product.showPricing,
       hasAdditionalLink: product.hasAdditionalLink,
       additionalLinkLabel: product.additionalLinkLabel,
       additionalLinkUrl: product.additionalLinkUrl,

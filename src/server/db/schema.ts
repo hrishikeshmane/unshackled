@@ -160,6 +160,7 @@ export const product = createTable("product", {
     .$type<{ label: string, description: string, price: string }[]>()
     .default(sql`'[]'`),
   hasPricingPlans: integer("hasPricingPlans", { mode: "boolean" }).notNull().default(false),
+  showPricing: integer("showPricing", { mode: "boolean" }).notNull().default(false),
   tagId: text("tagId", { length: 256 })
     .notNull()
     .references(() => tag.id),

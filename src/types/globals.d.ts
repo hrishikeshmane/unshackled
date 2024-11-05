@@ -95,6 +95,7 @@ export type ProductTable = {
     price: string;
 }[];
 hasPricingPlans: boolean;
+  showPricing: boolean;
   requiresVendorApproval: boolean;
   isExtRequiredFormApprovalLink: boolean;
   ExtRequiredFormApprovalLink: string;
@@ -130,6 +131,7 @@ export type ProductWithRelations = {
 }[];
 hasPricingPlans: boolean;
   // discounts: Record<string, unknown>;
+  showPricing: boolean;
   commission: string;
   commissionType: "percentage" | "flat";
   domainRank: string;
