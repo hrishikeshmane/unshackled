@@ -297,7 +297,8 @@ const ProductPage = () => {
                       </Link>
                     </div>
                   )}
-                  <div className="flex mt-4 flex-col items-center space-x-4 text-center">
+                  {product.data.requiresVendorApproval &&
+                    <div className="flex mt-4 flex-col items-center space-x-4 text-center">
                     <Link
                       className="w-full"
                       href={product.data.isExtRequiredFormApprovalLink ? product.data.ExtRequiredFormApprovalLink : `/marketplace/${storeId}/products/${productId}/approval`}
@@ -314,6 +315,7 @@ const ProductPage = () => {
                       </Button>
                     </Link>
                   </div>
+                  }
                 </>
               )}
               <div className="mt-6 text-center">
