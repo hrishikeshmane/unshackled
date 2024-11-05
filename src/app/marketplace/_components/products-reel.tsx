@@ -60,9 +60,8 @@ const ProductsReel = ({ products, title, subtitle }: ProductsReelProps) => {
               {/* Price and Button at the bottom */}
               <div className="px-4 pb-3 flex items-center">
                 {
-                  !product.showPricing &&
                   <p className="my-3 cursor-auto text-lg font-semibold text-black">
-                    {product.hasDownPayment ? `Starting at ${formatPrice(product.downPayment)}` : product.hasPricingPlans ? `Starting at ${formatPrice(product.price)}` : formatPrice(product.price)}
+                    {!product.showPricing ? product.hasDownPayment ? `Starting at ${formatPrice(product.downPayment)}` : product.hasPricingPlans ? `Starting at ${formatPrice(product.price)}` : formatPrice(product.price) : `Contact for Pricing`}
                   </p>
                 }
                 <div className="ml-auto">

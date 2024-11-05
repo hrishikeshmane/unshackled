@@ -123,11 +123,11 @@ const ProductPage = () => {
 
             <section className="mt-4">
               <div className="flex items-center">
-                { !product.data.showPricing &&
+             
                   <p className="font-bold tracking-tight text-gray-900">
-                    {product.data.hasDownPayment ? `Starting at ${formatPrice(product.data.downPayment)}` : hasPricingPlans ? `Starting at ${formatPrice(product.data.price)}` : formatPrice(product.data.price)}
+                  {!product.data.showPricing ? product.data.hasDownPayment ? `Starting at ${formatPrice(product.data.downPayment)}` : product.data.hasPricingPlans ? `Starting at ${formatPrice(product.data.price)}` : formatPrice(product.data.price) : `Contact for Pricing`}
                   </p>
-                }
+               
 
                 <div className="ml-4 border-l border-gray-300 pl-4 text-muted-foreground">
                   {product.data.store.name}
