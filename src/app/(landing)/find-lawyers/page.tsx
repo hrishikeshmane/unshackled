@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { ReactNode } from "react";
 import Footer from "~/components/landing-page/footer";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
@@ -19,7 +19,8 @@ export type ILAWYER_INFO = {
   linkedin?: string;
   bio: string;
   whoShouldBookACall: string;
-  consultLink: string;
+  bookingInstruction?: ReactNode;
+  consultLink?: string;
 };
 export const LAWYER_INFO: ILAWYER_INFO[] = [
   {
@@ -66,9 +67,23 @@ export const LAWYER_INFO: ILAWYER_INFO[] = [
     bio: "Charles, with a three-decade career in global mobility, has worked as an in-house attorney for a Fortune 100 company, with major international consulting firms, and with multi-practice law firms. He has had the privilege of learning from some of the finest lawyers in North America. Regularly assessing issues from a mobility or compliance perspective for universities, businesses, investors, and entrepreneurs, Charles is known for being thoughtful, creative, and diligent. His goal is to provide the perspective and analysis that allows clients to pursue successful outcomes as they face ever-evolving U.S. immigration challenges.",
     whoShouldBookACall:
       "Charles ideally works with founders and entrepreneurs, software engineers, machine learning engineers, data engineers, C-level executives, business leaders, and critical employees.",
+    bookingInstruction: (
+      <p>
+        $350 for a 30-minute Legal Consultation, which includes two follow up
+        calls to ask questions. Consultations may be booked by emailing Charles
+        directly at{" "}
+        <Link
+          className="text-primary underline"
+          href="mailto:cgillman@gonzalezolivierillc.com?subject=%5BUnshackled%5D%20Booking%20a%20Consultation"
+        >
+          cgillman@gonzalezolivierillc.com
+        </Link>{" "}
+        and mentioning you found him through Unshackled
+      </p>
+    ),
     website: "https://www.gonzalezolivierillc.com/attorneys/charles-gillman/",
     linkedin: "https://www.linkedin.com/in/charles-gillman-5654026/",
-    consultLink: "https://go.readunshackled.com/lawyer-charles-paid",
+    // consultLink: "https://go.readunshackled.com/lawyer-charles-paid",
   },
   {
     id: 5,
