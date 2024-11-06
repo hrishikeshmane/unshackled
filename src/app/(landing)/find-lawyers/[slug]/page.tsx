@@ -93,24 +93,32 @@ const page = ({ params }: PageParams) => {
 
             {/* add to cart part */}
             <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
-              <Link
-                href={lawyer.consultLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <p className="w-full py-1 text-center text-primary">
-                  <s>{lawyer.strikePrice}</s> {lawyer.priceTitle}
-                </p>
-                <Button
-                  className="b-2 flex w-full items-center border-primary text-primary"
-                  variant={"outline"}
-                  size={"lg"}
+              {!!lawyer.consultLink && (
+                <Link
+                  href={lawyer.consultLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  {" "}
-                  Book a consult
-                  <ArrowTopRightIcon />
-                </Button>
-              </Link>
+                  <p className="w-full py-1 text-center text-primary">
+                    <s>{lawyer.strikePrice}</s> {lawyer.priceTitle}
+                  </p>
+                  <Button
+                    className="b-2 flex w-full items-center border-primary text-primary"
+                    variant={"outline"}
+                    size={"lg"}
+                  >
+                    {" "}
+                    Book a consult
+                    <ArrowTopRightIcon />
+                  </Button>
+                </Link>
+              )}
+              {!!lawyer.bookingInstruction && (
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-2xl">Booking Instructions</h3>
+                  {lawyer.bookingInstruction}
+                </div>
+              )}
             </div>
           </div>
         </div>
