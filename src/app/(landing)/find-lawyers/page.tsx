@@ -24,6 +24,38 @@ export type ILAWYER_INFO = {
 };
 export const LAWYER_INFO: ILAWYER_INFO[] = [
   {
+    id: 6,
+    name: "Poonam Gupta Esq.",
+    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Poonam.png?raw=true",
+    title: "Principal partner at Summit Legal, LLC",
+    experince: 15,
+    visa: ["O-1A", "EB-1A", "EB-2 NIW"],
+    strikePrice: "$250",
+    priceTitle: "$145 for 30 minutes",
+    bio: "With over 25 years of experience in immigration law, complemented by expertise in IP and litigation, Poonam Gupta is a trusted advisor known for her strategic, client-focused approach to navigating complex immigration challenges, backed by a diverse educational background and a commitment to excellence in client service.",
+    whoShouldBookACall:
+      "Poonam ideally works with businesses and individuals in tech, pharma, banking, and finance backgrounds facing complex U.S. immigration challenges. ",
+    website: "https://summit-legal.com/",
+    linkedin: "https://www.linkedin.com/in/pgesq/",
+    consultLink: "https://go.readunshackled.com/lawyer-poonam-paid",
+  },
+  {
+    id: 5,
+    name: "Kseniya Zavala",
+    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Kseniya.png?raw=true",
+    title: "Partner at Villalpando Law Firm PLLC",
+    experince: 15,
+    visa: ["O-1A", "EB-1A", "EB-2 NIW"],
+    strikePrice: "$250",
+    priceTitle: "$200 for 30 minutes",
+    bio: "As a first-generation immigrant herself, Ms. Zavala understands and appreciates the intricacies and complexity of the US immigration process. Ms. Zavala received LL.M. in International Law from George Washington University School of Law in Washington, DC and LL.M in Comparative Constitutional Law from Central European University in Budapest, Hungary. Ms. Zavala started practicing as an immigration attorney in 2006 and opened her own immigration practice in 2012. Ms. Zavala has extensive experience in business immigration, humanitarian benefits and family-based immigration. She is admitted to the Bar of the State of New York and she is a member of the American Immigration Lawyers Association. Ms. Zavala is bilingual in English and Russian.",
+    whoShouldBookACall:
+      "Kseniya usually works with researchers and scientists to help them obtain their talent visa",
+    website: "https://villalpandolaw.com/",
+    linkedin: "https://www.linkedin.com/in/kseniya-zavala-9bb418b/",
+    consultLink: "https://go.readunshackled.com/lawyer-kseniya-paid",
+  },
+  {
     id: 2,
     name: "Allison Kranz",
     img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/allison.png?raw=true",
@@ -85,38 +117,6 @@ export const LAWYER_INFO: ILAWYER_INFO[] = [
   //   linkedin: "https://www.linkedin.com/in/charles-gillman-5654026/",
   //   // consultLink: "https://go.readunshackled.com/lawyer-charles-paid",
   // },
-  {
-    id: 5,
-    name: "Kseniya Zavala",
-    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Kseniya.png?raw=true",
-    title: "Partner at Villalpando Law Firm PLLC",
-    experince: 15,
-    visa: ["O-1A", "EB-1A", "EB-2 NIW"],
-    strikePrice: "$250",
-    priceTitle: "$200 for 30 minutes",
-    bio: "As a first-generation immigrant herself, Ms. Zavala understands and appreciates the intricacies and complexity of the US immigration process. Ms. Zavala received LL.M. in International Law from George Washington University School of Law in Washington, DC and LL.M in Comparative Constitutional Law from Central European University in Budapest, Hungary. Ms. Zavala started practicing as an immigration attorney in 2006 and opened her own immigration practice in 2012. Ms. Zavala has extensive experience in business immigration, humanitarian benefits and family-based immigration. She is admitted to the Bar of the State of New York and she is a member of the American Immigration Lawyers Association. Ms. Zavala is bilingual in English and Russian.",
-    whoShouldBookACall:
-      "Kseniya usually works with researchers and scientists to help them obtain their talent visa",
-    website: "https://villalpandolaw.com/",
-    linkedin: "https://www.linkedin.com/in/kseniya-zavala-9bb418b/",
-    consultLink: "https://go.readunshackled.com/lawyer-kseniya-paid",
-  },
-  {
-    id: 6,
-    name: "Poonam Gupta Esq.",
-    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Poonam.png?raw=true",
-    title: "Principal partner at Summit Legal, LLC",
-    experince: 15,
-    visa: ["O-1A", "EB-1A", "EB-2 NIW"],
-    strikePrice: "$250",
-    priceTitle: "$145 for 30 minutes",
-    bio: "With over 25 years of experience in immigration law, complemented by expertise in IP and litigation, Poonam Gupta is a trusted advisor known for her strategic, client-focused approach to navigating complex immigration challenges, backed by a diverse educational background and a commitment to excellence in client service.",
-    whoShouldBookACall:
-      "Poonam ideally works with businesses and individuals in tech, pharma, banking, and finance backgrounds facing complex U.S. immigration challenges. ",
-    website: "https://summit-legal.com/",
-    linkedin: "https://www.linkedin.com/in/pgesq/",
-    consultLink: "https://go.readunshackled.com/lawyer-poonam-paid",
-  },
 ];
 
 const LawyerPage = () => {
