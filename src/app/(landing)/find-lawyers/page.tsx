@@ -24,6 +24,38 @@ export type ILAWYER_INFO = {
 };
 export const LAWYER_INFO: ILAWYER_INFO[] = [
   {
+    id: 6,
+    name: "Poonam Gupta Esq.",
+    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Poonam.png?raw=true",
+    title: "Principal partner at Summit Legal, LLC",
+    experince: 15,
+    visa: ["O-1A", "EB-1A", "EB-2 NIW"],
+    strikePrice: "$250",
+    priceTitle: "$145 for 30 minutes",
+    bio: "With over 25 years of experience in immigration law, complemented by expertise in IP and litigation, Poonam Gupta is a trusted advisor known for her strategic, client-focused approach to navigating complex immigration challenges, backed by a diverse educational background and a commitment to excellence in client service.",
+    whoShouldBookACall:
+      "Poonam ideally works with businesses and individuals in tech, pharma, banking, and finance backgrounds facing complex U.S. immigration challenges. ",
+    website: "https://summit-legal.com/",
+    linkedin: "https://www.linkedin.com/in/pgesq/",
+    consultLink: "https://go.readunshackled.com/lawyer-poonam-paid",
+  },
+  {
+    id: 5,
+    name: "Kseniya Zavala",
+    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Kseniya.png?raw=true",
+    title: "Partner at Villalpando Law Firm PLLC",
+    experince: 15,
+    visa: ["O-1A", "EB-1A", "EB-2 NIW"],
+    strikePrice: "$250",
+    priceTitle: "$200 for 30 minutes",
+    bio: "As a first-generation immigrant herself, Ms. Zavala understands and appreciates the intricacies and complexity of the US immigration process. Ms. Zavala received LL.M. in International Law from George Washington University School of Law in Washington, DC and LL.M in Comparative Constitutional Law from Central European University in Budapest, Hungary. Ms. Zavala started practicing as an immigration attorney in 2006 and opened her own immigration practice in 2012. Ms. Zavala has extensive experience in business immigration, humanitarian benefits and family-based immigration. She is admitted to the Bar of the State of New York and she is a member of the American Immigration Lawyers Association. Ms. Zavala is bilingual in English and Russian.",
+    whoShouldBookACall:
+      "Kseniya usually works with researchers and scientists to help them obtain their talent visa",
+    website: "https://villalpandolaw.com/",
+    linkedin: "https://www.linkedin.com/in/kseniya-zavala-9bb418b/",
+    consultLink: "https://go.readunshackled.com/lawyer-kseniya-paid",
+  },
+  {
     id: 2,
     name: "Allison Kranz",
     img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/allison.png?raw=true",
@@ -57,66 +89,50 @@ export const LAWYER_INFO: ILAWYER_INFO[] = [
   },
   {
     id: 4,
-    name: "Charles Gillman",
-    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Charles.png?raw=true",
-    title: "Partner, Head of Employment-Based Immigration Department",
-    experince: 20,
+    name: "Elysa Baron",
+    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Elysa.png?raw=true",
+    title: "Principal Attorney at Lodestone Legal",
+    experince: 11,
     visa: ["EB-1A", "O-1A", "EB-2 NIW"],
-    strikePrice: "$300",
-    priceTitle: "$175 for 30 minutes",
-    bio: "Charles, with a three-decade career in global mobility, has worked as an in-house attorney for a Fortune 100 company, with major international consulting firms, and with multi-practice law firms. He has had the privilege of learning from some of the finest lawyers in North America. Regularly assessing issues from a mobility or compliance perspective for universities, businesses, investors, and entrepreneurs, Charles is known for being thoughtful, creative, and diligent. His goal is to provide the perspective and analysis that allows clients to pursue successful outcomes as they face ever-evolving U.S. immigration challenges.",
+    strikePrice: "$150",
+    priceTitle: "$100 for 30 minutes",
+    bio: "With over 11 years of experience in immigration law, Elysa Baron is an immigration attorney helping families, professionals, and tech founders achieve U.S. visas, green cards, and citizenship. She handles H-1B, O-1, and L-1 visas, advising Fortune 500 companies, startups, and universities. Known for her creative, hands-on approach, Elysa focuses on keeping families together and businesses compliant.",
     whoShouldBookACall:
-      "Charles ideally works with founders and entrepreneurs, software engineers, machine learning engineers, data engineers, C-level executives, business leaders, and critical employees.",
-    bookingInstruction: (
-      <p>
-        $350 for a 30-minute Legal Consultation, which includes two follow up
-        calls to ask questions. Consultations may be booked by emailing Charles
-        directly at{" "}
-        <Link
-          className="text-primary underline"
-          href="mailto:cgillman@gonzalezolivierillc.com?subject=%5BUnshackled%5D%20Booking%20a%20Consultation"
-        >
-          cgillman@gonzalezolivierillc.com
-        </Link>{" "}
-        and mentioning you found him through Unshackled
-      </p>
-    ),
-    website: "https://www.gonzalezolivierillc.com/attorneys/charles-gillman/",
-    linkedin: "https://www.linkedin.com/in/charles-gillman-5654026/",
-    // consultLink: "https://go.readunshackled.com/lawyer-charles-paid",
+      "Elysa works with software and ML engineers, data engineers, C-level executives, business leaders, critical employees, product and marketing managers, founders, entrepreneurs, researchers, and scientists.",
+    website: "https://www.lodestonelegal.com/",
+    linkedin: "https://www.linkedin.com/in/elysabaron/",
+    consultLink: "https://go.readunshackled.com/lawyer-elysa-paid",
   },
-  {
-    id: 5,
-    name: "Kseniya Zavala",
-    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Kseniya.png?raw=true",
-    title: "Partner at Villalpando Law Firm PLLC",
-    experince: 15,
-    visa: ["O-1A", "EB-1A", "EB-2 NIW"],
-    strikePrice: "$250",
-    priceTitle: "$200 for 30 minutes",
-    bio: "As a first-generation immigrant herself, Ms. Zavala understands and appreciates the intricacies and complexity of the US immigration process. Ms. Zavala received LL.M. in International Law from George Washington University School of Law in Washington, DC and LL.M in Comparative Constitutional Law from Central European University in Budapest, Hungary. Ms. Zavala started practicing as an immigration attorney in 2006 and opened her own immigration practice in 2012. Ms. Zavala has extensive experience in business immigration, humanitarian benefits and family-based immigration. She is admitted to the Bar of the State of New York and she is a member of the American Immigration Lawyers Association. Ms. Zavala is bilingual in English and Russian.",
-    whoShouldBookACall:
-      "Kseniya usually works with researchers and scientists to help them obtain their talent visa",
-    website: "https://villalpandolaw.com/",
-    linkedin: "https://www.linkedin.com/in/kseniya-zavala-9bb418b/",
-    consultLink: "https://go.readunshackled.com/lawyer-kseniya-paid",
-  },
-  {
-    id: 6,
-    name: "Poonam Gupta Esq.",
-    img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Poonam.png?raw=true",
-    title: "Principal partner at Summit Legal, LLC",
-    experince: 15,
-    visa: ["O-1A", "EB-1A", "EB-2 NIW"],
-    strikePrice: "$250",
-    priceTitle: "$145 for 30 minutes",
-    bio: "With over 25 years of experience in immigration law, complemented by expertise in IP and litigation, Poonam Gupta is a trusted advisor known for her strategic, client-focused approach to navigating complex immigration challenges, backed by a diverse educational background and a commitment to excellence in client service.",
-    whoShouldBookACall:
-      "Poonam ideally works with businesses and individuals in tech, pharma, banking, and finance backgrounds facing complex U.S. immigration challenges. ",
-    website: "https://summit-legal.com/",
-    linkedin: "https://www.linkedin.com/in/pgesq/",
-    consultLink: "https://go.readunshackled.com/lawyer-poonam-paid",
-  },
+  // {
+  //   id: 5,
+  //   name: "Charles Gillman",
+  //   img: "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/Charles.png?raw=true",
+  //   title: "Partner, Head of Employment-Based Immigration Department",
+  //   experince: 20,
+  //   visa: ["EB-1A", "O-1A", "EB-2 NIW"],
+  //   strikePrice: "$300",
+  //   priceTitle: "$175 for 30 minutes",
+  //   bio: "Charles, with a three-decade career in global mobility, has worked as an in-house attorney for a Fortune 100 company, with major international consulting firms, and with multi-practice law firms. He has had the privilege of learning from some of the finest lawyers in North America. Regularly assessing issues from a mobility or compliance perspective for universities, businesses, investors, and entrepreneurs, Charles is known for being thoughtful, creative, and diligent. His goal is to provide the perspective and analysis that allows clients to pursue successful outcomes as they face ever-evolving U.S. immigration challenges.",
+  //   whoShouldBookACall:
+  //     "Charles ideally works with founders and entrepreneurs, software engineers, machine learning engineers, data engineers, C-level executives, business leaders, and critical employees.",
+  //   bookingInstruction: (
+  //     <p>
+  //       $350 for a 30-minute Legal Consultation, which includes two follow up
+  //       calls to ask questions. Consultations may be booked by emailing Charles
+  //       directly at{" "}
+  //       <Link
+  //         className="text-primary underline"
+  //         href="mailto:cgillman@gonzalezolivierillc.com?subject=%5BUnshackled%5D%20Booking%20a%20Consultation"
+  //       >
+  //         cgillman@gonzalezolivierillc.com
+  //       </Link>{" "}
+  //       and mentioning you found him through Unshackled
+  //     </p>
+  //   ),
+  //   website: "https://www.gonzalezolivierillc.com/attorneys/charles-gillman/",
+  //   linkedin: "https://www.linkedin.com/in/charles-gillman-5654026/",
+  //   // consultLink: "https://go.readunshackled.com/lawyer-charles-paid",
+  // },
 ];
 
 const LawyerPage = () => {
