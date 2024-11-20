@@ -152,9 +152,8 @@ export default function Component() {
             {/* Add to cart part */}
             <div className="mt-10">
               <div>
-                {showButtons && !product.data.showPricing ? (
-                  <>
-                    {hasPricingPlans && (
+                <>
+              {hasPricingPlans && !product.data.showPricing && (
                       <div className="w-full space-y-4 mb-6">
                         <h3 className="text-xl text-primary font-semibold mb-4">Choose Your Plan</h3>
                         <RadioGroup
@@ -183,7 +182,9 @@ export default function Component() {
                         </RadioGroup>
                       </div>
                     )}
-                    
+                    </>
+                {showButtons && !product.data.showPricing ? (
+                  <>                                        
                     <div className="flex max-w-9/12 items-center space-x-4">
                       <QuantitySelector
                         quantity={quantity}
