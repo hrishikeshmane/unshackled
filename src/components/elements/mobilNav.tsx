@@ -78,9 +78,10 @@ const MobileNav = ({
                   Find Lawyers
                 </Link>
                 <Link
-                  href="https://unshackled.thinkific.com/courses/eb1a"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={"/course"}
+                  // href="https://unshackled.thinkific.com/courses/eb1a"
+                  // target="_blank"
+                  // rel="noopener noreferrer"
                   onClick={toggleSheet}
                   className="text-muted-foreground hover:text-foreground"
                 >
