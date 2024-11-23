@@ -44,7 +44,7 @@ export default function Component() {
 
   const [quantity, setQuantity] = useState(1)
   const [selectedPlan, setSelectedPlan] = useState(0)
-  const [customPrice, setCustomPrice] = useState(0)
+  const [customPrice, setCustomPrice] = useState(10)
 
   if (product.isPending || similarProducts.isPending || existingRequest.isLoading) {
     return <div>Loading...</div>
@@ -160,7 +160,7 @@ export default function Component() {
                   product.data.hasVariablePrice && showButtons && 
                   <>
                   <NumberField
-                    defaultValue={0}
+                    defaultValue={10}
                     minValue={10}
                     onChange={(value) => setCustomPrice(value)}
                     formatOptions={{
