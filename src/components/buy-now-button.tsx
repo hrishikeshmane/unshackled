@@ -46,7 +46,7 @@ const BuyNowButton: React.FC<BuyNowButtonProps> = ({
       onClick={handleBuyNow}
       size="lg"
       className={cn(className, "w-full")}
-      disabled={disabled || isLoading}
+      disabled={isLoading}
     >
       {isLoading ? "Processing..." : buttonText}
     </Button>
