@@ -73,6 +73,7 @@ const formSchema = z.object({
   downPayment: z.coerce.number().min(0.01),
   pricingPlans: z.array(pricingPlanSchema),
   hasPricingPlans: z.boolean().default(false),
+  hasVariablePrice: z.boolean().default(false),
   showPricing: z.boolean().default(false),
   orderCommunicationEmail: z.string(),
   additionalOrderEmailText: z.string(),
@@ -176,6 +177,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         isExtRequiredFormApprovalLink: false,
         ExtRequiredFormApprovalLink: "",
         hasDownPayment: false,
+        hasVariablePrice: false,
         downPayment: 0,
         pricingPlans: [],
         hasPricingPlans: false,
@@ -266,6 +268,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         downPayment: String(data.downPayment),
         pricingPlans: data.pricingPlans,
         hasPricingPlans: data.hasPricingPlans,
+        hasVariablePrice: data.hasVariablePrice,
         showPricing: data.showPricing,
         orderCommunicationEmail: data.orderCommunicationEmail,
         additionalOrderEmailText: data.additionalOrderEmailText,
@@ -527,6 +530,28 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             <h3 className="p-1 text-2xl font-bold">Pricing</h3>
             <Separator />
           </div>
+          <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="hasVariablePrice"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Variable Price?</FormLabel>
+                    <FormDescription>
+                      If you opt for this, Customer would have to enter the amount agreed upon to pay. Consult before using.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            </div>
           <div className="grid grid-cols-3 gap-8">
             {/* <FormField
               control={form.control}

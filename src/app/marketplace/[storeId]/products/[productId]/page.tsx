@@ -19,6 +19,8 @@ import DOMPurify from 'dompurify'
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { Group, Button as AriaButton, Input,  NumberField } from "react-aria-components";
 
 export default function Component() {
   const params = useParams()
@@ -42,6 +44,7 @@ export default function Component() {
 
   const [quantity, setQuantity] = useState(1)
   const [selectedPlan, setSelectedPlan] = useState(0)
+  const [customPrice, setCustomPrice] = useState(99)
 
   if (product.isPending || similarProducts.isPending || existingRequest.isLoading) {
     return <div>Loading...</div>
@@ -153,6 +156,58 @@ export default function Component() {
             <div className="mt-10">
               <div>
                 <>
+                {
+                  product.data.hasVariablePrice && showButtons && 
+                  <>
+                  <NumberField
+                    defaultValue={99}
+                    onChange={(value) => setCustomPrice(value)}
+                    formatOptions={{
+                      style: "currency",
+                      currency: "USD",
+                      currencySign: "accounting",
+                    }}
+                  >
+                    <div className="space-y-2">
+                      <Label className="text-sm font-medium text-foreground">Enter Price</Label>
+                      <Group className="relative inline-flex h-9 w-full items-center overflow-hidden whitespace-nowrap rounded-lg border border-input text-sm shadow-sm shadow-black/5 transition-shadow data-[focus-within]:border-ring data-[disabled]:opacity-50 data-[focus-within]:outline-none data-[focus-within]:ring-[3px] data-[focus-within]:ring-ring/20">
+                        <Input className="flex-1 bg-background px-3 py-2 tabular-nums text-foreground focus:outline-none" />
+                        <div className="flex h-[calc(100%+2px)] flex-col">
+                          <AriaButton
+                            slot="increment"
+                            className="-me-px flex h-1/2 w-6 flex-1 items-center justify-center border border-input bg-background text-sm text-muted-foreground/80 transition-shadow hover:bg-accent hover:text-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+                          >
+                            <ChevronUp size={12} strokeWidth={2} aria-hidden="true" />
+                          </AriaButton>
+                          <AriaButton
+                            slot="decrement"
+                            className="-me-px -mt-px flex h-1/2 w-6 flex-1 items-center justify-center border border-input bg-background text-sm text-muted-foreground/80 transition-shadow hover:bg-accent hover:text-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+                          >
+                            <ChevronDown size={12} strokeWidth={2} aria-hidden="true" />
+                          </AriaButton>
+                        </div>
+                      </Group>
+                    </div>
+                    <p className="mt-2 text-xs text-muted-foreground" role="region" aria-live="polite">
+                      Please enter price agreed upon with {product.data.name}
+                    </p>
+                  </NumberField>
+                    <div className="mt-4 flex max-w-9/12 items-center space-x-4">
+                        <QuantitySelector
+                          quantity={quantity}
+                          onIncrease={handleIncrease}
+                          onDecrease={handleDecrease}
+                          onManualChange={handleManualChange}
+                        />
+                        <BuyNowButton
+                          product={product.data}
+                          quantity={quantity}
+                          price={String(customPrice)}
+                          isDownPayment={false}
+                        />
+                      </div>
+                  </>
+                }
               {hasPricingPlans && !product.data.showPricing && (
                       <div className="w-full space-y-4 mb-6">
                         <h3 className="text-xl text-primary font-semibold mb-4">Choose Your Plan</h3>
