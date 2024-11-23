@@ -169,7 +169,7 @@ export default function Component() {
                     }}
                   >
                     <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground">Enter Price</Label>
+                      <h3 className="text-xl text-primary font-semibold mb-4">Enter Price</h3>
                       <Group className="relative inline-flex h-9 w-full items-center overflow-hidden whitespace-nowrap rounded-lg border border-input text-sm shadow-sm shadow-black/5 transition-shadow data-[focus-within]:border-ring data-[disabled]:opacity-50 data-[focus-within]:outline-none data-[focus-within]:ring-[3px] data-[focus-within]:ring-ring/20">
                         <Input className="flex-1 bg-background px-3 py-2 tabular-nums text-foreground focus:outline-none" />
                         <div className="flex h-[calc(100%+2px)] flex-col">
@@ -192,7 +192,7 @@ export default function Component() {
                       Please enter price agreed upon with {product.data.name}
                     </p>
                   </NumberField>
-                    <div className="mt-4 flex max-w-9/12 items-center space-x-4">
+                    <div className="my-4 flex max-w-9/12 items-center space-x-4">
                         <QuantitySelector
                           quantity={quantity}
                           onIncrease={handleIncrease}
