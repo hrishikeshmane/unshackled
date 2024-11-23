@@ -16,6 +16,7 @@ interface BuyNowButtonProps {
   isDownPayment: boolean;
   price: string; 
   buttonText?: string;
+  disabled?: boolean;
 }
 
 const BuyNowButton: React.FC<BuyNowButtonProps> = ({
@@ -26,6 +27,7 @@ const BuyNowButton: React.FC<BuyNowButtonProps> = ({
   isDownPayment,
   price,
   buttonText = "Buy Now",
+  disabled = false
 }) => {
   const { clearCart, addItem } = useCart();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -44,7 +46,7 @@ const BuyNowButton: React.FC<BuyNowButtonProps> = ({
       onClick={handleBuyNow}
       size="lg"
       className={cn(className, "w-full")}
-      disabled={isLoading}
+      disabled={disabled || isLoading}
     >
       {isLoading ? "Processing..." : buttonText}
     </Button>
