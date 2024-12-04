@@ -160,13 +160,24 @@ const pricingData = [
   },
   {
     title: "Join Community",
-    price: "$1199",
-    originalPrice: "$999",
+    price: "$999",
+    originalPrice: "$1199",
     description: `Choose this if you're looking to understand all your pathways in depth and join ${siteConfig.memberCount} aspirants`,
     features: ["60+ lessons"],
     ctaText: "Become a member",
     ctaLink: "http://go.readunshackled.com/membership ",
     highlight: true,
+    bullets: [
+      "Everything in Course Tier",
+      "Free consults with top lawyers",
+      "Access to past recipients",
+      "Monthly expert masterclasses",
+      "Monthly lawyer Q&As",
+      "Case studies of 10+ recipients",
+      "On-demand recordings of events",
+      "Weekly accountability sessions",
+      "Access to 700+ aspirants",
+    ],
   },
 ];
 
@@ -290,7 +301,9 @@ const CourseHero = () => {
             </p>
             <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
               <Link href="#pricing">
-                <Button className="w-full sm:w-auto">Join the course</Button>
+                <Button size={"lg"} className="w-full sm:w-auto">
+                  Join the course
+                </Button>
               </Link>
             </div>
           </div>
@@ -369,12 +382,12 @@ const CoursePricingGrid = () => {
       <h2 className="text-center text-4xl font-bold">
         Join and start the course today
       </h2>
-      <div className="mt-16 grid gap-6 sm:grid-cols-1 md:grid-cols-4">
+      <div className="mt-16 grid gap-6 sm:grid-cols-1 md:grid-cols-3">
         {pricingData.map((tier, index) => (
           <div
             key={index}
             className={`flex transform flex-col rounded-lg ${
-              tier.highlight ? "border-2 border-primary" : "border"
+              tier.highlight ? "col-span-3 border-2 border-primary" : "border"
             } px-6 py-4 transition-colors duration-300 ${
               tier.highlight ? "relative" : ""
             }`}
@@ -401,6 +414,13 @@ const CoursePricingGrid = () => {
               ))}
             </div>
             <p className="mt-4">{tier.description}</p>
+            {tier.bullets && (
+              <div className="mt-4 grid sm:grid-cols-1 md:grid-cols-3">
+                {tier.bullets.map((bullet, idx) => (
+                  <p key={idx}>{bullet}</p>
+                ))}
+              </div>
+            )}
             <Link
               href={tier.ctaLink}
               target={tier.ctaLink.startsWith("http") ? "_blank" : "_self"}
@@ -431,6 +451,7 @@ const MeetPeople = () => {
       image:
         "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/lawyers/allison.png?raw=true",
       bio: "Allison is the Principal Partner at Lodestone Legal. With 15+ years of experience, she has filed 1000s of petitions. She has also advised Fortune 500 companies in immigration matters and her global immigration practice focuses on finding self-sponsored solutions.",
+      linkedin: "https://www.linkedin.com/in/allisonkranz/",
       email: "allison.kranz@lodestonelegal.com",
     },
     {
@@ -530,7 +551,7 @@ const CoursePage = () => {
         <CoursePricingGrid />
         <div className="mx-auto my-10 w-full items-center justify-center px-4">
           <h2 className="my-8 text-center text-4xl font-bold">
-            Watch a sample lesson from O-1 track
+            Watch a sample lesson from O-1A track
           </h2>
           <HeroVideo videoId="p_IvOKV0PM0" />
         </div>

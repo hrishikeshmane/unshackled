@@ -32,7 +32,7 @@ export default async function Footer() {
                 <Linkedin />
               </Link>
               <Link
-                href="https://www.instagram.com/thecuriousmaverick/"
+                href="https://www.instagram.com/readunshackled/"
                 target={"_blank"}
                 rel={"noreferrer"}
               >
@@ -94,13 +94,7 @@ export default async function Footer() {
                   >
                     Find Lawyers
                   </Link>
-                  <Link
-                    href="https://unshackled.thinkific.com/courses/eb1a"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block  "
-                    prefetch={false}
-                  >
+                  <Link href="/course" className="block  " prefetch={false}>
                     Course
                   </Link>
                   <Link href="/copilot" className="block  " prefetch={false}>
