@@ -12,7 +12,6 @@ import { Toaster } from "@/components/ui/sonner";
 import { Outfit } from "next/font/google";
 import { AxiomWebVitals } from "next-axiom";
 import { CSPostHogProvider } from "./_analytics/posthog-provider";
-import { GoogleTagManager } from "@next/third-parties/google";
 
 const outflit = Outfit({
   weight: "500",
@@ -25,12 +24,6 @@ export const metadata = {
   description:
     "At unshackled.club, we do one thing really well: help you escape the H-1B lottery and empower your career with a talent visa (O1/EB1/NIW).",
   icons: [{ rel: "icon", url: "/favicon.png" }],
-  verification: {
-    google: "Ax1JTyzFVFsJ48SAd0JZwzSY20npItA57VvupdUe1qY",
-    other: {
-      "msvalidate.01": ["39CC291841558A0EC3039A7C6B54B83F"],
-    },
-  },
 };
 
 export default function RootLayout({
@@ -53,7 +46,6 @@ export default function RootLayout({
     >
       <CSPostHogProvider>
         <html lang="en">
-          <GoogleTagManager gtmId="GTM-WW2M6M6C" />
           <body
             className={cn(
               "min-w-screen relative h-full min-h-screen bg-background font-sans antialiased ",
