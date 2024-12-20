@@ -26,7 +26,7 @@ export const metadata = {
     "At unshackled.club, we do one thing really well: help you escape the H-1B lottery and empower your career with a talent visa (O1/EB1/NIW).",
   icons: [{ rel: "icon", url: "/favicon.png" }],
   verification: {
-    google: "Ax1JTyzFVFsJ48SAd0JZwzSY20npItA57VvupdUe1qY",
+    google: "J_sZSf53O80Oo_7NwBntv58XhKFOqG2Oe5Bk-9WKLTs",
     other: {
       "msvalidate.01": ["39CC291841558A0EC3039A7C6B54B83F"],
     },
@@ -53,7 +53,7 @@ export default function RootLayout({
     >
       <CSPostHogProvider>
         <html lang="en">
-          <GoogleTagManager gtmId="GTM-WW2M6M6C" />
+          <GoogleTagManager gtmId="GTM-NNHVJC97" />
           <body
             className={cn(
               "min-w-screen relative h-full min-h-screen bg-background font-sans antialiased ",
