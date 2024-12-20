@@ -4,9 +4,10 @@
  */
 import { withAxiom } from "next-axiom";
 await import("./src/env.js");
+import MillionLint from "@million/lint";
 
 /** @type {import("next").NextConfig} */
-const config = withAxiom({
+const nextConfig = withAxiom({
   images: {
     remotePatterns: [
       {
@@ -60,4 +61,6 @@ const config = withAxiom({
   },
 });
 
-export default config;
+export default MillionLint.next({ rsc: true })(nextConfig);
+
+// export default config;
