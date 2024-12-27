@@ -89,7 +89,17 @@ export type ProductTable = {
   isFeatured: boolean;
   isArchived: boolean;
   isApproved: "approved" | "pending" | "denied";
+  pricingPlans: {
+    label: string;
+    description: string;
+    price: string;
+}[];
+hasPricingPlans: boolean;
+hasVariablePrice: boolean;
+  showPricing: boolean;
   requiresVendorApproval: boolean;
+  isExtRequiredFormApprovalLink: boolean;
+  ExtRequiredFormApprovalLink: string;
   hasDownPayment: boolean;
   downPayment: string;
   orderCommunicationEmail: string;
@@ -115,7 +125,15 @@ export type ProductWithRelations = {
   tagline: string;
   description: string;
   price: string;
+  pricingPlans: {
+    label: string;
+    description: string;
+    price: string;
+}[];
+hasPricingPlans: boolean;
+hasVariablePrice: boolean;
   // discounts: Record<string, unknown>;
+  showPricing: boolean;
   commission: string;
   commissionType: "percentage" | "flat";
   domainRank: string;

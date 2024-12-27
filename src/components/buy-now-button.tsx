@@ -14,7 +14,9 @@ interface BuyNowButtonProps {
   product: ProductWithRelations;
   quantity: number;
   isDownPayment: boolean;
+  price: string; 
   buttonText?: string;
+  disabled?: boolean;
 }
 
 const BuyNowButton: React.FC<BuyNowButtonProps> = ({
@@ -23,7 +25,9 @@ const BuyNowButton: React.FC<BuyNowButtonProps> = ({
   product,
   quantity,
   isDownPayment,
+  price,
   buttonText = "Buy Now",
+  disabled = false
 }) => {
   const { clearCart, addItem } = useCart();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -32,7 +36,7 @@ const BuyNowButton: React.FC<BuyNowButtonProps> = ({
   const handleBuyNow = () => {
     setIsLoading(true);
     clearCart();
-    addItem(product, isDownPayment, quantity);
+    addItem(product, isDownPayment, price, quantity); 
     router.push("/marketplace/cart");
   };
 

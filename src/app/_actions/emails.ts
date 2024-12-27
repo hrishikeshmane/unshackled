@@ -3,6 +3,8 @@
 import { Resend } from "resend";
 import { AdminListingNotificationEmailTemplate } from "~/components/email-templates/admin-notify-listing-request";
 import { AdminSellerNotificationEmailTemplate } from "~/components/email-templates/admin-notify-seller-request";
+import { ApprovalFormResponses } from "~/components/email-templates/approval-form-responses";
+import { CustomerListingApproval } from "~/components/email-templates/customer-listing-approval";
 import { CustomerOrderConfirmationEmailTemplate } from "~/components/email-templates/customer-order-confirmation";
 import { CustomerOrderFullfilledConfirmationEmailTemplate } from "~/components/email-templates/customer-order-fulfilled";
 import { VendorApprovedEmailTemplate } from "~/components/email-templates/vendor-approved";
@@ -237,6 +239,66 @@ export async function sendTestEmailToSelf(email: string) {
     subject: "[Unshackled Marketplace] Vendor approval",
     react: VendorApprovedEmailTemplate({
       firstName: "Hrishi",
+    }) as React.ReactElement,
+  });
+
+  if (error) {
+    console.error(error);
+    return error;
+  }
+
+  return data;
+}
+
+////////////////////////////////////////
+// Request Approval Emails
+////////////////////////////////////////
+
+
+export async function sendVendorApprovalFormResponse(
+  customerId: string,
+  productId: string,
+  responses: {question: string, answer: string}[],
+  email: string,
+  name: string,
+) {
+  const resend = new Resend(RESEND_KEY);
+  const { data, error } = await resend.emails.send({
+    from: FROM_EMAIL,
+    to: [email],
+    subject:
+      "You have a new customer request pending for approval/denial",
+    react: ApprovalFormResponses({
+      formResponses: responses,
+      customerId,
+      name
+    }) as React.ReactElement,
+  });
+
+  if (error) {
+    console.error(error);
+    return error;
+  }
+
+  return data;
+}
+
+export async function sendCustomerApprovalForListing(
+  productId: string,
+  email: string,
+  name: string,
+  status: "pending" | "approved" | "denied",
+) {
+  const resend = new Resend(RESEND_KEY);
+  const { data, error } = await resend.emails.send({
+    from: FROM_EMAIL,
+    to: [email],
+    subject:
+      "You have a new customer request pending for approval/denial",
+    react: CustomerListingApproval({
+      name,
+      productId,
+      status,
     }) as React.ReactElement,
   });
 

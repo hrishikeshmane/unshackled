@@ -185,7 +185,7 @@ export const orderRouter = createTRPCRouter({
 
     // Filter approved products in application logic
     const orders = ordersRaw.filter(
-      (order) => order.paymentStatus !== "notInitiated",
+      (order) => order.paymentStatus !== "Not Initiated",
     );
 
     // Extract order IDs

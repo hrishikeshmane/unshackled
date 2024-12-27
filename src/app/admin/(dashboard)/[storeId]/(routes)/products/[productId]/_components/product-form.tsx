@@ -55,6 +55,12 @@ type Question = {
   question: string;
 };
 
+const pricingPlanSchema = z.object({
+  label: z.string().min(1, "Label is required"),
+  description: z.string().min(1, "Label is required"),
+  price: z.string().min(1, "Label is required"),
+});
+
 const formSchema = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
@@ -74,7 +80,13 @@ const formSchema = z.object({
   isArchived: z.boolean().default(false),
   isApproved: z.enum(["approved", "pending", "denied"]),
   requiresVendorApproval: z.boolean().default(false),
+  isExtRequiredFormApprovalLink: z.boolean().default(false),
+  ExtRequiredFormApprovalLink: z.string(),
   hasDownPayment: z.boolean().default(false),
+  pricingPlans: z.array(pricingPlanSchema),
+  hasPricingPlans: z.boolean().default(false),
+  hasVariablePrice: z.boolean().default(false),
+  showPricing: z.boolean().default(false),
   downPayment: z.coerce.number().min(0),
   orderCommunicationEmail: z.string(),
   additionalOrderEmailText: z.string(),
@@ -201,7 +213,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           tagId: "",
           typeId: "",
           requiresVendorApproval: false,
+          isExtRequiredFormApprovalLink: false,
+          ExtRequiredFormApprovalLink: "",
           hasDownPayment: false,
+          hasVariablePrice: false,
+          pricingPlans: [],
+          hasPricingPlans: false,
+          showPricing: false,
           downPayment: 0,
           orderCommunicationEmail: "",
           additionalOrderEmailText: "",
@@ -216,6 +234,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const { fields, append, remove } = useFieldArray({
     control: form.control,
     name: "questions",
+  });
+
+  const { fields: pricingPlanFields, append: appendPricingPlan, remove: removePricingPlan } = useFieldArray({
+    control: form.control,
+    name: "pricingPlans",
   });
 
   const requiresVendorApprovalState = form.watch("requiresVendorApproval")
@@ -271,8 +294,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         isArchived: data.isArchived,
         isApproved: data.isApproved,
         requiresVendorApproval: data.requiresVendorApproval,
+        isExtRequiredFormApprovalLink: data.isExtRequiredFormApprovalLink,
+        ExtRequiredFormApprovalLink: data.ExtRequiredFormApprovalLink,
         hasDownPayment: data.hasDownPayment,
         downPayment: String(data.downPayment),
+        pricingPlans: data.pricingPlans,
+        hasPricingPlans: data.hasPricingPlans,
+        hasVariablePrice: data.hasVariablePrice,
+        showPricing: data.showPricing,
         orderCommunicationEmail: data.orderCommunicationEmail,
         additionalOrderEmailText: data.additionalOrderEmailText,
         hasAdditionalLink: data.hasAdditionalLink,
@@ -514,9 +543,53 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               )}
             />
           </div>
+          <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="showPricing"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Hide Pricing?</FormLabel>
+                    <FormDescription>
+                      If you opt for this, your listing will only be present on Unshackled for marketing, you have to process orders and more from your end, also fill in the dummy values for prices wherever necessary in the form.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            </div>
           <div className="my-4">
             <h3 className="p-1 text-2xl font-bold">Pricing</h3>
             <Separator />
+          </div>
+          <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="hasVariablePrice"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Variable Price?</FormLabel>
+                    <FormDescription>
+                      If you opt for this, Customer would have to enter the amount agreed upon to pay. Consult before using.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
           </div>
           <div className="grid grid-cols-3 gap-8">
             {/* <FormField
@@ -663,6 +736,95 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               )}
             />
           </div>
+
+          <div className="my-4">
+            <h3 className="p-1 text-2xl font-bold">Pricing Plans</h3>
+            <Separator />
+          </div>
+          <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="hasPricingPlans"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Show Pricing Plans?</FormLabel>
+                    <FormDescription>
+                      If you opt to have multiple pricing plans, please enter the minimum plan amount in price field as a placeholder.
+                      Also, in future you decide to opt out of multiple pricing plans, enter fixed rate in the price field.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            </div>
+          <div className="space-y-4">
+            {pricingPlanFields.map((field, index) => (
+              <div key={field.id} className="flex items-end space-x-2">
+                <FormField
+                  control={form.control}
+                  name={`pricingPlans.${index}.label`}
+                  render={({ field }) => (
+                    <FormItem className="flex-grow">
+                      <FormLabel>Label</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="Enter plan label" />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name={`pricingPlans.${index}.description`}
+                  render={({ field }) => (
+                    <FormItem className="flex-grow">
+                      <FormLabel>Description</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="Enter plan description" />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name={`pricingPlans.${index}.price`}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Price</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="Enter price" />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  type="button"
+                  variant="destructive"
+                  size="icon"
+                  onClick={() => removePricingPlan(index)}
+                >
+                  <Trash className="h-4 w-4" />
+                </Button>
+              </div>
+            ))}
+            <div className="text-center items-center">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => appendPricingPlan({ label: "", description: "", price: "" })}
+              >
+                <PlusCircle className="w-5 h-5 mr-2" />
+                Add Pricing Plan
+              </Button>
+            </div>
+          </div>
+
           <div className="my-4">
             <h3 className="p-1 text-2xl font-bold">Communication</h3>
             <Separator />
@@ -767,6 +929,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           </div>
           <div className="my-4">
             <h3 className="p-1 text-2xl font-bold">Requires Vendor Approval</h3>
+            <>
+              <ul>
+                <li>If Vendor approval is required for the customer, and you can approve requests based on the form responses provided.</li>
+                <li>If you prefer to use your own form, Unshackled will supply you with a payment link for customers, which you can send directly after approval.</li>
+                <li>Alternatively, if you choose to utilize Unshackled's built-in forms, you will be able to manage customer requests directly from the dashboard, and we will handle all communications.</li>
+              </ul>
+            </>
             <Separator />
           </div>
           <div className="grid grid-cols-3 gap-8">
@@ -782,10 +951,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Requires Vendor Approval</FormLabel>
+                    <FormLabel>Requires Vendor Approval?</FormLabel>
                     <FormDescription>
-                      This Service will require vendor approval first for the customer.
-                      Additionally add questions to below form
                     </FormDescription>
                   </div>
                 </FormItem>
@@ -800,6 +967,46 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 </Link>
               </div>
             } */}
+          </div>
+          <Separator />
+          <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="isExtRequiredFormApprovalLink"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Custom Approval Form?</FormLabel>
+                    <FormDescription>
+                      Select if you have your own custom approval form and want to use that.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="ExtRequiredFormApprovalLink"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Custom Approval form link URL.</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      placeholder="https://www.yoursite/customForm"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
           <div className="space-y-1 leading-none">
             <FormLabel className="text-xl">Approval Form Questions:</FormLabel>

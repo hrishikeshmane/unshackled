@@ -146,6 +146,8 @@ export const product = createTable("product", {
     enum: ["approved", "pending", "denied"],
   }).notNull(),
   requiresVendorApproval: integer("requiresVendorApproval", { mode: "boolean" }).notNull().default(false),
+  isExtRequiredFormApprovalLink: integer("isExtRequiredFormApprovalLink", { mode: "boolean" }).notNull().default(false),
+  ExtRequiredFormApprovalLink: text("ExtRequiredFormApprovalLink", { length: 256 }).notNull().default(""),
   hasDownPayment: integer("hasDownPayment", { mode: "boolean" }).notNull().default(false),
   downPayment: text("downpayment", { length: 256 }).notNull().default("0"),
   orderCommunicationEmail: text("orderCommunicationEmail", { length: 256 }).notNull().default(""),
@@ -153,6 +155,13 @@ export const product = createTable("product", {
   hasAdditionalLink: integer("hasAdditionalLink", { mode: "boolean" }).notNull().default(false),
   additionalLinkLabel: text("additionalLinkLabel", { length: 256 }).notNull().default(""),
   additionalLinkUrl: text("additionalLinkUrl", { length: 256 }).notNull().default(""),
+  pricingPlans: text('pricingPlans', { mode: 'json' })
+    .notNull()
+    .$type<{ label: string, description: string, price: string }[]>()
+    .default(sql`'[]'`),
+  hasPricingPlans: integer("hasPricingPlans", { mode: "boolean" }).notNull().default(false),
+  hasVariablePrice: integer("hasVariablePrice", { mode: "boolean" }).notNull().default(false),
+  showPricing: integer("showPricing", { mode: "boolean" }).notNull().default(false),
   tagId: text("tagId", { length: 256 })
     .notNull()
     .references(() => tag.id),
@@ -267,3 +276,6 @@ export const requestApprovals = createTable("requestApprovals", {
 });
 
 export type IStore = typeof store.$inferSelect;
+export type IProduct = typeof product.$inferSelect;
+export type IApprovalFormResponses = typeof formResponses.$inferInsert
+

@@ -22,7 +22,7 @@ const StoresReel: React.FC<StoresReelProps> = ({
   reelSubtitle,
 }) => {
   return (
-    <section className="py-12">
+    <section className="py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="mb-2 text-center text-4xl font-bold text-primary">
           {reelTitle}
@@ -32,10 +32,10 @@ const StoresReel: React.FC<StoresReelProps> = ({
             {reelSubtitle}
           </p>
         )}
-        <div className="space-y-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8">
           {stores.map((store) => (
             <Link key={store.id} href={store.link}>
-              <div className="relative mb-10 h-64 w-full cursor-pointer overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+              <div className="relative h-64 w-full cursor-pointer overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
                 <Image
                   src={store.imageUrl}
                   alt={store.title}

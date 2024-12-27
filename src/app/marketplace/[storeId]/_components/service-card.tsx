@@ -99,6 +99,8 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
     additionalLinkLabel,
     additionalLinkUrl,
     hasDownPayment,
+    hasPricingPlans,
+    showPricing,
     downPayment,
     type,
     domainRank,
@@ -145,9 +147,7 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
               <TagBadge Tag={tag} />
               <span className="flex items-center gap-1.5">
                 {/* {price ? `${formatPrice(price)}` : "Contact for Price"} */}
-                {hasDownPayment
-                    ? `Starting from ${formatPrice(downPayment)}`
-                    : formatPrice(price)}
+                {!showPricing ? hasDownPayment ? `Starting at ${formatPrice(downPayment)}` : hasPricingPlans ? `Starting at ${formatPrice(price)}` : formatPrice(price) : `Contact for Pricing`}
               </span>
               {/* <AccessButton storeId={String(params.storeId)} productId={id} /> */}
             </div>
@@ -156,9 +156,7 @@ const ServiceCard = ({ serviceRecord }: { serviceRecord: ModifiedProduct }) => {
         <div className="ml-auto hidden shrink-0 flex-col items-end justify-between sm:flex">
           <span className="flex items-center gap-1.5">
             {/* {price ? `${formatPrice(price)}` : "Contact for Price"} */}
-            {hasDownPayment
-                ? `Starting from ${formatPrice(downPayment)}`
-                : formatPrice(price)}
+            {!showPricing ? hasDownPayment ? `Starting at ${formatPrice(downPayment)}` : hasPricingPlans ? `Starting at ${formatPrice(price)}` : formatPrice(price) : `Contact for Pricing`}
           </span>
           {/* <AccessButton storeId={String(params.storeId)} productId={id} /> */}
           <div className="flex flex-col items-end">

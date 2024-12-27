@@ -29,6 +29,12 @@ type Question = {
   question: string;
 };
 
+const pricingPlanSchema = z.object({
+  label: z.string(),
+  description: z.string(),
+  price: z.string(),
+});
+
 export const productsRouter = createTRPCRouter({
   createOrUpdateProduct: adminOrVendorProcedure
     .input(
@@ -51,9 +57,15 @@ export const productsRouter = createTRPCRouter({
         isArchived: z.boolean(),
         isApproved: z.enum(["approved", "pending", "denied"]),
         requiresVendorApproval: z.boolean(),
+        isExtRequiredFormApprovalLink: z.boolean(),
+        ExtRequiredFormApprovalLink: z.string(),
         hasDownPayment: z.boolean(),
         downPayment: z.string(),
         hasAdditionalLink: z.boolean(),
+        pricingPlans: z.array(pricingPlanSchema),
+        hasPricingPlans: z.boolean(),
+        hasVariablePrice: z.boolean(),
+        showPricing: z.boolean(),
         additionalLinkLabel: z.string(),
         additionalLinkUrl: z.string(),    
         orderCommunicationEmail: z.string(),
@@ -84,8 +96,14 @@ export const productsRouter = createTRPCRouter({
         commissionType,
         estTurnAroundTime,
         requiresVendorApproval,
+        isExtRequiredFormApprovalLink,
+        ExtRequiredFormApprovalLink,
         hasDownPayment,
         downPayment,
+        pricingPlans,
+        showPricing,
+        hasPricingPlans,
+        hasVariablePrice,
         orderCommunicationEmail,
         additionalOrderEmailText,
         hasAdditionalLink,
@@ -121,8 +139,14 @@ export const productsRouter = createTRPCRouter({
             isArchived,
             isApproved,
             requiresVendorApproval,
+            isExtRequiredFormApprovalLink,
+            ExtRequiredFormApprovalLink,
             hasDownPayment,
             downPayment,
+            pricingPlans,
+            hasPricingPlans,
+            hasVariablePrice,
+            showPricing,
             orderCommunicationEmail,
             additionalOrderEmailText,
             hasAdditionalLink,
@@ -223,8 +247,14 @@ export const productsRouter = createTRPCRouter({
             isArchived,
             isApproved,
             requiresVendorApproval,
+            isExtRequiredFormApprovalLink,
+            ExtRequiredFormApprovalLink,
             hasDownPayment,
             downPayment,
+            pricingPlans,
+            hasPricingPlans,
+            hasVariablePrice,
+            showPricing,
             orderCommunicationEmail,
             additionalOrderEmailText,
             hasAdditionalLink,

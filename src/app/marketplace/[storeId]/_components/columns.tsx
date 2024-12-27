@@ -17,6 +17,8 @@ export type ModifiedProduct = {
   domainRank: number;
   isFeatured: boolean;
   createdAt: Date;
+  hasPricingPlans: boolean,
+  showPricing: boolean,
   estTurnAroundTime: number;
   hasAdditionalLink: boolean,
   additionalLinkLabel: string,
