@@ -139,7 +139,7 @@ export function ConditionalNavigationMenu({
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <Link
                     href="https://go.readunshackled.com/webinar"
                     target="_blank"
@@ -153,7 +153,7 @@ export function ConditionalNavigationMenu({
                       Free Webinar
                     </NavigationMenuLink>
                   </Link>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
                 <NavigationMenuItem>
                   <Link href="/copilot" legacyBehavior passHref>
                     <NavigationMenuLink

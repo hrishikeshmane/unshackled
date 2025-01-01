@@ -6,7 +6,7 @@ import { FaLinkedinIn } from "react-icons/fa6";
 export const BLUR_FADE_DELAY = 0.15;
 
 export const siteConfig = {
-  newsletterCount: "20,000+",
+  newsletterCount: "25,000+",
   memberCount: "750+",
   name: "Greencard Inc",
   description:
@@ -27,7 +27,6 @@ export const siteConfig = {
       trigger: "Features",
       content: {
         main: {
-          // icon: <Icons.logo className="h-6 w-6" />,
           title: "AI-Powered Automation",
           description: "Streamline your workflow with intelligent automation.",
           href: "#",
