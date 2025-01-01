@@ -27,7 +27,6 @@ export const siteConfig = {
       trigger: "Features",
       content: {
         main: {
-          // icon: <Icons.logo className="h-6 w-6" />,
           title: "AI-Powered Automation",
           description: "Streamline your workflow with intelligent automation.",
           href: "#",
