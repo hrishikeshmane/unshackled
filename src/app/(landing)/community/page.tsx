@@ -478,7 +478,7 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
-              <div>
+              {/* <div>
                 <Image
                   src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/Bhuvan%20Shakthi.png?raw=true"
                   alt="Bhuvan Shakthi"
@@ -494,7 +494,7 @@ export default function HomePage() {
                     Sales & Operations Associate
                   </p>
                 </div>
-              </div>
+              </div> */}
               <div>
                 <Image
                   src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/swatilina.jpeg?raw=true"
