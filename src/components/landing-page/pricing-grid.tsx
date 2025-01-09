@@ -298,7 +298,8 @@ const PricingGrid = () => {
           </p>
 
           <h4 className="mt-2 text-4xl font-semibold text-gray-800 dark:text-gray-100">
-            <del className="text-muted-foreground">14,999</del> $9,999
+            {/* <del className="text-muted-foreground">14,999</del> $9,999 */}
+            Contact Us
           </h4>
 
           <p className="mt-4">
