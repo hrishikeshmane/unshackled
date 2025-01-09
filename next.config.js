@@ -61,6 +61,6 @@ const nextConfig = withAxiom({
   },
 });
 
-export default MillionLint.next({ rsc: true })(nextConfig);
+// export default MillionLint.next({ rsc: true })(nextConfig);
 
-// export default config;
+export default nextConfig;
