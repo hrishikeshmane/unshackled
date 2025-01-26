@@ -161,7 +161,7 @@ export default function Component() {
                   showButtons && product.data.requiresRefNumber && (
                     <>
                       <div className="mt-2 flex flex-col gap-4">
-                        <h3 className="text-xl text-primary font-semibold mb-4">Enter Price</h3>
+                        <h3 className="text-xl text-primary font-semibold mb-4">Reference Number</h3>
                         <Input
                           id="refNumber"
                           value={refNumber}
