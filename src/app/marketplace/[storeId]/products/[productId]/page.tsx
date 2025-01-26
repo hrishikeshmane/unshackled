@@ -45,6 +45,7 @@ export default function Component() {
   const [quantity, setQuantity] = useState(1)
   const [selectedPlan, setSelectedPlan] = useState(0)
   const [customPrice, setCustomPrice] = useState(10)
+  const [refNumber, setRefNumber] = useState("")
 
   if (product.isPending || similarProducts.isPending || existingRequest.isLoading) {
     return <div>Loading...</div>
@@ -157,6 +158,27 @@ export default function Component() {
               <div>
                 <>
                 {
+                  showButtons && product.data.requiresRefNumber && (
+                    <>
+                      <div className="mt-2 flex flex-col gap-4">
+                        <Label htmlFor="refNumber" className="text-sm font-medium text-muted-foreground">
+                          Reference Number
+                        </Label>
+                        <Input
+                          id="refNumber"
+                          value={refNumber}
+                          onChange={(e) => setRefNumber(e.target.value)}
+                          placeholder="Enter reference number"
+                          className="mt-2 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                        />
+                      </div>
+                      <p className="mt-2 text-xs text-muted-foreground" role="region" aria-live="polite">
+                        Please enter reference number provided by {product.data.name} prior to payment.
+                      </p>
+                    </>
+                  )
+                }
+                {
                   product.data.hasVariablePrice && showButtons && 
                   <>
                   <NumberField
@@ -201,6 +223,7 @@ export default function Component() {
                           onManualChange={handleManualChange}
                         />
                         <BuyNowButton
+                          refNumber={refNumber}
                           product={product.data}
                           quantity={quantity}
                           disabled={customPrice<10}
@@ -250,6 +273,7 @@ export default function Component() {
                         onManualChange={handleManualChange}
                       />
                       <BuyNowButton
+                        refNumber={refNumber}
                         product={product.data}
                         quantity={quantity}
                         price={String(currentPrice)}
@@ -266,6 +290,7 @@ export default function Component() {
                         <BuyNowButton
                           className="b-2 mx-0 border-primary mt-2"
                           variant="outline"
+                          refNumber={refNumber}
                           product={product.data}
                           quantity={quantity}
                           isDownPayment={true}

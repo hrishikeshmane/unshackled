@@ -28,11 +28,12 @@ const Page = () => {
   });
 
   const onCheckout = () => {
-    const cartItems = items.map(({ product, isDownPayment, quantity, orderPrice }) => ({
+    const cartItems = items.map(({ product, isDownPayment, quantity, orderPrice, refNumber }) => ({
       productId: product.id,
       quantity: quantity,
       isDownPayment: isDownPayment,
-      orderPrice: orderPrice
+      orderPrice: orderPrice,
+      refNumber: refNumber,
     }));
 
     startTransition(async () => {

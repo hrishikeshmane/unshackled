@@ -66,6 +66,7 @@ export const productsRouter = createTRPCRouter({
         hasPricingPlans: z.boolean(),
         hasVariablePrice: z.boolean(),
         showPricing: z.boolean(),
+        requiresRefNumber: z.boolean(),
         additionalLinkLabel: z.string(),
         additionalLinkUrl: z.string(),    
         orderCommunicationEmail: z.string(),

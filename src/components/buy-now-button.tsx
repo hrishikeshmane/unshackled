@@ -11,6 +11,7 @@ import { cn } from "~/lib/utils";
 interface BuyNowButtonProps {
   className?: string;
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost";
+  refNumber: string;
   product: ProductWithRelations;
   quantity: number;
   isDownPayment: boolean;
@@ -22,6 +23,7 @@ interface BuyNowButtonProps {
 const BuyNowButton: React.FC<BuyNowButtonProps> = ({
   className,
   variant,
+  refNumber,
   product,
   quantity,
   isDownPayment,
@@ -36,7 +38,7 @@ const BuyNowButton: React.FC<BuyNowButtonProps> = ({
   const handleBuyNow = () => {
     setIsLoading(true);
     clearCart();
-    addItem(product, isDownPayment, price, quantity); 
+    addItem(product, isDownPayment, price, refNumber, quantity); 
     router.push("/marketplace/cart");
   };
 
