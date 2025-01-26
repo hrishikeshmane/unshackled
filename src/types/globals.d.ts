@@ -93,9 +93,9 @@ export type ProductTable = {
     label: string;
     description: string;
     price: string;
-}[];
-hasPricingPlans: boolean;
-hasVariablePrice: boolean;
+  }[];
+  hasPricingPlans: boolean;
+  hasVariablePrice: boolean;
   showPricing: boolean;
   requiresVendorApproval: boolean;
   isExtRequiredFormApprovalLink: boolean;
@@ -108,6 +108,7 @@ hasVariablePrice: boolean;
   additionalLinkLabel: string,
   additionalLinkUrl: string,
   tagId: string;
+  requiresRefNumber: boolean;
   createdAt: Date;
   updatedAt: Date | null;
 };
@@ -148,6 +149,7 @@ hasVariablePrice: boolean;
   hasAdditionalLink: boolean,
   additionalLinkLabel: string,
   additionalLinkUrl: string,
+  requiresRefNumber: boolean;
   tagId: string;
   createdAt: Date;
   updatedAt: Date | null;
@@ -181,6 +183,7 @@ export type OrderItemTable = {
   id: string;
   isFulfilled: boolean;
   vendorPayout: boolean;
+  refNumber: string;
   orderId: string;
   productId: string;
   approval: "requested" | "approved" | "denied";

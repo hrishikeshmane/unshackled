@@ -75,6 +75,7 @@ const formSchema = z.object({
   hasPricingPlans: z.boolean().default(false),
   hasVariablePrice: z.boolean().default(false),
   showPricing: z.boolean().default(false),
+  requiresRefNumber: z.boolean().default(false),
   orderCommunicationEmail: z.string(),
   additionalOrderEmailText: z.string(),
   hasAdditionalLink: z.boolean(),
@@ -182,6 +183,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         pricingPlans: [],
         hasPricingPlans: false,
         showPricing: false,
+        requiresRefNumber: false,
         orderCommunicationEmail: "",
         additionalOrderEmailText: "",
         hasAdditionalLink: false,
@@ -270,6 +272,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         hasPricingPlans: data.hasPricingPlans,
         hasVariablePrice: data.hasVariablePrice,
         showPricing: data.showPricing,
+        requiresRefNumber: data.requiresRefNumber,
         orderCommunicationEmail: data.orderCommunicationEmail,
         additionalOrderEmailText: data.additionalOrderEmailText,
         hasAdditionalLink: data.hasAdditionalLink,
@@ -520,6 +523,28 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     <FormLabel>Hide Pricing?</FormLabel>
                     <FormDescription>
                       If you opt for this, your listing will only be present on Unshackled for marketing, you have to process orders and more from your end, also fill in the dummy values for prices wherever necessary in the form.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            </div>
+            <div className="grid grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="requiresRefNumber"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Requires Reference Number?</FormLabel>
+                    <FormDescription>
+                      If you opt for this customer would have to input reference number provided by you ideally upon service request approval.
                     </FormDescription>
                   </div>
                 </FormItem>

@@ -45,6 +45,7 @@ const OrdersPage = async () => {
             createdAt: format(item.order.createdAt, "MMMM do, yyyy"),
             customerFullName: customerFullName,
             customerEmail: customerEmail,
+            refNumber: item.refNumber,
         };
     }));
 

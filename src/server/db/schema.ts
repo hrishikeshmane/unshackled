@@ -162,6 +162,7 @@ export const product = createTable("product", {
   hasPricingPlans: integer("hasPricingPlans", { mode: "boolean" }).notNull().default(false),
   hasVariablePrice: integer("hasVariablePrice", { mode: "boolean" }).notNull().default(false),
   showPricing: integer("showPricing", { mode: "boolean" }).notNull().default(false),
+  requiresRefNumber: integer("requiresRefNumber", { mode: "boolean" }).notNull().default(false),
   tagId: text("tagId", { length: 256 })
     .notNull()
     .references(() => tag.id),
@@ -196,6 +197,7 @@ export const order = createTable("order", {
 export const orderItem = createTable("orderItem", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
   isFulfilled: integer("isFulfilled", { mode: "boolean" }).notNull(),
+  refNumber: text("refNumber", { length: 256 }).notNull().default(""),
   // isFulfilled: text("isFulfilled", {
   //   enum: ["notInitiated", "inProgress", "completed"],
   // }).default("notInitiated"),

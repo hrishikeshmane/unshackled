@@ -24,6 +24,7 @@ export const paymentRouter = createTRPCRouter({
             productId: z.string(),
             quantity: z.number().int().positive(),
             isDownPayment: z.boolean(),
+            refNumber: z.string(),
             orderPrice: z.string()
           }),
         ),
@@ -51,7 +52,7 @@ export const paymentRouter = createTRPCRouter({
               message: `Product with ID ${item.productId} not found`,
             });
           }
-          return { ...product, quantity: item.quantity, isDownPayment: item.isDownPayment, orderPrice: item.orderPrice };
+          return { ...product, quantity: item.quantity, isDownPayment: item.isDownPayment, orderPrice: item.orderPrice, refNumber: item.refNumber };
         }),
       );
       log.debug("buyProduct.products", products);
@@ -132,6 +133,7 @@ export const paymentRouter = createTRPCRouter({
             productId: String(product.id),
             isDownPayment: product.isDownPayment,
             quantity: product.quantity,
+            refNumber: product.refNumber,
             vendorPayout: false,
           }),
         ),

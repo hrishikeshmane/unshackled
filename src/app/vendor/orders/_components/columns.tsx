@@ -16,6 +16,7 @@ export type OrdersColumn = {
     createdAt: string
     customerFullName: string
     customerEmail: string
+    refNumber: string
 }
 
 export const columns: ColumnDef<OrdersColumn>[] = [
@@ -62,6 +63,10 @@ export const columns: ColumnDef<OrdersColumn>[] = [
     {
         accessorKey: "approval",
         header: 'approval'
+    },
+    {
+        accessorKey: "refNumber",
+        header: "Reference Number"
     },
     {
         accessorKey: 'createdAt',
