@@ -161,9 +161,7 @@ export default function Component() {
                   showButtons && product.data.requiresRefNumber && (
                     <>
                       <div className="mt-2 flex flex-col gap-4">
-                        <Label htmlFor="refNumber" className="text-sm font-medium text-muted-foreground">
-                          Reference Number
-                        </Label>
+                        <h3 className="text-xl text-primary font-semibold mb-4">Enter Price</h3>
                         <Input
                           id="refNumber"
                           value={refNumber}
@@ -172,7 +170,7 @@ export default function Component() {
                           className="mt-2 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                         />
                       </div>
-                      <p className="mt-2 text-xs text-muted-foreground" role="region" aria-live="polite">
+                      <p className="mt-2 text-xs text-muted-foreground mb-2" role="region" aria-live="polite">
                         Please enter reference number provided by {product.data.name} prior to payment.
                       </p>
                     </>
