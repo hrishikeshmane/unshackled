@@ -12,7 +12,7 @@ const PricingGrid = () => {
           </p>
 
           <h4 className="mt-2 text-4xl font-semibold text-gray-800 dark:text-gray-100">
-            $249
+            $299
           </h4>
 
           <p className="mt-4">
