@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
   Body,
-  Button,
   Container,
   Head,
   Hr,
@@ -14,16 +13,19 @@ import {
 
 interface CustomerOrderConfirmationEmailTemplateProps {
   firstName: string;
+  orderId: string;
+  productName: string;
+  refNumber: string;
 }
 
 export const CustomerOrderConfirmationEmailTemplate: React.FC<
   Readonly<CustomerOrderConfirmationEmailTemplateProps>
-> = ({ firstName }) => (
+> = ({ firstName, orderId, productName, refNumber }) => (
   <Html>
     <Head />
     <Preview>
       Thanks for your order. Let us introduce you to your vendor who will be
-      working with you to deliver you the promised service.
+      working with you to deliver the promised service.
     </Preview>
     <Body style={main}>
       <Container style={container}>
@@ -35,18 +37,24 @@ export const CustomerOrderConfirmationEmailTemplate: React.FC<
           style={logo}
         />
         <Text style={paragraph}>Hi {firstName},</Text>
+        <Text style={paragraph}>Thanks for your order.</Text>
+        <Text style={paragraph}>Order ID: <strong>{orderId}</strong></Text>
+        <Text style={paragraph}>Product Name: <strong>{productName}</strong></Text>
+        {
+          refNumber &&
+          <Text style={paragraph}>Reference Number: <strong>{refNumber}</strong></Text>
+        }
         <Text style={paragraph}>
-          Thanks for your order. Let us introduce you to your vendor who will be
-          working with you to deliver you the promised service
+          Let us introduce you to your vendor, who will be working with you to deliver the promised service.
         </Text>
         <Text style={paragraph}>
           The vendor will be taking over this email thread. Please keep your
-          communication on this email thread for visibity.
+          communication on this email thread for visibility.
         </Text>
         <Text style={paragraph}>
           Best,
           <br />
-          The Unshackled team
+          The Unshackled Team
         </Text>
       </Container>
     </Body>
@@ -71,29 +79,4 @@ const logo = {
 const paragraph = {
   fontSize: "16px",
   lineHeight: "26px",
-};
-
-const btnContainer = {
-  textAlign: "center" as const,
-};
-
-const button = {
-  backgroundColor: "#1454A1",
-  borderRadius: "3px",
-  color: "#fff",
-  fontSize: "16px",
-  textDecoration: "none",
-  textAlign: "center" as const,
-  display: "block",
-  padding: "12px",
-};
-
-const hr = {
-  borderColor: "#cccccc",
-  margin: "20px 0",
-};
-
-const footer = {
-  color: "#8898aa",
-  fontSize: "12px",
 };

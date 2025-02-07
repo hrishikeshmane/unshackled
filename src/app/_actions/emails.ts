@@ -183,15 +183,26 @@ export async function sendCustomerOrderEmail(
   email: string,
   firstName: string,
   vendorEmail: string,
+  orderId: string,
+  productName: string,
+  refNumber: string,
+  orderCommunicationEmail: string,
 ) {
   const resend = new Resend(RESEND_KEY);
+  const recipients = [email, vendorEmail];
+  if (orderCommunicationEmail.trim() !== "") {
+    recipients.push(orderCommunicationEmail);
+  }
   const { data, error } = await resend.emails.send({
     from: FROM_EMAIL,
-    to: [email, vendorEmail],
+    to: recipients,
     cc: UNSHACKLED_ADMIN_EMAIL,
-    subject: "[Unshackled Marketplace] Thanks for placing an order!",
+    subject: `[Unshackled Marketplace] Order Confirmation: ${productName}`,
     react: CustomerOrderConfirmationEmailTemplate({
       firstName: firstName,
+      orderId,
+      productName,
+      refNumber,
     }) as React.ReactElement,
   });
 
@@ -294,7 +305,7 @@ export async function sendCustomerApprovalForListing(
     from: FROM_EMAIL,
     to: [email],
     subject:
-      "You have a new customer request pending for approval/denial",
+      "Your service request Update",
     react: CustomerListingApproval({
       name,
       productId,
