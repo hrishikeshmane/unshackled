@@ -87,6 +87,9 @@ export default async function Footer() {
                   <Link href="/newsletter" className="block  " prefetch={false}>
                     Newsletter
                   </Link>
+                  <Link href="/refer" className="block  " prefetch={false}>
+                    Refer
+                  </Link>
                   <Link
                     href="/find-lawyers"
                     className="block  "
