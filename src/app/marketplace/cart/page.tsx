@@ -156,7 +156,7 @@ const Page = () => {
                               aria-hidden="true"
                             />
                             <span className="text-xs text-muted-foreground">
-                              Eligible for instant delivery
+                              Eligible for instant access
                             </span>
                           </div>
                         </div>
@@ -164,6 +164,29 @@ const Page = () => {
                     );
                   })}
               </ul>
+
+              {
+                items &&
+                <div className="mt-4 p-4 bg-gray-100 rounded-lg">
+                  <p className="text-sm text-gray-600">
+                    Thank you for choosing an Unshackled Marketplace vendor! Once you complete your purchase,
+                    you'll receive an email connecting you with the vendor, who will work with you directly.
+                  </p>
+                  <p className="text-sm text-gray-600 mt-2">
+                    <strong>Disclaimer:</strong> While we vet all vendors for credibility, Unshackled does not
+                    own or provide their services and is not liable for any disputes, delays, or service
+                    outcomes. Engagement is solely between you and the vendor.
+                  </p>
+                  <p className="text-sm text-gray-600 mt-2">
+                    For issues, please contact the vendor directly. Feedback? Email us at{" "}
+                    <Link href="mailto:hi@unshackled.club" className="text-primary hover:underline">
+                      hi@unshackled.club
+                    </Link>
+                    .
+                  </p>
+                </div>
+              }
+              
             </div>
 
             <section className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
