@@ -50,7 +50,7 @@ const BuyNowButton: React.FC<BuyNowButtonProps> = ({
       className={cn(className, "w-full")}
       disabled={isLoading}
     >
-      {isLoading ? "Processing..." : `${buttonText} (${price})`}
+      {isLoading ? "Processing..." : `${buttonText} ($${price})`}
     </Button>
   );
 };
