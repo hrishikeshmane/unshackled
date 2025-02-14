@@ -160,8 +160,10 @@ export default function Component() {
                 {
                   showButtons && product.data.requiresRefNumber && (
                     <>
-                      <div className="mt-2 flex flex-col gap-4">
-                        <h3 className="text-xl text-primary font-semibold mb-4">Reference Number</h3>
+                    {/* gap-4 */}
+                      <div className="mt-2 flex flex-col">
+                        {/* mb-4 */}
+                        <h3 className="text-xl text-primary font-semibold">Reference Number</h3>
                         <Input
                           id="refNumber"
                           value={refNumber}
@@ -190,7 +192,8 @@ export default function Component() {
                     }}
                   >
                     <div className="space-y-2">
-                      <h3 className="text-xl text-primary font-semibold mb-4">Enter Price</h3>
+                      {/* mb-4 */}
+                      <h3 className="text-xl text-primary font-semibold mb-2">Enter Price</h3>
                       <Group className="relative inline-flex h-9 w-full items-center overflow-hidden whitespace-nowrap rounded-lg border border-input text-sm shadow-sm shadow-black/5 transition-shadow data-[focus-within]:border-ring data-[disabled]:opacity-50 data-[focus-within]:outline-none data-[focus-within]:ring-[3px] data-[focus-within]:ring-ring/20">
                         <Input className="flex-1 bg-background px-3 py-2 tabular-nums text-foreground focus:outline-none" />
                         <div className="flex h-[calc(100%+2px)] flex-col">
@@ -338,7 +341,7 @@ export default function Component() {
                         </Link>
                       </div>
                     )}
-                    {product.data.requiresVendorApproval && (
+                    {product.data.requiresVendorApproval && !showButtons && (
                       <div className="flex mt-4 flex-col max-w-9/12 items-center space-x-4 text-center">
                         <Link
                           className="w-full"
