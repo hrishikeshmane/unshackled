@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { redirect } from "next/navigation"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { api } from "~/trpc/react"
 import { useParams, useSearchParams } from "next/navigation"
 import Link from "next/link"
@@ -44,7 +44,7 @@ export default function Component() {
 
   const [quantity, setQuantity] = useState(1)
   const [selectedPlan, setSelectedPlan] = useState(0)
-  const [customPrice, setCustomPrice] = useState(Number(product.data?.price) || 10)
+  const [customPrice, setCustomPrice] = useState(Number(product.data?.price) || 100)
   const [refNumber, setRefNumber] = useState("")
 
   if (product.isPending || similarProducts.isPending || existingRequest.isLoading) {
@@ -74,6 +74,12 @@ export default function Component() {
   const currentPrice = hasPricingPlans
     ? product.data.pricingPlans[selectedPlan]?.price
     : product.data.price
+
+    
+  useEffect(() => {
+    setCustomPrice(Number(product.data?.price))
+
+  }, [product.data])
 
   return (
     <MaxWidthWrapper>
@@ -182,8 +188,8 @@ export default function Component() {
                   product.data.hasVariablePrice && showButtons && 
                   <>
                   <NumberField
-                    defaultValue={customPrice}
-                    minValue={100}
+                    defaultValue={Number(product.data.price)}
+                    minValue={Number(product.data.price)}
                     onChange={(value) => setCustomPrice(value)}
                     formatOptions={{
                       style: "currency",
