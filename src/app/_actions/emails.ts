@@ -7,6 +7,7 @@ import { ApprovalFormResponses } from "~/components/email-templates/approval-for
 import { CustomerListingApproval } from "~/components/email-templates/customer-listing-approval";
 import { CustomerOrderConfirmationEmailTemplate } from "~/components/email-templates/customer-order-confirmation";
 import { CustomerOrderFullfilledConfirmationEmailTemplate } from "~/components/email-templates/customer-order-fulfilled";
+import { CustomerPaymentInitiatedEmailTemplate } from "~/components/email-templates/customer-payment-initiated";
 import { VendorApprovedEmailTemplate } from "~/components/email-templates/vendor-approved";
 import { VendorDeniedEmailTemplate } from "~/components/email-templates/vendor-denied";
 import { VendorListingApprovedEmailTemplate } from "~/components/email-templates/vendor-listing-approved";
@@ -199,6 +200,41 @@ export async function sendCustomerOrderEmail(
     cc: UNSHACKLED_ADMIN_EMAIL,
     subject: `[Unshackled Marketplace] Order Confirmation: ${productName}`,
     react: CustomerOrderConfirmationEmailTemplate({
+      firstName: firstName,
+      orderId,
+      productName,
+      refNumber,
+    }) as React.ReactElement,
+  });
+
+  if (error) {
+    console.error(error);
+    return error;
+  }
+
+  return data;
+}
+
+export async function sendCustomerPaymentInitiatedEmail(
+  email: string,
+  firstName: string,
+  vendorEmail: string,
+  orderId: string,
+  productName: string,
+  refNumber: string,
+  orderCommunicationEmail: string,
+) {
+  const resend = new Resend(RESEND_KEY);
+  const recipients = [email];
+  if (orderCommunicationEmail.trim() !== "") {
+    recipients.push(orderCommunicationEmail);
+  }
+  const { data, error } = await resend.emails.send({
+    from: FROM_EMAIL,
+    to: recipients,
+    cc: UNSHACKLED_ADMIN_EMAIL,
+    subject: `[Unshackled Marketplace] Payment Initiated: ${productName}`,
+    react: CustomerPaymentInitiatedEmailTemplate({
       firstName: firstName,
       orderId,
       productName,

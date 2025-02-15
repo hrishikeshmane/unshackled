@@ -123,11 +123,17 @@ export async function POST(req: Request) {
       break;
     }
     case "payment_intent.succeeded": {
-      const paymentIntent = event.data.object;
-      const orderId = paymentIntent.metadata?.orderId;
+      const session = event.data.object;
+      const log = new Logger().with({ userId: session.metadata?.customerId });
+      
+      const customerId = session.metadata?.customerId;
+      const orderId = session.metadata?.orderId;
 
-      if (!orderId) {
-        return new Response("Missing orderId in payment intent", { status: 400 });
+      // Check for required metadata
+      if (!customerId || !orderId) {
+        log.error(`[payment_intent.succeeded] Missing metadata: customerId = ${customerId}, orderId = ${orderId}`);
+        await log.flush();
+        return new Response("[payment_intent.succeeded] Missing metadata", { status: 400 });
       }
 
       await db
@@ -139,12 +145,13 @@ export async function POST(req: Request) {
         .where(eq(order.id, String(orderId)));
       break;
     }
+    
     case "payment_intent.payment_failed": {
       const paymentIntent = event.data.object;
       const orderId = paymentIntent.metadata?.orderId;
 
       if (!orderId) {
-        return new Response("Missing orderId in payment intent", { status: 400 });
+        return new Response("Missing orderId in payment intent failed", { status: 400 });
       }
 
       await db
