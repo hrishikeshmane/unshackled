@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { redirect } from "next/navigation"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { api } from "~/trpc/react"
 import { useParams, useSearchParams } from "next/navigation"
 import Link from "next/link"
@@ -74,12 +74,6 @@ export default function Component() {
   const currentPrice = hasPricingPlans
     ? product.data.pricingPlans[selectedPlan]?.price
     : product.data.price
-
-    
-  useEffect(() => {
-    setCustomPrice(Number(product.data?.price))
-
-  }, [product.data])
 
   return (
     <MaxWidthWrapper>
