@@ -69,6 +69,7 @@ export default function Component() {
     || vendorShare === 'true'
 
     console.log("REQ ACC >> ", showButtons)
+    console.log("REQ ACC >> ", showButtons)
 
   const sanitizedDescription = DOMPurify.sanitize(product.data.description)
 
