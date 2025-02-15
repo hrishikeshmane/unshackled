@@ -68,6 +68,8 @@ export default function Component() {
     || (existingRequest.data?.exists && existingRequest.data.status === "approved")
     || vendorShare === 'true'
 
+    console.log("REQ ACC >> ", showButtons)
+
   const sanitizedDescription = DOMPurify.sanitize(product.data.description)
 
   const hasPricingPlans = product.data.hasPricingPlans && product.data.pricingPlans && product.data.pricingPlans.length > 0
