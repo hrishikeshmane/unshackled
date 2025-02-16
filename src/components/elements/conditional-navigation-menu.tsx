@@ -76,8 +76,10 @@ export function ConditionalNavigationMenu({
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem> */}
-                {/* <NavigationMenuItem>
-                  <NavigationMenuTrigger>Marketplace</NavigationMenuTrigger>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>
+                    [NEW] Marketplace
+                  </NavigationMenuTrigger>
                   <NavigationMenuContent>
                      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                       <ListItem title={"Marketplace"} href={"/marketplace"}>
@@ -97,7 +99,7 @@ export function ConditionalNavigationMenu({
                       </ListItem>
                     </ul> 
                   </NavigationMenuContent>
-                </NavigationMenuItem>*/}
+                </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link href="/read-unshackled" legacyBehavior passHref>
                     <NavigationMenuLink
@@ -107,7 +109,7 @@ export function ConditionalNavigationMenu({
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <Link href="/find-lawyers" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
@@ -115,7 +117,7 @@ export function ConditionalNavigationMenu({
                       Find Lawyers
                     </NavigationMenuLink>
                   </Link>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
                 {/* <NavigationMenuItem>
                   <Link href="/newsletter" legacyBehavior passHref>
                     <NavigationMenuLink

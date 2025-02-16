@@ -90,13 +90,13 @@ export default async function Footer() {
                   <Link href="/refer" className="block  " prefetch={false}>
                     Refer
                   </Link>
-                  <Link
+                  {/* <Link
                     href="/find-lawyers"
                     className="block  "
                     prefetch={false}
                   >
                     Find Lawyers
-                  </Link>
+                  </Link> */}
                   <Link href="/course" className="block  " prefetch={false}>
                     Course
                   </Link>
@@ -159,7 +159,7 @@ const MarketplaceLinks = ({ stores }: { stores: IStore[] }) => {
     <>
       <h3 className="text-lg font-medium">Marketplace</h3>
       <nav className="mt-4 space-y-4">
-        {/* {stores.map((store) => (
+        {stores.map((store) => (
           <Link
             key={store.id}
             href={`/marketplace/${store.id}`}
@@ -167,7 +167,7 @@ const MarketplaceLinks = ({ stores }: { stores: IStore[] }) => {
           >
             {store.name}
           </Link>
-        ))} */}
+        ))}
         <BecomeASeller />
       </nav>
     </>
