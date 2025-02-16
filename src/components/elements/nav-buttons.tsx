@@ -37,7 +37,7 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
             </Link>
           ) : (
             <div className="flex w-full flex-col gap-4 md:flex md:flex-row">
-              {/* <Link href="/marketplace">
+              <Link href="/marketplace">
                 <Button
                   variant={"outline"}
                   className="flex gap-2 border-2 border-primary text-primary hover:text-primary"
@@ -46,8 +46,8 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
                   <ShoppingBag className="h-5" />
                   Shop on Marketplace
                 </Button>
-              </Link> */}
-              <Link
+              </Link>
+              {/* <Link
                 href={
                   pathname.includes("/community")
                     ? "#pricing-grid"
@@ -56,7 +56,7 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
                 className="w-full"
               >
                 <Button onClick={mobileSheetToggle}>Become a member</Button>
-              </Link>
+              </Link> */}
               <Link
                 href="https://go.greencard.inc/evaluation"
                 target="_blank"
