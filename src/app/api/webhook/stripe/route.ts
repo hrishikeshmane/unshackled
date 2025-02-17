@@ -75,6 +75,7 @@ export async function POST(req: Request) {
           refNumber: orderItem.refNumber,
           creatorId: product.creatorId,
           orderCommunicationEmail: product.orderCommunicationEmail,
+          orderTotal: order.orderTotal,
         })
         .from(order)
         .innerJoin(orderItem, eq(order.id, orderItem.orderId))
@@ -118,6 +119,7 @@ export async function POST(req: Request) {
         result[0].productName,
         result[0].refNumber,
         result[0].orderCommunicationEmail,
+        result[0].orderTotal,
       );
 
       break;

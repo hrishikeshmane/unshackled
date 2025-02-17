@@ -16,11 +16,12 @@ interface CustomerOrderConfirmationEmailTemplateProps {
   orderId: string;
   productName: string;
   refNumber: string;
+  orderTotal: string;
 }
 
 export const CustomerOrderConfirmationEmailTemplate: React.FC<
   Readonly<CustomerOrderConfirmationEmailTemplateProps>
-> = ({ firstName, orderId, productName, refNumber }) => (
+> = ({ firstName, orderId, productName, refNumber, orderTotal }) => (
   <Html>
     <Head />
     <Preview>
@@ -39,7 +40,8 @@ export const CustomerOrderConfirmationEmailTemplate: React.FC<
         <Text style={paragraph}>Hi {firstName},</Text>
         <Text style={paragraph}>Thanks for your order.</Text>
         <Text style={paragraph}>Order ID: <strong>{orderId}</strong></Text>
-        <Text style={paragraph}>Product Name: <strong>{productName}</strong></Text>
+        <Text style={paragraph}>Service: <strong>{productName}</strong></Text>
+        <Text style={paragraph}>Order Total: <strong>${orderTotal}</strong></Text>
         {
           refNumber &&
           <Text style={paragraph}>Reference Number: <strong>{refNumber}</strong></Text>

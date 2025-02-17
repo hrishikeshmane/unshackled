@@ -187,6 +187,7 @@ export async function sendCustomerOrderEmail(
   productName: string,
   refNumber: string,
   orderCommunicationEmail: string,
+  orderTotal: string,
 ) {
   const resend = new Resend(RESEND_KEY);
   const recipients = [email, vendorEmail];
@@ -203,6 +204,7 @@ export async function sendCustomerOrderEmail(
       orderId,
       productName,
       refNumber,
+      orderTotal,
     }) as React.ReactElement,
   });
 
