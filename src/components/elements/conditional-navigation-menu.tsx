@@ -109,7 +109,7 @@ export function ConditionalNavigationMenu({
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <Link href="/find-lawyers" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
@@ -117,7 +117,7 @@ export function ConditionalNavigationMenu({
                       Find Lawyers
                     </NavigationMenuLink>
                   </Link>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
                 {/* <NavigationMenuItem>
                   <Link href="/newsletter" legacyBehavior passHref>
                     <NavigationMenuLink
