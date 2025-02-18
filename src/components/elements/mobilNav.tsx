@@ -75,7 +75,7 @@ const MobileNav = ({
                   onClick={toggleSheet}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Marketplace
+                  [NEW] Marketplace
                 </Link>
                 <Link
                   href={"/course"}
@@ -92,7 +92,7 @@ const MobileNav = ({
                   onClick={toggleSheet}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  [NEW] EB-1A Copilot
+                  EB-1A Copilot
                 </Link>
                 {/*<Link
                   href={"/course"}
