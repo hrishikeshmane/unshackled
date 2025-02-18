@@ -157,15 +157,6 @@ export function ConditionalNavigationMenu({
                   </Link>
                 </NavigationMenuItem> */}
                 <NavigationMenuItem>
-                  <Link href="/copilot" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      EB-1A Copilot
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
                   <Link
                     href={
                       pathname.includes("/community")
@@ -178,6 +169,15 @@ export function ConditionalNavigationMenu({
                       className={navigationMenuTriggerStyle()}
                     >
                       Become a member
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/copilot" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      EB-1A Copilot
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
