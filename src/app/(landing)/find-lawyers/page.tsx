@@ -161,7 +161,7 @@ const LawyerPage = () => {
           </div>
         </section> */}
 
-        <section className="relative flex flex-col items-center justify-center py-12 sm:py-16 lg:pt-20 xl:pb-0">
+        {/* <section className="relative flex flex-col items-center justify-center py-12 sm:py-16 lg:pt-20 xl:pb-0">
           <h2 className="mt-5 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl sm:leading-tight lg:text-4xl lg:leading-tight">
             Lawyer Directory
           </h2>
@@ -215,7 +215,7 @@ const LawyerPage = () => {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
       </main>
       <Footer />
     </div>
