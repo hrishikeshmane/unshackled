@@ -389,7 +389,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto my-4 flex w-full max-w-6xl flex-col justify-center gap-4 rounded-lg p-10">
+        {/* <section className="mx-auto my-4 flex w-full max-w-6xl flex-col justify-center gap-4 rounded-lg p-10">
           <h2 className="mx-auto mb-10 max-w-5xl text-center text-4xl font-bold">
             The <span className="text-primary">Team</span> behind Unshackled x
             Greencard Inc
@@ -478,7 +478,7 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
-              {/* <div>
+              <div>
                 <Image
                   src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/Bhuvan%20Shakthi.png?raw=true"
                   alt="Bhuvan Shakthi"
@@ -494,7 +494,7 @@ export default function HomePage() {
                     Sales & Operations Associate
                   </p>
                 </div>
-              </div> */}
+              </div>
               <div>
                 <Image
                   src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/team/swatilina.jpeg?raw=true"
@@ -527,7 +527,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section className="mx-auto my-8 flex w-full max-w-7xl flex-col items-center justify-center gap-4 py-10">
           <h2 className="max-w-4xl text-center text-4xl font-bold">

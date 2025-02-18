@@ -76,7 +76,7 @@ export function ConditionalNavigationMenu({
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem> */}
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <NavigationMenuTrigger>
                     [NEW] Marketplace
                   </NavigationMenuTrigger>
@@ -99,6 +99,15 @@ export function ConditionalNavigationMenu({
                       </ListItem>
                     </ul> 
                   </NavigationMenuContent>
+                </NavigationMenuItem> */}
+                <NavigationMenuItem>
+                  <Link href="/marketplace" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      [NEW] Marketplace
+                    </NavigationMenuLink>
+                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link href="/read-unshackled" legacyBehavior passHref>
@@ -177,7 +186,7 @@ export function ConditionalNavigationMenu({
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
                     >
-                      EB-1A Copilot
+                      EB1 Copilot
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>

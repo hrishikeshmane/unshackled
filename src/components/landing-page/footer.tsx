@@ -71,9 +71,9 @@ export default async function Footer() {
                   <Link href="#" className="block  " prefetch={false}>
                     Home
                   </Link>
-                  <Link href="#" className="block  " prefetch={false}>
+                  {/* <Link href="#" className="block  " prefetch={false}>
                     Start Here
-                  </Link>
+                  </Link> */}
                   {/* <Link href="#" className="block  " prefetch={false}>
                     Find top lawyers
                   </Link> */}
@@ -87,9 +87,6 @@ export default async function Footer() {
                   <Link href="/newsletter" className="block  " prefetch={false}>
                     Newsletter
                   </Link>
-                  <Link href="/refer" className="block  " prefetch={false}>
-                    Refer
-                  </Link>
                   {/* <Link
                     href="/find-lawyers"
                     className="block  "
@@ -101,9 +98,11 @@ export default async function Footer() {
                     Course
                   </Link>
                   <Link href="/copilot" className="block  " prefetch={false}>
-                    EB-1A Copilot
+                    EB1 Copilot
                   </Link>
-
+                  <Link href="/refer" className="block  " prefetch={false}>
+                    Refer
+                  </Link>
                   {/* <Link href="#" className="block  " prefetch={false}>
                     Our story
                   </Link> */}

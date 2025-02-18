@@ -18,20 +18,19 @@ import Image from "next/image";
 import { siteConfig } from "~/lib/config";
 
 const faqs = [
-  {
-    question: "Who is teaching this course?",
-    answer: (
-      <>
-        <p>
-          This course is taught by Attorney Allison Kranz. She is the Principal
-          Partner at Lodestone Legal. With 15+ years of experience, she has
-          filed 1000s of petitions. She has also advised Fortune 500 companies
-          in immigration matters and her global immigration practice focuses on
-          finding self-sponsored solutions.
-        </p>
-      </>
-    ),
-  },
+  // {
+  //   question: "Who is teaching this course?",
+  //   answer: (
+  //     <>
+  //       <p>
+  //         This course is taught by leading immigration attorneys. With extensive experience, they have
+  //         filed 1000s of petitions. They has also advised Fortune 500 companies
+  //         in immigration matters and their global immigration practice focuses on
+  //         finding self-sponsored solutions.
+  //       </p>
+  //     </>
+  //   ),
+  // },
   {
     question: 'What is the right "track" for me? How do I choose?',
     answer: (
@@ -504,7 +503,7 @@ const MeetPeople = () => {
                       <Mail className="h-5 w-5" />
                     </a>
                   )}
-                  {member.linkedin && (
+                  {/* {member.linkedin && (
                     <a
                       href={member.linkedin}
                       target="_blank"
@@ -525,7 +524,7 @@ const MeetPeople = () => {
                     >
                       <Instagram className="h-5 w-5" />
                     </a>
-                  )}
+                  )} */}
                 </div>
               </CardContent>
             </div>
