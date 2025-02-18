@@ -57,25 +57,18 @@ const MobileNav = ({
             {
               <>
                 <Link
-                  href={"/read-unshackled"}
-                  onClick={toggleSheet}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Read Unshackled
-                </Link>
-                <Link
-                  href={"/community"}
-                  onClick={toggleSheet}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Community
-                </Link>
-                <Link
                   href={"/marketplace"}
                   onClick={toggleSheet}
                   className="text-muted-foreground hover:text-foreground"
                 >
                   [NEW] Marketplace
+                </Link>
+                <Link
+                  href={"/read-unshackled"}
+                  onClick={toggleSheet}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Read Unshackled
                 </Link>
                 <Link
                   href={"/course"}
@@ -86,6 +79,13 @@ const MobileNav = ({
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Course
+                </Link>
+                <Link
+                  href={"/community"}
+                  onClick={toggleSheet}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Community
                 </Link>
                 <Link
                   href={"/copilot"}
