@@ -55,7 +55,7 @@ export default async function Footer() {
               website.
             </p>
             <p className="mt-4 text-sm text-gray-600">
-              &copy; 2024 unshackled.club
+              &copy; {`${new Date().getUTCFullYear()} `} unshackled.club
             </p>
           </div>
           <div className="mt-8 flex w-full flex-auto flex-col gap-6 lg:mt-0 lg:max-w-[30rem]">
