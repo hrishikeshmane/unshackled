@@ -494,7 +494,7 @@ const MeetPeople = () => {
               <CardContent className="p-0">
                 <p className="mb-4 text-sm">{member.bio}</p>
                 <div className="flex items-center gap-4">
-                  {member.email && (
+                  {/* {member.email && (
                     <a
                       href={`mailto:${member.email}`}
                       className="text-primary hover:text-primary/80"
@@ -502,7 +502,7 @@ const MeetPeople = () => {
                     >
                       <Mail className="h-5 w-5" />
                     </a>
-                  )}
+                  )} */}
                   {/* {member.linkedin && (
                     <a
                       href={member.linkedin}
