@@ -3,15 +3,13 @@ import {
   Body,
   Container,
   Head,
-  Hr,
   Html,
   Img,
   Preview,
-  Section,
   Text,
 } from "@react-email/components";
 
-interface CustomerPaymentInitiatedEmailTemplateProps {
+interface CustomerRefundSuccessfulEmailTemplateProps {
   firstName: string;
   orderId: string;
   productName: string;
@@ -19,13 +17,13 @@ interface CustomerPaymentInitiatedEmailTemplateProps {
   orderTotal: string;
 }
 
-export const CustomerPaymentInitiatedEmailTemplate: React.FC<
-  Readonly<CustomerPaymentInitiatedEmailTemplateProps>
+export const CustomerRefundSuccessfulEmailTemplate: React.FC<
+  Readonly<CustomerRefundSuccessfulEmailTemplateProps>
 > = ({ firstName, orderId, productName, refNumber, orderTotal }) => (
   <Html>
     <Head />
     <Preview>
-      Payment Initiation Confirmation for {productName}
+      Refund Processed for Order #{orderId}
     </Preview>
     <Body style={main}>
       <Container style={container}>
@@ -38,10 +36,7 @@ export const CustomerPaymentInitiatedEmailTemplate: React.FC<
         />
         <Text style={paragraph}>Dear {firstName},</Text>
         <Text style={paragraph}>
-          Thank you for your recent order with Unshackled.
-        </Text>
-        <Text style={paragraph}>
-          We are writing to confirm that your payment for the following item has been successfully initiated:
+          We have successfully processed your refund for the following order:
         </Text>
         <Text style={paragraph}>
           <strong>Order ID:</strong> {orderId}
@@ -55,13 +50,14 @@ export const CustomerPaymentInitiatedEmailTemplate: React.FC<
           </Text>
         )}
         <Text style={paragraph}>
-          <strong>Order Total:</strong> {orderTotal}
+          <strong>Refund Amount:</strong> {orderTotal}
         </Text>
         <Text style={paragraph}>
-          Once your payment has been successfully processed, you will receive an email introducing you to your vendor. If you have already received this communication, kindly disregard this message.
+          The refund has been processed and should appear in your account within 5-10 business days, 
+          depending on your payment method and financial institution.
         </Text>
         <Text style={paragraph}>
-          Should you have any questions or need assistance, please don’t hesitate to contact our support team.
+          If you have any questions about this refund, please don't hesitate to contact our support team.
         </Text>
         <Text style={paragraph}>
           Best regards,

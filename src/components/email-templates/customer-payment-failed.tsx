@@ -3,29 +3,32 @@ import {
   Body,
   Container,
   Head,
-  Hr,
   Html,
   Img,
   Preview,
   Section,
   Text,
+  Button,
+  Link,
 } from "@react-email/components";
 
-interface CustomerPaymentInitiatedEmailTemplateProps {
+interface CustomerPaymentFailedEmailTemplateProps {
   firstName: string;
   orderId: string;
+  productId: string;
+  storeId: string;
   productName: string;
   refNumber: string;
   orderTotal: string;
 }
 
-export const CustomerPaymentInitiatedEmailTemplate: React.FC<
-  Readonly<CustomerPaymentInitiatedEmailTemplateProps>
-> = ({ firstName, orderId, productName, refNumber, orderTotal }) => (
+export const CustomerPaymentFailedEmailTemplate: React.FC<
+  Readonly<CustomerPaymentFailedEmailTemplateProps>
+> = ({ firstName, orderId, productId, storeId, productName, refNumber, orderTotal }) => (
   <Html>
     <Head />
     <Preview>
-      Payment Initiation Confirmation for {productName}
+      Payment Failed for {productName}
     </Preview>
     <Body style={main}>
       <Container style={container}>
@@ -38,10 +41,10 @@ export const CustomerPaymentInitiatedEmailTemplate: React.FC<
         />
         <Text style={paragraph}>Dear {firstName},</Text>
         <Text style={paragraph}>
-          Thank you for your recent order with Unshackled.
+          We noticed there was an issue processing your payment for your recent order with Unshackled.
         </Text>
         <Text style={paragraph}>
-          We are writing to confirm that your payment for the following item has been successfully initiated:
+          Here are the details of the order that couldn't be processed:
         </Text>
         <Text style={paragraph}>
           <strong>Order ID:</strong> {orderId}
@@ -57,11 +60,26 @@ export const CustomerPaymentInitiatedEmailTemplate: React.FC<
         <Text style={paragraph}>
           <strong>Order Total:</strong> {orderTotal}
         </Text>
+        <Section style={buttonContainer}>
+          <Link
+            href={`https://www.unshackled.club/marketplace/${storeId}/products/${productId}`}
+            style={button}
+          >
+            Try Payment Again
+          </Link>
+        </Section>
         <Text style={paragraph}>
-          Once your payment has been successfully processed, you will receive an email introducing you to your vendor. If you have already received this communication, kindly disregard this message.
+          Before retrying, please ensure:
         </Text>
         <Text style={paragraph}>
-          Should you have any questions or need assistance, please don’t hesitate to contact our support team.
+          • Your card/account has sufficient funds
+          <br />
+          • Your card/account details are entered correctly
+          <br />
+          • Your card is not expired or blocked for online transactions
+        </Text>
+        <Text style={paragraph}>
+          If you continue to experience issues, our support team is here to help.
         </Text>
         <Text style={paragraph}>
           Best regards,
@@ -91,4 +109,23 @@ const logo = {
 const paragraph = {
   fontSize: "16px",
   lineHeight: "26px",
+};
+
+const buttonContainer = {
+  textAlign: "center" as const,
+  marginTop: "26px",
+  marginBottom: "26px",
+};
+
+const button = {
+  backgroundColor: "#000000",
+  borderRadius: "5px",
+  color: "#fff",
+  fontSize: "16px",
+  fontWeight: "bold",
+  textDecoration: "none",
+  textAlign: "center" as const,
+  display: "inline-block",
+  padding: "12px 20px",
+  margin: "0 auto",
 };

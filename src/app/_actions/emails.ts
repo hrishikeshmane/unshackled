@@ -7,7 +7,9 @@ import { ApprovalFormResponses } from "~/components/email-templates/approval-for
 import { CustomerListingApproval } from "~/components/email-templates/customer-listing-approval";
 import { CustomerOrderConfirmationEmailTemplate } from "~/components/email-templates/customer-order-confirmation";
 import { CustomerOrderFullfilledConfirmationEmailTemplate } from "~/components/email-templates/customer-order-fulfilled";
+import { CustomerPaymentFailedEmailTemplate } from "~/components/email-templates/customer-payment-failed";
 import { CustomerPaymentInitiatedEmailTemplate } from "~/components/email-templates/customer-payment-initiated";
+import { CustomerRefundSuccessfulEmailTemplate } from "~/components/email-templates/customer-refund-successful";
 import { VendorApprovedEmailTemplate } from "~/components/email-templates/vendor-approved";
 import { VendorDeniedEmailTemplate } from "~/components/email-templates/vendor-denied";
 import { VendorListingApprovedEmailTemplate } from "~/components/email-templates/vendor-listing-approved";
@@ -220,17 +222,14 @@ export async function sendCustomerOrderEmail(
 export async function sendCustomerPaymentInitiatedEmail(
   email: string,
   firstName: string,
-  vendorEmail: string,
   orderId: string,
   productName: string,
   refNumber: string,
-  orderCommunicationEmail: string,
+  orderTotal: string,
 ) {
   const resend = new Resend(RESEND_KEY);
   const recipients = [email];
-  if (orderCommunicationEmail.trim() !== "") {
-    recipients.push(orderCommunicationEmail);
-  }
+
   const { data, error } = await resend.emails.send({
     from: FROM_EMAIL,
     to: recipients,
@@ -241,6 +240,7 @@ export async function sendCustomerPaymentInitiatedEmail(
       orderId,
       productName,
       refNumber,
+      orderTotal
     }) as React.ReactElement,
   });
 
@@ -251,6 +251,68 @@ export async function sendCustomerPaymentInitiatedEmail(
 
   return data;
 }
+
+export async function sendCustomerPaymentFailedEmail(
+  email: string,
+  firstName: string,
+  orderId: string,
+  productId: string,
+  storeId: string,
+  productName: string,
+  refNumber: string,
+  orderTotal: string,
+) {
+  const resend = new Resend(RESEND_KEY);
+  const recipients = [email];
+
+  const { data, error } = await resend.emails.send({
+    from: FROM_EMAIL,
+    to: recipients,
+    cc: UNSHACKLED_ADMIN_EMAIL,
+    subject: `[Unshackled Marketplace] Payment Failed: ${productName}`,
+    react: CustomerPaymentFailedEmailTemplate({
+      firstName: firstName,
+      orderId,
+      productId,
+      storeId,
+      productName,
+      refNumber,
+      orderTotal,
+    }) as React.ReactElement,
+  });
+
+  if (error) {
+    console.error(error);
+    return error;
+  }
+
+  return data;
+}
+
+export const sendCustomerRefundSuccessfulEmail = async (
+  customerEmail: string,
+  customerFirstName: string,
+  orderId: string,
+  productName: string,
+  refNumber: string,
+  orderTotal: string,
+) => {
+
+  const resend = new Resend(RESEND_KEY);
+  
+  await resend.emails.send({
+    from: "Unshackled <noreply@unshackled.club>",
+    to: customerEmail,
+    subject: `Refund Processed for Order #${orderId}`,
+    react: CustomerRefundSuccessfulEmailTemplate({
+      firstName: customerFirstName,
+      orderId,
+      productName,
+      refNumber,
+      orderTotal,
+    }),
+  });
+};
 
 export async function sendCustomerOrderFullfilledEmail(
   email: string,
