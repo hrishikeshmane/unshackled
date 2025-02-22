@@ -77,7 +77,9 @@ export function ConditionalNavigationMenu({
                   </NavigationMenuContent>
                 </NavigationMenuItem> */}
                 {/* <NavigationMenuItem>
-                  <NavigationMenuTrigger>Marketplace</NavigationMenuTrigger>
+                  <NavigationMenuTrigger>
+                    [NEW] Marketplace
+                  </NavigationMenuTrigger>
                   <NavigationMenuContent>
                      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                       <ListItem title={"Marketplace"} href={"/marketplace"}>
@@ -97,7 +99,16 @@ export function ConditionalNavigationMenu({
                       </ListItem>
                     </ul> 
                   </NavigationMenuContent>
-                </NavigationMenuItem>*/}
+                </NavigationMenuItem> */}
+                <NavigationMenuItem>
+                  <Link href="/marketplace" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      [NEW] Marketplace
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link href="/read-unshackled" legacyBehavior passHref>
                     <NavigationMenuLink
@@ -107,7 +118,7 @@ export function ConditionalNavigationMenu({
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <Link href="/find-lawyers" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
@@ -115,7 +126,7 @@ export function ConditionalNavigationMenu({
                       Find Lawyers
                     </NavigationMenuLink>
                   </Link>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
                 {/* <NavigationMenuItem>
                   <Link href="/newsletter" legacyBehavior passHref>
                     <NavigationMenuLink
@@ -155,11 +166,27 @@ export function ConditionalNavigationMenu({
                   </Link>
                 </NavigationMenuItem> */}
                 <NavigationMenuItem>
+                  <Link
+                    href={
+                      pathname.includes("/community")
+                        ? "#pricing-grid"
+                        : "/community"
+                    }
+                    legacyBehavior passHref
+                  >
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Become a member
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
                   <Link href="/copilot" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
                     >
-                      [NEW] EB-1A Copilot
+                      EB1 Copilot
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>

@@ -55,7 +55,7 @@ export default async function Footer() {
               website.
             </p>
             <p className="mt-4 text-sm text-gray-600">
-              &copy; 2024 unshackled.club
+              &copy; {`${new Date().getUTCFullYear()} `} unshackled.club
             </p>
           </div>
           <div className="mt-8 flex w-full flex-auto flex-col gap-6 lg:mt-0 lg:max-w-[30rem]">
@@ -71,9 +71,9 @@ export default async function Footer() {
                   <Link href="#" className="block  " prefetch={false}>
                     Home
                   </Link>
-                  <Link href="#" className="block  " prefetch={false}>
+                  {/* <Link href="#" className="block  " prefetch={false}>
                     Start Here
-                  </Link>
+                  </Link> */}
                   {/* <Link href="#" className="block  " prefetch={false}>
                     Find top lawyers
                   </Link> */}
@@ -87,23 +87,22 @@ export default async function Footer() {
                   <Link href="/newsletter" className="block  " prefetch={false}>
                     Newsletter
                   </Link>
-                  <Link href="/refer" className="block  " prefetch={false}>
-                    Refer
-                  </Link>
-                  <Link
+                  {/* <Link
                     href="/find-lawyers"
                     className="block  "
                     prefetch={false}
                   >
                     Find Lawyers
-                  </Link>
+                  </Link> */}
                   <Link href="/course" className="block  " prefetch={false}>
                     Course
                   </Link>
                   <Link href="/copilot" className="block  " prefetch={false}>
-                    EB-1A Copilot
+                    EB1 Copilot
                   </Link>
-
+                  <Link href="/refer" className="block  " prefetch={false}>
+                    Refer
+                  </Link>
                   {/* <Link href="#" className="block  " prefetch={false}>
                     Our story
                   </Link> */}
@@ -159,7 +158,7 @@ const MarketplaceLinks = ({ stores }: { stores: IStore[] }) => {
     <>
       <h3 className="text-lg font-medium">Marketplace</h3>
       <nav className="mt-4 space-y-4">
-        {/* {stores.map((store) => (
+        {stores.map((store) => (
           <Link
             key={store.id}
             href={`/marketplace/${store.id}`}
@@ -167,7 +166,7 @@ const MarketplaceLinks = ({ stores }: { stores: IStore[] }) => {
           >
             {store.name}
           </Link>
-        ))} */}
+        ))}
         <BecomeASeller />
       </nav>
     </>

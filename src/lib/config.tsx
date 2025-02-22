@@ -209,8 +209,7 @@ export const siteConfig = {
       answer: (
         <>
           <p>
-            We’ve partnered with Lodestone Legal, led by expert attorney Allison
-            Kranz, who has extensive experience in filing EB-1A cases,
+            We’ve partnered with leading immigration attorneys, who have extensive experience in filing EB-1A cases,
             especially for individuals in the tech and STEM fields.
           </p>
         </>

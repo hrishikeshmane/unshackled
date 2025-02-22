@@ -8,7 +8,7 @@ const PricingGrid = () => {
       <div className="mt-16 grid gap-6 sm:grid-cols-1 md:grid-cols-3">
         <div className="flex transform flex-col rounded-lg border px-6 py-4 transition-colors duration-300">
           <p className="pb-2 text-lg font-medium text-gray-800 dark:text-gray-100">
-            EB-1A Course Tier
+            Course Tier
           </p>
 
           <h4 className="mt-2 text-4xl font-semibold text-gray-800 dark:text-gray-100">
@@ -37,7 +37,7 @@ const PricingGrid = () => {
               </svg>
 
               <span className="mx-4 text-gray-700 dark:text-gray-300">
-                EB-1A self-paced course
+                O-1A, EB2-NIW Or EB-1A self-paced course
               </span>
             </div>
 
@@ -343,7 +343,7 @@ const PricingGrid = () => {
               </svg>
 
               <span className="mx-4 text-gray-700 dark:text-gray-300">
-                Filing discount of $2999 [ft. Lodestone]
+                Filing discount of $1999
               </span>
             </div>
 
@@ -362,7 +362,7 @@ const PricingGrid = () => {
               </svg>
 
               <span className="mx-4 text-gray-700 dark:text-gray-300">
-                Profile strategy call (worth $499)
+                EB1 roadmapping call with Attorney
               </span>
             </div>
 
@@ -381,11 +381,11 @@ const PricingGrid = () => {
               </svg>
 
               <span className="mx-4 text-gray-700 dark:text-gray-300">
-                Press coverage across 5 outlets (worth $3999)
+                Press coverage across international outlets
               </span>
             </div>
 
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-primary"
@@ -402,7 +402,7 @@ const PricingGrid = () => {
               <span className="mx-4 text-gray-700 dark:text-gray-300">
                 Weekly office-hour with mentors
               </span>
-            </div>
+            </div> */}
 
             <div className="flex items-center">
               <svg
@@ -461,7 +461,7 @@ const PricingGrid = () => {
               </span>
             </div>
 
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-primary"
@@ -478,7 +478,7 @@ const PricingGrid = () => {
               <span className="mx-4 text-gray-700 dark:text-gray-300">
                 Priority support on Slack
               </span>
-            </div>
+            </div> */}
 
             <div className="flex items-center">
               <svg

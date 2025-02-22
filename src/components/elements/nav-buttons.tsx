@@ -47,7 +47,7 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
                   Shop on Marketplace
                 </Button>
               </Link> */}
-              <Link
+              {/* <Link
                 href={
                   pathname.includes("/community")
                     ? "#pricing-grid"
@@ -56,7 +56,7 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
                 className="w-full"
               >
                 <Button onClick={mobileSheetToggle}>Become a member</Button>
-              </Link>
+              </Link> */}
               <Link
                 href="https://go.greencard.inc/evaluation"
                 target="_blank"

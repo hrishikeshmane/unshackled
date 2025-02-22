@@ -139,7 +139,7 @@ const LawyerPage = () => {
   return (
     <div className="flex min-h-screen w-full flex-col bg-[#F5F9FF]">
       <main>
-        <section className="relative py-12 sm:py-16 lg:pt-20 xl:pb-0">
+        {/* <section className="relative py-12 sm:py-16 lg:pt-20 xl:pb-0">
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl text-center">
               <h1 className="mt-5 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight">
@@ -159,9 +159,9 @@ const LawyerPage = () => {
               </p>
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section className="relative flex flex-col items-center justify-center py-12 sm:py-16 lg:pt-20 xl:pb-0">
+        {/* <section className="relative flex flex-col items-center justify-center py-12 sm:py-16 lg:pt-20 xl:pb-0">
           <h2 className="mt-5 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl sm:leading-tight lg:text-4xl lg:leading-tight">
             Lawyer Directory
           </h2>
@@ -215,7 +215,7 @@ const LawyerPage = () => {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
       </main>
       <Footer />
     </div>
