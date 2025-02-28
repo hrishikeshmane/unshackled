@@ -168,28 +168,14 @@ const Page = () => {
             />
             <div className="flex flex-col py-4 text-center">
               <h3 className="text-lg font-bold text-primary">
-                Soundarya Soundararajan
+                Soundarya Balasubramani
               </h3>
-              <p className="text-muted-foreground">Author</p>
+              <p className="text-muted-foreground">
+                Author (Co-authored with Sameer Khedekar, Immigration Attorney){" "}
+              </p>
             </div>
           </div>
           <div className="col-start-2 md:col-start-3">
-            <Image
-              src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/team/Soundarya%20Soundararajan.webp"
-              alt="Sameer Khedekar"
-              width={270}
-              height={270}
-              className="rounded-lg"
-            />
-            <div className="flex flex-col py-4 text-center">
-              <h3 className="text-lg font-bold text-primary">
-                Sameer Khedekar
-              </h3>
-              <p className="text-muted-foreground">Author</p>
-            </div>
-          </div>
-
-          <div className="col-start-1">
             <Image
               src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/team/Rishabh%20Singh.webp"
               alt="Rishabh Singh"
@@ -216,19 +202,6 @@ const Page = () => {
             </div>
           </div>
           <div className="col-start-1 md:col-start-3">
-            <Image
-              src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/team/Ben%20Merill.webp"
-              alt="Ben Merill"
-              width={270}
-              height={270}
-              className="rounded-lg"
-            />
-            <div className="flex flex-col py-4 text-center">
-              <h3 className="text-lg font-bold text-primary">Ben Merill</h3>
-              <p className="text-muted-foreground">Researcher & Contributor</p>
-            </div>
-          </div>
-          <div className="col-start-2 md:col-start-4">
             <Image
               src="https://raw.githubusercontent.com/hrishikeshmane/unshackled-asstets/main/book/team/Anaik%20Alcasas.webp"
               alt="Anaik Alcasas"
