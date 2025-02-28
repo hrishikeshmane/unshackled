@@ -172,7 +172,8 @@ export function ConditionalNavigationMenu({
                         ? "#pricing-grid"
                         : "/community"
                     }
-                    legacyBehavior passHref
+                    legacyBehavior
+                    passHref
                   >
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
@@ -182,11 +183,17 @@ export function ConditionalNavigationMenu({
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/copilot" legacyBehavior passHref>
+                  <Link
+                    href="http://go.readunshackled.com/webinar"
+                    // legacyBehavior
+                    // passHref
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
                     >
-                      EB1 Copilot
+                      Join Webinar
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
