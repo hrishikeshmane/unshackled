@@ -15,6 +15,15 @@ export default function HomePage() {
   return (
     <div className="flex w-full flex-col bg-[#F5F9FF]">
       <div>
+        <Link
+          target="_blank"
+          rel="noopener noreferrer"
+          href="http://go.readunshackled.com/unshackled-uac"
+          className="md:text-md sticky top-16 z-50 flex h-10 w-full cursor-pointer items-center justify-center bg-primary text-center text-sm font-semibold text-primary-foreground"
+        >
+          Attend the LARGEST conference for high-skilled immigrants in America
+          [Aug 15-16, 2025]
+        </Link>
         <HeroSection />
 
         <section className="mx-auto my-8 flex w-full justify-center">
