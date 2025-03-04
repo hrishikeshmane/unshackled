@@ -110,6 +110,16 @@ export function ConditionalNavigationMenu({
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
+                  <Link
+                    className="transition-all hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="http://go.readunshackled.com/unshackled-uac"
+                  >
+                    [NEW] Conference
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
                   <Link href="/read-unshackled" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
@@ -118,6 +128,7 @@ export function ConditionalNavigationMenu({
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
+
                 {/* <NavigationMenuItem>
                   <Link href="/find-lawyers" legacyBehavior passHref>
                     <NavigationMenuLink

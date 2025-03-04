@@ -64,6 +64,14 @@ const MobileNav = ({
                   [NEW] Marketplace
                 </Link>
                 <Link
+                  className="transition-all hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://go.readunshackled.com/unshackled-uac"
+                >
+                  [NEW] Conference
+                </Link>
+                <Link
                   href={"/read-unshackled"}
                   onClick={toggleSheet}
                   className="text-muted-foreground hover:text-foreground"
