@@ -53,88 +53,80 @@ const MobileNav = ({
               <NavButtons role={role} toggleSheet={toggleSheet} />
             </div>
 
-            {/* Landing page routes */}
-            {
-              <>
-                <Link
-                  href={"/marketplace"}
-                  onClick={toggleSheet}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  [NEW] Marketplace
-                </Link>
-                <Link
-                  className="transition-all hover:underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="http://go.readunshackled.com/unshackled-uac"
-                >
-                  [NEW] Conference
-                </Link>
-                <Link
-                  href={"/read-unshackled"}
-                  onClick={toggleSheet}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Read Unshackled
-                </Link>
-                <Link
-                  href={"/course"}
-                  // href="https://unshackled.thinkific.com/courses/eb1a"
-                  // target="_blank"
-                  // rel="noopener noreferrer"
-                  onClick={toggleSheet}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Course
-                </Link>
-                <Link
-                  href={"/community"}
-                  onClick={toggleSheet}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Community
-                </Link>
-                <Link
-                  href={"/copilot"}
-                  onClick={toggleSheet}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  EB-1A Copilot
-                </Link>
-                {/*<Link
-                  href={"/course"}
-                  onClick={toggleSheet}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Free Course
-                </Link>
+            {/* Learn Section */}
+            <div className="space-y-2">
+              <h3 className="font-semibold">Learn</h3>
+              <Link
+                href={"/read-unshackled"}
+                onClick={toggleSheet}
+                className="block text-muted-foreground hover:text-foreground"
+              >
+                Read Unshackled
+              </Link>
+              <Link
+                href={"/course"}
+                onClick={toggleSheet}
+                className="block text-muted-foreground hover:text-foreground"
+              >
+                Take a Course
+              </Link>
+              <Link
+                href="http://go.readunshackled.com/webinar"
+                onClick={toggleSheet}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-muted-foreground hover:text-foreground"
+              >
+                Join a Webinar
+              </Link>
+            </div>
 
-                <Link
-                  href="/student-plan"
-                  onClick={toggleSheet}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Student Plan
-                </Link>
-                <Link
-                  href={"/newsletter"}
-                  onClick={toggleSheet}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Newsletter
-                </Link>
-                <Link
-                  href={"/our-story"}
-                  onClick={toggleSheet}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Our Story
-                </Link> */}
-                {/* <NavButtons role={role} toggleSheet={toggleSheet} /> */}
-              </>
-            }
+            {/* Explore Section */}
+            <div className="space-y-2">
+              <h3 className="font-semibold">Explore</h3>
+              <Link
+                href={"/community"}
+                onClick={toggleSheet}
+                className="block text-muted-foreground hover:text-foreground"
+              >
+                Community
+              </Link>
+              <Link
+                href="http://go.readunshackled.com/unshackled-uac"
+                onClick={toggleSheet}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-muted-foreground hover:text-foreground"
+              >
+                [NEW] Conference
+              </Link>
+              <Link
+                href={"/marketplace"}
+                onClick={toggleSheet}
+                className="block text-muted-foreground hover:text-foreground"
+              >
+                [NEW] Marketplace
+              </Link>
+            </div>
 
+            {/* Get EB1 Support Section */}
+            <div className="space-y-2">
+              <h3 className="font-semibold">Get EB1 Support</h3>
+              <Link
+                href={"/copilot"}
+                onClick={toggleSheet}
+                className="block text-muted-foreground hover:text-foreground"
+              >
+                EB1 Copilot
+              </Link>
+              <Link
+                href={"/copilot"}
+                onClick={toggleSheet}
+                className="block text-muted-foreground hover:text-foreground"
+              >
+                EB1 Autopilot
+              </Link>
+            </div>
             {isMarketplaceRoute && (
               <>
                 <Separator />

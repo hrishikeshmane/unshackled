@@ -46,184 +46,63 @@ export function ConditionalNavigationMenu({
           <NavigationMenuList>
             {!isMarketplaceRoute && !isVendorRoute && !isAdminRoute && (
               <>
-                {/* <NavigationMenuItem>
-                  <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Learn</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                      <li className="row-span-4">
-                        <NavigationMenuLink asChild>
-                          <Link
-                            className="flex h-full w-full select-none flex-col justify-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                            href="/"
-                          >
-                            <Logo className="border-3 m-auto" />
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
+                    <ul className="grid w-[400px] gap-3 p-4">
                       <ListItem href="/read-unshackled" title="Read Unshackled">
                         Read the first book that simplifies legal immigration
-                        with beautiful visuals & gripping stories.
                       </ListItem>
-                      <ListItem href="/community" title="Community">
-                        Join the vibrant community of ambitious immigrants
+                      <ListItem href="/course" title="Take a Course">
+                        Comprehensive course on talent visas
                       </ListItem>
-                      <ListItem href="/course" title="Free Course">
-                        5-day free course on talent visas. No legal jargon.
-                      </ListItem>
-                      <ListItem href="/student-plan" title="Student Plan">
-                        Complete plan tailored for F-1 students
+                      <ListItem
+                        href="http://go.readunshackled.com/webinar"
+                        title="Join a Webinar"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Join our interactive webinar sessions
                       </ListItem>
                     </ul>
                   </NavigationMenuContent>
-                </NavigationMenuItem> */}
-                {/* <NavigationMenuItem>
-                  <NavigationMenuTrigger>
-                    [NEW] Marketplace
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                      <ListItem title={"Marketplace"} href={"/marketplace"}>
-                        All your talent visas needs - in one place
-                      </ListItem>
-                      {components.marketplaceRoutes.map((component) => (
-                        <ListItem
-                          key={component.title}
-                          title={component.title}
-                          href={component.href}
-                        >
-                          {component.description}
-                        </ListItem>
-                      ))}
-                      <ListItem title={"My orders"} href={"/myorders"}>
-                        View your orders
-                      </ListItem>
-                    </ul> 
-                  </NavigationMenuContent>
-                </NavigationMenuItem> */}
-                <NavigationMenuItem>
-                  <Link href="/marketplace" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      [NEW] Marketplace
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link
-                    className="transition-all hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="http://go.readunshackled.com/unshackled-uac"
-                  >
-                    [NEW] Conference
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link href="/read-unshackled" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Read Unshackled
-                    </NavigationMenuLink>
-                  </Link>
                 </NavigationMenuItem>
 
-                {/* <NavigationMenuItem>
-                  <Link href="/find-lawyers" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Find Lawyers
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem> */}
-                {/* <NavigationMenuItem>
-                  <Link href="/newsletter" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Newsletter
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem> */}
                 <NavigationMenuItem>
-                  <Link
-                    href={"/course"}
-                    // href="https://unshackled.thinkific.com/courses/eb1a"
-                    // target="_blank"
-                    // rel="noopener noreferrer"
-                  >
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Course
-                    </NavigationMenuLink>
-                  </Link>
+                  <NavigationMenuTrigger>Explore</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4">
+                      <ListItem href="/community" title="Community">
+                        Join our vibrant community of ambitious immigrants
+                      </ListItem>
+                      <ListItem
+                        href="http://go.readunshackled.com/unshackled-uac"
+                        title="[NEW] Conference"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Attend our upcoming conference
+                      </ListItem>
+                      <ListItem href="/marketplace" title="[NEW] Marketplace">
+                        All your talent visa needs in one place
+                      </ListItem>
+                    </ul>
+                  </NavigationMenuContent>
                 </NavigationMenuItem>
-                {/* <NavigationMenuItem>
-                  <Link
-                    href="https://go.readunshackled.com/webinar"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    // legacyBehavior
-                    // passHref
-                  >
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Free Webinar
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem> */}
+
                 <NavigationMenuItem>
-                  <Link
-                    href={
-                      pathname.includes("/community")
-                        ? "#pricing-grid"
-                        : "/community"
-                    }
-                    legacyBehavior
-                    passHref
-                  >
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Become a member
-                    </NavigationMenuLink>
-                  </Link>
+                  <NavigationMenuTrigger>Get EB1 Support</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4">
+                      <ListItem href="/copilot" title="EB1 Copilot">
+                        Get guided support for your EB1 journey
+                      </ListItem>
+                      <ListItem href="/copilot" title="EB1 Autopilot">
+                        Automated assistance for your EB1 process
+                      </ListItem>
+                    </ul>
+                  </NavigationMenuContent>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link
-                    href="http://go.readunshackled.com/webinar"
-                    // legacyBehavior
-                    // passHref
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Join Webinar
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                {/* <NavigationMenuItem>
-                  <Link href="/our-story" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Our Story
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem> */}
-                {/* <NavigationMenuItem>
-              <Link href="/our-story" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Our Story
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem> */}
               </>
             )}
             {isMarketplaceRoute && (
