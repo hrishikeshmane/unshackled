@@ -2,6 +2,7 @@ import Footer from "@/components/landing-page/footer";
 import HeroSection from "@/components/landing-page/hero";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@radix-ui/react-dialog";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import JoinNewsLetterDialog from "~/components/elements/JoinNewsLetterDialog";
@@ -19,7 +20,7 @@ export default function HomePage() {
           target="_blank"
           rel="noopener noreferrer"
           href="http://go.readunshackled.com/unshackled-uac"
-          className="md:text-md sticky top-16 z-50 flex h-10 w-full cursor-pointer items-center justify-center bg-primary text-center text-sm font-semibold text-primary-foreground"
+          className="md:text-md sticky top-16 z-20 flex h-12 w-full items-center justify-center bg-primary text-center text-sm font-semibold text-primary-foreground underline hover:cursor-pointer md:h-10"
         >
           Attend the LARGEST conference for high-skilled immigrants in America
           [Aug 15-16, 2025]
