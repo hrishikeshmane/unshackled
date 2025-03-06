@@ -12,7 +12,7 @@ import BecomeASeller from "./_components/become-a-seller";
 import BecomeASellerSection from "./_components/become-a-seller-section";
 
 export default async function MarketplacePage() {
-  const storesRaw = await api.store.getStores({live: true});
+  const storesRaw = await api.store.getStores({ live: true });
   const billboards = await api.billboard.getBillboards();
 
   const stores = await Promise.all(
@@ -77,11 +77,10 @@ export default async function MarketplacePage() {
               reelSubtitle="Discover amazing services from our trusted partners"
             />
           </div>
-          
+
           {/* <div className="py-10">
             <BecomeASellerSection />
           </div> */}
-          
         </MaxWidthWrapper>
       </section>
       <Footer />

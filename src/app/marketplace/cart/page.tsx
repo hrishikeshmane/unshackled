@@ -28,13 +28,15 @@ const Page = () => {
   });
 
   const onCheckout = () => {
-    const cartItems = items.map(({ product, isDownPayment, quantity, orderPrice, refNumber }) => ({
-      productId: product.id,
-      quantity: quantity,
-      isDownPayment: isDownPayment,
-      orderPrice: orderPrice,
-      refNumber: refNumber,
-    }));
+    const cartItems = items.map(
+      ({ product, isDownPayment, quantity, orderPrice, refNumber }) => ({
+        productId: product.id,
+        quantity: quantity,
+        isDownPayment: isDownPayment,
+        orderPrice: orderPrice,
+        refNumber: refNumber,
+      }),
+    );
 
     startTransition(async () => {
       await createCheckoutSession.mutateAsync({ items: cartItems });
@@ -56,7 +58,7 @@ const Page = () => {
       // const price = isDownPayment ? product.downPayment : product.price;
       return total + Number(orderPrice) * quantity;
     },
-    0
+    0,
   );
 
   const fee = 0;
@@ -95,7 +97,9 @@ const Page = () => {
                   <p className="text-center text-muted-foreground">
                     Whoops! Nothing to show here yet.
                   </p>
-                  <Link href="/marketplace" className="text-primary font-bold">Go back to Shopping!</Link>
+                  <Link href="/marketplace" className="font-bold text-primary">
+                    Go back to Shopping!
+                  </Link>
                 </div>
               ) : null}
 
@@ -165,28 +169,34 @@ const Page = () => {
                   })}
               </ul>
 
-              {
-                items &&
-                <div className="mt-4 p-4 bg-gray-100 rounded-lg">
+              {items && (
+                <div className="mt-4 rounded-lg bg-gray-100 p-4">
                   <p className="text-sm text-gray-600">
-                    Thank you for choosing an Unshackled Marketplace vendor! Once you complete your purchase,
-                    you'll receive an email connecting you with the vendor, who will work with you directly.
+                    Thank you for choosing an Unshackled Marketplace vendor!
+                    Once you complete your purchase, you'll receive an email
+                    connecting you with the vendor, who will work with you
+                    directly.
                   </p>
-                  <p className="text-sm text-gray-600 mt-2">
-                    <strong>Disclaimer:</strong> While we vet all vendors for credibility, Unshackled does not
-                    own or provide their services and is not liable for any disputes, delays, or service
-                    outcomes. Engagement is solely between you and the vendor.
+                  <p className="mt-2 text-sm text-gray-600">
+                    <strong>Disclaimer:</strong> While we vet all vendors for
+                    credibility, Unshackled does not own or provide their
+                    services and is not liable for any disputes, delays, or
+                    service outcomes. Engagement is solely between you and the
+                    vendor.
                   </p>
-                  <p className="text-sm text-gray-600 mt-2">
-                    For issues, please contact the vendor directly. Feedback? Email us at{" "}
-                    <Link href="mailto:hi@unshackled.club" className="text-primary hover:underline">
+                  <p className="mt-2 text-sm text-gray-600">
+                    For issues, please contact the vendor directly. Feedback?
+                    Email us at{" "}
+                    <Link
+                      href="mailto:hi@unshackled.club"
+                      className="text-primary hover:underline"
+                    >
                       hi@unshackled.club
                     </Link>
                     .
                   </p>
                 </div>
-              }
-              
+              )}
             </div>
 
             <section className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
