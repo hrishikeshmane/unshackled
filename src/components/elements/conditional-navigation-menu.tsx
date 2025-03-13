@@ -56,6 +56,9 @@ export function ConditionalNavigationMenu({
                       <ListItem href="/course" title="Take a Course">
                         Comprehensive course on talent visas
                       </ListItem>
+                      <ListItem href="/newsletter" title="Newsletter">
+                        Stay updated with our weekly immigration insights
+                      </ListItem>
                       <ListItem
                         href="http://go.readunshackled.com/webinar"
                         title="Join a Webinar"
@@ -97,7 +100,10 @@ export function ConditionalNavigationMenu({
                       <ListItem href="/copilot" title="EB1 Copilot">
                         Get guided support for your EB1 journey
                       </ListItem>
-                      <ListItem href="/copilot" title="EB1 Autopilot">
+                      <ListItem
+                        href="https://go.greencard.inc/evaluation"
+                        title="EB1 Autopilot"
+                      >
                         Automated assistance for your EB1 process
                       </ListItem>
                     </ul>
