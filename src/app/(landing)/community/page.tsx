@@ -344,10 +344,10 @@ export default function HomePage() {
             Not ready to commit yet?
           </h2>
           <p className="text-center text-xl font-bold leading-8 text-muted-foreground">
-            No problem! Start with our free, 5-day course on talent visas first.
+            No problem! Join an upcoming free webinar we host & get your questions answered.
           </p>
-          <Link href="/course">
-            <Button size="lg">Get free course</Button>
+          <Link href="https://go.readunshackled.com/webinar">
+            <Button size="lg">Join free webinar</Button>
           </Link>
         </section>
 
