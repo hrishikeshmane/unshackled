@@ -100,17 +100,17 @@ const MobileNav = ({
               >
                 [NEW] Conference
               </Link>
-              <Link
+              {/* <Link
                 href={"/marketplace"}
                 onClick={toggleSheet}
                 className="block text-muted-foreground hover:text-foreground"
               >
                 [NEW] Marketplace
-              </Link>
+              </Link> */}
             </div>
 
             {/* Get EB1 Support Section */}
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <h3 className="font-semibold">Get EB1 Support</h3>
               <Link
                 href={"/copilot"}
@@ -126,8 +126,8 @@ const MobileNav = ({
               >
                 EB1 Autopilot
               </Link>
-            </div>
-            {isMarketplaceRoute && (
+            </div> */}
+            {/* {isMarketplaceRoute && (
               <>
                 <Separator />
                 {components.marketplaceRoutes.map((route) => (
@@ -141,7 +141,7 @@ const MobileNav = ({
                   </Link>
                 ))}
               </>
-            )}
+            )} */}
             {isVendorRoute && (
               <>
                 <Separator />

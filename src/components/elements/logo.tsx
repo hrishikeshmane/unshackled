@@ -182,7 +182,7 @@ const Logo = (className: { className?: string }) => {
           mask="url(#path-9-outside-1_2002_13)"
         />
       </svg>
-      <GCILogo className="absolute left-[21%] top-[66%] scale-75" />
+      {/* <GCILogo className="absolute left-[21%] top-[66%] scale-75" /> */}
     </div>
   );
 };

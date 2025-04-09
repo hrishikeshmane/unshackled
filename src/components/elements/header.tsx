@@ -17,26 +17,26 @@ export type Route = {
 };
 
 export type Routes = {
-  marketplaceRoutes: Route[];
+  // marketplaceRoutes: Route[];
   vendorRoutes: Route[];
   adminRoutes: Route[];
   homeRoutes: Route[];
 };
 
 const Header = async () => {
-  const data = await api.store.getStores({ live: true });
+  // const data = await api.store.getStores({ live: true });
   const { sessionClaims } = auth();
   const role = sessionClaims?.metadata.role;
 
-  console.log("role", role);
+  // console.log("role", role);
 
   const routes: Routes = {
     // TODO: route.description
-    marketplaceRoutes: data.map((route) => ({
-      href: `/marketplace/${route.id}`,
-      title: route.name,
-      description: route.description!,
-    })),
+    // marketplaceRoutes: data.map((route) => ({
+    //   href: `/marketplace/${route.id}`,
+    //   title: route.name,
+    //   description: route.description!,
+    // })),
     vendorRoutes: [
       {
         href: `/vendor`,

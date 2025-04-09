@@ -86,14 +86,14 @@ export function ConditionalNavigationMenu({
                       >
                         Attend our upcoming conference
                       </ListItem>
-                      <ListItem href="/marketplace" title="[NEW] Marketplace">
+                      {/* <ListItem href="/marketplace" title="[NEW] Marketplace">
                         All your talent visa needs in one place
-                      </ListItem>
+                      </ListItem> */}
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <NavigationMenuTrigger>Get EB1 Support</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4">
@@ -108,10 +108,10 @@ export function ConditionalNavigationMenu({
                       </ListItem>
                     </ul>
                   </NavigationMenuContent>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
               </>
             )}
-            {isMarketplaceRoute && (
+            {/* {isMarketplaceRoute && (
               <>
                 {components.marketplaceRoutes.map((component) => (
                   <NavigationMenuItem key={component.title}>
@@ -125,7 +125,7 @@ export function ConditionalNavigationMenu({
                   </NavigationMenuItem>
                 ))}
               </>
-            )}
+            )} */}
 
             {isVendorRoute && (
               <>
