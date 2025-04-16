@@ -6,7 +6,7 @@ import { FaLinkedinIn } from "react-icons/fa6";
 export const BLUR_FADE_DELAY = 0.15;
 
 export const siteConfig = {
-  newsletterCount: "25,000+",
+  newsletterCount: "32,000+",
   memberCount: "750+",
   name: "Greencard Inc",
   description:
