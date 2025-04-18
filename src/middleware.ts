@@ -53,6 +53,11 @@ const isProtectedRoute = createRouteMatcher([
   "(.*)approvalForms(.*)",
 ]);
 
+const isMaintenanceRoute = createRouteMatcher([
+  "/marketplace(.*)",
+  "/vendor(.*)",
+]);
+
 async function loggingMiddleware(
   request: NextRequest,
   event: NextFetchEvent,
@@ -72,6 +77,13 @@ async function loggingMiddleware(
 }
 
 export default clerkMiddleware(async (auth, req, event: NextFetchEvent) => {
+  
+  if (isMaintenanceRoute(req)) {
+    const maintenanceUrl = new URL(req.nextUrl.origin);
+    maintenanceUrl.pathname = "/maintenance";
+    return NextResponse.redirect(maintenanceUrl);
+  }
+  
   if (!auth().userId && isProtectedRoute(req)) {
     // Add custom logic to run before redirecting
     const url = new URL(req.nextUrl.origin);
