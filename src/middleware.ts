@@ -54,8 +54,8 @@ const isProtectedRoute = createRouteMatcher([
 ]);
 
 const isMaintenanceRoute = createRouteMatcher([
-  "/marketplace(.*)",
-  "/vendor(.*)",
+  // "/marketplace(.*)",
+  // "/vendor(.*)",
 ]);
 
 async function loggingMiddleware(
