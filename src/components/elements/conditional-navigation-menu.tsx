@@ -111,7 +111,7 @@ export function ConditionalNavigationMenu({
                 </NavigationMenuItem> */}
               </>
             )}
-            {/* {isMarketplaceRoute && (
+            {isMarketplaceRoute && (
               <>
                 {components.marketplaceRoutes.map((component) => (
                   <NavigationMenuItem key={component.title}>
@@ -125,7 +125,7 @@ export function ConditionalNavigationMenu({
                   </NavigationMenuItem>
                 ))}
               </>
-            )} */}
+            )}
 
             {isVendorRoute && (
               <>
