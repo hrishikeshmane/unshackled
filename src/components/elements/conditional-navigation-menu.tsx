@@ -86,9 +86,9 @@ export function ConditionalNavigationMenu({
                       >
                         Attend our upcoming conference
                       </ListItem>
-                      {/* <ListItem href="/marketplace" title="[NEW] Marketplace">
+                      <ListItem href="/marketplace" title="[NEW] Marketplace">
                         All your talent visa needs in one place
-                      </ListItem> */}
+                      </ListItem>
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
