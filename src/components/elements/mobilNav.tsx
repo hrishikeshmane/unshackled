@@ -49,7 +49,6 @@ const MobileNav = ({
             </Link>
 
             <div className="">
-              {/* This is wehre dashboard buttons will go */}
               <NavButtons role={role} toggleSheet={toggleSheet} />
             </div>
 
@@ -101,6 +100,13 @@ const MobileNav = ({
                 Community
               </Link>
               <Link
+                href={"/community"}
+                onClick={toggleSheet}
+                className="block text-muted-foreground hover:text-foreground"
+              >
+                Community
+              </Link>
+              <Link
                 href={"/marketplace"}
                 onClick={toggleSheet}
                 className="block text-muted-foreground hover:text-foreground"
@@ -110,8 +116,6 @@ const MobileNav = ({
             </div>
 
             {/* Get EB1 Support Section */}
-<<<<<<< HEAD
-=======
             <Link
               href="https://go.greencard.inc/"
               onClick={toggleSheet}
@@ -120,7 +124,6 @@ const MobileNav = ({
             >
               Get EB1 Support
             </Link>
->>>>>>> 62148be (refa: mobile nav changes)
             {/* <div className="space-y-2">
               <h3 className="font-semibold">Get EB1 Support</h3>
               <Link
