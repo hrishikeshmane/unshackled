@@ -85,13 +85,6 @@ const MobileNav = ({
             <div className="space-y-2">
               <h3 className="font-semibold">Explore</h3>
               <Link
-                href={"/community"}
-                onClick={toggleSheet}
-                className="block text-muted-foreground hover:text-foreground"
-              >
-                Community
-              </Link>
-              <Link
                 href="http://go.readunshackled.com/unshackled-uac"
                 onClick={toggleSheet}
                 target="_blank"
@@ -101,16 +94,31 @@ const MobileNav = ({
                 [NEW] Conference
               </Link>
               <Link
+                href={"/community"}
+                onClick={toggleSheet}
+                className="block text-muted-foreground hover:text-foreground"
+              >
+                Community
+              </Link>
+              <Link
                 href={"/marketplace"}
                 onClick={toggleSheet}
                 className="block text-muted-foreground hover:text-foreground"
               >
-                [NEW] Marketplace
+                Marketplace
               </Link>
             </div>
 
             {/* Get EB1 Support Section */}
-            <div className="space-y-2">
+            <Link
+              href="https://go.greencard.inc/"
+              onClick={toggleSheet}
+              className="font-semibold"
+              // className="block text-muted-foreground hover:text-foreground"
+            >
+              Get EB1 Support
+            </Link>
+            {/* <div className="space-y-2">
               <h3 className="font-semibold">Get EB1 Support</h3>
               <Link
                 href={"/copilot"}
@@ -126,7 +134,7 @@ const MobileNav = ({
               >
                 EB1 Autopilot
               </Link>
-            </div>
+            </div> */}
             {isMarketplaceRoute && (
               <>
                 <Separator />
