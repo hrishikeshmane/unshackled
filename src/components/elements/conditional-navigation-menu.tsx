@@ -75,9 +75,6 @@ export function ConditionalNavigationMenu({
                   <NavigationMenuTrigger>Explore</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4">
-                      <ListItem href="/community" title="Community">
-                        Join our vibrant community of ambitious immigrants
-                      </ListItem>
                       <ListItem
                         href="http://go.readunshackled.com/unshackled-uac"
                         title="[NEW] Conference"
@@ -86,14 +83,19 @@ export function ConditionalNavigationMenu({
                       >
                         Attend our upcoming conference
                       </ListItem>
-                      <ListItem href="/marketplace" title="[NEW] Marketplace">
+                      <ListItem href="/community" title="Community">
+                        Join our vibrant community of ambitious immigrants
+                      </ListItem>
+                      <ListItem href="/marketplace" title="Marketplace">
                         All your talent visa needs in one place
                       </ListItem>
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem>
+                <Link href="https://go.greencard.inc/">Get EB1 Support</Link>
+
+                {/* <NavigationMenuItem>
                   <NavigationMenuTrigger>Get EB1 Support</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4">
@@ -108,7 +110,7 @@ export function ConditionalNavigationMenu({
                       </ListItem>
                     </ul>
                   </NavigationMenuContent>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
               </>
             )}
             {isMarketplaceRoute && (
