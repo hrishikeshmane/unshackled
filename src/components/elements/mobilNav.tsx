@@ -117,7 +117,7 @@ const MobileNav = ({
 
             {/* Get EB1 Support Section */}
             <Link
-              href="https://go.greencard.inc/"
+              href="https://go.greencard.inc/evaluation"
               onClick={toggleSheet}
               className="font-semibold"
               // className="block text-muted-foreground hover:text-foreground"
