@@ -93,7 +93,7 @@ export function ConditionalNavigationMenu({
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
-                <Link href="https://go.greencard.inc/">Get EB1 Support</Link>
+                {/* <Link href="https://go.greencard.inc/">Get EB1 Support</Link> */}
 
                 {/* <NavigationMenuItem>
                   <NavigationMenuTrigger>Get EB1 Support</NavigationMenuTrigger>
