@@ -10,11 +10,13 @@ import {
   JoinNewsletterForm,
   StartHereForm,
 } from "~/components/landing-page/convertkit-forms";
+import Script from 'next/script'
 import { siteConfig } from "~/lib/config";
 
 export default function HomePage() {
   return (
     <div className="flex w-full flex-col bg-[#F5F9FF]">
+      <Script src='https://data.processwebsitedata.com/cscripts/E99qFmFXTV-639f3f70.js' strategy="lazyOnload" />
       <div>
         <Link
           target="_blank"

@@ -28,7 +28,7 @@ const Header = async () => {
   const { sessionClaims } = auth();
   const role = sessionClaims?.metadata.role;
 
-  console.log("role", role);
+  // console.log("role", role);
 
   const routes: Routes = {
     // TODO: route.description

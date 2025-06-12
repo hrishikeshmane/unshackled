@@ -238,7 +238,7 @@ export const formQuestions = createTable("formQuestions", {
 
 export const formResponses = createTable("formResponses", {
   id: text("id", { length: 256 }).primaryKey().notNull().$defaultFn(createId),
-  customerId: text("customerid").notNull()
+  customerId: text("customerId").notNull()
     .notNull()
     .references(() => users.id),
   productId: text("productId", { length: 256 })

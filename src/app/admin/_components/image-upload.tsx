@@ -29,6 +29,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onUpload = (result: any) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+        console.log("ONSUCCESS RES >> ", result);
         onChange(result.info.secure_url);
     }
 
@@ -51,7 +52,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                     </div>
                 ))}
             </div>
-            <CldUploadWidget onUpload={onUpload} uploadPreset='dtqdk7s6'>
+            <CldUploadWidget onSuccess={onUpload} uploadPreset='dtqdk7s6'>
                 {({ open }) => {
                     const onClick = () => {
                         open();

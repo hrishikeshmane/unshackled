@@ -354,7 +354,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     <ImageUpload
                       value={field.value ? [field.value] : []}
                       disabled={isPending}
-                      onChange={(url) => field.onChange(url)}
+                      onChange={(url) => {
+                        console.log("IMAGE URL>>", url);
+                        field.onChange(url)
+                      }}
                       onRemove={() => field.onChange("")}
                     />
                   </FormControl>

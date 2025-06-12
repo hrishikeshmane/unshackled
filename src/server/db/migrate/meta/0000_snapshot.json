@@ -1,0 +1,1390 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "6",
+  "dialect": "sqlite",
+  "tables": {
+    "unshackled_billboard": {
+      "name": "unshackled_billboard",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "storeId": {
+          "autoincrement": false,
+          "name": "storeId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "label": {
+          "autoincrement": false,
+          "name": "label",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imageUrl": {
+          "autoincrement": false,
+          "name": "imageUrl",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_billboard_storeId_unshackled_store_id_fk": {
+          "name": "unshackled_billboard_storeId_unshackled_store_id_fk",
+          "tableFrom": "unshackled_billboard",
+          "tableTo": "unshackled_store",
+          "columnsFrom": [
+            "storeId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    },
+    "unshackled_order": {
+      "name": "unshackled_order",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "isPaid": {
+          "autoincrement": false,
+          "name": "isPaid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "paymentStatus": {
+          "default": "'Not Initiated'",
+          "autoincrement": false,
+          "name": "paymentStatus",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "orderTotal": {
+          "autoincrement": false,
+          "name": "orderTotal",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "paymentIntentId": {
+          "autoincrement": false,
+          "name": "paymentIntentId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sessionId": {
+          "autoincrement": false,
+          "name": "sessionId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "receipt": {
+          "autoincrement": false,
+          "name": "receipt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "customerId": {
+          "autoincrement": false,
+          "name": "customerId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vendorAmount": {
+          "autoincrement": false,
+          "name": "vendorAmount",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_order_customerId_unshackled_users_id_fk": {
+          "name": "unshackled_order_customerId_unshackled_users_id_fk",
+          "tableFrom": "unshackled_order",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "customerId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    },
+    "unshackled_store": {
+      "name": "unshackled_store",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "default": "''",
+          "autoincrement": false,
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "isLive": {
+          "default": false,
+          "autoincrement": false,
+          "name": "isLive",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    },
+    "unshackled_tag": {
+      "name": "unshackled_tag",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "storeId": {
+          "autoincrement": false,
+          "name": "storeId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "value": {
+          "autoincrement": false,
+          "name": "value",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_tag_storeId_unshackled_store_id_fk": {
+          "name": "unshackled_tag_storeId_unshackled_store_id_fk",
+          "tableFrom": "unshackled_tag",
+          "tableTo": "unshackled_store",
+          "columnsFrom": [
+            "storeId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    },
+    "unshackled_type": {
+      "name": "unshackled_type",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "storeId": {
+          "autoincrement": false,
+          "name": "storeId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_type_storeId_unshackled_store_id_fk": {
+          "name": "unshackled_type_storeId_unshackled_store_id_fk",
+          "tableFrom": "unshackled_type",
+          "tableTo": "unshackled_store",
+          "columnsFrom": [
+            "storeId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    },
+    "unshackled_users": {
+      "name": "unshackled_users",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "role": {
+          "autoincrement": false,
+          "name": "role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "member": {
+          "autoincrement": false,
+          "name": "member",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fullName": {
+          "autoincrement": false,
+          "name": "fullName",
+          "type": "text(126)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "type": "text(126)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    },
+    "unshackled_vendorInfo": {
+      "name": "unshackled_vendorInfo",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "userId": {
+          "autoincrement": false,
+          "name": "userId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "stripeConnectedId": {
+          "autoincrement": false,
+          "name": "stripeConnectedId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "stripeConnected": {
+          "autoincrement": false,
+          "name": "stripeConnected",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "autoincrement": false,
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_vendorInfo_userId_unshackled_users_id_fk": {
+          "name": "unshackled_vendorInfo_userId_unshackled_users_id_fk",
+          "tableFrom": "unshackled_vendorInfo",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    },
+    "unshackled_waitlist": {
+      "name": "unshackled_waitlist",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "unshackled_waitlist_email_unique": {
+          "name": "unshackled_waitlist_email_unique",
+          "columns": [
+            "email"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    },
+    "unshackled_orderItem": {
+      "name": "unshackled_orderItem",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "isFulfilled": {
+          "autoincrement": false,
+          "name": "isFulfilled",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vendorPayout": {
+          "autoincrement": false,
+          "name": "vendorPayout",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "approval": {
+          "default": "'approved'",
+          "autoincrement": false,
+          "name": "approval",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "orderId": {
+          "autoincrement": false,
+          "name": "orderId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "productId": {
+          "autoincrement": false,
+          "name": "productId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quantity": {
+          "default": 1,
+          "autoincrement": false,
+          "name": "quantity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "storeId": {
+          "autoincrement": false,
+          "name": "storeId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "isDownPayment": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "isDownPayment",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "refNumber": {
+          "default": "''",
+          "autoincrement": false,
+          "name": "refNumber",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_orderItem_storeId_unshackled_store_id_fk": {
+          "name": "unshackled_orderItem_storeId_unshackled_store_id_fk",
+          "tableFrom": "unshackled_orderItem",
+          "tableTo": "unshackled_store",
+          "columnsFrom": [
+            "storeId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_orderItem_orderId_unshackled_order_id_fk": {
+          "name": "unshackled_orderItem_orderId_unshackled_order_id_fk",
+          "tableFrom": "unshackled_orderItem",
+          "tableTo": "unshackled_order",
+          "columnsFrom": [
+            "orderId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    },
+    "unshackled_product": {
+      "name": "unshackled_product",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "storeId": {
+          "autoincrement": false,
+          "name": "storeId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "typeId": {
+          "autoincrement": false,
+          "name": "typeId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "creatorId": {
+          "autoincrement": false,
+          "name": "creatorId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "stripeId": {
+          "autoincrement": false,
+          "name": "stripeId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tagline": {
+          "autoincrement": false,
+          "name": "tagline",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "price": {
+          "autoincrement": false,
+          "name": "price",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imageUrl": {
+          "autoincrement": false,
+          "name": "imageUrl",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "commission": {
+          "autoincrement": false,
+          "name": "commission",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "commissionType": {
+          "autoincrement": false,
+          "name": "commissionType",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "estTurnAroundTime": {
+          "autoincrement": false,
+          "name": "estTurnAroundTime",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "domainRank": {
+          "autoincrement": false,
+          "name": "domainRank",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "isFeatured": {
+          "autoincrement": false,
+          "name": "isFeatured",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "isArchived": {
+          "autoincrement": false,
+          "name": "isArchived",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "isApproved": {
+          "autoincrement": false,
+          "name": "isApproved",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tagId": {
+          "autoincrement": false,
+          "name": "tagId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "requiresVendorApproval": {
+          "default": false,
+          "autoincrement": false,
+          "name": "requiresVendorApproval",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hasDownPayment": {
+          "default": false,
+          "autoincrement": false,
+          "name": "hasDownPayment",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "downpayment": {
+          "default": "'0'",
+          "autoincrement": false,
+          "name": "downpayment",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "orderCommunicationEmail": {
+          "default": "''",
+          "autoincrement": false,
+          "name": "orderCommunicationEmail",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "additionalOrderEmailText": {
+          "default": "''",
+          "autoincrement": false,
+          "name": "additionalOrderEmailText",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "additionalLinkLabel": {
+          "default": "''",
+          "autoincrement": false,
+          "name": "additionalLinkLabel",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "additionalLinkUrl": {
+          "default": "''",
+          "autoincrement": false,
+          "name": "additionalLinkUrl",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hasAdditionalLink": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "hasAdditionalLink",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "isExtRequiredFormApprovalLink": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "isExtRequiredFormApprovalLink",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ExtRequiredFormApprovalLink": {
+          "default": "''",
+          "autoincrement": false,
+          "name": "ExtRequiredFormApprovalLink",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pricingPlans": {
+          "default": "'[]'",
+          "autoincrement": false,
+          "name": "pricingPlans",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hasPricingPlans": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "hasPricingPlans",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "showPricing": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "showPricing",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hasVariablePrice": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "hasVariablePrice",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "requiresRefNumber": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "requiresRefNumber",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_product_tagId_unshackled_tag_id_fk": {
+          "name": "unshackled_product_tagId_unshackled_tag_id_fk",
+          "tableFrom": "unshackled_product",
+          "tableTo": "unshackled_tag",
+          "columnsFrom": [
+            "tagId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_product_creatorId_unshackled_users_id_fk": {
+          "name": "unshackled_product_creatorId_unshackled_users_id_fk",
+          "tableFrom": "unshackled_product",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "creatorId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_product_typeId_unshackled_type_id_fk": {
+          "name": "unshackled_product_typeId_unshackled_type_id_fk",
+          "tableFrom": "unshackled_product",
+          "tableTo": "unshackled_type",
+          "columnsFrom": [
+            "typeId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_product_storeId_unshackled_store_id_fk": {
+          "name": "unshackled_product_storeId_unshackled_store_id_fk",
+          "tableFrom": "unshackled_product",
+          "tableTo": "unshackled_store",
+          "columnsFrom": [
+            "storeId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    },
+    "unshackled_formQuestions": {
+      "name": "unshackled_formQuestions",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "productId": {
+          "autoincrement": false,
+          "name": "productId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vendorId": {
+          "autoincrement": false,
+          "name": "vendorId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "question": {
+          "autoincrement": false,
+          "name": "question",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "autoincrement": false,
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "default": "(UNIXEPOCH())",
+          "autoincrement": false,
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "default": "(UNIXEPOCH())",
+          "autoincrement": false,
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_formQuestions_vendorId_unshackled_users_id_fk": {
+          "name": "unshackled_formQuestions_vendorId_unshackled_users_id_fk",
+          "tableFrom": "unshackled_formQuestions",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "vendorId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_formQuestions_productId_unshackled_product_id_fk": {
+          "name": "unshackled_formQuestions_productId_unshackled_product_id_fk",
+          "tableFrom": "unshackled_formQuestions",
+          "tableTo": "unshackled_product",
+          "columnsFrom": [
+            "productId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    },
+    "unshackled_formResponses": {
+      "name": "unshackled_formResponses",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "customerId": {
+          "autoincrement": false,
+          "name": "customerId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "productId": {
+          "autoincrement": false,
+          "name": "productId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vendorId": {
+          "autoincrement": false,
+          "name": "vendorId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "question": {
+          "autoincrement": false,
+          "name": "question",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "answer": {
+          "autoincrement": false,
+          "name": "answer",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "default": "(UNIXEPOCH())",
+          "autoincrement": false,
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "default": "(UNIXEPOCH())",
+          "autoincrement": false,
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_formResponses_vendorId_unshackled_users_id_fk": {
+          "name": "unshackled_formResponses_vendorId_unshackled_users_id_fk",
+          "tableFrom": "unshackled_formResponses",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "vendorId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_formResponses_productId_unshackled_product_id_fk": {
+          "name": "unshackled_formResponses_productId_unshackled_product_id_fk",
+          "tableFrom": "unshackled_formResponses",
+          "tableTo": "unshackled_product",
+          "columnsFrom": [
+            "productId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_formResponses_customerId_unshackled_users_id_fk": {
+          "name": "unshackled_formResponses_customerId_unshackled_users_id_fk",
+          "tableFrom": "unshackled_formResponses",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "customerId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    },
+    "unshackled_requestApprovals": {
+      "name": "unshackled_requestApprovals",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "customerid": {
+          "autoincrement": false,
+          "name": "customerid",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "productId": {
+          "autoincrement": false,
+          "name": "productId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vendorId": {
+          "autoincrement": false,
+          "name": "vendorId",
+          "type": "text(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "default": "'pending'",
+          "autoincrement": false,
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "default": "(unixepoch())",
+          "autoincrement": false,
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "unshackled_requestApprovals_vendorId_unshackled_users_id_fk": {
+          "name": "unshackled_requestApprovals_vendorId_unshackled_users_id_fk",
+          "tableFrom": "unshackled_requestApprovals",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "vendorId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_requestApprovals_productId_unshackled_product_id_fk": {
+          "name": "unshackled_requestApprovals_productId_unshackled_product_id_fk",
+          "tableFrom": "unshackled_requestApprovals",
+          "tableTo": "unshackled_product",
+          "columnsFrom": [
+            "productId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "unshackled_requestApprovals_customerid_unshackled_users_id_fk": {
+          "name": "unshackled_requestApprovals_customerid_unshackled_users_id_fk",
+          "tableFrom": "unshackled_requestApprovals",
+          "tableTo": "unshackled_users",
+          "columnsFrom": [
+            "customerid"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "unshackled_formQuestions_check_1": {
+          "name": "unshackled_formQuestions_check_1",
+          "value": "`type` IN ('short', 'long'"
+        },
+        "unshackled_requestApprovals_check_2": {
+          "name": "unshackled_requestApprovals_check_2",
+          "value": "`status` IN ('pending', 'approved', 'denied'"
+        }
+      }
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
