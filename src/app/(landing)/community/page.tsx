@@ -129,23 +129,6 @@ export default function HomePage() {
               </div>
               <div>
                 <Image
-                  src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Chinmay.png?raw=true"
-                  alt="Chinmay Jog"
-                  width={270}
-                  height={270}
-                  className="rounded-lg"
-                />
-                <div className="flex flex-col py-4 text-center">
-                  <h3 className="text-lg font-bold text-primary">
-                    Chinmay Jog
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Senior Machine Learning Engineer O1-A Recipient
-                  </p>
-                </div>
-              </div>
-              <div>
-                <Image
                   src="https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/Sunku.png?raw=true"
                   alt="Sunku Ranganath"
                   width={270}
@@ -344,7 +327,8 @@ export default function HomePage() {
             Not ready to commit yet?
           </h2>
           <p className="text-center text-xl font-bold leading-8 text-muted-foreground">
-            No problem! Join an upcoming free webinar we host & get your questions answered.
+            No problem! Join an upcoming free webinar we host & get your
+            questions answered.
           </p>
           <Link href="https://go.readunshackled.com/webinar">
             <Button size="lg">Join free webinar</Button>

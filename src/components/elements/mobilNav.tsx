@@ -100,13 +100,6 @@ const MobileNav = ({
                 Community
               </Link>
               <Link
-                href={"/community"}
-                onClick={toggleSheet}
-                className="block text-muted-foreground hover:text-foreground"
-              >
-                Community
-              </Link>
-              <Link
                 href={"/marketplace"}
                 onClick={toggleSheet}
                 className="block text-muted-foreground hover:text-foreground"
@@ -115,32 +108,6 @@ const MobileNav = ({
               </Link>
             </div>
 
-            {/* Get EB1 Support Section */}
-            <Link
-              href="https://go.greencard.inc/evaluation"
-              onClick={toggleSheet}
-              className="font-semibold"
-              // className="block text-muted-foreground hover:text-foreground"
-            >
-              Get EB1 Support
-            </Link>
-            {/* <div className="space-y-2">
-              <h3 className="font-semibold">Get EB1 Support</h3>
-              <Link
-                href={"/copilot"}
-                onClick={toggleSheet}
-                className="block text-muted-foreground hover:text-foreground"
-              >
-                EB1 Copilot
-              </Link>
-              <Link
-                href={"/copilot"}
-                onClick={toggleSheet}
-                className="block text-muted-foreground hover:text-foreground"
-              >
-                EB1 Autopilot
-              </Link>
-            </div> */}
             {isMarketplaceRoute && (
               <>
                 <Separator />
