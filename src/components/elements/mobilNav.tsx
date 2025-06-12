@@ -110,14 +110,14 @@ const MobileNav = ({
             </div>
 
             {/* Get EB1 Support Section */}
-            <Link
+            {/* <Link
               href="https://go.greencard.inc/"
               onClick={toggleSheet}
               className="font-semibold"
               // className="block text-muted-foreground hover:text-foreground"
             >
               Get EB1 Support
-            </Link>
+            </Link> */}
             {/* <div className="space-y-2">
               <h3 className="font-semibold">Get EB1 Support</h3>
               <Link

@@ -10,7 +10,6 @@ import { siteConfig } from "~/lib/config";
 const avatarUrls = [
   "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Hitesh%20Kenjale.png?raw=true",
   "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Digvijay%20Singh.jpeg?raw=true",
-  "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Chinmay%20Jog.png?raw=true",
   "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Twinkle%20Mohan.png?raw=true",
   "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Dominic%20Damoah.jpeg?raw=true",
   "https://github.com/hrishikeshmane/unshackled-asstets/blob/main/community/review-avatar/Zoya%20Brar.jpeg?raw=true",
