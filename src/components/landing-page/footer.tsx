@@ -9,7 +9,8 @@ import { api } from "~/trpc/server";
 import { type IStore } from "@/server/db/schema";
 
 export default async function Footer() {
-  const stores = await api.store.getStores({ live: true });
+  // const stores = await api.store.getStores({ live: true });
+  const stores = [];
 
   return (
     <footer className="mt-20 bg-secondary py-12">
@@ -64,7 +65,7 @@ export default async function Footer() {
                 Become a member
               </Button>
             </Link>
-            <div className="mx-auto grid grid-cols-2 justify-end gap-10 md:grid-cols-3 md:gap-10 lg:mx-0">
+            <div className="mx-auto grid grid-cols-2 justify-end gap-10 md:grid-cols-2 md:gap-10 lg:mx-0">
               <div className="col-span-1">
                 <h3 className="text-lg font-medium">Site</h3>
                 <nav className="mt-4 space-y-4 text-base">
@@ -133,13 +134,13 @@ export default async function Footer() {
                   </Link>
                 </nav>
 
-                <div className="my-12 block md:hidden">
+                {/* <div className="my-12 block md:hidden">
                   <MarketplaceLinks stores={stores} />
-                </div>
+                </div> */}
               </div>
-              <div className="col-span-1 hidden md:block">
+              {/* <div className="col-span-1 hidden md:block">
                 <MarketplaceLinks stores={stores} />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
