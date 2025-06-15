@@ -21,16 +21,19 @@ const HeroSection = () => {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl text-center">
           <h1 className="mt-5 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight">
-            Escape the H-1B lottery <br />{" "}
+            A community by and for <br /> skilled immigrants
+            {/* Escape the H-1B lottery <br />{" "}
             <span className="text-primary">Empower</span> your career with a
-            talent visa
+            talent visa */}
           </h1>
           <p className="mx-auto mt-12 max-w-5xl text-2xl font-bold leading-8 text-muted-foreground ">
-            At <span className="text-primary">unshackled.club</span>, we do one
+            Events, community, and support for immigrant founders, tech workers,
+            and creatives shaping their future in America.
+            {/* At <span className="text-primary">unshackled.club</span>, we do one
             thing really well: help{" "}
             <span className="text-primary">ambitious immigrants </span>
             secure a talent visa in America - that doesn&apos;t rely on a
-            lottery.
+            lottery. */}
           </p>
 
           <div className="group relative mx-auto mt-10 inline-flex flex-col items-center justify-center gap-4 md:flex-row">
