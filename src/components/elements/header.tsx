@@ -25,6 +25,7 @@ export type Routes = {
 
 const Header = async () => {
   const data = await api.store.getStores({ live: true });
+  // const data = [];
   const { sessionClaims } = auth();
   const role = sessionClaims?.metadata.role;
 

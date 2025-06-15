@@ -99,13 +99,13 @@ const MobileNav = ({
               >
                 Community
               </Link>
-              <Link
+              {/* <Link
                 href={"/marketplace"}
                 onClick={toggleSheet}
                 className="block text-muted-foreground hover:text-foreground"
               >
                 Marketplace
-              </Link>
+              </Link> */}
             </div>
 
             {isMarketplaceRoute && (
