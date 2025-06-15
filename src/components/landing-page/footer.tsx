@@ -10,7 +10,6 @@ import { type IStore } from "@/server/db/schema";
 
 export default async function Footer() {
   // const stores = await api.store.getStores({ live: true });
-  const stores = [];
 
   return (
     <footer className="mt-20 bg-secondary py-12">
