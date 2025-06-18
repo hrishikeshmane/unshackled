@@ -97,9 +97,9 @@ export default async function Footer() {
                   <Link href="/course" className="block  " prefetch={false}>
                     Course
                   </Link>
-                  <Link href="/copilot" className="block  " prefetch={false}>
+                  {/* <Link href="/copilot" className="block  " prefetch={false}>
                     EB1 Copilot
-                  </Link>
+                  </Link> */}
                   <Link href="/refer" className="block  " prefetch={false}>
                     Refer
                   </Link>
