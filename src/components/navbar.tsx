@@ -33,7 +33,7 @@ const Navbar = async () => {
                   {/* <div className="ml-4 flow-root lg:ml-6">
                     <Cart />
                   </div> */}
-                  <UserAuthButton />
+                  {/* <UserAuthButton /> */}
                 </div>
               </div>
             </div>

@@ -102,7 +102,7 @@ const page = ({ params }: PageParams) => {
                   <p className="w-full py-1 text-center text-primary">
                     <s>{lawyer.strikePrice}</s> {lawyer.priceTitle}
                   </p>
-                  <Button
+                  {/* <Button
                     className="b-2 flex w-full items-center border-primary text-primary"
                     variant={"outline"}
                     size={"lg"}
@@ -110,7 +110,7 @@ const page = ({ params }: PageParams) => {
                     {" "}
                     Book a consult
                     <ArrowTopRightIcon />
-                  </Button>
+                  </Button> */}
                 </Link>
               )}
               {!!lawyer.bookingInstruction && (

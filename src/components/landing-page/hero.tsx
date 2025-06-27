@@ -42,7 +42,7 @@ const HeroSection = () => {
                 Become a member
               </Button>
             </Link>
-            <Link
+            {/* <Link
               href="https://go.greencard.inc/evaluation"
               target="_blank"
               rel="noopener noreferrer"
@@ -55,7 +55,7 @@ const HeroSection = () => {
                 <Phone className="h-5" />
                 Book a Free Call
               </Button>
-            </Link>
+            </Link> */}
           </div>
           <div className="mb-4 mt-6 flex justify-center">
             <Link

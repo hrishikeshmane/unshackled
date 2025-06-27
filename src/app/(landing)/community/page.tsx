@@ -335,6 +335,7 @@ export default function HomePage() {
           </Link>
         </section>
 
+        {/*
         <section className="mx-auto my-8 flex w-full max-w-7xl flex-col justify-center gap-4 rounded-lg py-10">
           <div className="flex flex-col-reverse md:flex-row">
             <div className="flex basis-1/2 flex-col items-start justify-start gap-10 p-8 text-left">
@@ -371,7 +372,7 @@ export default function HomePage() {
               />
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* <section className="mx-auto my-4 flex w-full max-w-6xl flex-col justify-center gap-4 rounded-lg p-10">
           <h2 className="mx-auto mb-10 max-w-5xl text-center text-4xl font-bold">

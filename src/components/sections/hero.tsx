@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 
-import { Icons } from "@/components/icons";
 import HeroVideoDialog from "@/components/magicui/hero-video";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -183,7 +182,7 @@ export default function Hero() {
         />
       </div>
       <div className="relative z-10 flex w-full flex-col items-center justify-start px-4 pt-20 sm:px-6 sm:pt-24 md:pt-20 lg:px-8">
-        <HeroPill />
+        {/* <HeroPill /> */}
         <HeroTitles
           heading={["Your", "Green Card", "Dream,", "Now", "Within", "Reach"]}
           subHeading="Self-sponsor Your EB-1A Extraordinary Ability Green Card With AI-Powered

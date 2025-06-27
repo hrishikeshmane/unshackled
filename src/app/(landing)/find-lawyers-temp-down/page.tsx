@@ -159,9 +159,9 @@ const LawyerPage = () => {
               </p>
             </div>
           </div>
-        </section> 
+        </section>
 
-       <section className="relative flex flex-col items-center justify-center py-12 sm:py-16 lg:pt-20 xl:pb-0">
+        <section className="relative flex flex-col items-center justify-center py-12 sm:py-16 lg:pt-20 xl:pb-0">
           <h2 className="mt-5 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl sm:leading-tight lg:text-4xl lg:leading-tight">
             Lawyer Directory
           </h2>
@@ -204,18 +204,18 @@ const LawyerPage = () => {
                   <p className="w-full py-1 text-center text-primary">
                     <s>{lawyer.strikePrice}</s> {lawyer.priceTitle}
                   </p>
-                  <Button
+                  {/* <Button
                     size={"lg"}
                     variant={"outline"}
                     className="b-2 w-full border-primary text-primary"
                   >
                     Book a consult
-                  </Button>
+                  </Button> */}
                 </Link>
               </div>
             ))}
           </div>
-        </section> 
+        </section>
       </main>
       <Footer />
     </div>

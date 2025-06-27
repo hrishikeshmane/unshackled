@@ -100,9 +100,9 @@ export default async function Footer() {
                   {/* <Link href="/copilot" className="block  " prefetch={false}>
                     EB1 Copilot
                   </Link> */}
-                  <Link href="/refer" className="block  " prefetch={false}>
+                  {/* <Link href="/refer" className="block  " prefetch={false}>
                     Refer
-                  </Link>
+                  </Link> */}
                   {/* <Link href="#" className="block  " prefetch={false}>
                     Our story
                   </Link> */}

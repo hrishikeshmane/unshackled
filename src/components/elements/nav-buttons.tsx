@@ -57,7 +57,7 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
               >
                 <Button onClick={mobileSheetToggle}>Become a member</Button>
               </Link> */}
-              <Link
+              {/* <Link
                 href="https://go.greencard.inc/evaluation"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -69,14 +69,12 @@ const NavButtons = ({ role, toggleSheet }: NavButtonsProps) => {
                   <Phone className="h-5" />
                   Book a Free Call
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           )}
         </div>
       )}
-      <div className="hidden md:block">
-        <UserAuthButton />
-      </div>
+      <div className="hidden md:block">{/* <UserAuthButton /> */}</div>
     </div>
   );
 };
