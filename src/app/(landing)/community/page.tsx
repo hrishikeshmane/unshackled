@@ -191,6 +191,23 @@ export default function HomePage() {
                   <p className="text-muted-foreground">Data Science Manager</p>
                 </div>
               </div>
+              <div>
+                <Image
+                  src="https://media.licdn.com/dms/image/v2/D4E03AQFAUARcN2ZXWA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1667406713295?e=1756944000&v=beta&t=9igv09f9RKYPe-MDmichyp1jj5C67zvgtMHZZ7wDJL4"
+                  alt="Dominic Damoah"
+                  width={270}
+                  height={270}
+                  className="rounded-lg"
+                />
+                <div className="flex flex-col py-4 text-center">
+                  <h3 className="text-lg font-bold text-primary">
+                    Dominic Damoah
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Co-Founder / CTO at Vie/ O-1A Recipient
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
